@@ -954,7 +954,7 @@
   {
     "level": "Medium",
     "topic": "CROSS JOIN",
-    "text": "Produce a grid of every product Category combined with every order Status (distinct values only).",
+    "text": "Produce every possible pairing of a product Category with an order Status (distinct values only).",
     "hints": [
       "CROSS JOIN pairs every row of one set with every row of another.",
       "Use two DISTINCT subqueries."
@@ -1414,7 +1414,7 @@
   {
     "level": "Medium",
     "topic": "GROUP BY",
-    "text": "For each product category show the stock value (SUM of Stock * UnitPrice). Only show categories above 50,000.",
+    "text": "For each product category show the stock value (Stock * UnitPrice added up across its products). Only show categories above 50,000.",
     "hints": [
       "Aggregate an expression and filter with HAVING."
     ],
@@ -1873,7 +1873,7 @@
   {
     "level": "Medium",
     "topic": "Metadata",
-    "text": "List each table in the database with its number of columns (use INFORMATION_SCHEMA.COLUMNS).",
+    "text": "List each table in the database with its number of columns, using the database's own metadata.",
     "hints": [
       "GROUP BY TABLE_NAME."
     ],
@@ -1958,7 +1958,7 @@
   {
     "level": "Hard",
     "topic": "CTE",
-    "text": "Using a CTE, compute revenue per month (exclude Cancelled orders) and list only the months whose revenue is above the average monthly revenue.",
+    "text": "List only the months whose revenue (excluding Cancelled orders) is above the average monthly revenue, with the month and its revenue.",
     "hints": [
       "Build monthly revenue in a CTE.",
       "Compare against (SELECT AVG(Revenue) FROM cte)."
@@ -1980,7 +1980,7 @@
   {
     "level": "Hard",
     "topic": "Multiple CTEs",
-    "text": "For each customer show their total revenue and their share (%) of overall revenue, largest share first. Use two CTEs.",
+    "text": "For each customer show their total revenue and their share (%) of overall revenue, largest share first.",
     "hints": [
       "CTE 1: revenue per customer.",
       "CTE 2: total revenue; CROSS JOIN it to divide."
@@ -2072,7 +2072,7 @@
   {
     "level": "Hard",
     "topic": "RANK / DENSE_RANK",
-    "text": "Rank employees by salary within their department showing both RANK and DENSE_RANK (call them SalaryRank and SalaryDenseRank). Show Engineering only (DepartmentId = 2).",
+    "text": "Within the Engineering department (DepartmentId = 2), position employees by salary, highest first. Show two position columns: SalaryRank, where tied employees share a position and the next position is skipped, and SalaryDenseRank, where no positions are skipped.",
     "hints": [
       "Both functions use OVER (PARTITION BY ... ORDER BY Salary DESC).",
       "Look at how ties (equal salaries) are numbered."
@@ -2096,7 +2096,7 @@
   {
     "level": "Hard",
     "topic": "Running total",
-    "text": "Show monthly revenue together with a running (cumulative) total, ordered by month. Exclude Cancelled orders.",
+    "text": "Show monthly revenue together with the total revenue earned from the first month up to and including that month, ordered by month. Exclude Cancelled orders.",
     "hints": [
       "Aggregate by month first (CTE).",
       "SUM(Revenue) OVER (ORDER BY MonthStart ROWS UNBOUNDED PRECEDING)."
@@ -2258,7 +2258,7 @@
   {
     "level": "Hard",
     "topic": "Running total",
-    "text": "For customer 5, list orders with a running count of orders so far and a running total of order value (by order date).",
+    "text": "For customer 5, list orders by order date, showing for each order how many orders the customer had placed up to and including it, and the total order value up to and including it.",
     "hints": [
       "Build order totals in a CTE, then use SUM() OVER with ROWS."
     ],
@@ -2305,7 +2305,7 @@
   {
     "level": "Hard",
     "topic": "PERCENT_RANK",
-    "text": "Show each employee's PERCENT_RANK of salary across the company (rounded to 3 decimals).",
+    "text": "For each employee show their relative standing in salary across the company as a fraction from 0 (lowest) to 1 (highest), rounded to 3 decimals.",
     "hints": [
       "PERCENT_RANK() OVER (ORDER BY Salary)."
     ],
@@ -2327,7 +2327,7 @@
   {
     "level": "Hard",
     "topic": "CUME_DIST",
-    "text": "Show each employee's cumulative distribution of salary (rounded to 3 decimals) across the company.",
+    "text": "For each employee show the fraction of all employees in the company who earn the same or less than them (rounded to 3 decimals).",
     "hints": [
       "CUME_DIST() OVER (ORDER BY Salary)."
     ],
@@ -2373,7 +2373,7 @@
   {
     "level": "Hard",
     "topic": "CTE",
-    "text": "Using a CTE, list customers whose total revenue is above the average customer revenue.",
+    "text": "List customers whose total revenue is above the average customer revenue.",
     "hints": [
       "CTE of revenue per customer, compare to its AVG."
     ],
@@ -2395,7 +2395,7 @@
   {
     "level": "Hard",
     "topic": "DENSE_RANK",
-    "text": "Return the top 5 revenue-ranked products (DENSE_RANK on total revenue, highest = 1).",
+    "text": "Position products by total revenue (highest = 1; tied products share a position and no positions are skipped) and return those in positions 1 to 5.",
     "hints": [
       "CTE with SUM then DENSE_RANK; filter <= 5."
     ],
@@ -2417,7 +2417,7 @@
   {
     "level": "Hard",
     "topic": "Recursive CTE",
-    "text": "Generate the numbers 1 to 10 with a recursive CTE.",
+    "text": "Produce a list of the numbers 1 to 10 without reading from any table.",
     "hints": [
       "Anchor SELECT 1, recursive part n + 1 WHERE n < 10."
     ],
@@ -2663,7 +2663,7 @@
   {
     "level": "Hard",
     "topic": "EXCEPT",
-    "text": "Using EXCEPT, which customers (CustomerId) have never placed an order?",
+    "text": "Which customers (CustomerId) have never placed an order?",
     "hints": [
       "EXCEPT between all customer ids and customer ids that appear in Orders."
     ],
@@ -2859,7 +2859,7 @@
   {
     "level": "Hard",
     "topic": "Running total",
-    "text": "Show employees ordered by hire date (EmployeeId as tie-break) with a running headcount.",
+    "text": "Show employees ordered by hire date (EmployeeId as tie-break) together with the number of employees hired up to and including each one.",
     "hints": [
       "COUNT(*) OVER (ORDER BY HireDate, EmployeeId ROWS UNBOUNDED PRECEDING)."
     ],
@@ -2904,7 +2904,7 @@
   {
     "level": "Hard",
     "topic": "Cumulative share",
-    "text": "List products by revenue (highest first) with each product's share of total revenue and the cumulative share (2 decimals).",
+    "text": "List products by revenue (highest first) with each product's share of total revenue and the combined share of that product and all higher-earning ones (2 decimals).",
     "hints": [
       "SUM(Revenue) OVER () for the total and a running SUM for cumulative."
     ],
@@ -2973,7 +2973,7 @@
   {
     "level": "Hard",
     "topic": "RANK",
-    "text": "Rank sales reps by total revenue of their orders (RANK, highest = 1). Ignore orders without a rep.",
+    "text": "Position sales reps by total revenue of their orders (highest = 1; tied reps share a position and the next position is skipped). Ignore orders without a rep.",
     "hints": [
       "Join Orders to Employees and RANK() OVER (ORDER BY SUM(...) DESC)."
     ],
@@ -3362,7 +3362,7 @@
   {
     "level": "Hard",
     "topic": "CASE",
-    "text": "Show for each employee whether they are a 'Manager' (has direct reports) or 'Individual Contributor', using a single query without GROUP BY.",
+    "text": "Show for each employee whether they are a 'Manager' (has direct reports) or 'Individual Contributor', one row per employee.",
     "hints": [
       "CASE WHEN EXISTS (...) THEN ... END."
     ],
@@ -3519,7 +3519,7 @@
   {
     "level": "Expert",
     "topic": "Moving average",
-    "text": "Show monthly revenue (excluding Cancelled orders) with a 3-month moving average (current month and the 2 previous months), rounded to 2 decimals.",
+    "text": "Show monthly revenue (excluding Cancelled orders) with the average revenue of that month and the 2 months before it, rounded to 2 decimals.",
     "hints": [
       "Aggregate to months in a CTE.",
       "AVG(Revenue) OVER (ORDER BY MonthStart ROWS BETWEEN 2 PRECEDING AND CURRENT ROW)."
@@ -3583,7 +3583,7 @@
   {
     "level": "Expert",
     "topic": "Window SUM",
-    "text": "For each customer and year, list their orders with a running total of order value that restarts every year.",
+    "text": "For each customer and year, list their orders with the total order value so far within that year, starting over each year.",
     "hints": [
       "Order totals CTE; SUM() OVER (PARTITION BY CustomerId, YEAR(OrderDate) ORDER BY OrderDate ROWS UNBOUNDED PRECEDING)."
     ],
@@ -3770,7 +3770,7 @@
   {
     "level": "Expert",
     "topic": "NTILE",
-    "text": "Find customers in the top revenue quartile (NTILE(4) = 1). Show customer name and revenue.",
+    "text": "Find customers in the top 25% by revenue when all customers are split into four equal-sized groups. Show customer name and revenue.",
     "hints": [
       "Revenue per customer CTE then NTILE(4) OVER (ORDER BY Revenue DESC)."
     ],
@@ -3792,7 +3792,7 @@
   {
     "level": "Expert",
     "topic": "New customers",
-    "text": "For each month, count the customers placing their first-ever order, with a running total of acquired customers.",
+    "text": "For each month, count the customers placing their first-ever order, together with the total number of customers acquired up to that month.",
     "hints": [
       "MIN(OrderDate) per customer, group by month, running SUM."
     ],
@@ -3876,7 +3876,7 @@
   {
     "level": "Expert",
     "topic": "Year to date",
-    "text": "Show 2024 monthly non-cancelled revenue with a year-to-date running total.",
+    "text": "Show 2024 monthly non-cancelled revenue with the revenue accumulated from January up to and including that month.",
     "hints": [
       "Monthly CTE filtered to 2024, SUM OVER with ROWS."
     ],
@@ -4135,7 +4135,7 @@
   {
     "level": "Expert",
     "topic": "Budgeting",
-    "text": "Starting from the highest-paid employee (ties by EmployeeId) and going down, which employees fit within a cumulative salary budget of 1,000,000? Show name, salary and running total.",
+    "text": "Starting from the highest-paid employee (ties by EmployeeId) and going down, which employees fit within a total salary budget of 1,000,000? Show name, salary and the salary total so far.",
     "hints": [
       "Running SUM ordered by Salary DESC, EmployeeId; filter <= 1,000,000."
     ],
@@ -4157,7 +4157,7 @@
   {
     "level": "Expert",
     "topic": "Metadata",
-    "text": "List every table with its row count using sys.tables and sys.partitions.",
+    "text": "List every user table in the database with its row count, using the database's own metadata rather than counting each table.",
     "hints": [
       "Join on object_id and filter index_id IN (0,1)."
     ],
@@ -4175,7 +4175,7 @@
   {
     "level": "Expert",
     "topic": "Dynamic ranking",
-    "text": "Rank customers by revenue within each year (DENSE_RANK, highest = 1) and return the top 3 per year with year, customer, revenue and rank.",
+    "text": "Position customers by revenue within each year (highest = 1; tied customers share a position and no positions are skipped) and return the top 3 per year with year, customer, revenue and position.",
     "hints": [
       "Revenue per customer per year, then DENSE_RANK partitioned by Yr."
     ],
