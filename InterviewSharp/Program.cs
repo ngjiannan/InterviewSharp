@@ -68,6 +68,8 @@ api.MapPost("/check", async (CheckRequest r, ISqlService sql) =>
         : Results.Ok(await sql.CheckAsync(r.Sql ?? "", r.Key)));
 api.MapGet("/schema", async (ISqlService sql) => Results.Ok(await sql.GetSchemaAsync()));
 app.MapGet("/healthz", () => Results.Ok("ok"));
+if (app.Configuration.GetValue("Hosted:ApiOnly", false))
+    app.MapGet("/", () => Results.Text("InterviewSharp API is running. Use the app at https://interviewsharp.pages.dev"));
 
 // Hosted API mode: no Blazor UI or SignalR endpoint, only /api and /healthz.
 if (!app.Configuration.GetValue("Hosted:ApiOnly", false))
