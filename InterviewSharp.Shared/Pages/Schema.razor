@@ -1,0 +1,69 @@
+@page "/schema"
+@inject ISqlService Runner
+
+<PageTitle>Schema - InterviewSharp</PageTitle>
+
+<h3>PracticeDB schema</h3>
+
+<div class="mb-3">
+    @if (Runner.CanReset)
+    {
+        <button class="btn btn-danger" @onclick="Reset" disabled="@busy">Reset database (drop &amp; reseed)</button>
+    }
+    @if (message is not null) { <span class="ms-3">@message</span> }
+</div>
+
+@if (tables is null)
+{
+    <p>Loading...</p>
+}
+else if (tables.Count == 0)
+{
+    <div class="alert alert-warning">No schema available. @(Runner.IsConfigured ? "Is the SQL backend running and the database created?" : "No SQL server is connected (study mode). Table list: Departments, Employees, SalaryHistory, Customers, Products, Orders, OrderItems.")</div>
+}
+else
+{
+    <div class="row">
+        @foreach (var t in tables)
+        {
+            <div class="col-md-6 col-xl-4 mb-3">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <strong>@t.Key</strong><span class="text-muted">@(counts.TryGetValue(t.Key, out var n) ? n : 0) rows</span>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var c in t.Value)
+                        {
+                            <li class="list-group-item py-1 d-flex justify-content-between"><span>@c.Column</span><span class="text-muted">@c.Type</span></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private Dictionary<string, List<SchemaColumn>>? tables;
+    private Dictionary<string, int> counts = new();
+    private bool busy;
+    private string? message;
+
+    protected override async Task OnInitializedAsync() => await Load();
+
+    private async Task Load()
+    {
+        var info = await Runner.GetSchemaAsync();
+        tables = (info?.Columns ?? new()).GroupBy(x => x.Table).ToDictionary(g => g.Key, g => g.ToList());
+        counts = info?.Counts ?? new();
+    }
+
+    private async Task Reset()
+    {
+        busy = true; message = "Resetting...";
+        var err = await Runner.ResetAsync();
+        message = err is null ? "Database reset." : "Reset failed: " + err;
+        await Load();
+        busy = false;
+    }
+}

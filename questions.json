@@ -1,0 +1,4291 @@
+[
+  {
+    "level": "Easy",
+    "topic": "SELECT",
+    "text": "List all columns and rows from the Departments table.",
+    "hints": [
+      "Use SELECT with a wildcard.",
+      "The table name is Departments."
+    ],
+    "answer": "SELECT * FROM Departments;",
+    "explanation": "SELECT * returns every column. Fine for exploration; in production list columns explicitly.",
+    "id": 1,
+    "key": "1cf15744e00b",
+    "tables": [
+      "Departments"
+    ],
+    "returns": [
+      "DepartmentId",
+      "DepartmentName",
+      "Location"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "WHERE",
+    "text": "Show the first name, last name and salary of employees who earn more than 100,000.",
+    "hints": [
+      "Filter rows with WHERE.",
+      "Compare Salary with > 100000."
+    ],
+    "answer": "SELECT FirstName, LastName, Salary\nFROM Employees\nWHERE Salary > 100000;",
+    "explanation": "WHERE filters rows before they are returned.",
+    "id": 2,
+    "key": "5ac068f50411",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Salary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "ORDER BY",
+    "text": "List all employees (first name, last name, hire date) from the most recently hired to the earliest.",
+    "hints": [
+      "ORDER BY sorts results.",
+      "Use DESC for newest first."
+    ],
+    "answer": "SELECT FirstName, LastName, HireDate\nFROM Employees\nORDER BY HireDate DESC;",
+    "explanation": "Default sort is ASC; DESC reverses it.",
+    "id": 3,
+    "key": "639d6ffec9e1",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "HireDate"
+    ],
+    "ordering": "HireDate DESC"
+  },
+  {
+    "level": "Easy",
+    "topic": "TOP",
+    "text": "Find the 5 highest paid employees (first name, last name, salary).",
+    "hints": [
+      "TOP limits rows in SQL Server.",
+      "Sort by Salary descending first, then take TOP 5."
+    ],
+    "answer": "SELECT TOP 5 FirstName, LastName, Salary\nFROM Employees\nORDER BY Salary DESC;",
+    "explanation": "TOP (n) combined with ORDER BY gives the top-N. Use TOP (5) WITH TIES if ties should be included.",
+    "id": 4,
+    "key": "6c5cb2c24e42",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Salary"
+    ],
+    "ordering": "Salary DESC"
+  },
+  {
+    "level": "Easy",
+    "topic": "DISTINCT",
+    "text": "List the distinct job titles in the company, alphabetically.",
+    "hints": [
+      "DISTINCT removes duplicate rows.",
+      "Add ORDER BY JobTitle."
+    ],
+    "answer": "SELECT DISTINCT JobTitle\nFROM Employees\nORDER BY JobTitle;",
+    "explanation": "DISTINCT applies to the whole selected row, not just the first column.",
+    "id": 5,
+    "key": "ec7c21e98a01",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "JobTitle"
+    ],
+    "ordering": "JobTitle"
+  },
+  {
+    "level": "Easy",
+    "topic": "LIKE",
+    "text": "Find customers whose name starts with the letter 'S'.",
+    "hints": [
+      "Use LIKE with a wildcard.",
+      "'S%' matches anything starting with S."
+    ],
+    "answer": "SELECT CustomerId, CustomerName\nFROM Customers\nWHERE CustomerName LIKE 'S%';",
+    "explanation": "% matches any number of characters, _ matches exactly one.",
+    "id": 6,
+    "key": "5033fcf8f5da",
+    "tables": [
+      "Customers"
+    ],
+    "returns": [
+      "CustomerId",
+      "CustomerName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "BETWEEN",
+    "text": "List all orders placed during 2024.",
+    "hints": [
+      "Use BETWEEN with two dates, or >= and <.",
+      "Prefer a half-open range: >= '2024-01-01' AND < '2025-01-01'."
+    ],
+    "answer": "SELECT OrderId, CustomerId, OrderDate, Status\nFROM Orders\nWHERE OrderDate >= '2024-01-01' AND OrderDate < '2025-01-01';",
+    "explanation": "A half-open range is safe for DATE and DATETIME columns alike and can use an index.",
+    "id": 7,
+    "key": "bc1a67d4a94d",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "OrderId",
+      "CustomerId",
+      "OrderDate",
+      "Status"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "IN",
+    "text": "List customers located in the USA or the UK.",
+    "hints": [
+      "IN replaces multiple ORs.",
+      "WHERE Country IN ('USA','UK')."
+    ],
+    "answer": "SELECT CustomerName, City, Country\nFROM Customers\nWHERE Country IN ('USA', 'UK');",
+    "explanation": "IN is shorthand for OR-ed equality checks.",
+    "id": 8,
+    "key": "269bd77028ec",
+    "tables": [
+      "Customers"
+    ],
+    "returns": [
+      "CustomerName",
+      "City",
+      "Country"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "NULL",
+    "text": "Find employees who have no manager.",
+    "hints": [
+      "NULL cannot be compared with =.",
+      "Use IS NULL."
+    ],
+    "answer": "SELECT EmployeeId, FirstName, LastName, JobTitle\nFROM Employees\nWHERE ManagerId IS NULL;",
+    "explanation": "NULL means unknown; = NULL is never true. Always use IS NULL / IS NOT NULL.",
+    "id": 9,
+    "key": "b8ca84fe8da0",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "EmployeeId",
+      "FirstName",
+      "LastName",
+      "JobTitle"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "NULL",
+    "text": "List employees who earn a commission (CommissionPct is not null), with their commission percentage.",
+    "hints": [
+      "Use IS NOT NULL."
+    ],
+    "answer": "SELECT FirstName, LastName, CommissionPct\nFROM Employees\nWHERE CommissionPct IS NOT NULL;",
+    "explanation": "IS NOT NULL keeps only rows with a value.",
+    "id": 10,
+    "key": "343569b6018a",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "CommissionPct"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "Expressions",
+    "text": "Show each employee's full name (as FullName) and their annual salary plus a 10% bonus (as SalaryWithBonus).",
+    "hints": [
+      "Concatenate with CONCAT or +.",
+      "Multiply Salary by 1.10 and give it an alias with AS."
+    ],
+    "answer": "SELECT CONCAT(FirstName, ' ', LastName) AS FullName,\n       Salary * 1.10 AS SalaryWithBonus\nFROM Employees;",
+    "explanation": "CONCAT treats NULL as an empty string, unlike the + operator.",
+    "id": 11,
+    "key": "8e0810e97b4d",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FullName",
+      "SalaryWithBonus"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "COUNT",
+    "text": "How many orders are in the Orders table?",
+    "hints": [
+      "Use an aggregate function.",
+      "COUNT(*) counts rows."
+    ],
+    "answer": "SELECT COUNT(*) AS TotalOrders FROM Orders;",
+    "explanation": "COUNT(*) counts all rows; COUNT(col) skips NULLs.",
+    "id": 12,
+    "key": "4bab8f4d1ef7",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "TotalOrders"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "AND / OR",
+    "text": "Find products that are out of stock (Stock = 0) or priced above 1000.",
+    "hints": [
+      "Combine conditions with OR."
+    ],
+    "answer": "SELECT ProductName, UnitPrice, Stock\nFROM Products\nWHERE Stock = 0 OR UnitPrice > 1000;",
+    "explanation": "Use parentheses when mixing AND and OR - AND binds tighter.",
+    "id": 13,
+    "key": "b987a9485c18",
+    "tables": [
+      "Products"
+    ],
+    "returns": [
+      "ProductName",
+      "UnitPrice",
+      "Stock"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "OFFSET FETCH",
+    "text": "Page through products ordered by price (highest first): skip the first 5 and return the next 5.",
+    "hints": [
+      "OFFSET ... FETCH works with ORDER BY.",
+      "OFFSET 5 ROWS FETCH NEXT 5 ROWS ONLY."
+    ],
+    "answer": "SELECT ProductName, UnitPrice\nFROM Products\nORDER BY UnitPrice DESC, ProductId\nOFFSET 5 ROWS FETCH NEXT 5 ROWS ONLY;",
+    "explanation": "OFFSET/FETCH is the standard pagination syntax. Add a unique tie-breaker column for deterministic pages.",
+    "id": 14,
+    "key": "67fce7de5aaf",
+    "tables": [
+      "Products"
+    ],
+    "returns": [
+      "ProductName",
+      "UnitPrice"
+    ],
+    "ordering": "UnitPrice DESC, ProductId"
+  },
+  {
+    "level": "Easy",
+    "topic": "COALESCE",
+    "text": "List customers' names and emails, showing 'N/A' where the email is missing.",
+    "hints": [
+      "COALESCE / ISNULL replace NULL values."
+    ],
+    "answer": "SELECT CustomerName, COALESCE(Email, 'N/A') AS Email\nFROM Customers;",
+    "explanation": "COALESCE returns its first non-NULL argument and is ANSI standard; ISNULL is T-SQL specific.",
+    "id": 15,
+    "key": "9cbd667243c0",
+    "tables": [
+      "Customers"
+    ],
+    "returns": [
+      "CustomerName",
+      "Email"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "WHERE",
+    "text": "List all employees in the Sales department (DepartmentId = 3): first name, last name and job title.",
+    "hints": [
+      "Filter Employees by DepartmentId."
+    ],
+    "answer": "SELECT FirstName, LastName, JobTitle\nFROM Employees\nWHERE DepartmentId = 3;",
+    "explanation": "A simple equality filter on a foreign key column.",
+    "id": 16,
+    "key": "55594fd18a39",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "JobTitle"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "ORDER BY",
+    "text": "List Electronics products (name and price) from the most expensive to the cheapest.",
+    "hints": [
+      "Filter on Category, then ORDER BY UnitPrice DESC."
+    ],
+    "answer": "SELECT ProductName, UnitPrice\nFROM Products\nWHERE Category = 'Electronics'\nORDER BY UnitPrice DESC;",
+    "explanation": "WHERE is applied before ORDER BY.",
+    "id": 17,
+    "key": "1946225121f1",
+    "tables": [
+      "Products"
+    ],
+    "returns": [
+      "ProductName",
+      "UnitPrice"
+    ],
+    "ordering": "UnitPrice DESC"
+  },
+  {
+    "level": "Easy",
+    "topic": "WHERE",
+    "text": "List the customers located in Singapore.",
+    "hints": [
+      "Filter on the Country column."
+    ],
+    "answer": "SELECT CustomerId, CustomerName, City\nFROM Customers\nWHERE Country = 'Singapore';",
+    "explanation": "String comparisons are case-insensitive under the default collation.",
+    "id": 18,
+    "key": "38eb9a8e0306",
+    "tables": [
+      "Customers"
+    ],
+    "returns": [
+      "CustomerId",
+      "CustomerName",
+      "City"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "Dates",
+    "text": "List employees hired on or after 1 January 2021 (name and hire date), earliest first.",
+    "hints": [
+      "Compare HireDate with a date literal.",
+      "Use ORDER BY HireDate."
+    ],
+    "answer": "SELECT FirstName, LastName, HireDate\nFROM Employees\nWHERE HireDate >= '2021-01-01'\nORDER BY HireDate;",
+    "explanation": "ISO date literals (yyyy-mm-dd) are language-independent for the DATE type.",
+    "id": 19,
+    "key": "1d5a43104b96",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "HireDate"
+    ],
+    "ordering": "HireDate"
+  },
+  {
+    "level": "Easy",
+    "topic": "BETWEEN",
+    "text": "Find products priced between 50 and 200 (inclusive), showing name and price.",
+    "hints": [
+      "BETWEEN is inclusive on both ends."
+    ],
+    "answer": "SELECT ProductName, UnitPrice\nFROM Products\nWHERE UnitPrice BETWEEN 50 AND 200;",
+    "explanation": "BETWEEN a AND b is equivalent to >= a AND <= b.",
+    "id": 20,
+    "key": "1125cc61fdad",
+    "tables": [
+      "Products"
+    ],
+    "returns": [
+      "ProductName",
+      "UnitPrice"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "WHERE",
+    "text": "List all orders that are currently Pending.",
+    "hints": [
+      "Filter Orders on Status."
+    ],
+    "answer": "SELECT OrderId, CustomerId, OrderDate\nFROM Orders\nWHERE Status = 'Pending';",
+    "explanation": "Straightforward equality filter on a status column.",
+    "id": 21,
+    "key": "3d055da23713",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "OrderId",
+      "CustomerId",
+      "OrderDate"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "String functions",
+    "text": "Show department names in upper case together with the length of each name.",
+    "hints": [
+      "UPPER() and LEN()."
+    ],
+    "answer": "SELECT UPPER(DepartmentName) AS DeptUpper, LEN(DepartmentName) AS NameLength\nFROM Departments;",
+    "explanation": "LEN ignores trailing spaces; DATALENGTH counts bytes.",
+    "id": 22,
+    "key": "a5843c941d74",
+    "tables": [
+      "Departments"
+    ],
+    "returns": [
+      "DeptUpper",
+      "NameLength"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "LIKE",
+    "text": "Find employees whose last name ends with 'ng'.",
+    "hints": [
+      "Put the wildcard at the start of the pattern."
+    ],
+    "answer": "SELECT FirstName, LastName\nFROM Employees\nWHERE LastName LIKE '%ng';",
+    "explanation": "A leading wildcard prevents index seeks - fine for small tables, costly on big ones.",
+    "id": 23,
+    "key": "beabf7017c75",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "MIN",
+    "text": "What is the lowest product price?",
+    "hints": [
+      "Use an aggregate function."
+    ],
+    "answer": "SELECT MIN(UnitPrice) AS CheapestPrice FROM Products;",
+    "explanation": "MIN/MAX ignore NULLs.",
+    "id": 24,
+    "key": "71b324c4bde6",
+    "tables": [
+      "Products"
+    ],
+    "returns": [
+      "CheapestPrice"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "SUM",
+    "text": "What is the total number of units in stock across all products?",
+    "hints": [
+      "SUM over the Stock column."
+    ],
+    "answer": "SELECT SUM(Stock) AS TotalStock FROM Products;",
+    "explanation": "SUM returns NULL if there are no rows; wrap with COALESCE if you need 0.",
+    "id": 25,
+    "key": "de39a9a32240",
+    "tables": [
+      "Products"
+    ],
+    "returns": [
+      "TotalStock"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "AVG",
+    "text": "What is the average unit price of products in the Accessories category?",
+    "hints": [
+      "AVG with a WHERE filter."
+    ],
+    "answer": "SELECT AVG(UnitPrice) AS AvgPrice\nFROM Products\nWHERE Category = 'Accessories';",
+    "explanation": "WHERE filters rows before the aggregate is calculated.",
+    "id": 26,
+    "key": "dc14a648cf65",
+    "tables": [
+      "Products"
+    ],
+    "returns": [
+      "AvgPrice"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "NOT",
+    "text": "List customers who are not in the USA (name and country).",
+    "hints": [
+      "Use <> or NOT IN."
+    ],
+    "answer": "SELECT CustomerName, Country\nFROM Customers\nWHERE Country <> 'USA';",
+    "explanation": "<> and != are equivalent in T-SQL; <> is ANSI standard.",
+    "id": 27,
+    "key": "730c5884adc3",
+    "tables": [
+      "Customers"
+    ],
+    "returns": [
+      "CustomerName",
+      "Country"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "TOP",
+    "text": "Show the 3 most recently signed-up customers (name and signup date).",
+    "hints": [
+      "TOP 3 with ORDER BY SignupDate DESC."
+    ],
+    "answer": "SELECT TOP 3 CustomerName, SignupDate\nFROM Customers\nORDER BY SignupDate DESC;",
+    "explanation": "Dates in this table are unique enough that there is no tie at the cut-off.",
+    "id": 28,
+    "key": "ea9ab002eb1d",
+    "tables": [
+      "Customers"
+    ],
+    "returns": [
+      "CustomerName",
+      "SignupDate"
+    ],
+    "ordering": "SignupDate DESC"
+  },
+  {
+    "level": "Easy",
+    "topic": "NULL",
+    "text": "List employees who have no email address recorded.",
+    "hints": [
+      "IS NULL."
+    ],
+    "answer": "SELECT EmployeeId, FirstName, LastName\nFROM Employees\nWHERE Email IS NULL;",
+    "explanation": "NULL checks need IS NULL.",
+    "id": 29,
+    "key": "9f630902294d",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "EmployeeId",
+      "FirstName",
+      "LastName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Easy",
+    "topic": "DISTINCT",
+    "text": "How many different countries do our customers come from?",
+    "hints": [
+      "COUNT(DISTINCT column)."
+    ],
+    "answer": "SELECT COUNT(DISTINCT Country) AS Countries FROM Customers;",
+    "explanation": "COUNT(DISTINCT x) ignores NULLs and duplicates.",
+    "id": 30,
+    "key": "98b996464df0",
+    "tables": [
+      "Customers"
+    ],
+    "returns": [
+      "Countries"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "INNER JOIN",
+    "text": "List each employee's full name with their department name. (Employees without a department should not appear.)",
+    "hints": [
+      "Join Employees to Departments on DepartmentId.",
+      "INNER JOIN keeps only matching rows."
+    ],
+    "answer": "SELECT e.FirstName, e.LastName, d.DepartmentName\nFROM Employees e\nINNER JOIN Departments d ON d.DepartmentId = e.DepartmentId;",
+    "explanation": "Iris (no department) is excluded by the inner join.",
+    "id": 31,
+    "key": "3e742203f3f0",
+    "tables": [
+      "Employees",
+      "Departments"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "DepartmentName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "LEFT JOIN",
+    "text": "Find departments that have no employees.",
+    "hints": [
+      "Start from Departments and LEFT JOIN Employees.",
+      "Look for rows where the employee side is NULL."
+    ],
+    "answer": "SELECT d.DepartmentName\nFROM Departments d\nLEFT JOIN Employees e ON e.DepartmentId = d.DepartmentId\nWHERE e.EmployeeId IS NULL;",
+    "explanation": "The anti-join pattern: LEFT JOIN then filter on NULL from the right table's key. NOT EXISTS is an equivalent alternative.",
+    "id": 32,
+    "key": "42dcd9d3d101",
+    "tables": [
+      "Departments",
+      "Employees"
+    ],
+    "returns": [
+      "DepartmentName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "Self join",
+    "text": "List each employee with their manager's name (show NULL / 'None' when there is no manager).",
+    "hints": [
+      "Join Employees to itself using two aliases.",
+      "Use LEFT JOIN so employees without a manager are kept."
+    ],
+    "answer": "SELECT e.FirstName + ' ' + e.LastName AS Employee,\n       COALESCE(m.FirstName + ' ' + m.LastName, 'None') AS Manager\nFROM Employees e\nLEFT JOIN Employees m ON m.EmployeeId = e.ManagerId;",
+    "explanation": "A self join treats one table as two roles (employee and manager).",
+    "id": 33,
+    "key": "a98ad67fe46b",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "Employee",
+      "Manager"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "GROUP BY",
+    "text": "Count the number of employees in each department (show the department name).",
+    "hints": [
+      "JOIN to get names, then GROUP BY the department name.",
+      "COUNT(*) per group."
+    ],
+    "answer": "SELECT d.DepartmentName, COUNT(e.EmployeeId) AS EmployeeCount\nFROM Departments d\nLEFT JOIN Employees e ON e.DepartmentId = d.DepartmentId\nGROUP BY d.DepartmentName\nORDER BY EmployeeCount DESC;",
+    "explanation": "LEFT JOIN + COUNT(e.EmployeeId) keeps empty departments with 0 (COUNT(*) would give 1).",
+    "id": 34,
+    "key": "c44553b1684a",
+    "tables": [
+      "Departments",
+      "Employees"
+    ],
+    "returns": [
+      "DepartmentName",
+      "EmployeeCount"
+    ],
+    "ordering": "EmployeeCount DESC"
+  },
+  {
+    "level": "Medium",
+    "topic": "AVG",
+    "text": "Show the average salary per department (rounded to 2 decimals), highest first.",
+    "hints": [
+      "AVG with GROUP BY.",
+      "ROUND(AVG(Salary), 2)."
+    ],
+    "answer": "SELECT d.DepartmentName, ROUND(AVG(e.Salary), 2) AS AvgSalary\nFROM Employees e\nJOIN Departments d ON d.DepartmentId = e.DepartmentId\nGROUP BY d.DepartmentName\nORDER BY AvgSalary DESC;",
+    "explanation": "Every non-aggregated column in SELECT must appear in GROUP BY.",
+    "id": 35,
+    "key": "cd3a17bb37ba",
+    "tables": [
+      "Employees",
+      "Departments"
+    ],
+    "returns": [
+      "DepartmentName",
+      "AvgSalary"
+    ],
+    "ordering": "AvgSalary DESC"
+  },
+  {
+    "level": "Medium",
+    "topic": "HAVING",
+    "text": "List departments with more than 5 employees.",
+    "hints": [
+      "WHERE filters rows, HAVING filters groups.",
+      "HAVING COUNT(*) > 5."
+    ],
+    "answer": "SELECT d.DepartmentName, COUNT(*) AS EmployeeCount\nFROM Employees e\nJOIN Departments d ON d.DepartmentId = e.DepartmentId\nGROUP BY d.DepartmentName\nHAVING COUNT(*) > 5;",
+    "explanation": "HAVING runs after grouping so it can use aggregates; WHERE cannot.",
+    "id": 36,
+    "key": "469527abc93f",
+    "tables": [
+      "Employees",
+      "Departments"
+    ],
+    "returns": [
+      "DepartmentName",
+      "EmployeeCount"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "SUM",
+    "text": "Calculate total revenue per product category. Revenue = Quantity * UnitPrice * (1 - Discount) from OrderItems. Highest first.",
+    "hints": [
+      "Join OrderItems to Products for Category.",
+      "SUM the revenue expression and GROUP BY Category."
+    ],
+    "answer": "SELECT p.Category,\n       SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\nFROM OrderItems oi\nJOIN Products p ON p.ProductId = oi.ProductId\nGROUP BY p.Category\nORDER BY Revenue DESC;",
+    "explanation": "Aggregate an expression, not just a column. Use the price stored on the order line (historical price).",
+    "id": 37,
+    "key": "54c2fe53e56c",
+    "tables": [
+      "OrderItems",
+      "Products"
+    ],
+    "returns": [
+      "Category",
+      "Revenue"
+    ],
+    "ordering": "Revenue DESC"
+  },
+  {
+    "level": "Medium",
+    "topic": "Anti join",
+    "text": "Find customers who have never placed an order.",
+    "hints": [
+      "LEFT JOIN Orders and test for NULL, or use NOT EXISTS.",
+      "Avoid NOT IN if the subquery column can contain NULLs."
+    ],
+    "answer": "SELECT c.CustomerId, c.CustomerName\nFROM Customers c\nWHERE NOT EXISTS (SELECT 1 FROM Orders o WHERE o.CustomerId = c.CustomerId);",
+    "explanation": "NOT EXISTS is NULL-safe and usually optimises well.",
+    "id": 38,
+    "key": "43bfba5e7b28",
+    "tables": [
+      "Customers",
+      "Orders"
+    ],
+    "returns": [
+      "CustomerId",
+      "CustomerName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "Anti join",
+    "text": "Find products that have never been ordered.",
+    "hints": [
+      "Same pattern as the previous question, on OrderItems."
+    ],
+    "answer": "SELECT p.ProductId, p.ProductName\nFROM Products p\nLEFT JOIN OrderItems oi ON oi.ProductId = p.ProductId\nWHERE oi.OrderItemId IS NULL;",
+    "explanation": "LEFT JOIN ... IS NULL on the right table's primary key.",
+    "id": 39,
+    "key": "1582f0eb9c5b",
+    "tables": [
+      "Products",
+      "OrderItems"
+    ],
+    "returns": [
+      "ProductId",
+      "ProductName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "Date functions",
+    "text": "Show the number of orders per month for 2024 (year, month, order count), in calendar order.",
+    "hints": [
+      "Use YEAR() and MONTH() or DATEPART.",
+      "Group by both and order by them."
+    ],
+    "answer": "SELECT YEAR(OrderDate) AS Yr, MONTH(OrderDate) AS Mth, COUNT(*) AS Orders\nFROM Orders\nWHERE OrderDate >= '2024-01-01' AND OrderDate < '2025-01-01'\nGROUP BY YEAR(OrderDate), MONTH(OrderDate)\nORDER BY Yr, Mth;",
+    "explanation": "Group by the same expressions you select. EOMONTH or FORMAT could also be used.",
+    "id": 40,
+    "key": "1413a2701e75",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "Yr",
+      "Mth",
+      "Orders"
+    ],
+    "ordering": "Yr, Mth"
+  },
+  {
+    "level": "Medium",
+    "topic": "MIN / MAX",
+    "text": "For each department show headcount, minimum, maximum and average salary.",
+    "hints": [
+      "Several aggregates can be used in one query."
+    ],
+    "answer": "SELECT d.DepartmentName,\n       COUNT(*) AS Headcount,\n       MIN(e.Salary) AS MinSalary,\n       MAX(e.Salary) AS MaxSalary,\n       AVG(e.Salary) AS AvgSalary\nFROM Employees e\nJOIN Departments d ON d.DepartmentId = e.DepartmentId\nGROUP BY d.DepartmentName;",
+    "explanation": "Multiple aggregates over the same grouping is a single pass over the data.",
+    "id": 41,
+    "key": "43f7e8e63d95",
+    "tables": [
+      "Employees",
+      "Departments"
+    ],
+    "returns": [
+      "DepartmentName",
+      "Headcount",
+      "MinSalary",
+      "MaxSalary",
+      "AvgSalary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "CASE",
+    "text": "Classify employees into salary bands: 'Low' (< 70,000), 'Mid' (70,000-119,999), 'High' (>= 120,000) and count employees in each band.",
+    "hints": [
+      "Use CASE to build the band.",
+      "GROUP BY the CASE expression (or wrap it in a subquery/CTE)."
+    ],
+    "answer": "SELECT CASE WHEN Salary < 70000 THEN 'Low'\n            WHEN Salary < 120000 THEN 'Mid'\n            ELSE 'High' END AS Band,\n       COUNT(*) AS Employees\nFROM Employees\nGROUP BY CASE WHEN Salary < 70000 THEN 'Low'\n              WHEN Salary < 120000 THEN 'Mid'\n              ELSE 'High' END;",
+    "explanation": "CASE evaluates top to bottom and returns the first match.",
+    "id": 42,
+    "key": "1386b0834159",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "Band",
+      "Employees"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "Multi-table JOIN",
+    "text": "Find the top 3 customers by total revenue (customer name and revenue).",
+    "hints": [
+      "Customers -> Orders -> OrderItems.",
+      "SUM revenue, GROUP BY customer, ORDER BY DESC, TOP 3."
+    ],
+    "answer": "SELECT TOP 3 c.CustomerName,\n       SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\nFROM Customers c\nJOIN Orders o ON o.CustomerId = c.CustomerId\nJOIN OrderItems oi ON oi.OrderId = o.OrderId\nGROUP BY c.CustomerId, c.CustomerName\nORDER BY Revenue DESC;",
+    "explanation": "Group by the key (CustomerId) as well as the name in case two customers share a name.",
+    "id": 43,
+    "key": "a540b4caa7d8",
+    "tables": [
+      "Customers",
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "CustomerName",
+      "Revenue"
+    ],
+    "ordering": "Revenue DESC"
+  },
+  {
+    "level": "Medium",
+    "topic": "GROUP BY",
+    "text": "Show the number of orders per Status and what percentage of all orders each status represents (1 decimal).",
+    "hints": [
+      "A scalar subquery (SELECT COUNT(*) FROM Orders) gives the total.",
+      "Multiply by 100.0 to avoid integer division."
+    ],
+    "answer": "SELECT Status,\n       COUNT(*) AS Orders,\n       ROUND(100.0 * COUNT(*) / (SELECT COUNT(*) FROM Orders), 1) AS Pct\nFROM Orders\nGROUP BY Status;",
+    "explanation": "Integer / integer is integer division in T-SQL, so use 100.0.",
+    "id": 44,
+    "key": "c05d8c4a9475",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "Status",
+      "Orders",
+      "Pct"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "Subquery",
+    "text": "List employees who earn more than the company-wide average salary.",
+    "hints": [
+      "Compare Salary with a subquery that returns AVG(Salary)."
+    ],
+    "answer": "SELECT FirstName, LastName, Salary\nFROM Employees\nWHERE Salary > (SELECT AVG(Salary) FROM Employees);",
+    "explanation": "A scalar subquery returns one value and can be used in a WHERE comparison.",
+    "id": 45,
+    "key": "1fbded352e6d",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Salary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "CROSS JOIN",
+    "text": "Produce a grid of every product Category combined with every order Status (distinct values only).",
+    "hints": [
+      "CROSS JOIN pairs every row of one set with every row of another.",
+      "Use two DISTINCT subqueries."
+    ],
+    "answer": "SELECT c.Category, s.Status\nFROM (SELECT DISTINCT Category FROM Products) c\nCROSS JOIN (SELECT DISTINCT Status FROM Orders) s\nORDER BY c.Category, s.Status;",
+    "explanation": "CROSS JOIN creates the Cartesian product - useful for building report skeletons that are later LEFT JOINed with facts.",
+    "id": 46,
+    "key": "ba29daf24d88",
+    "tables": [
+      "Products",
+      "Orders"
+    ],
+    "returns": [
+      "Category",
+      "Status"
+    ],
+    "ordering": "c.Category, s.Status"
+  },
+  {
+    "level": "Medium",
+    "topic": "DATEDIFF",
+    "text": "Show each employee's tenure in whole years as of 2025-12-31, for employees with at least 5 years of service.",
+    "hints": [
+      "DATEDIFF(YEAR, start, end) counts year boundaries, not full years.",
+      "For full years compare against DATEADD(YEAR, 5, HireDate)."
+    ],
+    "answer": "SELECT FirstName, LastName, HireDate,\n       DATEDIFF(YEAR, HireDate, '2025-12-31') AS TenureYearsApprox\nFROM Employees\nWHERE DATEADD(YEAR, 5, HireDate) <= '2025-12-31'\nORDER BY HireDate;",
+    "explanation": "DATEDIFF(YEAR) counts calendar boundaries crossed (2024-12-31 to 2025-01-01 = 1). The DATEADD filter guarantees full 5 years.",
+    "id": 47,
+    "key": "8fd262c7189b",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "HireDate",
+      "TenureYearsApprox"
+    ],
+    "ordering": "HireDate"
+  },
+  {
+    "level": "Medium",
+    "topic": "INNER JOIN",
+    "text": "List first name, last name and department location for employees whose department is located in Singapore.",
+    "hints": [
+      "Join Employees to Departments, filter on Location."
+    ],
+    "answer": "SELECT e.FirstName, e.LastName, d.Location\nFROM Employees e\nJOIN Departments d ON d.DepartmentId = e.DepartmentId\nWHERE d.Location = 'Singapore';",
+    "explanation": "JOIN defaults to INNER JOIN.",
+    "id": 48,
+    "key": "2565b4828834",
+    "tables": [
+      "Employees",
+      "Departments"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Location"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "LEFT JOIN",
+    "text": "Show every customer with their number of orders, including customers with none (0).",
+    "hints": [
+      "LEFT JOIN Orders, then COUNT a column from Orders, not *."
+    ],
+    "answer": "SELECT c.CustomerName, COUNT(o.OrderId) AS OrderCount\nFROM Customers c\nLEFT JOIN Orders o ON o.CustomerId = c.CustomerId\nGROUP BY c.CustomerId, c.CustomerName;",
+    "explanation": "COUNT(o.OrderId) ignores the NULLs produced for unmatched customers.",
+    "id": 49,
+    "key": "06562efe6ad3",
+    "tables": [
+      "Customers",
+      "Orders"
+    ],
+    "returns": [
+      "CustomerName",
+      "OrderCount"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "SUM",
+    "text": "Show the total quantity sold per product (product name and units), for the 5 best-selling products.",
+    "hints": [
+      "Join OrderItems to Products and SUM(Quantity).",
+      "ORDER BY the sum DESC with TOP 5."
+    ],
+    "answer": "SELECT TOP 5 p.ProductName, SUM(oi.Quantity) AS UnitsSold\nFROM OrderItems oi\nJOIN Products p ON p.ProductId = oi.ProductId\nGROUP BY p.ProductId, p.ProductName\nORDER BY UnitsSold DESC;",
+    "explanation": "Group by the product key plus name; ORDER BY can use the alias.",
+    "id": 50,
+    "key": "dac2f0a5d378",
+    "tables": [
+      "OrderItems",
+      "Products"
+    ],
+    "returns": [
+      "ProductName",
+      "UnitsSold"
+    ],
+    "ordering": "UnitsSold DESC"
+  },
+  {
+    "level": "Medium",
+    "topic": "AVG",
+    "text": "Show the average discount (as a fraction) per product category.",
+    "hints": [
+      "Join OrderItems to Products, AVG(Discount) by Category."
+    ],
+    "answer": "SELECT p.Category, AVG(oi.Discount) AS AvgDiscount\nFROM OrderItems oi\nJOIN Products p ON p.ProductId = oi.ProductId\nGROUP BY p.Category;",
+    "explanation": "Discount is DECIMAL(4,2) so AVG keeps decimal precision.",
+    "id": 51,
+    "key": "e4550c920427",
+    "tables": [
+      "OrderItems",
+      "Products"
+    ],
+    "returns": [
+      "Category",
+      "AvgDiscount"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "GROUP BY",
+    "text": "How many employees were hired in each year? (year, count), oldest year first.",
+    "hints": [
+      "YEAR(HireDate)."
+    ],
+    "answer": "SELECT YEAR(HireDate) AS HireYear, COUNT(*) AS Hires\nFROM Employees\nGROUP BY YEAR(HireDate)\nORDER BY HireYear;",
+    "explanation": "You must repeat the expression in GROUP BY (aliases are not allowed there).",
+    "id": 52,
+    "key": "9d3844b06dfa",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "HireYear",
+      "Hires"
+    ],
+    "ordering": "HireYear"
+  },
+  {
+    "level": "Medium",
+    "topic": "HAVING",
+    "text": "List countries that have at least 3 customers, with the customer count.",
+    "hints": [
+      "GROUP BY Country with HAVING COUNT(*) >= 3."
+    ],
+    "answer": "SELECT Country, COUNT(*) AS Customers\nFROM Customers\nGROUP BY Country\nHAVING COUNT(*) >= 3;",
+    "explanation": "HAVING filters groups after aggregation.",
+    "id": 53,
+    "key": "ca04f7fac2a9",
+    "tables": [
+      "Customers"
+    ],
+    "returns": [
+      "Country",
+      "Customers"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "GROUP BY",
+    "text": "For each sales rep (employee who owns orders), show their name and number of orders. Ignore orders without a rep.",
+    "hints": [
+      "INNER JOIN Orders to Employees removes the NULL EmployeeId rows."
+    ],
+    "answer": "SELECT e.FirstName, e.LastName, COUNT(*) AS Orders\nFROM Orders o\nJOIN Employees e ON e.EmployeeId = o.EmployeeId\nGROUP BY e.EmployeeId, e.FirstName, e.LastName;",
+    "explanation": "NULL never equals anything, so unassigned orders drop out of the inner join.",
+    "id": 54,
+    "key": "1ca4800ccf5d",
+    "tables": [
+      "Orders",
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Orders"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "NULL",
+    "text": "How many orders of each Status have no sales rep assigned?",
+    "hints": [
+      "Filter EmployeeId IS NULL then GROUP BY Status."
+    ],
+    "answer": "SELECT Status, COUNT(*) AS Orders\nFROM Orders\nWHERE EmployeeId IS NULL\nGROUP BY Status;",
+    "explanation": "WHERE runs before grouping.",
+    "id": 55,
+    "key": "e15cf79e8d42",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "Status",
+      "Orders"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "Subquery",
+    "text": "List the employees who earn the highest salary in their own department (include ties).",
+    "hints": [
+      "Compare Salary to MAX(Salary) of the same department."
+    ],
+    "answer": "SELECT e.FirstName, e.LastName, e.DepartmentId, e.Salary\nFROM Employees e\nWHERE e.Salary = (SELECT MAX(e2.Salary) FROM Employees e2 WHERE e2.DepartmentId = e.DepartmentId);",
+    "explanation": "Correlated subquery; employees with NULL department are excluded.",
+    "id": 56,
+    "key": "9781ad5578cd",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "DepartmentId",
+      "Salary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "UNION",
+    "text": "Produce a single distinct list of cities that appear either as a customer city or as a department location.",
+    "hints": [
+      "UNION removes duplicates."
+    ],
+    "answer": "SELECT City FROM Customers\nUNION\nSELECT Location FROM Departments;",
+    "explanation": "Column names come from the first SELECT; types must be compatible.",
+    "id": 57,
+    "key": "2f10feaab2b2",
+    "tables": [
+      "Customers",
+      "Departments"
+    ],
+    "returns": [
+      "City"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "INTERSECT",
+    "text": "Which cities are both a customer city and a department location?",
+    "hints": [
+      "INTERSECT returns rows present in both queries."
+    ],
+    "answer": "SELECT City FROM Customers\nINTERSECT\nSELECT Location FROM Departments;",
+    "explanation": "INTERSECT also removes duplicates.",
+    "id": 58,
+    "key": "161d0faf4375",
+    "tables": [
+      "Customers",
+      "Departments"
+    ],
+    "returns": [
+      "City"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "EXCEPT",
+    "text": "Which customer cities are NOT department locations? (distinct)",
+    "hints": [
+      "EXCEPT returns rows from the first query not found in the second."
+    ],
+    "answer": "SELECT City FROM Customers\nEXCEPT\nSELECT Location FROM Departments;",
+    "explanation": "Order matters for EXCEPT.",
+    "id": 59,
+    "key": "2ea24d190f7f",
+    "tables": [
+      "Customers",
+      "Departments"
+    ],
+    "returns": [
+      "City"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "String functions",
+    "text": "Show each employee's initials (e.g. 'AT' for Alice Tan) together with their EmployeeId.",
+    "hints": [
+      "LEFT(string, 1) and concatenation."
+    ],
+    "answer": "SELECT EmployeeId, LEFT(FirstName, 1) + LEFT(LastName, 1) AS Initials\nFROM Employees;",
+    "explanation": "LEFT/RIGHT extract the first/last n characters.",
+    "id": 60,
+    "key": "601b9f9e746e",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "EmployeeId",
+      "Initials"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "String functions",
+    "text": "Extract the username part of each employee's email (text before '@'). Skip employees without an email.",
+    "hints": [
+      "CHARINDEX('@', Email) finds the position.",
+      "LEFT(Email, position - 1)."
+    ],
+    "answer": "SELECT EmployeeId, LEFT(Email, CHARINDEX('@', Email) - 1) AS UserName\nFROM Employees\nWHERE Email IS NOT NULL;",
+    "explanation": "CHARINDEX returns 0 when not found, which would make LEFT fail - hence the NULL filter.",
+    "id": 61,
+    "key": "d990471c558c",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "EmployeeId",
+      "UserName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "String functions",
+    "text": "Show product names with spaces replaced by underscores.",
+    "hints": [
+      "REPLACE(string, old, new)."
+    ],
+    "answer": "SELECT ProductName, REPLACE(ProductName, ' ', '_') AS Slug\nFROM Products;",
+    "explanation": "REPLACE is case-insensitive under the default collation.",
+    "id": 62,
+    "key": "4c7943458039",
+    "tables": [
+      "Products"
+    ],
+    "returns": [
+      "ProductName",
+      "Slug"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "Date functions",
+    "text": "How many orders were placed in each quarter of 2024? (quarter, orders)",
+    "hints": [
+      "DATEPART(QUARTER, OrderDate)."
+    ],
+    "answer": "SELECT DATEPART(QUARTER, OrderDate) AS Quarter, COUNT(*) AS Orders\nFROM Orders\nWHERE OrderDate >= '2024-01-01' AND OrderDate < '2025-01-01'\nGROUP BY DATEPART(QUARTER, OrderDate)\nORDER BY Quarter;",
+    "explanation": "DATEPART returns an int; DATENAME returns text.",
+    "id": 63,
+    "key": "b8d921dfe903",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "Quarter",
+      "Orders"
+    ],
+    "ordering": "Quarter"
+  },
+  {
+    "level": "Medium",
+    "topic": "Date functions",
+    "text": "How many orders were placed on each day of the week (name of the weekday)?",
+    "hints": [
+      "DATENAME(WEEKDAY, date)."
+    ],
+    "answer": "SELECT DATENAME(WEEKDAY, OrderDate) AS Weekday, COUNT(*) AS Orders\nFROM Orders\nGROUP BY DATENAME(WEEKDAY, OrderDate);",
+    "explanation": "Weekday names depend on the session language (English here).",
+    "id": 64,
+    "key": "df6d0788b102",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "Weekday",
+      "Orders"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "JOIN",
+    "text": "List orders placed in December 2024 with the customer name, order date and status.",
+    "hints": [
+      "Join Orders to Customers and filter the date range."
+    ],
+    "answer": "SELECT o.OrderId, c.CustomerName, o.OrderDate, o.Status\nFROM Orders o\nJOIN Customers c ON c.CustomerId = o.CustomerId\nWHERE o.OrderDate >= '2024-12-01' AND o.OrderDate < '2025-01-01';",
+    "explanation": "Half-open date ranges avoid end-of-month edge cases.",
+    "id": 65,
+    "key": "0df0d69cc2be",
+    "tables": [
+      "Orders",
+      "Customers"
+    ],
+    "returns": [
+      "OrderId",
+      "CustomerName",
+      "OrderDate",
+      "Status"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "TOP WITH TIES",
+    "text": "List the 3 highest-priced products, including any products tied with the 3rd price.",
+    "hints": [
+      "TOP (3) WITH TIES requires ORDER BY."
+    ],
+    "answer": "SELECT TOP (3) WITH TIES ProductName, UnitPrice\nFROM Products\nORDER BY UnitPrice DESC;",
+    "explanation": "WITH TIES returns extra rows that tie on the ORDER BY value of the last row.",
+    "id": 66,
+    "key": "f6e51b58c472",
+    "tables": [
+      "Products"
+    ],
+    "returns": [
+      "ProductName",
+      "UnitPrice"
+    ],
+    "ordering": "UnitPrice DESC"
+  },
+  {
+    "level": "Medium",
+    "topic": "ISNULL",
+    "text": "For Sales employees (DepartmentId 3) show total compensation = Salary * (1 + commission), treating a missing commission as 0.",
+    "hints": [
+      "COALESCE/ISNULL(CommissionPct, 0)."
+    ],
+    "answer": "SELECT FirstName, LastName, Salary * (1 + COALESCE(CommissionPct, 0)) AS TotalComp\nFROM Employees\nWHERE DepartmentId = 3;",
+    "explanation": "Any arithmetic with NULL yields NULL, so replace NULL first.",
+    "id": 67,
+    "key": "1828d1aea32c",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "TotalComp"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "GROUP BY",
+    "text": "For each product category show the stock value (SUM of Stock * UnitPrice). Only show categories above 50,000.",
+    "hints": [
+      "Aggregate an expression and filter with HAVING."
+    ],
+    "answer": "SELECT Category, SUM(Stock * UnitPrice) AS StockValue\nFROM Products\nGROUP BY Category\nHAVING SUM(Stock * UnitPrice) > 50000;",
+    "explanation": "HAVING must repeat the aggregate expression (or wrap in a CTE).",
+    "id": 68,
+    "key": "2e44aa25f428",
+    "tables": [
+      "Products"
+    ],
+    "returns": [
+      "Category",
+      "StockValue"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "IIF",
+    "text": "Label each product 'In stock' or 'Out of stock' based on Stock.",
+    "hints": [
+      "IIF(condition, a, b) or CASE."
+    ],
+    "answer": "SELECT ProductName, IIF(Stock > 0, 'In stock', 'Out of stock') AS Availability\nFROM Products;",
+    "explanation": "IIF is shorthand for a two-branch CASE.",
+    "id": 69,
+    "key": "28651ac008e2",
+    "tables": [
+      "Products"
+    ],
+    "returns": [
+      "ProductName",
+      "Availability"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "SUM",
+    "text": "Show the 10 orders with the highest total value (OrderId and total).",
+    "hints": [
+      "SUM revenue per OrderId, TOP 10."
+    ],
+    "answer": "SELECT TOP 10 oi.OrderId, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS OrderTotal\nFROM OrderItems oi\nGROUP BY oi.OrderId\nORDER BY OrderTotal DESC;",
+    "explanation": "Order totals are computed from order lines.",
+    "id": 70,
+    "key": "7361aeaea72b",
+    "tables": [
+      "OrderItems"
+    ],
+    "returns": [
+      "OrderId",
+      "OrderTotal"
+    ],
+    "ordering": "OrderTotal DESC"
+  },
+  {
+    "level": "Medium",
+    "topic": "HAVING",
+    "text": "List customers who placed more than 10 orders (name and count).",
+    "hints": [
+      "JOIN, GROUP BY, HAVING COUNT(*) > 10."
+    ],
+    "answer": "SELECT c.CustomerName, COUNT(*) AS Orders\nFROM Customers c\nJOIN Orders o ON o.CustomerId = c.CustomerId\nGROUP BY c.CustomerId, c.CustomerName\nHAVING COUNT(*) > 10;",
+    "explanation": "HAVING works on the grouped result.",
+    "id": 71,
+    "key": "135086ba477c",
+    "tables": [
+      "Customers",
+      "Orders"
+    ],
+    "returns": [
+      "CustomerName",
+      "Orders"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "NOT EXISTS",
+    "text": "Which products were not ordered at all in 2025?",
+    "hints": [
+      "NOT EXISTS with a join between OrderItems and Orders inside."
+    ],
+    "answer": "SELECT p.ProductId, p.ProductName\nFROM Products p\nWHERE NOT EXISTS (\n    SELECT 1 FROM OrderItems oi\n    JOIN Orders o ON o.OrderId = oi.OrderId\n    WHERE oi.ProductId = p.ProductId AND o.OrderDate >= '2025-01-01' AND o.OrderDate < '2026-01-01');",
+    "explanation": "NOT EXISTS handles the 'never ordered' and 'not ordered in period' cases uniformly.",
+    "id": 72,
+    "key": "0a3be0e28f6b",
+    "tables": [
+      "Products",
+      "OrderItems",
+      "Orders"
+    ],
+    "returns": [
+      "ProductId",
+      "ProductName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "Derived table",
+    "text": "What is the average number of line items per order?",
+    "hints": [
+      "Count lines per order in a derived table, then AVG."
+    ],
+    "answer": "SELECT AVG(Lines * 1.0) AS AvgLines\nFROM (SELECT OrderId, COUNT(*) AS Lines FROM OrderItems GROUP BY OrderId) x;",
+    "explanation": "Multiply by 1.0 to avoid integer averaging.",
+    "id": 73,
+    "key": "050e412629e3",
+    "tables": [
+      "OrderItems"
+    ],
+    "returns": [
+      "AvgLines"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "HAVING",
+    "text": "Which job titles are held by more than one employee? (title, count)",
+    "hints": [
+      "GROUP BY JobTitle HAVING COUNT(*) > 1."
+    ],
+    "answer": "SELECT JobTitle, COUNT(*) AS Employees\nFROM Employees\nGROUP BY JobTitle\nHAVING COUNT(*) > 1;",
+    "explanation": "A classic duplicate-detection pattern.",
+    "id": 74,
+    "key": "31f4fc798a60",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "JobTitle",
+      "Employees"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "Self join",
+    "text": "List each manager's name with their number of direct reports (managers only).",
+    "hints": [
+      "Join Employees to itself on ManagerId, group by the manager."
+    ],
+    "answer": "SELECT m.FirstName, m.LastName, COUNT(*) AS DirectReports\nFROM Employees e\nJOIN Employees m ON m.EmployeeId = e.ManagerId\nGROUP BY m.EmployeeId, m.FirstName, m.LastName;",
+    "explanation": "The inner join drops employees without a manager (the CEO and Iris), and only people with at least one report appear.",
+    "id": 75,
+    "key": "937cc2b7691a",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "DirectReports"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "NOT EXISTS",
+    "text": "List employees who do not manage anyone.",
+    "hints": [
+      "NOT EXISTS on Employees.ManagerId."
+    ],
+    "answer": "SELECT e.EmployeeId, e.FirstName, e.LastName\nFROM Employees e\nWHERE NOT EXISTS (SELECT 1 FROM Employees r WHERE r.ManagerId = e.EmployeeId);",
+    "explanation": "Anti-join pattern again.",
+    "id": 76,
+    "key": "8f4ed21ee996",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "EmployeeId",
+      "FirstName",
+      "LastName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "Self join",
+    "text": "Find pairs of different employees in the same department who earn exactly the same salary (each pair once).",
+    "hints": [
+      "Self join with e1.EmployeeId < e2.EmployeeId."
+    ],
+    "answer": "SELECT e1.FirstName + ' ' + e1.LastName AS Employee1, e2.FirstName + ' ' + e2.LastName AS Employee2, e1.Salary\nFROM Employees e1\nJOIN Employees e2 ON e1.DepartmentId = e2.DepartmentId AND e1.Salary = e2.Salary AND e1.EmployeeId < e2.EmployeeId;",
+    "explanation": "The < condition removes mirrored and self pairs.",
+    "id": 77,
+    "key": "b1526fe425f1",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "Employee1",
+      "Employee2",
+      "Salary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "GROUP BY",
+    "text": "How many customers signed up in each year?",
+    "hints": [
+      "GROUP BY YEAR(SignupDate)."
+    ],
+    "answer": "SELECT YEAR(SignupDate) AS SignupYear, COUNT(*) AS Customers\nFROM Customers\nGROUP BY YEAR(SignupDate)\nORDER BY SignupYear;",
+    "explanation": "Same pattern as hires per year.",
+    "id": 78,
+    "key": "cdc599b260a8",
+    "tables": [
+      "Customers"
+    ],
+    "returns": [
+      "SignupYear",
+      "Customers"
+    ],
+    "ordering": "SignupYear"
+  },
+  {
+    "level": "Medium",
+    "topic": "SUM",
+    "text": "Show total revenue per calendar year.",
+    "hints": [
+      "Join Orders and OrderItems, group by YEAR(OrderDate)."
+    ],
+    "answer": "SELECT YEAR(o.OrderDate) AS Yr, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\nFROM Orders o\nJOIN OrderItems oi ON oi.OrderId = o.OrderId\nGROUP BY YEAR(o.OrderDate)\nORDER BY Yr;",
+    "explanation": "Revenue = Quantity * UnitPrice * (1 - Discount).",
+    "id": 79,
+    "key": "e534bd0bf20d",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "Yr",
+      "Revenue"
+    ],
+    "ordering": "Yr"
+  },
+  {
+    "level": "Medium",
+    "topic": "Multi-table JOIN",
+    "text": "Show total revenue per customer country.",
+    "hints": [
+      "Customers -> Orders -> OrderItems."
+    ],
+    "answer": "SELECT c.Country, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\nFROM Customers c\nJOIN Orders o ON o.CustomerId = c.CustomerId\nJOIN OrderItems oi ON oi.OrderId = o.OrderId\nGROUP BY c.Country\nORDER BY Revenue DESC;",
+    "explanation": "Chain joins along foreign keys.",
+    "id": 80,
+    "key": "ce0dc928dc5b",
+    "tables": [
+      "Customers",
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "Country",
+      "Revenue"
+    ],
+    "ordering": "Revenue DESC"
+  },
+  {
+    "level": "Medium",
+    "topic": "SUM",
+    "text": "Which 3 customers lost the most revenue to Cancelled orders? (customer name, cancelled revenue)",
+    "hints": [
+      "Filter Status = 'Cancelled' before aggregating."
+    ],
+    "answer": "SELECT TOP 3 c.CustomerName, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS CancelledRevenue\nFROM Customers c\nJOIN Orders o ON o.CustomerId = c.CustomerId\nJOIN OrderItems oi ON oi.OrderId = o.OrderId\nWHERE o.Status = 'Cancelled'\nGROUP BY c.CustomerId, c.CustomerName\nORDER BY CancelledRevenue DESC;",
+    "explanation": "Filtering in WHERE keeps only cancelled orders.",
+    "id": 81,
+    "key": "e1fc068d0d7e",
+    "tables": [
+      "Customers",
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "CustomerName",
+      "CancelledRevenue"
+    ],
+    "ordering": "CancelledRevenue DESC"
+  },
+  {
+    "level": "Medium",
+    "topic": "HAVING",
+    "text": "For job titles held by at least 2 employees, show the average salary.",
+    "hints": [
+      "HAVING COUNT(*) >= 2 together with AVG."
+    ],
+    "answer": "SELECT JobTitle, AVG(Salary) AS AvgSalary\nFROM Employees\nGROUP BY JobTitle\nHAVING COUNT(*) >= 2;",
+    "explanation": "Multiple aggregates may appear in SELECT and HAVING.",
+    "id": 82,
+    "key": "76f3f107a44b",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "JobTitle",
+      "AvgSalary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "Correlated subquery",
+    "text": "List products priced above the average price of their own category.",
+    "hints": [
+      "Correlated AVG subquery on Category."
+    ],
+    "answer": "SELECT p.ProductName, p.Category, p.UnitPrice\nFROM Products p\nWHERE p.UnitPrice > (SELECT AVG(p2.UnitPrice) FROM Products p2 WHERE p2.Category = p.Category);",
+    "explanation": "The subquery is re-evaluated (logically) per outer row.",
+    "id": 83,
+    "key": "1e68c36aff0a",
+    "tables": [
+      "Products"
+    ],
+    "returns": [
+      "ProductName",
+      "Category",
+      "UnitPrice"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "COUNT DISTINCT",
+    "text": "For each sales rep, how many distinct customers have they sold to?",
+    "hints": [
+      "COUNT(DISTINCT CustomerId)."
+    ],
+    "answer": "SELECT e.FirstName, e.LastName, COUNT(DISTINCT o.CustomerId) AS Customers\nFROM Orders o\nJOIN Employees e ON e.EmployeeId = o.EmployeeId\nGROUP BY e.EmployeeId, e.FirstName, e.LastName;",
+    "explanation": "COUNT(DISTINCT) vs COUNT(*) is a frequent interview trap.",
+    "id": 84,
+    "key": "f43d612c0234",
+    "tables": [
+      "Orders",
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Customers"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "HAVING",
+    "text": "Which employees have exactly 3 records in SalaryHistory?",
+    "hints": [
+      "GROUP BY EmployeeId HAVING COUNT(*) = 3."
+    ],
+    "answer": "SELECT EmployeeId, COUNT(*) AS Records\nFROM SalaryHistory\nGROUP BY EmployeeId\nHAVING COUNT(*) = 3;",
+    "explanation": "Employees hired recently have fewer history rows.",
+    "id": 85,
+    "key": "ab7c023bf996",
+    "tables": [
+      "SalaryHistory"
+    ],
+    "returns": [
+      "EmployeeId",
+      "Records"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "SUM",
+    "text": "Which products gave away more than 1,000 in total discounts (Quantity * UnitPrice * Discount)?",
+    "hints": [
+      "SUM the discount amount and HAVING > 1000."
+    ],
+    "answer": "SELECT p.ProductName, SUM(oi.Quantity * oi.UnitPrice * oi.Discount) AS DiscountGiven\nFROM OrderItems oi\nJOIN Products p ON p.ProductId = oi.ProductId\nGROUP BY p.ProductId, p.ProductName\nHAVING SUM(oi.Quantity * oi.UnitPrice * oi.Discount) > 1000;",
+    "explanation": "Discount value = list value minus net revenue.",
+    "id": 86,
+    "key": "85b7728c956d",
+    "tables": [
+      "OrderItems",
+      "Products"
+    ],
+    "returns": [
+      "ProductName",
+      "DiscountGiven"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "Self join",
+    "text": "List employees whose manager works in a different department (employee, employee dept, manager dept).",
+    "hints": [
+      "Self join then compare DepartmentId."
+    ],
+    "answer": "SELECT e.FirstName, e.LastName, e.DepartmentId AS EmpDept, m.DepartmentId AS MgrDept\nFROM Employees e\nJOIN Employees m ON m.EmployeeId = e.ManagerId\nWHERE e.DepartmentId <> m.DepartmentId;",
+    "explanation": "Rows with NULL in either department are excluded because NULL <> x is unknown.",
+    "id": 87,
+    "key": "71e0cd215eb7",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "EmpDept",
+      "MgrDept"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "COUNT DISTINCT",
+    "text": "For each customer, how many distinct products have they ever ordered?",
+    "hints": [
+      "Join Orders and OrderItems."
+    ],
+    "answer": "SELECT c.CustomerName, COUNT(DISTINCT oi.ProductId) AS Products\nFROM Customers c\nJOIN Orders o ON o.CustomerId = c.CustomerId\nJOIN OrderItems oi ON oi.OrderId = o.OrderId\nGROUP BY c.CustomerId, c.CustomerName;",
+    "explanation": "Distinct is needed because a product can repeat across orders.",
+    "id": 88,
+    "key": "395cd2923cad",
+    "tables": [
+      "Customers",
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "CustomerName",
+      "Products"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "STRING_AGG",
+    "text": "For each department, list its employees' first names as one comma-separated string sorted alphabetically.",
+    "hints": [
+      "STRING_AGG(FirstName, ',') WITHIN GROUP (ORDER BY FirstName)."
+    ],
+    "answer": "SELECT d.DepartmentName, STRING_AGG(e.FirstName, ',') WITHIN GROUP (ORDER BY e.FirstName) AS Employees\nFROM Departments d\nJOIN Employees e ON e.DepartmentId = d.DepartmentId\nGROUP BY d.DepartmentName;",
+    "explanation": "STRING_AGG needs WITHIN GROUP for deterministic order.",
+    "id": 89,
+    "key": "a9cef757c49e",
+    "tables": [
+      "Departments",
+      "Employees"
+    ],
+    "returns": [
+      "DepartmentName",
+      "Employees"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Medium",
+    "topic": "Metadata",
+    "text": "List each table in the database with its number of columns (use INFORMATION_SCHEMA.COLUMNS).",
+    "hints": [
+      "GROUP BY TABLE_NAME."
+    ],
+    "answer": "SELECT TABLE_NAME, COUNT(*) AS ColumnCount\nFROM INFORMATION_SCHEMA.COLUMNS\nGROUP BY TABLE_NAME;",
+    "explanation": "INFORMATION_SCHEMA views are ANSI-standard metadata.",
+    "id": 90,
+    "key": "b0392347dc95",
+    "tables": [],
+    "returns": [
+      "TABLE_NAME",
+      "ColumnCount"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "UNION",
+    "text": "Create a single list of names with a Type column: all employees (Type='Employee') and all customers (Type='Customer').",
+    "hints": [
+      "UNION ALL stacks result sets with matching column counts/types.",
+      "Use a literal for the Type column."
+    ],
+    "answer": "SELECT FirstName + ' ' + LastName AS Name, 'Employee' AS Type FROM Employees\nUNION ALL\nSELECT CustomerName, 'Customer' FROM Customers;",
+    "explanation": "UNION removes duplicates (and sorts/hashes); UNION ALL keeps everything and is faster.",
+    "id": 91,
+    "key": "71a44c6bea2a",
+    "tables": [
+      "Employees",
+      "Customers"
+    ],
+    "returns": [
+      "Name",
+      "Type"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Correlated subquery",
+    "text": "Find employees who earn more than the average salary of their own department.",
+    "hints": [
+      "The subquery must reference the outer row.",
+      "Or compute department averages with a window function."
+    ],
+    "answer": "SELECT e.FirstName, e.LastName, e.DepartmentId, e.Salary\nFROM Employees e\nWHERE e.Salary > (SELECT AVG(e2.Salary)\n                  FROM Employees e2\n                  WHERE e2.DepartmentId = e.DepartmentId);",
+    "explanation": "Alternative: SELECT ..., AVG(Salary) OVER (PARTITION BY DepartmentId) in a CTE and filter on it. Employees with NULL department are excluded because NULL = NULL is not true.",
+    "id": 92,
+    "key": "4cb7d03e36c7",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "DepartmentId",
+      "Salary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "EXISTS",
+    "text": "List customers who have at least one cancelled order.",
+    "hints": [
+      "EXISTS stops at the first match.",
+      "Correlate the subquery on CustomerId."
+    ],
+    "answer": "SELECT c.CustomerId, c.CustomerName\nFROM Customers c\nWHERE EXISTS (SELECT 1 FROM Orders o\n              WHERE o.CustomerId = c.CustomerId AND o.Status = 'Cancelled');",
+    "explanation": "EXISTS avoids duplicates that an INNER JOIN would produce for customers with several cancelled orders.",
+    "id": 93,
+    "key": "e35a86c07f60",
+    "tables": [
+      "Customers",
+      "Orders"
+    ],
+    "returns": [
+      "CustomerId",
+      "CustomerName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "CTE",
+    "text": "Using a CTE, compute revenue per month (exclude Cancelled orders) and list only the months whose revenue is above the average monthly revenue.",
+    "hints": [
+      "Build monthly revenue in a CTE.",
+      "Compare against (SELECT AVG(Revenue) FROM cte)."
+    ],
+    "answer": "WITH Monthly AS (\n    SELECT DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1) AS MonthStart,\n           SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM Orders o\n    JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    WHERE o.Status <> 'Cancelled'\n    GROUP BY DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1)\n)\nSELECT MonthStart, Revenue\nFROM Monthly\nWHERE Revenue > (SELECT AVG(Revenue) FROM Monthly)\nORDER BY MonthStart;",
+    "explanation": "A CTE names an intermediate result so it can be reused and read top-down. It is not materialised - it is inlined like a view.",
+    "id": 94,
+    "key": "45a954f0ae9d",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "MonthStart",
+      "Revenue"
+    ],
+    "ordering": "MonthStart"
+  },
+  {
+    "level": "Hard",
+    "topic": "Multiple CTEs",
+    "text": "For each customer show their total revenue and their share (%) of overall revenue, largest share first. Use two CTEs.",
+    "hints": [
+      "CTE 1: revenue per customer.",
+      "CTE 2: total revenue; CROSS JOIN it to divide."
+    ],
+    "answer": "WITH CustRev AS (\n    SELECT o.CustomerId,\n           SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM Orders o\n    JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    GROUP BY o.CustomerId\n), Total AS (\n    SELECT SUM(Revenue) AS Total FROM CustRev\n)\nSELECT c.CustomerName,\n       cr.Revenue,\n       ROUND(100.0 * cr.Revenue / t.Total, 2) AS SharePct\nFROM CustRev cr\nJOIN Customers c ON c.CustomerId = cr.CustomerId\nCROSS JOIN Total t\nORDER BY SharePct DESC;",
+    "explanation": "CTEs can reference earlier CTEs in the same WITH clause. Window alternative: SUM(Revenue) OVER ().",
+    "id": 95,
+    "key": "8e50b8df4d61",
+    "tables": [
+      "Orders",
+      "OrderItems",
+      "Customers"
+    ],
+    "returns": [
+      "CustomerName",
+      "Revenue",
+      "SharePct"
+    ],
+    "ordering": "SharePct DESC"
+  },
+  {
+    "level": "Hard",
+    "topic": "Recursive CTE",
+    "text": "Display the organisation hierarchy starting from the CEO (EmployeeId = 1): employee name, level (CEO = 0) and manager id.",
+    "hints": [
+      "A recursive CTE has an anchor member and a recursive member joined with UNION ALL.",
+      "Recursive part joins Employees to the CTE on ManagerId = cte.EmployeeId and adds 1 to the level."
+    ],
+    "answer": "WITH Org AS (\n    SELECT EmployeeId, FirstName, LastName, ManagerId, 0 AS Level\n    FROM Employees\n    WHERE EmployeeId = 1\n    UNION ALL\n    SELECT e.EmployeeId, e.FirstName, e.LastName, e.ManagerId, o.Level + 1\n    FROM Employees e\n    JOIN Org o ON e.ManagerId = o.EmployeeId\n)\nSELECT EmployeeId, FirstName + ' ' + LastName AS Name, Level, ManagerId\nFROM Org\nORDER BY Level, EmployeeId;",
+    "explanation": "Default MAXRECURSION is 100; guard against cycles in real data. Employees such as Iris (no manager) are not reachable from the CEO, so they do not appear.",
+    "id": 96,
+    "key": "8968d9168cfb",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "EmployeeId",
+      "Name",
+      "Level",
+      "ManagerId"
+    ],
+    "ordering": "Level, EmployeeId"
+  },
+  {
+    "level": "Hard",
+    "topic": "Recursive CTE",
+    "text": "For every employee in the CEO's hierarchy, build the reporting chain as text, e.g. 'Alice > Bob > Grace > Ivy'.",
+    "hints": [
+      "Carry a path string in the recursive CTE.",
+      "Concatenate the parent path with ' > ' and the current first name."
+    ],
+    "answer": "WITH Chain AS (\n    SELECT EmployeeId, CAST(FirstName AS NVARCHAR(400)) AS Path\n    FROM Employees WHERE EmployeeId = 1\n    UNION ALL\n    SELECT e.EmployeeId, CAST(c.Path + N' > ' + e.FirstName AS NVARCHAR(400))\n    FROM Employees e\n    JOIN Chain c ON e.ManagerId = c.EmployeeId\n)\nSELECT EmployeeId, Path FROM Chain ORDER BY Path;",
+    "explanation": "Both members of a recursive CTE must have identical column types, so CAST the anchor to the final width.",
+    "id": 97,
+    "key": "06a52fa7c280",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "EmployeeId",
+      "Path"
+    ],
+    "ordering": "Path"
+  },
+  {
+    "level": "Hard",
+    "topic": "ROW_NUMBER",
+    "text": "Find the highest paid employee in each department (ignore employees without a department). Break ties by lowest EmployeeId.",
+    "hints": [
+      "ROW_NUMBER() OVER (PARTITION BY ... ORDER BY ...).",
+      "Filter rn = 1 in an outer query or CTE - you cannot use a window function in WHERE."
+    ],
+    "answer": "WITH Ranked AS (\n    SELECT e.*, ROW_NUMBER() OVER (PARTITION BY e.DepartmentId ORDER BY e.Salary DESC, e.EmployeeId) AS rn\n    FROM Employees e\n    WHERE e.DepartmentId IS NOT NULL\n)\nSELECT d.DepartmentName, r.FirstName, r.LastName, r.Salary\nFROM Ranked r\nJOIN Departments d ON d.DepartmentId = r.DepartmentId\nWHERE r.rn = 1;",
+    "explanation": "Window functions are evaluated after WHERE/GROUP BY, so filtering needs a CTE or subquery.",
+    "id": 98,
+    "key": "b5cc7a812820",
+    "tables": [
+      "Employees",
+      "Departments"
+    ],
+    "returns": [
+      "DepartmentName",
+      "FirstName",
+      "LastName",
+      "Salary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "RANK / DENSE_RANK",
+    "text": "Rank employees by salary within their department showing both RANK and DENSE_RANK (call them SalaryRank and SalaryDenseRank). Show Engineering only (DepartmentId = 2).",
+    "hints": [
+      "Both functions use OVER (PARTITION BY ... ORDER BY Salary DESC).",
+      "Look at how ties (equal salaries) are numbered."
+    ],
+    "answer": "SELECT FirstName, LastName, Salary,\n       RANK()       OVER (PARTITION BY DepartmentId ORDER BY Salary DESC) AS SalaryRank,\n       DENSE_RANK() OVER (PARTITION BY DepartmentId ORDER BY Salary DESC) AS SalaryDenseRank\nFROM Employees\nWHERE DepartmentId = 2\nORDER BY Salary DESC;",
+    "explanation": "RANK leaves gaps after ties (1,2,2,4); DENSE_RANK does not (1,2,2,3); ROW_NUMBER never ties.",
+    "id": 99,
+    "key": "41e12bf411fc",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Salary",
+      "SalaryRank",
+      "SalaryDenseRank"
+    ],
+    "ordering": "Salary DESC"
+  },
+  {
+    "level": "Hard",
+    "topic": "Running total",
+    "text": "Show monthly revenue together with a running (cumulative) total, ordered by month. Exclude Cancelled orders.",
+    "hints": [
+      "Aggregate by month first (CTE).",
+      "SUM(Revenue) OVER (ORDER BY MonthStart ROWS UNBOUNDED PRECEDING)."
+    ],
+    "answer": "WITH Monthly AS (\n    SELECT DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1) AS MonthStart,\n           SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM Orders o\n    JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    WHERE o.Status <> 'Cancelled'\n    GROUP BY DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1)\n)\nSELECT MonthStart, Revenue,\n       SUM(Revenue) OVER (ORDER BY MonthStart ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS RunningTotal\nFROM Monthly\nORDER BY MonthStart;",
+    "explanation": "Specify ROWS explicitly; the default RANGE frame is slower and treats ties differently.",
+    "id": 100,
+    "key": "ab2068767473",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "MonthStart",
+      "Revenue",
+      "RunningTotal"
+    ],
+    "ordering": "MonthStart"
+  },
+  {
+    "level": "Hard",
+    "topic": "LAG",
+    "text": "Using SalaryHistory, show each salary change per employee with the previous salary and the percentage increase (1 decimal). Only rows that have a previous salary, for employees 9, 10 and 11.",
+    "hints": [
+      "LAG(Salary) OVER (PARTITION BY EmployeeId ORDER BY EffectiveDate).",
+      "Filter on a non-NULL previous salary in an outer query."
+    ],
+    "answer": "WITH H AS (\n    SELECT EmployeeId, EffectiveDate, Salary,\n           LAG(Salary) OVER (PARTITION BY EmployeeId ORDER BY EffectiveDate) AS PrevSalary\n    FROM SalaryHistory\n)\nSELECT EmployeeId, EffectiveDate, PrevSalary, Salary,\n       ROUND(100.0 * (Salary - PrevSalary) / PrevSalary, 1) AS PctIncrease\nFROM H\nWHERE PrevSalary IS NOT NULL AND EmployeeId IN (9, 10, 11)\nORDER BY EmployeeId, EffectiveDate;",
+    "explanation": "LAG/LEAD access previous/next rows without a self join. A third argument supplies a default instead of NULL.",
+    "id": 101,
+    "key": "86acdac483cc",
+    "tables": [
+      "SalaryHistory"
+    ],
+    "returns": [
+      "EmployeeId",
+      "EffectiveDate",
+      "PrevSalary",
+      "Salary",
+      "PctIncrease"
+    ],
+    "ordering": "EmployeeId, EffectiveDate"
+  },
+  {
+    "level": "Hard",
+    "topic": "Conditional aggregation",
+    "text": "Find customers whose 2024 revenue is higher than their 2023 revenue. Show both amounts.",
+    "hints": [
+      "SUM(CASE WHEN YEAR(OrderDate)=2023 THEN ... END).",
+      "Use HAVING to compare the two conditional sums."
+    ],
+    "answer": "SELECT c.CustomerName,\n       SUM(CASE WHEN YEAR(o.OrderDate) = 2023 THEN oi.Quantity * oi.UnitPrice * (1 - oi.Discount) ELSE 0 END) AS Rev2023,\n       SUM(CASE WHEN YEAR(o.OrderDate) = 2024 THEN oi.Quantity * oi.UnitPrice * (1 - oi.Discount) ELSE 0 END) AS Rev2024\nFROM Customers c\nJOIN Orders o ON o.CustomerId = c.CustomerId\nJOIN OrderItems oi ON oi.OrderId = o.OrderId\nGROUP BY c.CustomerId, c.CustomerName\nHAVING SUM(CASE WHEN YEAR(o.OrderDate) = 2024 THEN oi.Quantity * oi.UnitPrice * (1 - oi.Discount) ELSE 0 END)\n     > SUM(CASE WHEN YEAR(o.OrderDate) = 2023 THEN oi.Quantity * oi.UnitPrice * (1 - oi.Discount) ELSE 0 END)\nORDER BY c.CustomerName;",
+    "explanation": "Conditional aggregation pivots rows to columns in a single scan.",
+    "id": 102,
+    "key": "372f3251dfb3",
+    "tables": [
+      "Customers",
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "CustomerName",
+      "Rev2023",
+      "Rev2024"
+    ],
+    "ordering": "c.CustomerName"
+  },
+  {
+    "level": "Hard",
+    "topic": "PIVOT",
+    "text": "Show revenue by product Category (rows) and by year 2023, 2024, 2025 (columns).",
+    "hints": [
+      "PIVOT needs the source rows shaped as (Category, Year, Revenue).",
+      "PIVOT(SUM(Revenue) FOR Yr IN ([2023],[2024],[2025]))."
+    ],
+    "answer": "SELECT Category, [2023], [2024], [2025]\nFROM (\n    SELECT p.Category, YEAR(o.OrderDate) AS Yr,\n           oi.Quantity * oi.UnitPrice * (1 - oi.Discount) AS Revenue\n    FROM OrderItems oi\n    JOIN Orders o   ON o.OrderId = oi.OrderId\n    JOIN Products p ON p.ProductId = oi.ProductId\n) src\nPIVOT (SUM(Revenue) FOR Yr IN ([2023], [2024], [2025])) pvt\nORDER BY Category;",
+    "explanation": "The pivot columns must be hard-coded unless you build dynamic SQL. The CASE-based approach from the previous question is equivalent.",
+    "id": 103,
+    "key": "ad6fbe75b200",
+    "tables": [
+      "OrderItems",
+      "Orders",
+      "Products"
+    ],
+    "returns": [
+      "Category",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "ordering": "Category"
+  },
+  {
+    "level": "Hard",
+    "topic": "NTILE",
+    "text": "Split employees into 4 salary quartiles (1 = highest paid). Show name, salary and quartile. Break salary ties by EmployeeId.",
+    "hints": [
+      "NTILE(4) OVER (ORDER BY Salary DESC, EmployeeId)."
+    ],
+    "answer": "SELECT FirstName, LastName, Salary,\n       NTILE(4) OVER (ORDER BY Salary DESC, EmployeeId) AS Quartile\nFROM Employees;",
+    "explanation": "NTILE distributes rows into near-equal buckets; with 40 rows each bucket has 10.",
+    "id": 104,
+    "key": "8df1d4988163",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Salary",
+      "Quartile"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "LEAD",
+    "text": "For customer 1, list each order date and the number of days until their next order (NULL for the last).",
+    "hints": [
+      "LEAD(OrderDate) OVER (ORDER BY OrderDate)."
+    ],
+    "answer": "SELECT OrderId, OrderDate,\n       DATEDIFF(DAY, OrderDate, LEAD(OrderDate) OVER (ORDER BY OrderDate)) AS DaysToNext\nFROM Orders\nWHERE CustomerId = 1;",
+    "explanation": "The WHERE clause is applied before the window function, so LEAD sees only customer 1's rows.",
+    "id": 105,
+    "key": "8f08ca0f4511",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "OrderId",
+      "OrderDate",
+      "DaysToNext"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "FIRST_VALUE",
+    "text": "Show every employee with the name of the highest-paid person in their department (employees with a department only).",
+    "hints": [
+      "FIRST_VALUE(name) OVER (PARTITION BY DepartmentId ORDER BY Salary DESC)."
+    ],
+    "answer": "SELECT FirstName, LastName, DepartmentId, Salary,\n       FIRST_VALUE(FirstName) OVER (PARTITION BY DepartmentId ORDER BY Salary DESC, EmployeeId) AS TopEarner\nFROM Employees\nWHERE DepartmentId IS NOT NULL;",
+    "explanation": "Add a tie-breaker to the window ORDER BY so the result is deterministic.",
+    "id": 106,
+    "key": "6b2fe5543abf",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "DepartmentId",
+      "Salary",
+      "TopEarner"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Running total",
+    "text": "For customer 5, list orders with a running count of orders so far and a running total of order value (by order date).",
+    "hints": [
+      "Build order totals in a CTE, then use SUM() OVER with ROWS."
+    ],
+    "answer": "WITH OT AS (\n    SELECT o.OrderId, o.CustomerId, o.OrderDate, o.Status, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Total\n    FROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    GROUP BY o.OrderId, o.CustomerId, o.OrderDate, o.Status\n)\nSELECT OrderId, OrderDate, Total,\n       ROW_NUMBER() OVER (ORDER BY OrderDate) AS OrderNo,\n       SUM(Total) OVER (ORDER BY OrderDate ROWS UNBOUNDED PRECEDING) AS RunningTotal\nFROM OT\nWHERE CustomerId = 5;",
+    "explanation": "Dates are unique per order, so the running window is unambiguous.",
+    "id": 107,
+    "key": "083fbf9532dc",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "OrderId",
+      "OrderDate",
+      "Total",
+      "OrderNo",
+      "RunningTotal"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Window SUM",
+    "text": "Show each employee's salary as a percentage of their department's total salary (2 decimals). Only employees with a department.",
+    "hints": [
+      "SUM(Salary) OVER (PARTITION BY DepartmentId)."
+    ],
+    "answer": "SELECT FirstName, LastName, DepartmentId, Salary,\n       ROUND(100.0 * Salary / SUM(Salary) OVER (PARTITION BY DepartmentId), 2) AS PctOfDept\nFROM Employees\nWHERE DepartmentId IS NOT NULL;",
+    "explanation": "Window aggregates avoid a self join with a GROUP BY subquery.",
+    "id": 108,
+    "key": "b3447e55711b",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "DepartmentId",
+      "Salary",
+      "PctOfDept"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "PERCENT_RANK",
+    "text": "Show each employee's PERCENT_RANK of salary across the company (rounded to 3 decimals).",
+    "hints": [
+      "PERCENT_RANK() OVER (ORDER BY Salary)."
+    ],
+    "answer": "SELECT FirstName, LastName, Salary,\n       ROUND(PERCENT_RANK() OVER (ORDER BY Salary), 3) AS PctRank\nFROM Employees;",
+    "explanation": "PERCENT_RANK = (rank - 1) / (rows - 1); the lowest value is 0.",
+    "id": 109,
+    "key": "0dce54f3bfb5",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Salary",
+      "PctRank"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "CUME_DIST",
+    "text": "Show each employee's cumulative distribution of salary (rounded to 3 decimals) across the company.",
+    "hints": [
+      "CUME_DIST() OVER (ORDER BY Salary)."
+    ],
+    "answer": "SELECT FirstName, LastName, Salary,\n       ROUND(CUME_DIST() OVER (ORDER BY Salary), 3) AS CumeDist\nFROM Employees;",
+    "explanation": "CUME_DIST = share of rows with value <= current, so the maximum is 1.",
+    "id": 110,
+    "key": "7274f5c943ff",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Salary",
+      "CumeDist"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Window AVG",
+    "text": "Show each employee's salary, their department average and the difference from it (employees with a department).",
+    "hints": [
+      "AVG(Salary) OVER (PARTITION BY DepartmentId)."
+    ],
+    "answer": "SELECT FirstName, LastName, DepartmentId, Salary,\n       AVG(Salary) OVER (PARTITION BY DepartmentId) AS DeptAvg,\n       Salary - AVG(Salary) OVER (PARTITION BY DepartmentId) AS Diff\nFROM Employees\nWHERE DepartmentId IS NOT NULL;",
+    "explanation": "You cannot reference the alias DeptAvg in the same SELECT list.",
+    "id": 111,
+    "key": "ea32c3b1d7cd",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "DepartmentId",
+      "Salary",
+      "DeptAvg",
+      "Diff"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "CTE",
+    "text": "Using a CTE, list customers whose total revenue is above the average customer revenue.",
+    "hints": [
+      "CTE of revenue per customer, compare to its AVG."
+    ],
+    "answer": "WITH CustRev AS (\n    SELECT o.CustomerId, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    GROUP BY o.CustomerId\n)\nSELECT c.CustomerName, cr.Revenue\nFROM CustRev cr JOIN Customers c ON c.CustomerId = cr.CustomerId\nWHERE cr.Revenue > (SELECT AVG(Revenue) FROM CustRev);",
+    "explanation": "Customers without orders are not in the average, which is usually what is wanted.",
+    "id": 112,
+    "key": "0e028155402c",
+    "tables": [
+      "Orders",
+      "OrderItems",
+      "Customers"
+    ],
+    "returns": [
+      "CustomerName",
+      "Revenue"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "DENSE_RANK",
+    "text": "Return the top 5 revenue-ranked products (DENSE_RANK on total revenue, highest = 1).",
+    "hints": [
+      "CTE with SUM then DENSE_RANK; filter <= 5."
+    ],
+    "answer": "WITH P AS (\n    SELECT p.ProductName, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM OrderItems oi JOIN Products p ON p.ProductId = oi.ProductId\n    GROUP BY p.ProductId, p.ProductName\n)\nSELECT ProductName, Revenue, DENSE_RANK() OVER (ORDER BY Revenue DESC) AS Rnk\nFROM P\nORDER BY Rnk\nOFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;",
+    "explanation": "Revenue totals are distinct so DENSE_RANK equals ROW_NUMBER here; you can filter in an outer query too.",
+    "id": 113,
+    "key": "aa6eaac7291a",
+    "tables": [
+      "OrderItems",
+      "Products"
+    ],
+    "returns": [
+      "ProductName",
+      "Revenue",
+      "Rnk"
+    ],
+    "ordering": "Rnk"
+  },
+  {
+    "level": "Hard",
+    "topic": "Recursive CTE",
+    "text": "Generate the numbers 1 to 10 with a recursive CTE.",
+    "hints": [
+      "Anchor SELECT 1, recursive part n + 1 WHERE n < 10."
+    ],
+    "answer": "WITH Nums AS (\n    SELECT 1 AS n\n    UNION ALL\n    SELECT n + 1 FROM Nums WHERE n < 10\n)\nSELECT n FROM Nums;",
+    "explanation": "Always include a termination condition; MAXRECURSION defaults to 100.",
+    "id": 114,
+    "key": "6164379425c6",
+    "tables": [],
+    "returns": [
+      "n"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Recursive CTE",
+    "text": "List every direct and indirect subordinate of Grace Ong (EmployeeId 7): id, name and level below Grace.",
+    "hints": [
+      "Anchor: direct reports of 7 at level 1."
+    ],
+    "answer": "WITH Sub AS (\n    SELECT EmployeeId, FirstName, LastName, 1 AS Level FROM Employees WHERE ManagerId = 7\n    UNION ALL\n    SELECT e.EmployeeId, e.FirstName, e.LastName, s.Level + 1\n    FROM Employees e JOIN Sub s ON e.ManagerId = s.EmployeeId\n)\nSELECT EmployeeId, FirstName + ' ' + LastName AS Name, Level FROM Sub;",
+    "explanation": "Grace's team has no managers below her, so all rows are at level 1.",
+    "id": 115,
+    "key": "e405cf678ea1",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "EmployeeId",
+      "Name",
+      "Level"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Recursive CTE",
+    "text": "How many people (direct and indirect) report up to Carol Wong (EmployeeId 3)?",
+    "hints": [
+      "Recursive CTE from ManagerId = 3, then COUNT(*)."
+    ],
+    "answer": "WITH Sub AS (\n    SELECT EmployeeId FROM Employees WHERE ManagerId = 3\n    UNION ALL\n    SELECT e.EmployeeId FROM Employees e JOIN Sub s ON e.ManagerId = s.EmployeeId\n)\nSELECT COUNT(*) AS TotalReports FROM Sub;",
+    "explanation": "Counts the whole subtree below the root.",
+    "id": 116,
+    "key": "e05b980fcfde",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "TotalReports"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Recursive CTE",
+    "text": "Produce one row per day of January 2024 with the number of orders on that day (0 if none).",
+    "hints": [
+      "Generate dates recursively, then LEFT JOIN Orders."
+    ],
+    "answer": "WITH D AS (\n    SELECT CAST('2024-01-01' AS DATE) AS d\n    UNION ALL\n    SELECT DATEADD(DAY, 1, d) FROM D WHERE d < '2024-01-31'\n)\nSELECT D.d AS OrderDay, COUNT(o.OrderId) AS Orders\nFROM D LEFT JOIN Orders o ON o.OrderDate = D.d\nGROUP BY D.d\nORDER BY D.d;",
+    "explanation": "A calendar CTE fills gaps that a plain GROUP BY would miss.",
+    "id": 117,
+    "key": "473e70ffc171",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "OrderDay",
+      "Orders"
+    ],
+    "ordering": "D.d"
+  },
+  {
+    "level": "Hard",
+    "topic": "Recursive CTE",
+    "text": "What is the maximum depth (levels below the CEO) of the organisation hierarchy, and how many employees are at each level?",
+    "hints": [
+      "Recursive CTE from the CEO with a Level column, then GROUP BY Level."
+    ],
+    "answer": "WITH Org AS (\n    SELECT EmployeeId, 0 AS Level FROM Employees WHERE ManagerId IS NULL AND EmployeeId = 1\n    UNION ALL\n    SELECT e.EmployeeId, o.Level + 1 FROM Employees e JOIN Org o ON e.ManagerId = o.EmployeeId\n)\nSELECT Level, COUNT(*) AS Employees FROM Org GROUP BY Level ORDER BY Level;",
+    "explanation": "The maximum depth is the highest Level value returned.",
+    "id": 118,
+    "key": "c6680ff9f489",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "Level",
+      "Employees"
+    ],
+    "ordering": "Level"
+  },
+  {
+    "level": "Hard",
+    "topic": "CROSS APPLY",
+    "text": "For each customer, show their 2 most recent orders (customer, order id, order date).",
+    "hints": [
+      "CROSS APPLY (SELECT TOP 2 ... ORDER BY OrderDate DESC)."
+    ],
+    "answer": "SELECT c.CustomerName, x.OrderId, x.OrderDate\nFROM Customers c\nCROSS APPLY (SELECT TOP 2 o.OrderId, o.OrderDate FROM Orders o WHERE o.CustomerId = c.CustomerId ORDER BY o.OrderDate DESC) x;",
+    "explanation": "CROSS APPLY drops customers with no orders; OUTER APPLY keeps them.",
+    "id": 119,
+    "key": "41ce39d4517b",
+    "tables": [
+      "Customers",
+      "Orders"
+    ],
+    "returns": [
+      "CustomerName",
+      "OrderId",
+      "OrderDate"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "OUTER APPLY",
+    "text": "List all customers with the date of their most recent order (NULL if none).",
+    "hints": [
+      "OUTER APPLY with TOP 1."
+    ],
+    "answer": "SELECT c.CustomerName, x.OrderDate AS LastOrderDate\nFROM Customers c\nOUTER APPLY (SELECT TOP 1 o.OrderDate FROM Orders o WHERE o.CustomerId = c.CustomerId ORDER BY o.OrderDate DESC) x;",
+    "explanation": "A simpler alternative is LEFT JOIN with MAX(OrderDate).",
+    "id": 120,
+    "key": "7d7b2e9f6974",
+    "tables": [
+      "Customers",
+      "Orders"
+    ],
+    "returns": [
+      "CustomerName",
+      "LastOrderDate"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "PIVOT",
+    "text": "Show the number of orders per year (rows) split by Status (columns Delivered, Shipped, Pending, Cancelled).",
+    "hints": [
+      "Select Year and Status first, then PIVOT(COUNT(Status) FOR Status IN (...))."
+    ],
+    "answer": "SELECT Yr, [Delivered], [Shipped], [Pending], [Cancelled]\nFROM (SELECT YEAR(OrderDate) AS Yr, Status FROM Orders) s\nPIVOT (COUNT(Status) FOR Status IN ([Delivered], [Shipped], [Pending], [Cancelled])) p\nORDER BY Yr;",
+    "explanation": "Non-pivoted columns in the source become the grouping columns.",
+    "id": 121,
+    "key": "2025c62877cf",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "Yr",
+      "Delivered",
+      "Shipped",
+      "Pending",
+      "Cancelled"
+    ],
+    "ordering": "Yr"
+  },
+  {
+    "level": "Hard",
+    "topic": "UNPIVOT",
+    "text": "Show the salary statistics (minimum, maximum, average) of Employees as three rows: Stat and Value.",
+    "hints": [
+      "Compute the stats in one row, cast them to one type, and UNPIVOT."
+    ],
+    "answer": "SELECT Stat, Value\nFROM (SELECT CAST(MIN(Salary) AS DECIMAL(12,2)) AS Minimum, CAST(MAX(Salary) AS DECIMAL(12,2)) AS Maximum, CAST(AVG(Salary) AS DECIMAL(12,2)) AS Average FROM Employees) s\nUNPIVOT (Value FOR Stat IN (Minimum, Maximum, Average)) u;",
+    "explanation": "UNPIVOT requires all columns to share one data type.",
+    "id": 122,
+    "key": "b0d7795075a0",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "Stat",
+      "Value"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Conditional aggregation",
+    "text": "For each department show the number of employees earning at least 100,000 and the number earning less.",
+    "hints": [
+      "SUM(CASE WHEN ... THEN 1 ELSE 0 END)."
+    ],
+    "answer": "SELECT d.DepartmentName,\n       SUM(CASE WHEN e.Salary >= 100000 THEN 1 ELSE 0 END) AS HighEarners,\n       SUM(CASE WHEN e.Salary <  100000 THEN 1 ELSE 0 END) AS Others\nFROM Departments d JOIN Employees e ON e.DepartmentId = d.DepartmentId\nGROUP BY d.DepartmentName;",
+    "explanation": "Conditional aggregation produces several counts in one scan.",
+    "id": 123,
+    "key": "f9d802655071",
+    "tables": [
+      "Departments",
+      "Employees"
+    ],
+    "returns": [
+      "DepartmentName",
+      "HighEarners",
+      "Others"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Relational division",
+    "text": "Which customers have bought products from every product category?",
+    "hints": [
+      "Count distinct categories per customer and compare with the total number of categories."
+    ],
+    "answer": "SELECT c.CustomerName\nFROM Customers c\nJOIN Orders o ON o.CustomerId = c.CustomerId\nJOIN OrderItems oi ON oi.OrderId = o.OrderId\nJOIN Products p ON p.ProductId = oi.ProductId\nGROUP BY c.CustomerId, c.CustomerName\nHAVING COUNT(DISTINCT p.Category) = (SELECT COUNT(DISTINCT Category) FROM Products);",
+    "explanation": "This 'for all' pattern is called relational division.",
+    "id": 124,
+    "key": "9062362b2f0e",
+    "tables": [
+      "Customers",
+      "Orders",
+      "OrderItems",
+      "Products"
+    ],
+    "returns": [
+      "CustomerName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "INTERSECT",
+    "text": "Which customers placed orders in both 2023 and 2025? (customer id)",
+    "hints": [
+      "INTERSECT two queries filtered by year."
+    ],
+    "answer": "SELECT CustomerId FROM Orders WHERE YEAR(OrderDate) = 2023\nINTERSECT\nSELECT CustomerId FROM Orders WHERE YEAR(OrderDate) = 2025;",
+    "explanation": "Could also use two EXISTS clauses.",
+    "id": 125,
+    "key": "8c9314e3fa39",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "CustomerId"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "EXCEPT",
+    "text": "Using EXCEPT, which customers (CustomerId) have never placed an order?",
+    "hints": [
+      "EXCEPT between all customer ids and customer ids that appear in Orders."
+    ],
+    "answer": "SELECT CustomerId FROM Customers\nEXCEPT\nSELECT CustomerId FROM Orders;",
+    "explanation": "EXCEPT returns distinct rows from the left set not found in the right set; NOT EXISTS is an equivalent alternative.",
+    "id": 126,
+    "key": "5cc4fdcab4f3",
+    "tables": [
+      "Customers",
+      "Orders"
+    ],
+    "returns": [
+      "CustomerId"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "LAG",
+    "text": "Show monthly revenue (non-cancelled orders) with the previous month's revenue and the % change (2 decimals).",
+    "hints": [
+      "Monthly CTE then LAG(Revenue) OVER (ORDER BY MonthStart)."
+    ],
+    "answer": "WITH M AS (\n    SELECT DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1) AS MonthStart, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    WHERE o.Status <> 'Cancelled'\n    GROUP BY DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1)\n)\nSELECT MonthStart, Revenue,\n       LAG(Revenue) OVER (ORDER BY MonthStart) AS PrevRevenue,\n       ROUND(100.0 * (Revenue - LAG(Revenue) OVER (ORDER BY MonthStart)) / LAG(Revenue) OVER (ORDER BY MonthStart), 2) AS PctChange\nFROM M\nORDER BY MonthStart;",
+    "explanation": "'Previous' means the previous month that has data, not necessarily the previous calendar month.",
+    "id": 127,
+    "key": "8535e26b9177",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "MonthStart",
+      "Revenue",
+      "PrevRevenue",
+      "PctChange"
+    ],
+    "ordering": "MonthStart"
+  },
+  {
+    "level": "Hard",
+    "topic": "LAG",
+    "text": "Show revenue per product category per year together with the previous year's revenue for the same category.",
+    "hints": [
+      "PARTITION BY Category ORDER BY Yr in LAG."
+    ],
+    "answer": "WITH CY AS (\n    SELECT p.Category, YEAR(o.OrderDate) AS Yr, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM OrderItems oi\n    JOIN Orders o ON o.OrderId = oi.OrderId\n    JOIN Products p ON p.ProductId = oi.ProductId\n    GROUP BY p.Category, YEAR(o.OrderDate)\n)\nSELECT Category, Yr, Revenue,\n       LAG(Revenue) OVER (PARTITION BY Category ORDER BY Yr) AS PrevYearRevenue\nFROM CY;",
+    "explanation": "PARTITION BY restarts the LAG for each category.",
+    "id": 128,
+    "key": "6aed1e4ea261",
+    "tables": [
+      "OrderItems",
+      "Orders",
+      "Products"
+    ],
+    "returns": [
+      "Category",
+      "Yr",
+      "Revenue",
+      "PrevYearRevenue"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Self join",
+    "text": "List employees who earn at least 80% of their manager's salary.",
+    "hints": [
+      "Self join and compare e.Salary with 0.8 * m.Salary."
+    ],
+    "answer": "SELECT e.FirstName, e.LastName, e.Salary, m.FirstName AS Manager, m.Salary AS ManagerSalary\nFROM Employees e JOIN Employees m ON m.EmployeeId = e.ManagerId\nWHERE e.Salary >= 0.8 * m.Salary;",
+    "explanation": "Self joins compare an employee to their manager; employees without a manager drop out of the inner join.",
+    "id": 129,
+    "key": "c833a9c62148",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Salary",
+      "Manager",
+      "ManagerSalary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "HAVING",
+    "text": "List departments whose average salary is higher than the company-wide average salary.",
+    "hints": [
+      "HAVING AVG(...) > (SELECT AVG(...))."
+    ],
+    "answer": "SELECT d.DepartmentName, AVG(e.Salary) AS AvgSalary\nFROM Departments d JOIN Employees e ON e.DepartmentId = d.DepartmentId\nGROUP BY d.DepartmentName\nHAVING AVG(e.Salary) > (SELECT AVG(Salary) FROM Employees);",
+    "explanation": "A subquery is allowed inside HAVING.",
+    "id": 130,
+    "key": "46a5c41ca6fe",
+    "tables": [
+      "Departments",
+      "Employees"
+    ],
+    "returns": [
+      "DepartmentName",
+      "AvgSalary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "CTE",
+    "text": "List orders whose total value is higher than the average order value.",
+    "hints": [
+      "Order totals CTE and a scalar AVG subquery."
+    ],
+    "answer": "WITH OT AS (\n    SELECT o.OrderId, o.CustomerId, o.OrderDate, o.Status, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Total\n    FROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    GROUP BY o.OrderId, o.CustomerId, o.OrderDate, o.Status\n)\nSELECT OrderId, Total\nFROM OT\nWHERE Total > (SELECT AVG(Total) FROM OT);",
+    "explanation": "Reusing a CTE twice avoids repeating the aggregation text (though it is still evaluated twice).",
+    "id": 131,
+    "key": "da4f0bf662c1",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "OrderId",
+      "Total"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "ROW_NUMBER",
+    "text": "Show each customer's second most recent order (customer, order id, order date).",
+    "hints": [
+      "ROW_NUMBER() OVER (PARTITION BY CustomerId ORDER BY OrderDate DESC) = 2."
+    ],
+    "answer": "WITH R AS (\n    SELECT CustomerId, OrderId, OrderDate,\n           ROW_NUMBER() OVER (PARTITION BY CustomerId ORDER BY OrderDate DESC) AS rn\n    FROM Orders\n)\nSELECT c.CustomerName, R.OrderId, R.OrderDate\nFROM R JOIN Customers c ON c.CustomerId = R.CustomerId\nWHERE R.rn = 2;",
+    "explanation": "Customers with fewer than 2 orders do not appear.",
+    "id": 132,
+    "key": "c07ad3ec0677",
+    "tables": [
+      "Orders",
+      "Customers"
+    ],
+    "returns": [
+      "CustomerName",
+      "OrderId",
+      "OrderDate"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "DATEDIFF",
+    "text": "For each customer show the number of days between their first and last order.",
+    "hints": [
+      "MIN and MAX of OrderDate with DATEDIFF."
+    ],
+    "answer": "SELECT c.CustomerName, DATEDIFF(DAY, MIN(o.OrderDate), MAX(o.OrderDate)) AS SpanDays\nFROM Customers c JOIN Orders o ON o.CustomerId = c.CustomerId\nGROUP BY c.CustomerId, c.CustomerName;",
+    "explanation": "Aggregates can be nested inside scalar functions like DATEDIFF.",
+    "id": 133,
+    "key": "9419b844a217",
+    "tables": [
+      "Customers",
+      "Orders"
+    ],
+    "returns": [
+      "CustomerName",
+      "SpanDays"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "LAG",
+    "text": "For each customer, compute the average number of days between consecutive orders (1 decimal).",
+    "hints": [
+      "LAG in a CTE to compute gaps, then AVG by customer."
+    ],
+    "answer": "WITH G AS (\n    SELECT CustomerId, DATEDIFF(DAY, LAG(OrderDate) OVER (PARTITION BY CustomerId ORDER BY OrderDate), OrderDate) AS Gap\n    FROM Orders\n)\nSELECT c.CustomerName, ROUND(AVG(G.Gap * 1.0), 1) AS AvgGapDays\nFROM G JOIN Customers c ON c.CustomerId = G.CustomerId\nGROUP BY c.CustomerId, c.CustomerName;",
+    "explanation": "AVG ignores the NULL gap of each customer's first order.",
+    "id": 134,
+    "key": "6d6359ec736e",
+    "tables": [
+      "Orders",
+      "Customers"
+    ],
+    "returns": [
+      "CustomerName",
+      "AvgGapDays"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Running total",
+    "text": "Show employees ordered by hire date (EmployeeId as tie-break) with a running headcount.",
+    "hints": [
+      "COUNT(*) OVER (ORDER BY HireDate, EmployeeId ROWS UNBOUNDED PRECEDING)."
+    ],
+    "answer": "SELECT FirstName, LastName, HireDate,\n       COUNT(*) OVER (ORDER BY HireDate, EmployeeId ROWS UNBOUNDED PRECEDING) AS Headcount\nFROM Employees;",
+    "explanation": "Equivalent to ROW_NUMBER in this case.",
+    "id": 135,
+    "key": "c007807dcbe0",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "HireDate",
+      "Headcount"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "DENSE_RANK",
+    "text": "Within each customer country, show the customer(s) with the highest total revenue.",
+    "hints": [
+      "CTE of revenue per customer, then RANK partitioned by Country."
+    ],
+    "answer": "WITH CR AS (\n    SELECT c.CustomerName, c.Country, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM Customers c JOIN Orders o ON o.CustomerId = c.CustomerId JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    GROUP BY c.CustomerId, c.CustomerName, c.Country\n), R AS (\n    SELECT *, RANK() OVER (PARTITION BY Country ORDER BY Revenue DESC) AS rnk FROM CR\n)\nSELECT Country, CustomerName, Revenue FROM R WHERE rnk = 1;",
+    "explanation": "RANK keeps ties; ROW_NUMBER would drop them.",
+    "id": 136,
+    "key": "4b7866320ecf",
+    "tables": [
+      "Customers",
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "Country",
+      "CustomerName",
+      "Revenue"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Cumulative share",
+    "text": "List products by revenue (highest first) with each product's share of total revenue and the cumulative share (2 decimals).",
+    "hints": [
+      "SUM(Revenue) OVER () for the total and a running SUM for cumulative."
+    ],
+    "answer": "WITH P AS (\n    SELECT p.ProductId, p.ProductName, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM OrderItems oi JOIN Products p ON p.ProductId = oi.ProductId\n    GROUP BY p.ProductId, p.ProductName\n)\nSELECT ProductName, Revenue,\n       ROUND(100.0 * Revenue / SUM(Revenue) OVER (), 2) AS SharePct,\n       ROUND(100.0 * SUM(Revenue) OVER (ORDER BY Revenue DESC, ProductId ROWS UNBOUNDED PRECEDING) / SUM(Revenue) OVER (), 2) AS CumulativePct\nFROM P\nORDER BY Revenue DESC;",
+    "explanation": "This is the basis of a Pareto (80/20) analysis.",
+    "id": 137,
+    "key": "09cae8ae89d1",
+    "tables": [
+      "OrderItems",
+      "Products"
+    ],
+    "returns": [
+      "ProductName",
+      "Revenue",
+      "SharePct",
+      "CumulativePct"
+    ],
+    "ordering": "Revenue DESC"
+  },
+  {
+    "level": "Hard",
+    "topic": "Window SUM",
+    "text": "For each product, show its revenue and its percentage of its own category's revenue (2 decimals).",
+    "hints": [
+      "SUM(Revenue) OVER (PARTITION BY Category)."
+    ],
+    "answer": "WITH P AS (\n    SELECT p.Category, p.ProductName, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM OrderItems oi JOIN Products p ON p.ProductId = oi.ProductId\n    GROUP BY p.ProductId, p.Category, p.ProductName\n)\nSELECT Category, ProductName, Revenue,\n       ROUND(100.0 * Revenue / SUM(Revenue) OVER (PARTITION BY Category), 2) AS PctOfCategory\nFROM P;",
+    "explanation": "A window function can aggregate over the grouped result of the CTE.",
+    "id": 138,
+    "key": "a8743919a532",
+    "tables": [
+      "OrderItems",
+      "Products"
+    ],
+    "returns": [
+      "Category",
+      "ProductName",
+      "Revenue",
+      "PctOfCategory"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Subquery",
+    "text": "For each customer country, show total revenue and the revenue of its single biggest order.",
+    "hints": [
+      "Order totals CTE joined to customers."
+    ],
+    "answer": "WITH OT AS (\n    SELECT o.OrderId, o.CustomerId, o.OrderDate, o.Status, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Total\n    FROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    GROUP BY o.OrderId, o.CustomerId, o.OrderDate, o.Status\n)\nSELECT c.Country, SUM(OT.Total) AS Revenue, MAX(OT.Total) AS BiggestOrder\nFROM OT JOIN Customers c ON c.CustomerId = OT.CustomerId\nGROUP BY c.Country;",
+    "explanation": "Aggregate in layers: order totals first, then by country.",
+    "id": 139,
+    "key": "c4f0f6a83966",
+    "tables": [
+      "Orders",
+      "OrderItems",
+      "Customers"
+    ],
+    "returns": [
+      "Country",
+      "Revenue",
+      "BiggestOrder"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "RANK",
+    "text": "Rank sales reps by total revenue of their orders (RANK, highest = 1). Ignore orders without a rep.",
+    "hints": [
+      "Join Orders to Employees and RANK() OVER (ORDER BY SUM(...) DESC)."
+    ],
+    "answer": "SELECT e.FirstName, e.LastName, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue,\n       RANK() OVER (ORDER BY SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) DESC) AS Rnk\nFROM Orders o\nJOIN OrderItems oi ON oi.OrderId = o.OrderId\nJOIN Employees e ON e.EmployeeId = o.EmployeeId\nGROUP BY e.EmployeeId, e.FirstName, e.LastName;",
+    "explanation": "Window functions can be applied on top of aggregates in the same SELECT.",
+    "id": 140,
+    "key": "5433cb777ab3",
+    "tables": [
+      "Orders",
+      "OrderItems",
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Revenue",
+      "Rnk"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Conditional aggregation",
+    "text": "Show revenue per year (rows) with columns Q1, Q2, Q3, Q4 (non-cancelled orders).",
+    "hints": [
+      "SUM(CASE WHEN DATEPART(QUARTER, OrderDate) = 1 THEN ... END)."
+    ],
+    "answer": "SELECT YEAR(o.OrderDate) AS Yr,\n       SUM(CASE WHEN DATEPART(QUARTER, o.OrderDate) = 1 THEN oi.Quantity * oi.UnitPrice * (1 - oi.Discount) ELSE 0 END) AS Q1,\n       SUM(CASE WHEN DATEPART(QUARTER, o.OrderDate) = 2 THEN oi.Quantity * oi.UnitPrice * (1 - oi.Discount) ELSE 0 END) AS Q2,\n       SUM(CASE WHEN DATEPART(QUARTER, o.OrderDate) = 3 THEN oi.Quantity * oi.UnitPrice * (1 - oi.Discount) ELSE 0 END) AS Q3,\n       SUM(CASE WHEN DATEPART(QUARTER, o.OrderDate) = 4 THEN oi.Quantity * oi.UnitPrice * (1 - oi.Discount) ELSE 0 END) AS Q4\nFROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\nWHERE o.Status <> 'Cancelled'\nGROUP BY YEAR(o.OrderDate)\nORDER BY Yr;",
+    "explanation": "A manual pivot is more flexible than PIVOT when you need computed values.",
+    "id": 141,
+    "key": "67867b41d93a",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "Yr",
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4"
+    ],
+    "ordering": "Yr"
+  },
+  {
+    "level": "Hard",
+    "topic": "ROW_NUMBER",
+    "text": "For each employee, show their first and their latest salary from SalaryHistory and the percentage growth (1 decimal).",
+    "hints": [
+      "MIN/MAX with first/last rows, or FIRST_VALUE with a window frame."
+    ],
+    "answer": "WITH S AS (\n    SELECT EmployeeId, Salary,\n           ROW_NUMBER() OVER (PARTITION BY EmployeeId ORDER BY EffectiveDate) AS rn_asc,\n           ROW_NUMBER() OVER (PARTITION BY EmployeeId ORDER BY EffectiveDate DESC) AS rn_desc\n    FROM SalaryHistory\n)\nSELECT a.EmployeeId, a.Salary AS FirstSalary, d.Salary AS LatestSalary,\n       ROUND(100.0 * (d.Salary - a.Salary) / a.Salary, 1) AS GrowthPct\nFROM S a JOIN S d ON d.EmployeeId = a.EmployeeId AND d.rn_desc = 1\nWHERE a.rn_asc = 1;",
+    "explanation": "Two row numbers (ascending and descending) pick the first and last rows.",
+    "id": 142,
+    "key": "d382634a65a4",
+    "tables": [
+      "SalaryHistory"
+    ],
+    "returns": [
+      "EmployeeId",
+      "FirstSalary",
+      "LatestSalary",
+      "GrowthPct"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Window COUNT",
+    "text": "List all employees whose last name is shared with at least one other employee (show all of them).",
+    "hints": [
+      "COUNT(*) OVER (PARTITION BY LastName) > 1 in a CTE."
+    ],
+    "answer": "WITH L AS (\n    SELECT EmployeeId, FirstName, LastName, COUNT(*) OVER (PARTITION BY LastName) AS Cnt FROM Employees\n)\nSELECT EmployeeId, FirstName, LastName FROM L WHERE Cnt > 1;",
+    "explanation": "Unlike GROUP BY, the window approach keeps the detail rows.",
+    "id": 143,
+    "key": "3533c94c1738",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "EmployeeId",
+      "FirstName",
+      "LastName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "ROW_NUMBER",
+    "text": "Show the employees that would be removed when de-duplicating on (Salary, HireDate), keeping the lowest EmployeeId of each group.",
+    "hints": [
+      "ROW_NUMBER() OVER (PARTITION BY Salary, HireDate ORDER BY EmployeeId) > 1."
+    ],
+    "answer": "WITH D AS (\n    SELECT EmployeeId, FirstName, LastName, Salary, HireDate,\n           ROW_NUMBER() OVER (PARTITION BY Salary, HireDate ORDER BY EmployeeId) AS rn\n    FROM Employees\n)\nSELECT EmployeeId, FirstName, LastName FROM D WHERE rn > 1;",
+    "explanation": "To actually delete, DELETE directly from the CTE.",
+    "id": 144,
+    "key": "1323f7b156d2",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "EmployeeId",
+      "FirstName",
+      "LastName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "PERCENTILE_CONT",
+    "text": "What is the median salary of all employees?",
+    "hints": [
+      "PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY Salary) OVER ()."
+    ],
+    "answer": "SELECT DISTINCT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY Salary) OVER () AS MedianSalary\nFROM Employees;",
+    "explanation": "In T-SQL PERCENTILE_CONT is an analytic function and needs OVER; DISTINCT collapses the repeated value.",
+    "id": 145,
+    "key": "36b0a41d3b19",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "MedianSalary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "PERCENTILE_CONT",
+    "text": "What is the median salary in each department (employees with a department)?",
+    "hints": [
+      "PARTITION BY DepartmentId inside OVER."
+    ],
+    "answer": "SELECT DISTINCT DepartmentId,\n       PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY Salary) OVER (PARTITION BY DepartmentId) AS MedianSalary\nFROM Employees\nWHERE DepartmentId IS NOT NULL;",
+    "explanation": "For an even number of rows the median is the average of the two middle values.",
+    "id": 146,
+    "key": "2b7309dfd3a3",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "DepartmentId",
+      "MedianSalary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "LAG",
+    "text": "What is the longest gap in days between two consecutive orders of the same customer? Show customer name and gap for each customer's longest gap.",
+    "hints": [
+      "LAG for gaps, MAX per customer."
+    ],
+    "answer": "WITH G AS (\n    SELECT CustomerId, DATEDIFF(DAY, LAG(OrderDate) OVER (PARTITION BY CustomerId ORDER BY OrderDate), OrderDate) AS Gap\n    FROM Orders\n)\nSELECT c.CustomerName, MAX(G.Gap) AS LongestGap\nFROM G JOIN Customers c ON c.CustomerId = G.CustomerId\nGROUP BY c.CustomerId, c.CustomerName;",
+    "explanation": "MAX ignores the first-order NULL.",
+    "id": 147,
+    "key": "bfd1bb35fff9",
+    "tables": [
+      "Orders",
+      "Customers"
+    ],
+    "returns": [
+      "CustomerName",
+      "LongestGap"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "STRING_AGG",
+    "text": "For each department list the distinct job titles as a comma-separated, alphabetical string.",
+    "hints": [
+      "Get DISTINCT pairs in a subquery, then STRING_AGG."
+    ],
+    "answer": "SELECT d.DepartmentName, STRING_AGG(t.JobTitle, ', ') WITHIN GROUP (ORDER BY t.JobTitle) AS Titles\nFROM Departments d\nJOIN (SELECT DISTINCT DepartmentId, JobTitle FROM Employees) t ON t.DepartmentId = d.DepartmentId\nGROUP BY d.DepartmentName;",
+    "explanation": "STRING_AGG has no DISTINCT option, hence the derived table.",
+    "id": 148,
+    "key": "9201e703805b",
+    "tables": [
+      "Departments",
+      "Employees"
+    ],
+    "returns": [
+      "DepartmentName",
+      "Titles"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Window AVG",
+    "text": "For each customer show their total revenue and the average revenue of customers in the same country.",
+    "hints": [
+      "AVG(Revenue) OVER (PARTITION BY Country)."
+    ],
+    "answer": "WITH CR AS (\n    SELECT c.CustomerName, c.Country, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM Customers c JOIN Orders o ON o.CustomerId = c.CustomerId JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    GROUP BY c.CustomerId, c.CustomerName, c.Country\n)\nSELECT CustomerName, Country, Revenue,\n       AVG(Revenue) OVER (PARTITION BY Country) AS CountryAvg\nFROM CR;",
+    "explanation": "Window functions run after GROUP BY, so they can use the grouped result.",
+    "id": 149,
+    "key": "a6991da3a9a7",
+    "tables": [
+      "Customers",
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "CustomerName",
+      "Country",
+      "Revenue",
+      "CountryAvg"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "GROUP BY",
+    "text": "How many orders did customers place in the same year they signed up? Show customer name and count (customers with at least one).",
+    "hints": [
+      "Join on YEAR(OrderDate) = YEAR(SignupDate)."
+    ],
+    "answer": "SELECT c.CustomerName, COUNT(*) AS Orders\nFROM Customers c JOIN Orders o ON o.CustomerId = c.CustomerId AND YEAR(o.OrderDate) = YEAR(c.SignupDate)\nGROUP BY c.CustomerId, c.CustomerName;",
+    "explanation": "Join conditions may contain expressions, not only column equality.",
+    "id": 150,
+    "key": "59ecff422c9b",
+    "tables": [
+      "Customers",
+      "Orders"
+    ],
+    "returns": [
+      "CustomerName",
+      "Orders"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "ROW_NUMBER",
+    "text": "For every order show its most expensive line item (product name and unit price).",
+    "hints": [
+      "ROW_NUMBER() OVER (PARTITION BY OrderId ORDER BY UnitPrice DESC) = 1."
+    ],
+    "answer": "WITH R AS (\n    SELECT oi.OrderId, oi.ProductId, oi.UnitPrice,\n           ROW_NUMBER() OVER (PARTITION BY oi.OrderId ORDER BY oi.UnitPrice DESC) AS rn\n    FROM OrderItems oi\n)\nSELECT R.OrderId, p.ProductName, R.UnitPrice\nFROM R JOIN Products p ON p.ProductId = R.ProductId\nWHERE R.rn = 1;",
+    "explanation": "Top-1 per group is one of the most common window function patterns.",
+    "id": 151,
+    "key": "1582321d40a8",
+    "tables": [
+      "OrderItems",
+      "Products"
+    ],
+    "returns": [
+      "OrderId",
+      "ProductName",
+      "UnitPrice"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "HAVING",
+    "text": "Which customers spent more in total than 'Acme Corp'?",
+    "hints": [
+      "HAVING SUM(...) > (subquery for Acme)."
+    ],
+    "answer": "SELECT c.CustomerName, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\nFROM Customers c JOIN Orders o ON o.CustomerId = c.CustomerId JOIN OrderItems oi ON oi.OrderId = o.OrderId\nGROUP BY c.CustomerId, c.CustomerName\nHAVING SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) > (\n    SELECT SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) FROM Customers c2 JOIN Orders o ON o.CustomerId = c2.CustomerId JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    WHERE c2.CustomerName = 'Acme Corp');",
+    "explanation": "The inner query reuses the aliases because it is not correlated.",
+    "id": 152,
+    "key": "858724febf37",
+    "tables": [
+      "Customers",
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "CustomerName",
+      "Revenue"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "EXISTS",
+    "text": "Find customers who have both a Cancelled order and a Delivered order.",
+    "hints": [
+      "Two EXISTS conditions."
+    ],
+    "answer": "SELECT c.CustomerName\nFROM Customers c\nWHERE EXISTS (SELECT 1 FROM Orders o WHERE o.CustomerId = c.CustomerId AND o.Status = 'Cancelled')\n  AND EXISTS (SELECT 1 FROM Orders o WHERE o.CustomerId = c.CustomerId AND o.Status = 'Delivered');",
+    "explanation": "Each EXISTS is independent, so there is no row multiplication.",
+    "id": 153,
+    "key": "06f229eded03",
+    "tables": [
+      "Customers",
+      "Orders"
+    ],
+    "returns": [
+      "CustomerName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "HAVING",
+    "text": "Which sales reps sold to more than 5 distinct customers?",
+    "hints": [
+      "COUNT(DISTINCT CustomerId) in HAVING."
+    ],
+    "answer": "SELECT e.FirstName, e.LastName, COUNT(DISTINCT o.CustomerId) AS Customers\nFROM Orders o JOIN Employees e ON e.EmployeeId = o.EmployeeId\nGROUP BY e.EmployeeId, e.FirstName, e.LastName\nHAVING COUNT(DISTINCT o.CustomerId) > 5;",
+    "explanation": "Same pattern with a threshold.",
+    "id": 154,
+    "key": "f8704aa803fa",
+    "tables": [
+      "Orders",
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Customers"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Self join",
+    "text": "Find pairs of products that appear together in at least 3 orders (product names, number of shared orders).",
+    "hints": [
+      "Self join OrderItems on OrderId with a.ProductId < b.ProductId."
+    ],
+    "answer": "SELECT p1.ProductName AS ProductA, p2.ProductName AS ProductB, COUNT(*) AS Together\nFROM OrderItems a\nJOIN OrderItems b ON b.OrderId = a.OrderId AND a.ProductId < b.ProductId\nJOIN Products p1 ON p1.ProductId = a.ProductId\nJOIN Products p2 ON p2.ProductId = b.ProductId\nGROUP BY p1.ProductName, p2.ProductName\nHAVING COUNT(*) >= 3;",
+    "explanation": "Basket analysis / market-basket pairs.",
+    "id": 155,
+    "key": "ce5333994420",
+    "tables": [
+      "OrderItems",
+      "Products"
+    ],
+    "returns": [
+      "ProductA",
+      "ProductB",
+      "Together"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "ROW_NUMBER",
+    "text": "For each year, which month had the highest non-cancelled revenue? (year, month start, revenue)",
+    "hints": [
+      "Monthly CTE, ROW_NUMBER() OVER (PARTITION BY YEAR(MonthStart) ORDER BY Revenue DESC)."
+    ],
+    "answer": "WITH M AS (\n    SELECT DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1) AS MonthStart, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    WHERE o.Status <> 'Cancelled'\n    GROUP BY DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1)\n), R AS (\n    SELECT *, ROW_NUMBER() OVER (PARTITION BY YEAR(MonthStart) ORDER BY Revenue DESC) AS rn FROM M\n)\nSELECT YEAR(MonthStart) AS Yr, MonthStart, Revenue FROM R WHERE rn = 1;",
+    "explanation": "Partitioning by a year expression is allowed.",
+    "id": 156,
+    "key": "c57772331594",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "Yr",
+      "MonthStart",
+      "Revenue"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "PERCENTILE_CONT",
+    "text": "List employees who earn above the 90th percentile of salaries.",
+    "hints": [
+      "Compute PERCENTILE_CONT(0.9) in a CTE and compare."
+    ],
+    "answer": "WITH P AS (\n    SELECT DISTINCT PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY Salary) OVER () AS P90 FROM Employees\n)\nSELECT e.FirstName, e.LastName, e.Salary\nFROM Employees e CROSS JOIN P\nWHERE e.Salary > P.P90;",
+    "explanation": "Continuous percentiles interpolate between values.",
+    "id": 157,
+    "key": "274dddc2d013",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Salary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "CASE",
+    "text": "Show for each employee whether they are a 'Manager' (has direct reports) or 'Individual Contributor', using a single query without GROUP BY.",
+    "hints": [
+      "CASE WHEN EXISTS (...) THEN ... END."
+    ],
+    "answer": "SELECT e.FirstName, e.LastName,\n       CASE WHEN EXISTS (SELECT 1 FROM Employees r WHERE r.ManagerId = e.EmployeeId) THEN 'Manager' ELSE 'Individual Contributor' END AS Role\nFROM Employees e;",
+    "explanation": "EXISTS can be used inside a CASE expression.",
+    "id": 158,
+    "key": "3d8e2beb4d37",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Role"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "Window MAX",
+    "text": "For each order, show the total and the customer's largest order total for comparison, only for orders that are the customer's largest.",
+    "hints": [
+      "MAX(Total) OVER (PARTITION BY CustomerId) = Total."
+    ],
+    "answer": "WITH OT AS (\n    SELECT o.OrderId, o.CustomerId, o.OrderDate, o.Status, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Total\n    FROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    GROUP BY o.OrderId, o.CustomerId, o.OrderDate, o.Status\n), M AS (\n    SELECT *, MAX(Total) OVER (PARTITION BY CustomerId) AS MaxTotal FROM OT\n)\nSELECT OrderId, CustomerId, Total FROM M WHERE Total = MaxTotal;",
+    "explanation": "Equivalent to a top-1 per group but keeps ties.",
+    "id": 159,
+    "key": "5d82a8de0f9e",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "OrderId",
+      "CustomerId",
+      "Total"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Hard",
+    "topic": "NOT EXISTS",
+    "text": "Which sales reps (employees with orders) have never handled a Cancelled order?",
+    "hints": [
+      "Reps appear in Orders; NOT EXISTS for cancelled ones."
+    ],
+    "answer": "SELECT e.FirstName, e.LastName\nFROM Employees e\nWHERE EXISTS (SELECT 1 FROM Orders o WHERE o.EmployeeId = e.EmployeeId)\n  AND NOT EXISTS (SELECT 1 FROM Orders o WHERE o.EmployeeId = e.EmployeeId AND o.Status = 'Cancelled');",
+    "explanation": "Combine EXISTS and NOT EXISTS for 'has X but never Y'.",
+    "id": 160,
+    "key": "ae1df05cfa63",
+    "tables": [
+      "Employees",
+      "Orders"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "DENSE_RANK",
+    "text": "Find the employee(s) with the second-highest salary in each department (departments with fewer than two distinct salaries should not appear).",
+    "hints": [
+      "DENSE_RANK handles ties properly.",
+      "Filter DENSE_RANK = 2 in an outer query."
+    ],
+    "answer": "WITH R AS (\n    SELECT DepartmentId, FirstName, LastName, Salary,\n           DENSE_RANK() OVER (PARTITION BY DepartmentId ORDER BY Salary DESC) AS rnk\n    FROM Employees\n    WHERE DepartmentId IS NOT NULL\n)\nSELECT d.DepartmentName, R.FirstName, R.LastName, R.Salary\nFROM R JOIN Departments d ON d.DepartmentId = R.DepartmentId\nWHERE R.rnk = 2;",
+    "explanation": "The classic 'Nth highest' question. ROW_NUMBER would wrongly pick one of several people tied for first.",
+    "id": 161,
+    "key": "b60236c05191",
+    "tables": [
+      "Employees",
+      "Departments"
+    ],
+    "returns": [
+      "DepartmentName",
+      "FirstName",
+      "LastName",
+      "Salary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Duplicates",
+    "text": "Find groups of employees that share the same Salary and HireDate, listing the salary, hire date and how many employees are in each such group.",
+    "hints": [
+      "Group by the columns that define a duplicate.",
+      "HAVING COUNT(*) > 1."
+    ],
+    "answer": "SELECT Salary, HireDate, COUNT(*) AS Employees\nFROM Employees\nGROUP BY Salary, HireDate\nHAVING COUNT(*) > 1;",
+    "explanation": "Duplicate detection is GROUP BY + HAVING COUNT(*) > 1. To delete duplicates use ROW_NUMBER() and delete rn > 1.",
+    "id": 162,
+    "key": "e855ca803c43",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "Salary",
+      "HireDate",
+      "Employees"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Top N per group",
+    "text": "Find the top 2 products by revenue in each product category (category, product, revenue, rank).",
+    "hints": [
+      "Aggregate revenue per product first.",
+      "Then ROW_NUMBER/RANK partitioned by Category and filter <= 2."
+    ],
+    "answer": "WITH ProdRev AS (\n    SELECT p.Category, p.ProductName,\n           SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM OrderItems oi\n    JOIN Products p ON p.ProductId = oi.ProductId\n    GROUP BY p.Category, p.ProductId, p.ProductName\n), Ranked AS (\n    SELECT *, ROW_NUMBER() OVER (PARTITION BY Category ORDER BY Revenue DESC) AS rn\n    FROM ProdRev\n)\nSELECT Category, ProductName, Revenue, rn AS Rnk\nFROM Ranked\nWHERE rn <= 2\nORDER BY Category, rn;",
+    "explanation": "Alternative: CROSS APPLY (SELECT TOP 2 ...) per category.",
+    "id": 163,
+    "key": "21f570f4948f",
+    "tables": [
+      "OrderItems",
+      "Products"
+    ],
+    "returns": [
+      "Category",
+      "ProductName",
+      "Revenue",
+      "Rnk"
+    ],
+    "ordering": "Category, rn"
+  },
+  {
+    "level": "Expert",
+    "topic": "Gaps and islands",
+    "text": "For each customer, find their longest streak of consecutive calendar months in which they placed at least one order. Return the top 5 customers by streak length (customer name, streak length in months, streak start month).",
+    "hints": [
+      "Reduce to distinct (CustomerId, month number) first.",
+      "Subtract ROW_NUMBER() from the month number - consecutive months share the same difference (the 'island' key)."
+    ],
+    "answer": "WITH M AS (\n    SELECT DISTINCT CustomerId, DATEDIFF(MONTH, '2000-01-01', OrderDate) AS Mn\n    FROM Orders\n), Grp AS (\n    SELECT CustomerId, Mn,\n           Mn - ROW_NUMBER() OVER (PARTITION BY CustomerId ORDER BY Mn) AS Island\n    FROM M\n), Streaks AS (\n    SELECT CustomerId, Island, COUNT(*) AS StreakLen, MIN(Mn) AS StartMn\n    FROM Grp\n    GROUP BY CustomerId, Island\n), Best AS (\n    SELECT *, ROW_NUMBER() OVER (PARTITION BY CustomerId ORDER BY StreakLen DESC, StartMn) AS rn\n    FROM Streaks\n)\nSELECT TOP 5 c.CustomerName, b.StreakLen,\n       DATEADD(MONTH, b.StartMn, '2000-01-01') AS StreakStart\nFROM Best b\nJOIN Customers c ON c.CustomerId = b.CustomerId\nWHERE b.rn = 1\nORDER BY b.StreakLen DESC, c.CustomerName;",
+    "explanation": "Gaps-and-islands: value minus row number is constant inside a run of consecutive values.",
+    "id": 164,
+    "key": "aadd5e459ce6",
+    "tables": [
+      "Orders",
+      "Customers"
+    ],
+    "returns": [
+      "CustomerName",
+      "StreakLen",
+      "StreakStart"
+    ],
+    "ordering": "b.StreakLen DESC, c.CustomerName"
+  },
+  {
+    "level": "Expert",
+    "topic": "Moving average",
+    "text": "Show monthly revenue (excluding Cancelled orders) with a 3-month moving average (current month and the 2 previous months), rounded to 2 decimals.",
+    "hints": [
+      "Aggregate to months in a CTE.",
+      "AVG(Revenue) OVER (ORDER BY MonthStart ROWS BETWEEN 2 PRECEDING AND CURRENT ROW)."
+    ],
+    "answer": "WITH Monthly AS (\n    SELECT DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1) AS MonthStart,\n           SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM Orders o\n    JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    WHERE o.Status <> 'Cancelled'\n    GROUP BY DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1)\n)\nSELECT MonthStart, Revenue,\n       ROUND(AVG(Revenue) OVER (ORDER BY MonthStart ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 2) AS MovingAvg3\nFROM Monthly\nORDER BY MonthStart;",
+    "explanation": "The first two months average fewer than 3 rows. Months without orders would be missing - join to a calendar table if that matters.",
+    "id": 165,
+    "key": "1c61daf81395",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "MonthStart",
+      "Revenue",
+      "MovingAvg3"
+    ],
+    "ordering": "MonthStart"
+  },
+  {
+    "level": "Expert",
+    "topic": "Calendar gaps",
+    "text": "List every date in Q1 2024 (1 Jan - 31 Mar) on which no order was placed.",
+    "hints": [
+      "Build a calendar with a recursive CTE.",
+      "Anti-join to Orders."
+    ],
+    "answer": "WITH D AS (\n    SELECT CAST('2024-01-01' AS DATE) AS d\n    UNION ALL\n    SELECT DATEADD(DAY, 1, d) FROM D WHERE d < '2024-03-31'\n)\nSELECT d AS EmptyDay\nFROM D\nWHERE NOT EXISTS (SELECT 1 FROM Orders o WHERE o.OrderDate = D.d)\nOPTION (MAXRECURSION 400);",
+    "explanation": "Finding missing dates requires generating the full list first.",
+    "id": 166,
+    "key": "75bfbb001964",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "EmptyDay"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Gaps and islands",
+    "text": "Find runs of consecutive calendar days that all have at least one order. Return start date, end date and length for runs of 2 or more days.",
+    "hints": [
+      "Distinct dates, then date minus ROW_NUMBER days gives a constant per island."
+    ],
+    "answer": "WITH Dd AS (SELECT DISTINCT OrderDate AS d FROM Orders),\nG AS (\n    SELECT d, DATEADD(DAY, -ROW_NUMBER() OVER (ORDER BY d), d) AS grp FROM Dd\n)\nSELECT MIN(d) AS StartDate, MAX(d) AS EndDate, COUNT(*) AS Days\nFROM G\nGROUP BY grp\nHAVING COUNT(*) >= 2;",
+    "explanation": "Subtracting the row number from the date makes consecutive days share the same value.",
+    "id": 167,
+    "key": "44e522a61705",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "StartDate",
+      "EndDate",
+      "Days"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Window SUM",
+    "text": "For each customer and year, list their orders with a running total of order value that restarts every year.",
+    "hints": [
+      "Order totals CTE; SUM() OVER (PARTITION BY CustomerId, YEAR(OrderDate) ORDER BY OrderDate ROWS UNBOUNDED PRECEDING)."
+    ],
+    "answer": "WITH OT AS (\n    SELECT o.OrderId, o.CustomerId, o.OrderDate, o.Status, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Total\n    FROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    GROUP BY o.OrderId, o.CustomerId, o.OrderDate, o.Status\n)\nSELECT CustomerId, OrderId, OrderDate, Total,\n       SUM(Total) OVER (PARTITION BY CustomerId, YEAR(OrderDate) ORDER BY OrderDate ROWS UNBOUNDED PRECEDING) AS YtdTotal\nFROM OT;",
+    "explanation": "PARTITION BY resets the running window, here per customer per year.",
+    "id": 168,
+    "key": "f004fa8be042",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "CustomerId",
+      "OrderId",
+      "OrderDate",
+      "Total",
+      "YtdTotal"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Retention",
+    "text": "How many customers ordered in 2023 and again in 2024 (retained), and what percentage of 2023 customers is that (1 decimal)?",
+    "hints": [
+      "Sets of customers by year; COUNT the intersection."
+    ],
+    "answer": "WITH A AS (SELECT DISTINCT CustomerId FROM Orders WHERE YEAR(OrderDate) = 2023),\n     B AS (SELECT DISTINCT CustomerId FROM Orders WHERE YEAR(OrderDate) = 2024)\nSELECT COUNT(B.CustomerId) AS Retained,\n       ROUND(100.0 * COUNT(B.CustomerId) / COUNT(A.CustomerId), 1) AS RetentionPct\nFROM A LEFT JOIN B ON B.CustomerId = A.CustomerId;",
+    "explanation": "COUNT(column) only counts matched rows from the LEFT JOIN.",
+    "id": 169,
+    "key": "b0ad7239eeb2",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "Retained",
+      "RetentionPct"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "ROW_NUMBER",
+    "text": "For each customer show the first order they ever placed: order id, date and order total.",
+    "hints": [
+      "Order totals CTE then ROW_NUMBER() OVER (PARTITION BY CustomerId ORDER BY OrderDate)."
+    ],
+    "answer": "WITH OT AS (\n    SELECT o.OrderId, o.CustomerId, o.OrderDate, o.Status, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Total\n    FROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    GROUP BY o.OrderId, o.CustomerId, o.OrderDate, o.Status\n), R AS (\n    SELECT *, ROW_NUMBER() OVER (PARTITION BY CustomerId ORDER BY OrderDate) AS rn FROM OT\n)\nSELECT CustomerId, OrderId, OrderDate, Total FROM R WHERE rn = 1;",
+    "explanation": "Top-1 per group again, here chronological.",
+    "id": 170,
+    "key": "8c972f470329",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "CustomerId",
+      "OrderId",
+      "OrderDate",
+      "Total"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Bottom N per group",
+    "text": "For each product category, list the 2 products with the lowest stock (category, product, stock).",
+    "hints": [
+      "ROW_NUMBER() OVER (PARTITION BY Category ORDER BY Stock) <= 2."
+    ],
+    "answer": "WITH R AS (\n    SELECT Category, ProductName, Stock, ROW_NUMBER() OVER (PARTITION BY Category ORDER BY Stock) AS rn FROM Products\n)\nSELECT Category, ProductName, Stock FROM R WHERE rn <= 2;",
+    "explanation": "Ordering ascending gives bottom-N.",
+    "id": 171,
+    "key": "543b050ecedb",
+    "tables": [
+      "Products"
+    ],
+    "returns": [
+      "Category",
+      "ProductName",
+      "Stock"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Recursive CTE",
+    "text": "For every manager, compute the total salary cost of their entire team (all direct and indirect reports, excluding the manager). Show manager name and team cost.",
+    "hints": [
+      "Make every employee the root of their own subtree, then SUM descendants."
+    ],
+    "answer": "WITH T AS (\n    SELECT EmployeeId AS RootId, EmployeeId AS MemberId FROM Employees\n    UNION ALL\n    SELECT t.RootId, e.EmployeeId FROM T t JOIN Employees e ON e.ManagerId = t.MemberId\n)\nSELECT r.FirstName + ' ' + r.LastName AS Manager, SUM(m.Salary) AS TeamCost\nFROM T\nJOIN Employees r ON r.EmployeeId = T.RootId\nJOIN Employees m ON m.EmployeeId = T.MemberId\nWHERE T.RootId <> T.MemberId\nGROUP BY r.EmployeeId, r.FirstName, r.LastName;",
+    "explanation": "Starting a recursive CTE from all rows computes every subtree at once.",
+    "id": 172,
+    "key": "d10d174e366e",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "Manager",
+      "TeamCost"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "PERCENTILE_CONT",
+    "text": "What is the median order value (using order totals)?",
+    "hints": [
+      "Order totals CTE then PERCENTILE_CONT(0.5)."
+    ],
+    "answer": "WITH OT AS (\n    SELECT o.OrderId, o.CustomerId, o.OrderDate, o.Status, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Total\n    FROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    GROUP BY o.OrderId, o.CustomerId, o.OrderDate, o.Status\n)\nSELECT DISTINCT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY Total) OVER () AS MedianOrder\nFROM OT;",
+    "explanation": "The median is robust to very large orders, unlike the mean.",
+    "id": 173,
+    "key": "723cce6d194e",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "MedianOrder"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "LAG",
+    "text": "For each employee, find their largest single percentage raise from SalaryHistory (1 decimal).",
+    "hints": [
+      "LAG to get the previous salary, MAX of the % change."
+    ],
+    "answer": "WITH C AS (\n    SELECT EmployeeId,\n           100.0 * (Salary - LAG(Salary) OVER (PARTITION BY EmployeeId ORDER BY EffectiveDate)) / LAG(Salary) OVER (PARTITION BY EmployeeId ORDER BY EffectiveDate) AS Pct\n    FROM SalaryHistory\n)\nSELECT EmployeeId, ROUND(MAX(Pct), 1) AS BiggestRaisePct\nFROM C\nGROUP BY EmployeeId\nHAVING MAX(Pct) IS NOT NULL;",
+    "explanation": "Employees with a single record have no raise, so HAVING removes them.",
+    "id": 174,
+    "key": "8aff9554576a",
+    "tables": [
+      "SalaryHistory"
+    ],
+    "returns": [
+      "EmployeeId",
+      "BiggestRaisePct"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Point in time",
+    "text": "What salary was each employee earning on 2024-06-30 according to SalaryHistory? (EmployeeId, Salary). Exclude employees who had no record by then.",
+    "hints": [
+      "Latest record with EffectiveDate <= the date; ROW_NUMBER DESC."
+    ],
+    "answer": "WITH S AS (\n    SELECT EmployeeId, Salary,\n           ROW_NUMBER() OVER (PARTITION BY EmployeeId ORDER BY EffectiveDate DESC) AS rn\n    FROM SalaryHistory\n    WHERE EffectiveDate <= '2024-06-30'\n)\nSELECT EmployeeId, Salary FROM S WHERE rn = 1;",
+    "explanation": "Slowly-changing-dimension 'as of' lookup.",
+    "id": 175,
+    "key": "6696cbf3e053",
+    "tables": [
+      "SalaryHistory"
+    ],
+    "returns": [
+      "EmployeeId",
+      "Salary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Point in time",
+    "text": "What was the total payroll on 2024-06-30 (sum of each employee's then-current salary)?",
+    "hints": [
+      "Same as the previous question then SUM."
+    ],
+    "answer": "WITH S AS (\n    SELECT EmployeeId, Salary,\n           ROW_NUMBER() OVER (PARTITION BY EmployeeId ORDER BY EffectiveDate DESC) AS rn\n    FROM SalaryHistory\n    WHERE EffectiveDate <= '2024-06-30'\n)\nSELECT SUM(Salary) AS Payroll FROM S WHERE rn = 1;",
+    "explanation": "Summing all history rows would massively overcount.",
+    "id": 176,
+    "key": "a0f05b5bd0bd",
+    "tables": [
+      "SalaryHistory"
+    ],
+    "returns": [
+      "Payroll"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "NTILE",
+    "text": "Find customers in the top revenue quartile (NTILE(4) = 1). Show customer name and revenue.",
+    "hints": [
+      "Revenue per customer CTE then NTILE(4) OVER (ORDER BY Revenue DESC)."
+    ],
+    "answer": "WITH CR AS (\n    SELECT c.CustomerName, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM Customers c JOIN Orders o ON o.CustomerId = c.CustomerId JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    GROUP BY c.CustomerId, c.CustomerName\n), N AS (\n    SELECT *, NTILE(4) OVER (ORDER BY Revenue DESC) AS Q FROM CR\n)\nSELECT CustomerName, Revenue FROM N WHERE Q = 1;",
+    "explanation": "NTILE splits ordered rows into equal-count groups.",
+    "id": 177,
+    "key": "7deacd155ff4",
+    "tables": [
+      "Customers",
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "CustomerName",
+      "Revenue"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "New customers",
+    "text": "For each month, count the customers placing their first-ever order, with a running total of acquired customers.",
+    "hints": [
+      "MIN(OrderDate) per customer, group by month, running SUM."
+    ],
+    "answer": "WITH F AS (\n    SELECT CustomerId, DATEFROMPARTS(YEAR(MIN(OrderDate)), MONTH(MIN(OrderDate)), 1) AS FirstMonth\n    FROM Orders GROUP BY CustomerId\n), M AS (\n    SELECT FirstMonth, COUNT(*) AS NewCustomers FROM F GROUP BY FirstMonth\n)\nSELECT FirstMonth, NewCustomers,\n       SUM(NewCustomers) OVER (ORDER BY FirstMonth ROWS UNBOUNDED PRECEDING) AS CumulativeCustomers\nFROM M;",
+    "explanation": "Aggregate twice: customer level first, then month level.",
+    "id": 178,
+    "key": "6b89a0bd129c",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "FirstMonth",
+      "NewCustomers",
+      "CumulativeCustomers"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Basket analysis",
+    "text": "Which products are most often ordered together with 'Laptop Pro 15'? Show product and number of shared orders for products shared in at least 3 orders.",
+    "hints": [
+      "Self join OrderItems on OrderId with one side fixed to the laptop."
+    ],
+    "answer": "SELECT p.ProductName, COUNT(*) AS SharedOrders\nFROM OrderItems a\nJOIN Products lp ON lp.ProductId = a.ProductId AND lp.ProductName = 'Laptop Pro 15'\nJOIN OrderItems b ON b.OrderId = a.OrderId AND b.ProductId <> a.ProductId\nJOIN Products p ON p.ProductId = b.ProductId\nGROUP BY p.ProductId, p.ProductName\nHAVING COUNT(*) >= 3;",
+    "explanation": "Association-rule style questions rely on self joins.",
+    "id": 179,
+    "key": "7bf746db14ae",
+    "tables": [
+      "OrderItems",
+      "Products"
+    ],
+    "returns": [
+      "ProductName",
+      "SharedOrders"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Window SUM",
+    "text": "Find order lines that account for more than 50% of their order's value. Show OrderId, ProductId and the share (2 decimals).",
+    "hints": [
+      "SUM(line value) OVER (PARTITION BY OrderId)."
+    ],
+    "answer": "WITH L AS (\n    SELECT oi.OrderId, oi.ProductId, oi.Quantity * oi.UnitPrice * (1 - oi.Discount) AS LineValue,\n           SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) OVER (PARTITION BY oi.OrderId) AS OrderValue\n    FROM OrderItems oi\n)\nSELECT OrderId, ProductId, ROUND(100.0 * LineValue / OrderValue, 2) AS SharePct\nFROM L\nWHERE LineValue > 0.5 * OrderValue;",
+    "explanation": "Window functions let you compare each row to its group total without a self join.",
+    "id": 180,
+    "key": "9d4aec1365a3",
+    "tables": [
+      "OrderItems"
+    ],
+    "returns": [
+      "OrderId",
+      "ProductId",
+      "SharePct"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Day of week",
+    "text": "Which weekday generates the most revenue (non-cancelled)? Return the weekday name and revenue.",
+    "hints": [
+      "Group by DATENAME(WEEKDAY) and take the top row."
+    ],
+    "answer": "SELECT TOP 1 DATENAME(WEEKDAY, o.OrderDate) AS Weekday, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\nFROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\nWHERE o.Status <> 'Cancelled'\nGROUP BY DATENAME(WEEKDAY, o.OrderDate)\nORDER BY Revenue DESC;",
+    "explanation": "Remember to sort on the aggregate, not the weekday name.",
+    "id": 181,
+    "key": "e81cd7ec1fad",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "Weekday",
+      "Revenue"
+    ],
+    "ordering": "Revenue DESC"
+  },
+  {
+    "level": "Expert",
+    "topic": "Year to date",
+    "text": "Show 2024 monthly non-cancelled revenue with a year-to-date running total.",
+    "hints": [
+      "Monthly CTE filtered to 2024, SUM OVER with ROWS."
+    ],
+    "answer": "WITH M AS (\n    SELECT DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1) AS MonthStart, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    WHERE o.Status <> 'Cancelled'\n    GROUP BY DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1)\n)\nSELECT MonthStart, Revenue,\n       SUM(Revenue) OVER (ORDER BY MonthStart ROWS UNBOUNDED PRECEDING) AS YtdRevenue\nFROM M\nWHERE MonthStart >= '2024-01-01' AND MonthStart < '2025-01-01';",
+    "explanation": "WHERE is applied before the window function, so the running total starts at the first 2024 month - that is what makes it year-to-date.",
+    "id": 182,
+    "key": "5957389c2b06",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "MonthStart",
+      "Revenue",
+      "YtdRevenue"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Year-over-year",
+    "text": "For each month show revenue and the revenue of the same month one year earlier (NULL if none) and the difference.",
+    "hints": [
+      "LEFT JOIN the monthly CTE to itself on DATEADD(YEAR, -1, MonthStart)."
+    ],
+    "answer": "WITH M AS (\n    SELECT DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1) AS MonthStart, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    WHERE o.Status <> 'Cancelled'\n    GROUP BY DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1)\n)\nSELECT cur.MonthStart, cur.Revenue, prev.Revenue AS PrevYearRevenue, cur.Revenue - prev.Revenue AS Diff\nFROM M cur\nLEFT JOIN M prev ON prev.MonthStart = DATEADD(YEAR, -1, cur.MonthStart);",
+    "explanation": "Self-joining on shifted dates is more robust than LAG(12) when months are missing.",
+    "id": 183,
+    "key": "4f17fbfd6b18",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "MonthStart",
+      "Revenue",
+      "PrevYearRevenue",
+      "Diff"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Recursive CTE",
+    "text": "Show the chain of command above Jon Tan (EmployeeId 36) up to the CEO: name and level above Jon (0 = Jon).",
+    "hints": [
+      "Recursive CTE walking ManagerId upwards."
+    ],
+    "answer": "WITH Up AS (\n    SELECT EmployeeId, FirstName, LastName, ManagerId, 0 AS Level FROM Employees WHERE EmployeeId = 36\n    UNION ALL\n    SELECT e.EmployeeId, e.FirstName, e.LastName, e.ManagerId, u.Level + 1\n    FROM Employees e JOIN Up u ON e.EmployeeId = u.ManagerId\n)\nSELECT FirstName + ' ' + LastName AS Name, Level FROM Up ORDER BY Level;",
+    "explanation": "Walking up joins on the manager's id rather than the employee's.",
+    "id": 184,
+    "key": "728e357391c5",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "Name",
+      "Level"
+    ],
+    "ordering": "Level"
+  },
+  {
+    "level": "Expert",
+    "topic": "Cross tab",
+    "text": "Show headcount per department (rows) and salary band (columns Low < 70000, Mid 70000-119999, High >= 120000). Only employees with a department.",
+    "hints": [
+      "Conditional aggregation with CASE."
+    ],
+    "answer": "SELECT d.DepartmentName,\n       SUM(CASE WHEN e.Salary < 70000 THEN 1 ELSE 0 END) AS Low,\n       SUM(CASE WHEN e.Salary >= 70000 AND e.Salary < 120000 THEN 1 ELSE 0 END) AS Mid,\n       SUM(CASE WHEN e.Salary >= 120000 THEN 1 ELSE 0 END) AS High\nFROM Departments d JOIN Employees e ON e.DepartmentId = d.DepartmentId\nGROUP BY d.DepartmentName;",
+    "explanation": "A cross tab is just GROUP BY with CASE-based aggregates.",
+    "id": 185,
+    "key": "2f6837e8faeb",
+    "tables": [
+      "Departments",
+      "Employees"
+    ],
+    "returns": [
+      "DepartmentName",
+      "Low",
+      "Mid",
+      "High"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "DATEDIFF",
+    "text": "For every customer who has ordered, show how many days passed between signing up and their first order.",
+    "hints": [
+      "MIN(OrderDate) then DATEDIFF with SignupDate."
+    ],
+    "answer": "SELECT c.CustomerName, DATEDIFF(DAY, c.SignupDate, MIN(o.OrderDate)) AS DaysToFirstOrder\nFROM Customers c JOIN Orders o ON o.CustomerId = c.CustomerId\nGROUP BY c.CustomerId, c.CustomerName, c.SignupDate;",
+    "explanation": "Negative values would reveal orders placed before signup (data quality!).",
+    "id": 186,
+    "key": "2246aecb0af6",
+    "tables": [
+      "Customers",
+      "Orders"
+    ],
+    "returns": [
+      "CustomerName",
+      "DaysToFirstOrder"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "LAG",
+    "text": "List orders whose Status is the same as that customer's previous order's status (customer, order id, status).",
+    "hints": [
+      "LAG(Status) OVER (PARTITION BY CustomerId ORDER BY OrderDate)."
+    ],
+    "answer": "WITH S AS (\n    SELECT CustomerId, OrderId, Status,\n           LAG(Status) OVER (PARTITION BY CustomerId ORDER BY OrderDate) AS PrevStatus\n    FROM Orders\n)\nSELECT CustomerId, OrderId, Status FROM S WHERE Status = PrevStatus;",
+    "explanation": "LAG returns NULL for the first row so it never matches.",
+    "id": 187,
+    "key": "9a4c62ac5a6d",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "CustomerId",
+      "OrderId",
+      "Status"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Self join",
+    "text": "List employees who manage at least one person who is themselves a manager (i.e. managers of managers).",
+    "hints": [
+      "Self join twice or nested EXISTS."
+    ],
+    "answer": "SELECT m.EmployeeId, m.FirstName, m.LastName\nFROM Employees m\nWHERE EXISTS (\n    SELECT 1 FROM Employees r\n    WHERE r.ManagerId = m.EmployeeId\n      AND EXISTS (SELECT 1 FROM Employees rr WHERE rr.ManagerId = r.EmployeeId));",
+    "explanation": "Nested EXISTS checks two levels of the hierarchy.",
+    "id": 188,
+    "key": "84ae0fd5ab7d",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "EmployeeId",
+      "FirstName",
+      "LastName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "PIVOT",
+    "text": "Show a cohort matrix: rows = customer signup year, columns = order year 2023, 2024, 2025, values = number of orders.",
+    "hints": [
+      "Join Customers to Orders, then PIVOT on order year."
+    ],
+    "answer": "SELECT SignupYear, [2023], [2024], [2025]\nFROM (SELECT YEAR(c.SignupDate) AS SignupYear, YEAR(o.OrderDate) AS OrderYear, o.OrderId\n      FROM Customers c JOIN Orders o ON o.CustomerId = c.CustomerId) s\nPIVOT (COUNT(OrderId) FOR OrderYear IN ([2023], [2024], [2025])) p\nORDER BY SignupYear;",
+    "explanation": "Cohort tables are PIVOTs of counts by a cohort key and a time key.",
+    "id": 189,
+    "key": "6bd5206b29d9",
+    "tables": [
+      "Customers",
+      "Orders"
+    ],
+    "returns": [
+      "SignupYear",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "ordering": "SignupYear"
+  },
+  {
+    "level": "Expert",
+    "topic": "Distribution",
+    "text": "How many customers placed 1-5 orders, 6-10 orders, and 11+ orders? (bucket, customers). Include only customers with orders.",
+    "hints": [
+      "Count orders per customer first, then bucket with CASE."
+    ],
+    "answer": "WITH C AS (SELECT CustomerId, COUNT(*) AS Orders FROM Orders GROUP BY CustomerId)\nSELECT CASE WHEN Orders <= 5 THEN '1-5' WHEN Orders <= 10 THEN '6-10' ELSE '11+' END AS Bucket,\n       COUNT(*) AS Customers\nFROM C\nGROUP BY CASE WHEN Orders <= 5 THEN '1-5' WHEN Orders <= 10 THEN '6-10' ELSE '11+' END;",
+    "explanation": "A histogram is an aggregate of an aggregate.",
+    "id": 190,
+    "key": "0698d616915e",
+    "tables": [
+      "Orders"
+    ],
+    "returns": [
+      "Bucket",
+      "Customers"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "ROW_NUMBER",
+    "text": "Find customers whose most recent order was Cancelled.",
+    "hints": [
+      "ROW_NUMBER by OrderDate DESC and check Status of row 1."
+    ],
+    "answer": "WITH R AS (\n    SELECT CustomerId, Status, ROW_NUMBER() OVER (PARTITION BY CustomerId ORDER BY OrderDate DESC) AS rn FROM Orders\n)\nSELECT c.CustomerName\nFROM R JOIN Customers c ON c.CustomerId = R.CustomerId\nWHERE R.rn = 1 AND R.Status = 'Cancelled';",
+    "explanation": "Filter on the status after picking the latest row, not before.",
+    "id": 191,
+    "key": "f41cc181ef64",
+    "tables": [
+      "Orders",
+      "Customers"
+    ],
+    "returns": [
+      "CustomerName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "FIRST_VALUE",
+    "text": "For each department show the highest and lowest paid employee names (one row per department, employees with a department).",
+    "hints": [
+      "FIRST_VALUE with ASC and DESC ordering, DISTINCT."
+    ],
+    "answer": "SELECT DISTINCT d.DepartmentName,\n       FIRST_VALUE(e.FirstName) OVER (PARTITION BY e.DepartmentId ORDER BY e.Salary DESC, e.EmployeeId) AS HighestPaid,\n       FIRST_VALUE(e.FirstName) OVER (PARTITION BY e.DepartmentId ORDER BY e.Salary ASC, e.EmployeeId) AS LowestPaid\nFROM Employees e JOIN Departments d ON d.DepartmentId = e.DepartmentId;",
+    "explanation": "Two FIRST_VALUEs with opposite orderings avoid the LAST_VALUE frame trap.",
+    "id": 192,
+    "key": "84fc6ad54de4",
+    "tables": [
+      "Employees",
+      "Departments"
+    ],
+    "returns": [
+      "DepartmentName",
+      "HighestPaid",
+      "LowestPaid"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Anniversary",
+    "text": "For each employee compute their next work anniversary date on or after 2026-01-01.",
+    "hints": [
+      "Add whole years to HireDate until it is >= the reference date."
+    ],
+    "answer": "SELECT EmployeeId, FirstName, LastName, HireDate,\n       CASE WHEN DATEADD(YEAR, DATEDIFF(YEAR, HireDate, '2026-01-01'), HireDate) >= '2026-01-01'\n            THEN DATEADD(YEAR, DATEDIFF(YEAR, HireDate, '2026-01-01'), HireDate)\n            ELSE DATEADD(YEAR, DATEDIFF(YEAR, HireDate, '2026-01-01') + 1, HireDate) END AS NextAnniversary\nFROM Employees;",
+    "explanation": "DATEDIFF(YEAR) counts boundaries, so the result may need one more year.",
+    "id": 193,
+    "key": "9e4aab143173",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "EmployeeId",
+      "FirstName",
+      "LastName",
+      "HireDate",
+      "NextAnniversary"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Budgeting",
+    "text": "Starting from the highest-paid employee (ties by EmployeeId) and going down, which employees fit within a cumulative salary budget of 1,000,000? Show name, salary and running total.",
+    "hints": [
+      "Running SUM ordered by Salary DESC, EmployeeId; filter <= 1,000,000."
+    ],
+    "answer": "WITH R AS (\n    SELECT FirstName, LastName, Salary,\n           SUM(Salary) OVER (ORDER BY Salary DESC, EmployeeId ROWS UNBOUNDED PRECEDING) AS RunningTotal\n    FROM Employees\n)\nSELECT FirstName, LastName, Salary, RunningTotal FROM R WHERE RunningTotal <= 1000000;",
+    "explanation": "Filter in an outer query because window functions are not allowed in WHERE.",
+    "id": 194,
+    "key": "d0fad62bf7dd",
+    "tables": [
+      "Employees"
+    ],
+    "returns": [
+      "FirstName",
+      "LastName",
+      "Salary",
+      "RunningTotal"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Metadata",
+    "text": "List every table with its row count using sys.tables and sys.partitions.",
+    "hints": [
+      "Join on object_id and filter index_id IN (0,1)."
+    ],
+    "answer": "SELECT t.name AS TableName, SUM(p.rows) AS TotalRows\nFROM sys.tables t JOIN sys.partitions p ON p.object_id = t.object_id AND p.index_id IN (0, 1)\nGROUP BY t.name;",
+    "explanation": "Heap (0) and clustered index (1) partitions hold the base rows; counting other indexes would double count.",
+    "id": 195,
+    "key": "2631dbfd2ee7",
+    "tables": [],
+    "returns": [
+      "TableName",
+      "TotalRows"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Dynamic ranking",
+    "text": "Rank customers by revenue within each year (DENSE_RANK, highest = 1) and return the top 3 per year with year, customer, revenue and rank.",
+    "hints": [
+      "Revenue per customer per year, then DENSE_RANK partitioned by Yr."
+    ],
+    "answer": "WITH CR AS (\n    SELECT YEAR(o.OrderDate) AS Yr, c.CustomerName, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM Customers c JOIN Orders o ON o.CustomerId = c.CustomerId JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    GROUP BY YEAR(o.OrderDate), c.CustomerId, c.CustomerName\n), R AS (\n    SELECT *, DENSE_RANK() OVER (PARTITION BY Yr ORDER BY Revenue DESC) AS Rnk FROM CR\n)\nSELECT Yr, CustomerName, Revenue, Rnk FROM R WHERE Rnk <= 3;",
+    "explanation": "Top-N per group with ties handled by DENSE_RANK.",
+    "id": 196,
+    "key": "2de25e6d3a1d",
+    "tables": [
+      "Customers",
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "Yr",
+      "CustomerName",
+      "Revenue",
+      "Rnk"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Anti join",
+    "text": "Find employees who never appear as the sales rep on any order and are in the Sales department.",
+    "hints": [
+      "Sales dept = 3; NOT EXISTS on Orders.EmployeeId."
+    ],
+    "answer": "SELECT e.EmployeeId, e.FirstName, e.LastName\nFROM Employees e\nWHERE e.DepartmentId = 3\n  AND NOT EXISTS (SELECT 1 FROM Orders o WHERE o.EmployeeId = e.EmployeeId);",
+    "explanation": "Reps 16-21 are assigned orders in the seed data, so remaining Sales staff show up here.",
+    "id": 197,
+    "key": "abae91f6c6a6",
+    "tables": [
+      "Employees",
+      "Orders"
+    ],
+    "returns": [
+      "EmployeeId",
+      "FirstName",
+      "LastName"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Moving average",
+    "text": "Show each month's non-cancelled revenue and the average of the previous 2 months only (excluding the current month), rounded to 2 decimals.",
+    "hints": [
+      "Frame: ROWS BETWEEN 2 PRECEDING AND 1 PRECEDING."
+    ],
+    "answer": "WITH M AS (\n    SELECT DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1) AS MonthStart, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Revenue\n    FROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    WHERE o.Status <> 'Cancelled'\n    GROUP BY DATEFROMPARTS(YEAR(o.OrderDate), MONTH(o.OrderDate), 1)\n)\nSELECT MonthStart, Revenue,\n       ROUND(AVG(Revenue) OVER (ORDER BY MonthStart ROWS BETWEEN 2 PRECEDING AND 1 PRECEDING), 2) AS PrevTwoAvg\nFROM M;",
+    "explanation": "Frames can exclude the current row; the first month has NULL.",
+    "id": 198,
+    "key": "1e85bbdae9f0",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "MonthStart",
+      "Revenue",
+      "PrevTwoAvg"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Orders vs average",
+    "text": "List each customer's orders whose value is above that customer's own average order value (customer, order id, total, customer average).",
+    "hints": [
+      "Order totals CTE with AVG OVER (PARTITION BY CustomerId)."
+    ],
+    "answer": "WITH OT AS (\n    SELECT o.OrderId, o.CustomerId, o.OrderDate, o.Status, SUM(oi.Quantity * oi.UnitPrice * (1 - oi.Discount)) AS Total\n    FROM Orders o JOIN OrderItems oi ON oi.OrderId = o.OrderId\n    GROUP BY o.OrderId, o.CustomerId, o.OrderDate, o.Status\n), A AS (\n    SELECT *, AVG(Total) OVER (PARTITION BY CustomerId) AS CustAvg FROM OT\n)\nSELECT CustomerId, OrderId, Total, CustAvg FROM A WHERE Total > CustAvg;",
+    "explanation": "Three layers: order lines, order totals, then per-customer window.",
+    "id": 199,
+    "key": "4508d2e0edcd",
+    "tables": [
+      "Orders",
+      "OrderItems"
+    ],
+    "returns": [
+      "CustomerId",
+      "OrderId",
+      "Total",
+      "CustAvg"
+    ],
+    "ordering": ""
+  },
+  {
+    "level": "Expert",
+    "topic": "Pivot from CTE",
+    "text": "Show total revenue per product category (rows) per Status (columns Delivered, Shipped, Pending, Cancelled).",
+    "hints": [
+      "Join Orders, OrderItems, Products; PIVOT on Status."
+    ],
+    "answer": "SELECT Category, [Delivered], [Shipped], [Pending], [Cancelled]\nFROM (\n    SELECT p.Category, o.Status, oi.Quantity * oi.UnitPrice * (1 - oi.Discount) AS Revenue\n    FROM OrderItems oi JOIN Orders o ON o.OrderId = oi.OrderId JOIN Products p ON p.ProductId = oi.ProductId\n) s\nPIVOT (SUM(Revenue) FOR Status IN ([Delivered], [Shipped], [Pending], [Cancelled])) pv;",
+    "explanation": "PIVOT can aggregate any measure.",
+    "id": 200,
+    "key": "35ce33606d06",
+    "tables": [
+      "OrderItems",
+      "Orders",
+      "Products"
+    ],
+    "returns": [
+      "Category",
+      "Delivered",
+      "Shipped",
+      "Pending",
+      "Cancelled"
+    ],
+    "ordering": ""
+  }
+]

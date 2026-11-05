@@ -1,0 +1,177 @@
+@inject McqService Mcq
+@inject IJSRuntime JS
+
+<h4 class="mb-3">@Title</h4>
+<div class="row">
+    <div class="col-lg-3 mb-3">
+        <div class="btn-group w-100 mb-2" role="group">
+            @foreach (var l in Levels)
+            {
+                <button class="btn btn-sm @(level == l ? "btn-primary" : "btn-outline-primary")" @onclick="() => level = l">@l</button>
+            }
+        </div>
+        <div class="small text-muted mb-1">Solved: <strong>@solved.Count / @All.Count</strong></div>
+        <div class="small text-muted mb-2">
+            @foreach (var l in Levels.Skip(1))
+            {
+                <span class="me-2">@l @LevelSolved(l)</span>
+            }
+        </div>
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="unsolvedOnly-@Track" @bind="unsolvedOnly" />
+            <label class="form-check-label small" for="unsolvedOnly-@Track">Unsolved only</label>
+        </div>
+        <button class="btn btn-sm btn-outline-danger mb-2" @onclick="ResetProgress">Reset progress</button>
+        <div class="list-group question-list">
+            @foreach (var item in Filtered)
+            {
+                <button class="list-group-item list-group-item-action d-flex justify-content-between @(current?.Key == item.Key ? "active" : "")"
+                        @onclick="() => Select(item)">
+                    <span>@item.Id. @item.Topic</span>
+                    <span>@(solved.Contains(item.Key) ? "✓" : "") <span class="badge @LevelBadge(item.Level)">@item.Level</span></span>
+                </button>
+            }
+        </div>
+    </div>
+
+    <div class="col-lg-9">
+        @if (current is null)
+        {
+            <div class="alert alert-info">Pick a question on the left to begin. Questions marked "Select all that apply" need every correct option and no wrong ones.</div>
+        }
+        else
+        {
+            var multi = current.Correct.Count > 1;
+            <h5>Q@(current.Id) <span class="badge @LevelBadge(current.Level)">@current.Level</span> <small class="text-muted">@current.Topic</small></h5>
+            <p class="lead mb-2">@current.Text</p>
+            @if (!string.IsNullOrEmpty(current.Code))
+            {
+                <pre class="border rounded p-2 bg-light">@current.Code</pre>
+            }
+
+            <div class="mb-3">
+                @for (var i = 0; i < current.Options.Count; i++)
+                {
+                    var idx = i;
+                    var cls = submitted
+                        ? (current.Correct.Contains(idx) ? "list-group-item-success" : picked.Contains(idx) ? "list-group-item-danger" : "")
+                        : "";
+                    <label class="list-group-item @cls d-flex gap-2">
+                        <input class="form-check-input" type="@(multi ? "checkbox" : "radio")" name="opt-@Track" disabled="@submitted"
+                               checked="@picked.Contains(idx)" @onchange="() => Toggle(idx, multi)" />
+                        <span><strong>@("ABCDE"[idx]).</strong> @current.Options[idx]</span>
+                    </label>
+                }
+            </div>
+
+            <div class="mb-3 d-flex flex-wrap gap-2">
+                <button class="btn btn-primary" @onclick="Submit" disabled="@(submitted || picked.Count == 0)">✔ Submit</button>
+                <button class="btn btn-warning" @onclick="() => showHint = true" disabled="@showHint">💡 Hint</button>
+                <button class="btn btn-outline-secondary" @onclick="() => Select(current)">Retry</button>
+                @if (Next is not null)
+                {
+                    <button class="btn btn-outline-primary ms-auto" @onclick="() => Select(Next)">Next ▶</button>
+                }
+            </div>
+
+            @if (showHint)
+            {
+                <div class="alert alert-warning"><strong>Hint:</strong> @current.Hint</div>
+            }
+            @if (submitted)
+            {
+                <div class="alert @(isCorrect ? "alert-success" : "alert-danger")">
+                    <strong>@(isCorrect ? "✅ Correct!" : "❌ Incorrect.")</strong>
+                    Correct answer@(current.Correct.Count > 1 ? "s" : ""): @string.Join(", ", current.Correct.Select(c => "ABCDE"[c]))
+                    <div class="mt-2">@current.Explanation</div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public string Track { get; set; } = "";
+    [Parameter, EditorRequired] public string Title { get; set; } = "";
+
+    private static readonly string[] Levels = { "All", "Easy", "Medium", "Hard", "Expert" };
+    private string level = "All";
+    private bool unsolvedOnly, submitted, showHint, isCorrect;
+    private McqQuestion? current;
+    private readonly HashSet<int> picked = new();
+    private HashSet<string> solved = new();
+    private string StorageKey => $"sqlpractice.{Track}.solved";
+
+    private IReadOnlyList<McqQuestion> All => Mcq.Get(Track);
+    private IEnumerable<McqQuestion> Filtered => All.Where(x => (level == "All" || x.Level == level) && (!unsolvedOnly || !solved.Contains(x.Key)));
+    private McqQuestion? Next
+    {
+        get
+        {
+            var list = Filtered.ToList();
+            var i = list.FindIndex(x => x.Key == current?.Key);
+            return i >= 0 && i + 1 < list.Count ? list[i + 1] : null;
+        }
+    }
+
+    private string LevelSolved(string l)
+    {
+        var all = All.Where(x => x.Level == l).ToList();
+        return $"{all.Count(x => solved.Contains(x.Key))}/{all.Count}";
+    }
+
+    private static string LevelBadge(string l) => l switch
+    {
+        "Easy" => "bg-success",
+        "Medium" => "bg-info text-dark",
+        "Hard" => "bg-warning text-dark",
+        _ => "bg-danger"
+    };
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+        try
+        {
+            var json = await JS.InvokeAsync<string?>("localStorage.getItem", StorageKey);
+            if (!string.IsNullOrEmpty(json))
+                solved = System.Text.Json.JsonSerializer.Deserialize<HashSet<string>>(json) ?? new();
+        }
+        catch { }
+        StateHasChanged();
+    }
+
+    private async Task SaveSolved()
+    {
+        try { await JS.InvokeVoidAsync("localStorage.setItem", StorageKey, System.Text.Json.JsonSerializer.Serialize(solved)); }
+        catch { }
+    }
+
+    private async Task ResetProgress()
+    {
+        solved.Clear();
+        await SaveSolved();
+    }
+
+    private void Select(McqQuestion q)
+    {
+        current = q;
+        picked.Clear();
+        submitted = showHint = isCorrect = false;
+    }
+
+    private void Toggle(int idx, bool multi)
+    {
+        if (submitted) return;
+        if (!multi) { picked.Clear(); picked.Add(idx); }
+        else if (!picked.Remove(idx)) picked.Add(idx);
+    }
+
+    private async Task Submit()
+    {
+        if (current is null) return;
+        submitted = true;
+        isCorrect = picked.SetEquals(current.Correct);
+        if (isCorrect && solved.Add(current.Key)) await SaveSolved();
+    }
+}

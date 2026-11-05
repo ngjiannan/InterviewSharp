@@ -1,0 +1,4 @@
+.sql-editor { font-family: Consolas, "Courier New", monospace; font-size: 0.95rem; }
+.question-list { max-height: 75vh; overflow-y: auto; }
+.result-wrap { max-height: 55vh; overflow: auto; }
+pre { background: #f6f8fa; padding: .75rem; border-radius: .25rem; }

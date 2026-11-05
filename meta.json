@@ -1,0 +1,2243 @@
+{
+ "1cf15744e00b": {
+  "tables": [
+   "Departments"
+  ],
+  "returns": [
+   "DepartmentId",
+   "DepartmentName",
+   "Location"
+  ],
+  "ordering": ""
+ },
+ "5ac068f50411": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Salary"
+  ],
+  "ordering": ""
+ },
+ "639d6ffec9e1": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "HireDate"
+  ],
+  "ordering": "HireDate DESC"
+ },
+ "6c5cb2c24e42": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Salary"
+  ],
+  "ordering": "Salary DESC"
+ },
+ "ec7c21e98a01": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "JobTitle"
+  ],
+  "ordering": "JobTitle"
+ },
+ "5033fcf8f5da": {
+  "tables": [
+   "Customers"
+  ],
+  "returns": [
+   "CustomerId",
+   "CustomerName"
+  ],
+  "ordering": ""
+ },
+ "bc1a67d4a94d": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "OrderId",
+   "CustomerId",
+   "OrderDate",
+   "Status"
+  ],
+  "ordering": ""
+ },
+ "269bd77028ec": {
+  "tables": [
+   "Customers"
+  ],
+  "returns": [
+   "CustomerName",
+   "City",
+   "Country"
+  ],
+  "ordering": ""
+ },
+ "b8ca84fe8da0": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "EmployeeId",
+   "FirstName",
+   "LastName",
+   "JobTitle"
+  ],
+  "ordering": ""
+ },
+ "343569b6018a": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "CommissionPct"
+  ],
+  "ordering": ""
+ },
+ "8e0810e97b4d": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FullName",
+   "SalaryWithBonus"
+  ],
+  "ordering": ""
+ },
+ "4bab8f4d1ef7": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "TotalOrders"
+  ],
+  "ordering": ""
+ },
+ "b987a9485c18": {
+  "tables": [
+   "Products"
+  ],
+  "returns": [
+   "ProductName",
+   "UnitPrice",
+   "Stock"
+  ],
+  "ordering": ""
+ },
+ "67fce7de5aaf": {
+  "tables": [
+   "Products"
+  ],
+  "returns": [
+   "ProductName",
+   "UnitPrice"
+  ],
+  "ordering": "UnitPrice DESC, ProductId"
+ },
+ "9cbd667243c0": {
+  "tables": [
+   "Customers"
+  ],
+  "returns": [
+   "CustomerName",
+   "Email"
+  ],
+  "ordering": ""
+ },
+ "55594fd18a39": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "JobTitle"
+  ],
+  "ordering": ""
+ },
+ "1946225121f1": {
+  "tables": [
+   "Products"
+  ],
+  "returns": [
+   "ProductName",
+   "UnitPrice"
+  ],
+  "ordering": "UnitPrice DESC"
+ },
+ "38eb9a8e0306": {
+  "tables": [
+   "Customers"
+  ],
+  "returns": [
+   "CustomerId",
+   "CustomerName",
+   "City"
+  ],
+  "ordering": ""
+ },
+ "1d5a43104b96": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "HireDate"
+  ],
+  "ordering": "HireDate"
+ },
+ "1125cc61fdad": {
+  "tables": [
+   "Products"
+  ],
+  "returns": [
+   "ProductName",
+   "UnitPrice"
+  ],
+  "ordering": ""
+ },
+ "3d055da23713": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "OrderId",
+   "CustomerId",
+   "OrderDate"
+  ],
+  "ordering": ""
+ },
+ "a5843c941d74": {
+  "tables": [
+   "Departments"
+  ],
+  "returns": [
+   "DeptUpper",
+   "NameLength"
+  ],
+  "ordering": ""
+ },
+ "beabf7017c75": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName"
+  ],
+  "ordering": ""
+ },
+ "71b324c4bde6": {
+  "tables": [
+   "Products"
+  ],
+  "returns": [
+   "CheapestPrice"
+  ],
+  "ordering": ""
+ },
+ "de39a9a32240": {
+  "tables": [
+   "Products"
+  ],
+  "returns": [
+   "TotalStock"
+  ],
+  "ordering": ""
+ },
+ "dc14a648cf65": {
+  "tables": [
+   "Products"
+  ],
+  "returns": [
+   "AvgPrice"
+  ],
+  "ordering": ""
+ },
+ "730c5884adc3": {
+  "tables": [
+   "Customers"
+  ],
+  "returns": [
+   "CustomerName",
+   "Country"
+  ],
+  "ordering": ""
+ },
+ "ea9ab002eb1d": {
+  "tables": [
+   "Customers"
+  ],
+  "returns": [
+   "CustomerName",
+   "SignupDate"
+  ],
+  "ordering": "SignupDate DESC"
+ },
+ "9f630902294d": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "EmployeeId",
+   "FirstName",
+   "LastName"
+  ],
+  "ordering": ""
+ },
+ "98b996464df0": {
+  "tables": [
+   "Customers"
+  ],
+  "returns": [
+   "Countries"
+  ],
+  "ordering": ""
+ },
+ "3e742203f3f0": {
+  "tables": [
+   "Employees",
+   "Departments"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "DepartmentName"
+  ],
+  "ordering": ""
+ },
+ "42dcd9d3d101": {
+  "tables": [
+   "Departments",
+   "Employees"
+  ],
+  "returns": [
+   "DepartmentName"
+  ],
+  "ordering": ""
+ },
+ "a98ad67fe46b": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "Employee",
+   "Manager"
+  ],
+  "ordering": ""
+ },
+ "c44553b1684a": {
+  "tables": [
+   "Departments",
+   "Employees"
+  ],
+  "returns": [
+   "DepartmentName",
+   "EmployeeCount"
+  ],
+  "ordering": "EmployeeCount DESC"
+ },
+ "cd3a17bb37ba": {
+  "tables": [
+   "Employees",
+   "Departments"
+  ],
+  "returns": [
+   "DepartmentName",
+   "AvgSalary"
+  ],
+  "ordering": "AvgSalary DESC"
+ },
+ "469527abc93f": {
+  "tables": [
+   "Employees",
+   "Departments"
+  ],
+  "returns": [
+   "DepartmentName",
+   "EmployeeCount"
+  ],
+  "ordering": ""
+ },
+ "54c2fe53e56c": {
+  "tables": [
+   "OrderItems",
+   "Products"
+  ],
+  "returns": [
+   "Category",
+   "Revenue"
+  ],
+  "ordering": "Revenue DESC"
+ },
+ "43bfba5e7b28": {
+  "tables": [
+   "Customers",
+   "Orders"
+  ],
+  "returns": [
+   "CustomerId",
+   "CustomerName"
+  ],
+  "ordering": ""
+ },
+ "1582f0eb9c5b": {
+  "tables": [
+   "Products",
+   "OrderItems"
+  ],
+  "returns": [
+   "ProductId",
+   "ProductName"
+  ],
+  "ordering": ""
+ },
+ "1413a2701e75": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "Yr",
+   "Mth",
+   "Orders"
+  ],
+  "ordering": "Yr, Mth"
+ },
+ "43f7e8e63d95": {
+  "tables": [
+   "Employees",
+   "Departments"
+  ],
+  "returns": [
+   "DepartmentName",
+   "Headcount",
+   "MinSalary",
+   "MaxSalary",
+   "AvgSalary"
+  ],
+  "ordering": ""
+ },
+ "1386b0834159": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "Band",
+   "Employees"
+  ],
+  "ordering": ""
+ },
+ "a540b4caa7d8": {
+  "tables": [
+   "Customers",
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "CustomerName",
+   "Revenue"
+  ],
+  "ordering": "Revenue DESC"
+ },
+ "c05d8c4a9475": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "Status",
+   "Orders",
+   "Pct"
+  ],
+  "ordering": ""
+ },
+ "1fbded352e6d": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Salary"
+  ],
+  "ordering": ""
+ },
+ "ba29daf24d88": {
+  "tables": [
+   "Products",
+   "Orders"
+  ],
+  "returns": [
+   "Category",
+   "Status"
+  ],
+  "ordering": "c.Category, s.Status"
+ },
+ "8fd262c7189b": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "HireDate",
+   "TenureYearsApprox"
+  ],
+  "ordering": "HireDate"
+ },
+ "2565b4828834": {
+  "tables": [
+   "Employees",
+   "Departments"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Location"
+  ],
+  "ordering": ""
+ },
+ "06562efe6ad3": {
+  "tables": [
+   "Customers",
+   "Orders"
+  ],
+  "returns": [
+   "CustomerName",
+   "OrderCount"
+  ],
+  "ordering": ""
+ },
+ "dac2f0a5d378": {
+  "tables": [
+   "OrderItems",
+   "Products"
+  ],
+  "returns": [
+   "ProductName",
+   "UnitsSold"
+  ],
+  "ordering": "UnitsSold DESC"
+ },
+ "e4550c920427": {
+  "tables": [
+   "OrderItems",
+   "Products"
+  ],
+  "returns": [
+   "Category",
+   "AvgDiscount"
+  ],
+  "ordering": ""
+ },
+ "9d3844b06dfa": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "HireYear",
+   "Hires"
+  ],
+  "ordering": "HireYear"
+ },
+ "ca04f7fac2a9": {
+  "tables": [
+   "Customers"
+  ],
+  "returns": [
+   "Country",
+   "Customers"
+  ],
+  "ordering": ""
+ },
+ "1ca4800ccf5d": {
+  "tables": [
+   "Orders",
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Orders"
+  ],
+  "ordering": ""
+ },
+ "e15cf79e8d42": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "Status",
+   "Orders"
+  ],
+  "ordering": ""
+ },
+ "9781ad5578cd": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "DepartmentId",
+   "Salary"
+  ],
+  "ordering": ""
+ },
+ "2f10feaab2b2": {
+  "tables": [
+   "Customers",
+   "Departments"
+  ],
+  "returns": [
+   "City"
+  ],
+  "ordering": ""
+ },
+ "161d0faf4375": {
+  "tables": [
+   "Customers",
+   "Departments"
+  ],
+  "returns": [
+   "City"
+  ],
+  "ordering": ""
+ },
+ "2ea24d190f7f": {
+  "tables": [
+   "Customers",
+   "Departments"
+  ],
+  "returns": [
+   "City"
+  ],
+  "ordering": ""
+ },
+ "601b9f9e746e": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "EmployeeId",
+   "Initials"
+  ],
+  "ordering": ""
+ },
+ "d990471c558c": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "EmployeeId",
+   "UserName"
+  ],
+  "ordering": ""
+ },
+ "4c7943458039": {
+  "tables": [
+   "Products"
+  ],
+  "returns": [
+   "ProductName",
+   "Slug"
+  ],
+  "ordering": ""
+ },
+ "b8d921dfe903": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "Quarter",
+   "Orders"
+  ],
+  "ordering": "Quarter"
+ },
+ "df6d0788b102": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "Weekday",
+   "Orders"
+  ],
+  "ordering": ""
+ },
+ "0df0d69cc2be": {
+  "tables": [
+   "Orders",
+   "Customers"
+  ],
+  "returns": [
+   "OrderId",
+   "CustomerName",
+   "OrderDate",
+   "Status"
+  ],
+  "ordering": ""
+ },
+ "f6e51b58c472": {
+  "tables": [
+   "Products"
+  ],
+  "returns": [
+   "ProductName",
+   "UnitPrice"
+  ],
+  "ordering": "UnitPrice DESC"
+ },
+ "1828d1aea32c": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "TotalComp"
+  ],
+  "ordering": ""
+ },
+ "2e44aa25f428": {
+  "tables": [
+   "Products"
+  ],
+  "returns": [
+   "Category",
+   "StockValue"
+  ],
+  "ordering": ""
+ },
+ "28651ac008e2": {
+  "tables": [
+   "Products"
+  ],
+  "returns": [
+   "ProductName",
+   "Availability"
+  ],
+  "ordering": ""
+ },
+ "7361aeaea72b": {
+  "tables": [
+   "OrderItems"
+  ],
+  "returns": [
+   "OrderId",
+   "OrderTotal"
+  ],
+  "ordering": "OrderTotal DESC"
+ },
+ "135086ba477c": {
+  "tables": [
+   "Customers",
+   "Orders"
+  ],
+  "returns": [
+   "CustomerName",
+   "Orders"
+  ],
+  "ordering": ""
+ },
+ "0a3be0e28f6b": {
+  "tables": [
+   "Products",
+   "OrderItems",
+   "Orders"
+  ],
+  "returns": [
+   "ProductId",
+   "ProductName"
+  ],
+  "ordering": ""
+ },
+ "050e412629e3": {
+  "tables": [
+   "OrderItems"
+  ],
+  "returns": [
+   "AvgLines"
+  ],
+  "ordering": ""
+ },
+ "31f4fc798a60": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "JobTitle",
+   "Employees"
+  ],
+  "ordering": ""
+ },
+ "937cc2b7691a": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "DirectReports"
+  ],
+  "ordering": ""
+ },
+ "8f4ed21ee996": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "EmployeeId",
+   "FirstName",
+   "LastName"
+  ],
+  "ordering": ""
+ },
+ "b1526fe425f1": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "Employee1",
+   "Employee2",
+   "Salary"
+  ],
+  "ordering": ""
+ },
+ "cdc599b260a8": {
+  "tables": [
+   "Customers"
+  ],
+  "returns": [
+   "SignupYear",
+   "Customers"
+  ],
+  "ordering": "SignupYear"
+ },
+ "e534bd0bf20d": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "Yr",
+   "Revenue"
+  ],
+  "ordering": "Yr"
+ },
+ "ce0dc928dc5b": {
+  "tables": [
+   "Customers",
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "Country",
+   "Revenue"
+  ],
+  "ordering": "Revenue DESC"
+ },
+ "e1fc068d0d7e": {
+  "tables": [
+   "Customers",
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "CustomerName",
+   "CancelledRevenue"
+  ],
+  "ordering": "CancelledRevenue DESC"
+ },
+ "76f3f107a44b": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "JobTitle",
+   "AvgSalary"
+  ],
+  "ordering": ""
+ },
+ "1e68c36aff0a": {
+  "tables": [
+   "Products"
+  ],
+  "returns": [
+   "ProductName",
+   "Category",
+   "UnitPrice"
+  ],
+  "ordering": ""
+ },
+ "f43d612c0234": {
+  "tables": [
+   "Orders",
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Customers"
+  ],
+  "ordering": ""
+ },
+ "ab7c023bf996": {
+  "tables": [
+   "SalaryHistory"
+  ],
+  "returns": [
+   "EmployeeId",
+   "Records"
+  ],
+  "ordering": ""
+ },
+ "85b7728c956d": {
+  "tables": [
+   "OrderItems",
+   "Products"
+  ],
+  "returns": [
+   "ProductName",
+   "DiscountGiven"
+  ],
+  "ordering": ""
+ },
+ "71e0cd215eb7": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "EmpDept",
+   "MgrDept"
+  ],
+  "ordering": ""
+ },
+ "395cd2923cad": {
+  "tables": [
+   "Customers",
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "CustomerName",
+   "Products"
+  ],
+  "ordering": ""
+ },
+ "a9cef757c49e": {
+  "tables": [
+   "Departments",
+   "Employees"
+  ],
+  "returns": [
+   "DepartmentName",
+   "Employees"
+  ],
+  "ordering": ""
+ },
+ "b0392347dc95": {
+  "tables": [],
+  "returns": [
+   "TABLE_NAME",
+   "ColumnCount"
+  ],
+  "ordering": ""
+ },
+ "71a44c6bea2a": {
+  "tables": [
+   "Employees",
+   "Customers"
+  ],
+  "returns": [
+   "Name",
+   "Type"
+  ],
+  "ordering": ""
+ },
+ "4cb7d03e36c7": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "DepartmentId",
+   "Salary"
+  ],
+  "ordering": ""
+ },
+ "e35a86c07f60": {
+  "tables": [
+   "Customers",
+   "Orders"
+  ],
+  "returns": [
+   "CustomerId",
+   "CustomerName"
+  ],
+  "ordering": ""
+ },
+ "45a954f0ae9d": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "MonthStart",
+   "Revenue"
+  ],
+  "ordering": "MonthStart"
+ },
+ "8e50b8df4d61": {
+  "tables": [
+   "Orders",
+   "OrderItems",
+   "Customers"
+  ],
+  "returns": [
+   "CustomerName",
+   "Revenue",
+   "SharePct"
+  ],
+  "ordering": "SharePct DESC"
+ },
+ "8968d9168cfb": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "EmployeeId",
+   "Name",
+   "Level",
+   "ManagerId"
+  ],
+  "ordering": "Level, EmployeeId"
+ },
+ "06a52fa7c280": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "EmployeeId",
+   "Path"
+  ],
+  "ordering": "Path"
+ },
+ "b5cc7a812820": {
+  "tables": [
+   "Employees",
+   "Departments"
+  ],
+  "returns": [
+   "DepartmentName",
+   "FirstName",
+   "LastName",
+   "Salary"
+  ],
+  "ordering": ""
+ },
+ "41e12bf411fc": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Salary",
+   "SalaryRank",
+   "SalaryDenseRank"
+  ],
+  "ordering": "Salary DESC"
+ },
+ "ab2068767473": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "MonthStart",
+   "Revenue",
+   "RunningTotal"
+  ],
+  "ordering": "MonthStart"
+ },
+ "86acdac483cc": {
+  "tables": [
+   "SalaryHistory"
+  ],
+  "returns": [
+   "EmployeeId",
+   "EffectiveDate",
+   "PrevSalary",
+   "Salary",
+   "PctIncrease"
+  ],
+  "ordering": "EmployeeId, EffectiveDate"
+ },
+ "372f3251dfb3": {
+  "tables": [
+   "Customers",
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "CustomerName",
+   "Rev2023",
+   "Rev2024"
+  ],
+  "ordering": "c.CustomerName"
+ },
+ "ad6fbe75b200": {
+  "tables": [
+   "OrderItems",
+   "Orders",
+   "Products"
+  ],
+  "returns": [
+   "Category",
+   "2023",
+   "2024",
+   "2025"
+  ],
+  "ordering": "Category"
+ },
+ "8df1d4988163": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Salary",
+   "Quartile"
+  ],
+  "ordering": ""
+ },
+ "8f08ca0f4511": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "OrderId",
+   "OrderDate",
+   "DaysToNext"
+  ],
+  "ordering": ""
+ },
+ "6b2fe5543abf": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "DepartmentId",
+   "Salary",
+   "TopEarner"
+  ],
+  "ordering": ""
+ },
+ "083fbf9532dc": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "OrderId",
+   "OrderDate",
+   "Total",
+   "OrderNo",
+   "RunningTotal"
+  ],
+  "ordering": ""
+ },
+ "b3447e55711b": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "DepartmentId",
+   "Salary",
+   "PctOfDept"
+  ],
+  "ordering": ""
+ },
+ "0dce54f3bfb5": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Salary",
+   "PctRank"
+  ],
+  "ordering": ""
+ },
+ "7274f5c943ff": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Salary",
+   "CumeDist"
+  ],
+  "ordering": ""
+ },
+ "ea32c3b1d7cd": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "DepartmentId",
+   "Salary",
+   "DeptAvg",
+   "Diff"
+  ],
+  "ordering": ""
+ },
+ "0e028155402c": {
+  "tables": [
+   "Orders",
+   "OrderItems",
+   "Customers"
+  ],
+  "returns": [
+   "CustomerName",
+   "Revenue"
+  ],
+  "ordering": ""
+ },
+ "aa6eaac7291a": {
+  "tables": [
+   "OrderItems",
+   "Products"
+  ],
+  "returns": [
+   "ProductName",
+   "Revenue",
+   "Rnk"
+  ],
+  "ordering": "Rnk"
+ },
+ "6164379425c6": {
+  "tables": [],
+  "returns": [
+   "n"
+  ],
+  "ordering": ""
+ },
+ "e405cf678ea1": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "EmployeeId",
+   "Name",
+   "Level"
+  ],
+  "ordering": ""
+ },
+ "e05b980fcfde": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "TotalReports"
+  ],
+  "ordering": ""
+ },
+ "473e70ffc171": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "OrderDay",
+   "Orders"
+  ],
+  "ordering": "D.d"
+ },
+ "c6680ff9f489": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "Level",
+   "Employees"
+  ],
+  "ordering": "Level"
+ },
+ "41ce39d4517b": {
+  "tables": [
+   "Customers",
+   "Orders"
+  ],
+  "returns": [
+   "CustomerName",
+   "OrderId",
+   "OrderDate"
+  ],
+  "ordering": ""
+ },
+ "7d7b2e9f6974": {
+  "tables": [
+   "Customers",
+   "Orders"
+  ],
+  "returns": [
+   "CustomerName",
+   "LastOrderDate"
+  ],
+  "ordering": ""
+ },
+ "2025c62877cf": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "Yr",
+   "Delivered",
+   "Shipped",
+   "Pending",
+   "Cancelled"
+  ],
+  "ordering": "Yr"
+ },
+ "b0d7795075a0": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "Stat",
+   "Value"
+  ],
+  "ordering": ""
+ },
+ "f9d802655071": {
+  "tables": [
+   "Departments",
+   "Employees"
+  ],
+  "returns": [
+   "DepartmentName",
+   "HighEarners",
+   "Others"
+  ],
+  "ordering": ""
+ },
+ "9062362b2f0e": {
+  "tables": [
+   "Customers",
+   "Orders",
+   "OrderItems",
+   "Products"
+  ],
+  "returns": [
+   "CustomerName"
+  ],
+  "ordering": ""
+ },
+ "8c9314e3fa39": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "CustomerId"
+  ],
+  "ordering": ""
+ },
+ "5cc4fdcab4f3": {
+  "tables": [
+   "Customers",
+   "Orders"
+  ],
+  "returns": [
+   "CustomerId"
+  ],
+  "ordering": ""
+ },
+ "8535e26b9177": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "MonthStart",
+   "Revenue",
+   "PrevRevenue",
+   "PctChange"
+  ],
+  "ordering": "MonthStart"
+ },
+ "6aed1e4ea261": {
+  "tables": [
+   "OrderItems",
+   "Orders",
+   "Products"
+  ],
+  "returns": [
+   "Category",
+   "Yr",
+   "Revenue",
+   "PrevYearRevenue"
+  ],
+  "ordering": ""
+ },
+ "c833a9c62148": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Salary",
+   "Manager",
+   "ManagerSalary"
+  ],
+  "ordering": ""
+ },
+ "46a5c41ca6fe": {
+  "tables": [
+   "Departments",
+   "Employees"
+  ],
+  "returns": [
+   "DepartmentName",
+   "AvgSalary"
+  ],
+  "ordering": ""
+ },
+ "da4f0bf662c1": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "OrderId",
+   "Total"
+  ],
+  "ordering": ""
+ },
+ "c07ad3ec0677": {
+  "tables": [
+   "Orders",
+   "Customers"
+  ],
+  "returns": [
+   "CustomerName",
+   "OrderId",
+   "OrderDate"
+  ],
+  "ordering": ""
+ },
+ "9419b844a217": {
+  "tables": [
+   "Customers",
+   "Orders"
+  ],
+  "returns": [
+   "CustomerName",
+   "SpanDays"
+  ],
+  "ordering": ""
+ },
+ "6d6359ec736e": {
+  "tables": [
+   "Orders",
+   "Customers"
+  ],
+  "returns": [
+   "CustomerName",
+   "AvgGapDays"
+  ],
+  "ordering": ""
+ },
+ "c007807dcbe0": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "HireDate",
+   "Headcount"
+  ],
+  "ordering": ""
+ },
+ "4b7866320ecf": {
+  "tables": [
+   "Customers",
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "Country",
+   "CustomerName",
+   "Revenue"
+  ],
+  "ordering": ""
+ },
+ "09cae8ae89d1": {
+  "tables": [
+   "OrderItems",
+   "Products"
+  ],
+  "returns": [
+   "ProductName",
+   "Revenue",
+   "SharePct",
+   "CumulativePct"
+  ],
+  "ordering": "Revenue DESC"
+ },
+ "a8743919a532": {
+  "tables": [
+   "OrderItems",
+   "Products"
+  ],
+  "returns": [
+   "Category",
+   "ProductName",
+   "Revenue",
+   "PctOfCategory"
+  ],
+  "ordering": ""
+ },
+ "c4f0f6a83966": {
+  "tables": [
+   "Orders",
+   "OrderItems",
+   "Customers"
+  ],
+  "returns": [
+   "Country",
+   "Revenue",
+   "BiggestOrder"
+  ],
+  "ordering": ""
+ },
+ "5433cb777ab3": {
+  "tables": [
+   "Orders",
+   "OrderItems",
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Revenue",
+   "Rnk"
+  ],
+  "ordering": ""
+ },
+ "67867b41d93a": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "Yr",
+   "Q1",
+   "Q2",
+   "Q3",
+   "Q4"
+  ],
+  "ordering": "Yr"
+ },
+ "d382634a65a4": {
+  "tables": [
+   "SalaryHistory"
+  ],
+  "returns": [
+   "EmployeeId",
+   "FirstSalary",
+   "LatestSalary",
+   "GrowthPct"
+  ],
+  "ordering": ""
+ },
+ "3533c94c1738": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "EmployeeId",
+   "FirstName",
+   "LastName"
+  ],
+  "ordering": ""
+ },
+ "1323f7b156d2": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "EmployeeId",
+   "FirstName",
+   "LastName"
+  ],
+  "ordering": ""
+ },
+ "36b0a41d3b19": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "MedianSalary"
+  ],
+  "ordering": ""
+ },
+ "2b7309dfd3a3": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "DepartmentId",
+   "MedianSalary"
+  ],
+  "ordering": ""
+ },
+ "bfd1bb35fff9": {
+  "tables": [
+   "Orders",
+   "Customers"
+  ],
+  "returns": [
+   "CustomerName",
+   "LongestGap"
+  ],
+  "ordering": ""
+ },
+ "9201e703805b": {
+  "tables": [
+   "Departments",
+   "Employees"
+  ],
+  "returns": [
+   "DepartmentName",
+   "Titles"
+  ],
+  "ordering": ""
+ },
+ "a6991da3a9a7": {
+  "tables": [
+   "Customers",
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "CustomerName",
+   "Country",
+   "Revenue",
+   "CountryAvg"
+  ],
+  "ordering": ""
+ },
+ "59ecff422c9b": {
+  "tables": [
+   "Customers",
+   "Orders"
+  ],
+  "returns": [
+   "CustomerName",
+   "Orders"
+  ],
+  "ordering": ""
+ },
+ "1582321d40a8": {
+  "tables": [
+   "OrderItems",
+   "Products"
+  ],
+  "returns": [
+   "OrderId",
+   "ProductName",
+   "UnitPrice"
+  ],
+  "ordering": ""
+ },
+ "858724febf37": {
+  "tables": [
+   "Customers",
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "CustomerName",
+   "Revenue"
+  ],
+  "ordering": ""
+ },
+ "06f229eded03": {
+  "tables": [
+   "Customers",
+   "Orders"
+  ],
+  "returns": [
+   "CustomerName"
+  ],
+  "ordering": ""
+ },
+ "f8704aa803fa": {
+  "tables": [
+   "Orders",
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Customers"
+  ],
+  "ordering": ""
+ },
+ "ce5333994420": {
+  "tables": [
+   "OrderItems",
+   "Products"
+  ],
+  "returns": [
+   "ProductA",
+   "ProductB",
+   "Together"
+  ],
+  "ordering": ""
+ },
+ "c57772331594": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "Yr",
+   "MonthStart",
+   "Revenue"
+  ],
+  "ordering": ""
+ },
+ "274dddc2d013": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Salary"
+  ],
+  "ordering": ""
+ },
+ "3d8e2beb4d37": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Role"
+  ],
+  "ordering": ""
+ },
+ "5d82a8de0f9e": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "OrderId",
+   "CustomerId",
+   "Total"
+  ],
+  "ordering": ""
+ },
+ "ae1df05cfa63": {
+  "tables": [
+   "Employees",
+   "Orders"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName"
+  ],
+  "ordering": ""
+ },
+ "b60236c05191": {
+  "tables": [
+   "Employees",
+   "Departments"
+  ],
+  "returns": [
+   "DepartmentName",
+   "FirstName",
+   "LastName",
+   "Salary"
+  ],
+  "ordering": ""
+ },
+ "e855ca803c43": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "Salary",
+   "HireDate",
+   "Employees"
+  ],
+  "ordering": ""
+ },
+ "21f570f4948f": {
+  "tables": [
+   "OrderItems",
+   "Products"
+  ],
+  "returns": [
+   "Category",
+   "ProductName",
+   "Revenue",
+   "Rnk"
+  ],
+  "ordering": "Category, rn"
+ },
+ "aadd5e459ce6": {
+  "tables": [
+   "Orders",
+   "Customers"
+  ],
+  "returns": [
+   "CustomerName",
+   "StreakLen",
+   "StreakStart"
+  ],
+  "ordering": "b.StreakLen DESC, c.CustomerName"
+ },
+ "1c61daf81395": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "MonthStart",
+   "Revenue",
+   "MovingAvg3"
+  ],
+  "ordering": "MonthStart"
+ },
+ "75bfbb001964": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "EmptyDay"
+  ],
+  "ordering": ""
+ },
+ "44e522a61705": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "StartDate",
+   "EndDate",
+   "Days"
+  ],
+  "ordering": ""
+ },
+ "f004fa8be042": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "CustomerId",
+   "OrderId",
+   "OrderDate",
+   "Total",
+   "YtdTotal"
+  ],
+  "ordering": ""
+ },
+ "b0ad7239eeb2": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "Retained",
+   "RetentionPct"
+  ],
+  "ordering": ""
+ },
+ "8c972f470329": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "CustomerId",
+   "OrderId",
+   "OrderDate",
+   "Total"
+  ],
+  "ordering": ""
+ },
+ "543b050ecedb": {
+  "tables": [
+   "Products"
+  ],
+  "returns": [
+   "Category",
+   "ProductName",
+   "Stock"
+  ],
+  "ordering": ""
+ },
+ "d10d174e366e": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "Manager",
+   "TeamCost"
+  ],
+  "ordering": ""
+ },
+ "723cce6d194e": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "MedianOrder"
+  ],
+  "ordering": ""
+ },
+ "8aff9554576a": {
+  "tables": [
+   "SalaryHistory"
+  ],
+  "returns": [
+   "EmployeeId",
+   "BiggestRaisePct"
+  ],
+  "ordering": ""
+ },
+ "6696cbf3e053": {
+  "tables": [
+   "SalaryHistory"
+  ],
+  "returns": [
+   "EmployeeId",
+   "Salary"
+  ],
+  "ordering": ""
+ },
+ "a0f05b5bd0bd": {
+  "tables": [
+   "SalaryHistory"
+  ],
+  "returns": [
+   "Payroll"
+  ],
+  "ordering": ""
+ },
+ "7deacd155ff4": {
+  "tables": [
+   "Customers",
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "CustomerName",
+   "Revenue"
+  ],
+  "ordering": ""
+ },
+ "6b89a0bd129c": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "FirstMonth",
+   "NewCustomers",
+   "CumulativeCustomers"
+  ],
+  "ordering": ""
+ },
+ "7bf746db14ae": {
+  "tables": [
+   "OrderItems",
+   "Products"
+  ],
+  "returns": [
+   "ProductName",
+   "SharedOrders"
+  ],
+  "ordering": ""
+ },
+ "9d4aec1365a3": {
+  "tables": [
+   "OrderItems"
+  ],
+  "returns": [
+   "OrderId",
+   "ProductId",
+   "SharePct"
+  ],
+  "ordering": ""
+ },
+ "e81cd7ec1fad": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "Weekday",
+   "Revenue"
+  ],
+  "ordering": "Revenue DESC"
+ },
+ "5957389c2b06": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "MonthStart",
+   "Revenue",
+   "YtdRevenue"
+  ],
+  "ordering": ""
+ },
+ "4f17fbfd6b18": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "MonthStart",
+   "Revenue",
+   "PrevYearRevenue",
+   "Diff"
+  ],
+  "ordering": ""
+ },
+ "728e357391c5": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "Name",
+   "Level"
+  ],
+  "ordering": "Level"
+ },
+ "2f6837e8faeb": {
+  "tables": [
+   "Departments",
+   "Employees"
+  ],
+  "returns": [
+   "DepartmentName",
+   "Low",
+   "Mid",
+   "High"
+  ],
+  "ordering": ""
+ },
+ "2246aecb0af6": {
+  "tables": [
+   "Customers",
+   "Orders"
+  ],
+  "returns": [
+   "CustomerName",
+   "DaysToFirstOrder"
+  ],
+  "ordering": ""
+ },
+ "9a4c62ac5a6d": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "CustomerId",
+   "OrderId",
+   "Status"
+  ],
+  "ordering": ""
+ },
+ "84ae0fd5ab7d": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "EmployeeId",
+   "FirstName",
+   "LastName"
+  ],
+  "ordering": ""
+ },
+ "6bd5206b29d9": {
+  "tables": [
+   "Customers",
+   "Orders"
+  ],
+  "returns": [
+   "SignupYear",
+   "2023",
+   "2024",
+   "2025"
+  ],
+  "ordering": "SignupYear"
+ },
+ "0698d616915e": {
+  "tables": [
+   "Orders"
+  ],
+  "returns": [
+   "Bucket",
+   "Customers"
+  ],
+  "ordering": ""
+ },
+ "f41cc181ef64": {
+  "tables": [
+   "Orders",
+   "Customers"
+  ],
+  "returns": [
+   "CustomerName"
+  ],
+  "ordering": ""
+ },
+ "84fc6ad54de4": {
+  "tables": [
+   "Employees",
+   "Departments"
+  ],
+  "returns": [
+   "DepartmentName",
+   "HighestPaid",
+   "LowestPaid"
+  ],
+  "ordering": ""
+ },
+ "9e4aab143173": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "EmployeeId",
+   "FirstName",
+   "LastName",
+   "HireDate",
+   "NextAnniversary"
+  ],
+  "ordering": ""
+ },
+ "d0fad62bf7dd": {
+  "tables": [
+   "Employees"
+  ],
+  "returns": [
+   "FirstName",
+   "LastName",
+   "Salary",
+   "RunningTotal"
+  ],
+  "ordering": ""
+ },
+ "2631dbfd2ee7": {
+  "tables": [],
+  "returns": [
+   "TableName",
+   "TotalRows"
+  ],
+  "ordering": ""
+ },
+ "2de25e6d3a1d": {
+  "tables": [
+   "Customers",
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "Yr",
+   "CustomerName",
+   "Revenue",
+   "Rnk"
+  ],
+  "ordering": ""
+ },
+ "abae91f6c6a6": {
+  "tables": [
+   "Employees",
+   "Orders"
+  ],
+  "returns": [
+   "EmployeeId",
+   "FirstName",
+   "LastName"
+  ],
+  "ordering": ""
+ },
+ "1e85bbdae9f0": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "MonthStart",
+   "Revenue",
+   "PrevTwoAvg"
+  ],
+  "ordering": ""
+ },
+ "4508d2e0edcd": {
+  "tables": [
+   "Orders",
+   "OrderItems"
+  ],
+  "returns": [
+   "CustomerId",
+   "OrderId",
+   "Total",
+   "CustAvg"
+  ],
+  "ordering": ""
+ },
+ "35ce33606d06": {
+  "tables": [
+   "OrderItems",
+   "Orders",
+   "Products"
+  ],
+  "returns": [
+   "Category",
+   "Delivered",
+   "Shipped",
+   "Pending",
+   "Cancelled"
+  ],
+  "ordering": ""
+ }
+}

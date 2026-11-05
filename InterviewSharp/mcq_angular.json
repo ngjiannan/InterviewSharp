@@ -1,0 +1,3940 @@
+[
+ {
+  "level": "Easy",
+  "topic": "Components",
+  "text": "Which decorator marks a TypeScript class as an Angular component?",
+  "options": [
+   "@NgModule()",
+   "@Component()",
+   "@Injectable()",
+   "@Directive()"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It is the decorator that accepts a selector and a template.",
+  "explanation": "@Component() attaches metadata such as selector, template and styles to the class. @Injectable() is for services, @NgModule() groups declarations in classic modules, and @Directive() has no template.",
+  "code": null,
+  "id": 1,
+  "key": "3417d6e2ecef"
+ },
+ {
+  "level": "Easy",
+  "topic": "Standalone",
+  "text": "In a standalone component, which metadata property lists the other components, directives and pipes its template uses?",
+  "options": [
+   "declarations",
+   "exports",
+   "providers",
+   "imports"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "A standalone component has no NgModule to borrow dependencies from.",
+  "explanation": "Standalone components declare their template dependencies directly in the imports array. declarations belongs to NgModules, providers configures DI, and exports is for NgModules.",
+  "code": null,
+  "id": 2,
+  "key": "1fb8cc94d40e"
+ },
+ {
+  "level": "Easy",
+  "topic": "Control flow",
+  "text": "What does the @for block require in Angular's built-in control flow?",
+  "options": [
+   "A track expression",
+   "A trackBy function declared in the class",
+   "An index alias",
+   "The CommonModule import"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "The compiler insists on a way to identify items between changes.",
+  "explanation": "@for (item of items; track item.id) requires a track expression so the DOM can be reused efficiently. No CommonModule import is needed, and an index alias is optional.",
+  "code": "@for (item of items; track item.id) {\n  <li>{{ item.name }}</li>\n}",
+  "id": 3,
+  "key": "b040b4369290"
+ },
+ {
+  "level": "Easy",
+  "topic": "Signals",
+  "text": "How do you create a writable signal holding the number 0?",
+  "options": [
+   "const count = new Signal(0);",
+   "const count = computed(0);",
+   "const count = signal(0);",
+   "const count = ref(0);"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "It is a plain factory function imported from @angular/core.",
+  "explanation": "signal(0) returns a WritableSignal<number>. computed() takes a derivation function and is read-only, ref() is Vue, and Signal is not constructed with new.",
+  "code": null,
+  "id": 4,
+  "key": "3b25b463698c"
+ },
+ {
+  "level": "Easy",
+  "topic": "Signals",
+  "text": "How do you read the current value of a signal named count in a template?",
+  "options": [
+   "{{ count.value }}",
+   "{{ count() }}",
+   "{{ count.get }}",
+   "{{ count }}"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Signals are getter functions.",
+  "explanation": "A signal is read by calling it: count(). Without parentheses you get the function itself, and signals have no value or get property.",
+  "code": null,
+  "id": 5,
+  "key": "ee337d883317"
+ },
+ {
+  "level": "Easy",
+  "topic": "DI",
+  "text": "Which function can be used instead of constructor parameters to obtain a dependency in modern Angular?",
+  "options": [
+   "resolve()",
+   "require()",
+   "provide()",
+   "inject()"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "It is imported from @angular/core and called in an injection context.",
+  "explanation": "inject(MyService) retrieves a dependency, for example in a field initializer. resolve, provide and require are not Angular DI retrieval functions.",
+  "code": "export class UserComponent {\n  private http = inject(HttpClient);\n}",
+  "id": 6,
+  "key": "de4ab43d640d"
+ },
+ {
+  "level": "Easy",
+  "topic": "Pipes",
+  "text": "What is the main benefit of the async pipe?",
+  "options": [
+   "It subscribes to an Observable or Promise and unsubscribes automatically",
+   "It makes HTTP calls synchronous",
+   "It converts any value to a Promise",
+   "It caches API responses"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Think about subscription management in templates.",
+  "explanation": "The async pipe subscribes, exposes the latest value, marks the view for check, and unsubscribes on destroy. It does not make anything synchronous or cache responses.",
+  "code": null,
+  "id": 7,
+  "key": "3a108a547e62"
+ },
+ {
+  "level": "Easy",
+  "topic": "Directives",
+  "text": "Which of these are built-in structural directives? (Select all that apply.)",
+  "options": [
+   "ngStyle",
+   "*ngFor",
+   "ngClass",
+   "*ngIf"
+  ],
+  "correct": [
+   1,
+   3
+  ],
+  "hint": "Structural directives add or remove elements from the DOM.",
+  "explanation": "*ngIf and *ngFor change the DOM structure. ngClass and ngStyle are attribute directives that modify existing elements.",
+  "code": null,
+  "id": 8,
+  "key": "10a2d9b1b60e"
+ },
+ {
+  "level": "Easy",
+  "topic": "Lifecycle",
+  "text": "Which lifecycle hook is typically used for initialization logic after the first inputs are set?",
+  "options": [
+   "ngOnInit",
+   "ngOnDestroy",
+   "ngDoCheck",
+   "ngAfterViewChecked"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "It runs once after the first ngOnChanges.",
+  "explanation": "ngOnInit runs once after input properties are initialized. ngOnDestroy is for cleanup, while ngAfterViewChecked and ngDoCheck run repeatedly.",
+  "code": null,
+  "id": 9,
+  "key": "6262e0f26630"
+ },
+ {
+  "level": "Easy",
+  "topic": "Lifecycle",
+  "text": "Where should you release resources such as manual subscriptions or timers?",
+  "options": [
+   "ngOnInit",
+   "ngOnDestroy",
+   "constructor",
+   "ngOnChanges"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It is called just before Angular removes the component.",
+  "explanation": "ngOnDestroy runs right before the component is destroyed, making it the place for cleanup. The other hooks run during creation or updates.",
+  "code": null,
+  "id": 10,
+  "key": "2a65cfe17e56"
+ },
+ {
+  "level": "Easy",
+  "topic": "Data binding",
+  "text": "Which syntax binds a component property to a DOM element property?",
+  "options": [
+   "(value)=\"name\"",
+   "#value=\"name\"",
+   "[value]=\"name\"",
+   "{value}=\"name\""
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Square brackets point data toward the template.",
+  "explanation": "[value]=\"name\" is property binding. Parentheses are event binding, and # declares a template reference variable.",
+  "code": null,
+  "id": 11,
+  "key": "d8987bc319c8"
+ },
+ {
+  "level": "Easy",
+  "topic": "Data binding",
+  "text": "Which of the following are valid ways to bind a click event? (Select all that apply.)",
+  "options": [
+   "@click=\"save()\"",
+   "[click]=\"save()\"",
+   "(click)=\"save()\"",
+   "on-click=\"save()\""
+  ],
+  "correct": [
+   2,
+   3
+  ],
+  "hint": "One is the shorthand and one is the canonical prefix form.",
+  "explanation": "(click) and on-click are equivalent event bindings. [click] is property binding and @click is Vue syntax.",
+  "code": null,
+  "id": 12,
+  "key": "2a60ea6cce61"
+ },
+ {
+  "level": "Easy",
+  "topic": "Forms",
+  "text": "What does the banana-in-a-box syntax [(ngModel)] provide, and what is required for it?",
+  "options": [
+   "One-way binding; ReactiveFormsModule",
+   "Event binding only; CommonModule",
+   "Two-way binding; FormsModule",
+   "Two-way binding; HttpClientModule"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Combines property and event binding for template-driven forms.",
+  "explanation": "[(ngModel)] is two-way binding for template-driven forms and needs FormsModule (or importing NgModel in a standalone component). ReactiveFormsModule is for FormControl-based forms.",
+  "code": null,
+  "id": 13,
+  "key": "53ae0e0b185a"
+ },
+ {
+  "level": "Easy",
+  "topic": "Routing",
+  "text": "Which element marks where the router renders the matched component?",
+  "options": [
+   "<router-outlet>",
+   "<router-view>",
+   "<ng-content>",
+   "<ng-container>"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "It is a placeholder directive from RouterModule.",
+  "explanation": "<router-outlet> is where routed components are displayed. router-view is not Angular, ng-container is a grouping element, and ng-content projects content.",
+  "code": null,
+  "id": 14,
+  "key": "2192d08359a8"
+ },
+ {
+  "level": "Easy",
+  "topic": "Routing",
+  "text": "Which directive creates a navigation link without a full page reload?",
+  "options": [
+   "ngLink",
+   "navigateTo",
+   "href",
+   "routerLink"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "It is applied to an anchor in place of href.",
+  "explanation": "routerLink builds the URL and navigates through the Router. A plain href triggers a full reload; navigateTo and ngLink do not exist.",
+  "code": null,
+  "id": 15,
+  "key": "83a22da7fd0e"
+ },
+ {
+  "level": "Easy",
+  "topic": "HttpClient",
+  "text": "Which of these are methods provided by HttpClient? (Select all that apply.)",
+  "options": [
+   "delete",
+   "fetch",
+   "post",
+   "get"
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "They mirror HTTP verbs.",
+  "explanation": "HttpClient exposes get, post, put, patch, delete and others, each returning an Observable. There is no fetch method on HttpClient.",
+  "code": null,
+  "id": 16,
+  "key": "8aa63790e147"
+ },
+ {
+  "level": "Easy",
+  "topic": "HttpClient",
+  "text": "In a standalone application, how do you make HttpClient available?",
+  "options": [
+   "Import HttpClient in the component's imports",
+   "Add provideHttpClient() to the application providers",
+   "Declare HttpClient in declarations",
+   "Call new HttpClient()"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It is a provider function used in bootstrapApplication or app config.",
+  "explanation": "provideHttpClient() registers HttpClient and its backend. HttpClient is a service, not a component or module import, and should not be constructed manually.",
+  "code": "bootstrapApplication(AppComponent, {\n  providers: [provideHttpClient()]\n});",
+  "id": 17,
+  "key": "5e8eb1402f83"
+ },
+ {
+  "level": "Easy",
+  "topic": "Forms",
+  "text": "Which of these classes belong to Reactive Forms? (Select all that apply.)",
+  "options": [
+   "NgModel",
+   "FormGroup",
+   "FormArray",
+   "FormControl"
+  ],
+  "correct": [
+   1,
+   2,
+   3
+  ],
+  "hint": "NgModel is a directive used in the other style of forms.",
+  "explanation": "FormGroup, FormControl and FormArray are the building blocks of reactive forms. NgModel is the directive behind template-driven forms.",
+  "code": null,
+  "id": 18,
+  "key": "4d44d37dd8da"
+ },
+ {
+  "level": "Easy",
+  "topic": "RxJS",
+  "text": "When does a cold Observable such as one returned by HttpClient.get start doing work?",
+  "options": [
+   "When it is created",
+   "When the component initializes",
+   "When pipe() is called",
+   "When it is subscribed to"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Observables are lazy.",
+  "explanation": "Observables execute only on subscribe. Creating one or adding operators with pipe() does not start the request.",
+  "code": null,
+  "id": 19,
+  "key": "ba331f1db6ec"
+ },
+ {
+  "level": "Easy",
+  "topic": "RxJS",
+  "text": "Which of the following are RxJS operators? (Select all that apply.)",
+  "options": [
+   "map",
+   "ngOnInit",
+   "tap",
+   "filter"
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "One of the options is a lifecycle hook.",
+  "explanation": "map, filter and tap are operators used inside pipe(). ngOnInit is an Angular lifecycle hook.",
+  "code": null,
+  "id": 20,
+  "key": "47b15f753305"
+ },
+ {
+  "level": "Easy",
+  "topic": "NgModules",
+  "text": "In a classic NgModule, what is the purpose of the declarations array?",
+  "options": [
+   "List components, directives and pipes that belong to the module",
+   "List services to inject",
+   "List modules to import",
+   "List routes"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "It defines which view classes the module owns.",
+  "explanation": "declarations registers the module's components, directives and pipes. Services go in providers, other modules go in imports.",
+  "code": null,
+  "id": 21,
+  "key": "15dd584fa88d"
+ },
+ {
+  "level": "Easy",
+  "topic": "Components",
+  "text": "Which are valid ways to declare a component input? (Select all that apply.)",
+  "options": [
+   "title = input<string>();",
+   "@Input() title = '';",
+   "@Output() title = '';",
+   "title = output<string>();"
+  ],
+  "correct": [
+   0,
+   1
+  ],
+  "hint": "One is the decorator, one is the signal-based function.",
+  "explanation": "@Input() and the input() function both declare inputs. @Output and output() declare events emitted to the parent.",
+  "code": null,
+  "id": 22,
+  "key": "14b97044bd88"
+ },
+ {
+  "level": "Easy",
+  "topic": "Components",
+  "text": "Which combination lets a child component send an event to its parent?",
+  "options": [
+   "@Output() with EventEmitter",
+   "@Input() with a callback signal",
+   "@Injectable with providedIn",
+   "@ViewChild with ngOnInit"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Data flows up via events.",
+  "explanation": "An @Output EventEmitter (or the output() function) emits events the parent listens to with (event) binding. @Input flows data downward.",
+  "code": null,
+  "id": 23,
+  "key": "cbefaf307398"
+ },
+ {
+  "level": "Easy",
+  "topic": "Change detection",
+  "text": "Which snippet configures a component to use the OnPush change detection strategy?",
+  "options": [
+   "@Component({ detection: ChangeDetectionStrategy.Default })",
+   "@Component({ changeDetection: ChangeDetectionStrategy.OnPush })",
+   "@Component({ onPush: true })",
+   "@Component({ strategy: 'OnPush' })"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "The property name is changeDetection.",
+  "explanation": "changeDetection: ChangeDetectionStrategy.OnPush opts into OnPush checks. The other property names do not exist or select Default.",
+  "code": null,
+  "id": 24,
+  "key": "7e1c80e85077"
+ },
+ {
+  "level": "Easy",
+  "topic": "Testing",
+  "text": "Which Angular utility configures and creates a testing module for unit tests?",
+  "options": [
+   "TestBed",
+   "ComponentFactory",
+   "TestRunner",
+   "NgTest"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "It is the primary API from @angular/core/testing.",
+  "explanation": "TestBed.configureTestingModule sets up providers and imports for tests. The other names are not Angular testing APIs for this purpose.",
+  "code": null,
+  "id": 25,
+  "key": "7742c7379476"
+ },
+ {
+  "level": "Easy",
+  "topic": "Deferrable views",
+  "text": "What is the purpose of the @defer block?",
+  "options": [
+   "To lazy load the template dependencies it contains",
+   "To debounce user input",
+   "To defer HTTP requests",
+   "To delay a component's lifecycle hooks"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "It affects bundle loading.",
+  "explanation": "@defer splits the enclosed standalone components, directives and pipes into separate chunks loaded on a trigger. It does not debounce or delay HTTP.",
+  "code": "@defer (on viewport) {\n  <app-chart />\n} @placeholder {\n  <p>Chart</p>\n}",
+  "id": 26,
+  "key": "716888b818d4"
+ },
+ {
+  "level": "Easy",
+  "topic": "Tooling",
+  "text": "Which Angular CLI command generates a new component?",
+  "options": [
+   "ng build component",
+   "ng new component",
+   "ng add component",
+   "ng generate component hero"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Short form is ng g.",
+  "explanation": "ng generate component hero (or ng g c hero) scaffolds a component. ng new creates a workspace, ng build compiles, ng add installs packages.",
+  "code": null,
+  "id": 27,
+  "key": "12252e6b13fd"
+ },
+ {
+  "level": "Easy",
+  "topic": "Pipes",
+  "text": "Which of these are built-in Angular pipes? (Select all that apply.)",
+  "options": [
+   "currency",
+   "uppercase",
+   "reverse",
+   "date"
+  ],
+  "correct": [
+   0,
+   1,
+   3
+  ],
+  "hint": "One name is not in CommonModule.",
+  "explanation": "date, currency and uppercase are built in. There is no built-in reverse pipe.",
+  "code": null,
+  "id": 28,
+  "key": "1ebb8ac658ac"
+ },
+ {
+  "level": "Easy",
+  "topic": "DI",
+  "text": "What does @Injectable({ providedIn: 'root' }) do?",
+  "options": [
+   "Makes the service available only in AppModule providers",
+   "Registers the service in the root injector as a tree-shakable singleton",
+   "Prevents the service from being injected",
+   "Creates a new instance per component"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Root means application-wide.",
+  "explanation": "providedIn: 'root' registers one shared instance in the root environment injector and lets unused services be tree-shaken. A new instance per component requires component-level providers.",
+  "code": null,
+  "id": 29,
+  "key": "e4e16d12333a"
+ },
+ {
+  "level": "Easy",
+  "topic": "Control flow",
+  "text": "Which built-in control flow block replaces *ngIf in Angular 17+?",
+  "options": [
+   "@when",
+   "@if",
+   "@show",
+   "@check"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It can be followed by @else.",
+  "explanation": "@if (condition) { } @else { } is the built-in conditional. The other names do not exist.",
+  "code": "@if (user) {\n  <p>{{ user.name }}</p>\n} @else {\n  <p>Guest</p>\n}",
+  "id": 30,
+  "key": "217072a31520"
+ },
+ {
+  "level": "Medium",
+  "topic": "Change detection",
+  "text": "For a component with OnPush change detection, which situations cause it to be checked? (Select all that apply.)",
+  "options": [
+   "An input receives a new object reference",
+   "A DOM event handler in its template runs",
+   "A field changes inside an unrelated service timer",
+   "A parent mutates a property of an object passed as input"
+  ],
+  "correct": [
+   0,
+   1
+  ],
+  "hint": "OnPush looks for specific triggers, not any change.",
+  "explanation": "OnPush checks on input reference changes, events from the component's template, async pipe emissions, signal changes or markForCheck. In-place mutation and unrelated timer changes are not triggers.",
+  "code": null,
+  "id": 31,
+  "key": "4dfe484577e0"
+ },
+ {
+  "level": "Medium",
+  "topic": "Change detection",
+  "text": "A parent does this.items.push(newItem) and passes items to an OnPush child's @Input. The child's template does not update. Which fix is best?",
+  "options": [
+   "Change the child to ChangeDetectionStrategy.Default only in production",
+   "Call ngOnInit manually on the child",
+   "Pass a new array such as this.items = [...this.items, newItem]",
+   "Wrap the push in setTimeout"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "OnPush compares input references.",
+  "explanation": "OnPush only sees input changes when the reference changes, so creating a new array triggers a check. Calling ngOnInit or setTimeout does not alter reference comparison.",
+  "code": null,
+  "id": 32,
+  "key": "86cedaf23c20"
+ },
+ {
+  "level": "Medium",
+  "topic": "Signals",
+  "text": "Which statements about computed() signals are true? (Select all that apply.)",
+  "options": [
+   "It is read-only",
+   "Its value is lazily evaluated",
+   "It can be updated with set()",
+   "Its result is memoized until dependencies change"
+  ],
+  "correct": [
+   0,
+   1,
+   3
+  ],
+  "hint": "It derives values rather than storing them.",
+  "explanation": "computed signals are lazy, cached, and read-only. There is no set() on them.",
+  "code": null,
+  "id": 33,
+  "key": "5eb276de2f0e"
+ },
+ {
+  "level": "Medium",
+  "topic": "Signals",
+  "text": "What is effect() best suited for?",
+  "options": [
+   "Deriving a value from other signals",
+   "Creating HTTP requests on every render",
+   "Replacing all template bindings",
+   "Running side effects such as logging or syncing to localStorage when signals change"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Think of work that does not produce a new value.",
+  "explanation": "effect() runs side effects when the signals it reads change. Deriving values is the job of computed().",
+  "code": null,
+  "id": 34,
+  "key": "94a8a8ab6687"
+ },
+ {
+  "level": "Medium",
+  "topic": "Signals",
+  "text": "Which line correctly increments a writable signal count based on its previous value?",
+  "options": [
+   "count.update(c => c + 1)",
+   "count = count() + 1",
+   "count(count() + 1)",
+   "count++"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Signals expose update and set methods.",
+  "explanation": "count.update(c => c + 1) is the idiomatic form. count++ and reassignment break the signal, and count(x) is a call that reads, not writes.",
+  "code": null,
+  "id": 35,
+  "key": "d49f32060e7a"
+ },
+ {
+  "level": "Medium",
+  "topic": "Signals",
+  "text": "What happens if you try to call set() on a signal created with computed()?",
+  "options": [
+   "It resets the dependencies",
+   "It overrides the derived value until dependencies change",
+   "It works only inside effect()",
+   "It is a compile-time error because computed signals are read-only"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "The type returned is Signal, not WritableSignal.",
+  "explanation": "computed returns a read-only Signal<T> without set or update. The value can only change via its dependencies.",
+  "code": null,
+  "id": 36,
+  "key": "7a9a3898aa69"
+ },
+ {
+  "level": "Medium",
+  "topic": "RxJS",
+  "text": "A search box fires a request per keystroke and stale responses must be discarded. Which operator fits?",
+  "options": [
+   "mergeMap",
+   "switchMap",
+   "forkJoin",
+   "concatMap"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "You want to cancel the previous inner Observable.",
+  "explanation": "switchMap unsubscribes from the previous inner Observable when a new value arrives, so only the latest response counts. mergeMap and concatMap would keep older requests running.",
+  "code": "this.term$.pipe(\n  debounceTime(300),\n  distinctUntilChanged(),\n  switchMap(t => this.api.search(t))\n)",
+  "id": 37,
+  "key": "03e8e5246963"
+ },
+ {
+  "level": "Medium",
+  "topic": "RxJS",
+  "text": "You must run save requests one after another in the order triggered. Which operator is appropriate?",
+  "options": [
+   "exhaustMap",
+   "switchMap",
+   "mergeMap",
+   "concatMap"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "It queues inner Observables.",
+  "explanation": "concatMap waits for each inner Observable to complete before starting the next. mergeMap runs concurrently, switchMap cancels, exhaustMap ignores new ones.",
+  "code": null,
+  "id": 38,
+  "key": "fcf07d34d939"
+ },
+ {
+  "level": "Medium",
+  "topic": "RxJS",
+  "text": "A login button may be clicked many times quickly; you want to ignore clicks while a request is in flight. Which operator?",
+  "options": [
+   "exhaustMap",
+   "concatMap",
+   "mergeMap",
+   "switchMap"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "New outer values should be dropped while busy.",
+  "explanation": "exhaustMap ignores outer emissions while its current inner Observable is active. switchMap would cancel the in-flight request and concatMap would queue them.",
+  "code": null,
+  "id": 39,
+  "key": "0851b04c7427"
+ },
+ {
+  "level": "Medium",
+  "topic": "RxJS",
+  "text": "How does combineLatest behave?",
+  "options": [
+   "Emits an array of latest values whenever any source emits, once each has emitted at least once",
+   "Emits only the first source value",
+   "Emits sources one after another",
+   "Emits after all sources complete"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Every source needs one value before the first emission.",
+  "explanation": "combineLatest emits the combined latest values after every input has emitted once, and again on every later emission. Waiting for completion describes forkJoin.",
+  "code": null,
+  "id": 40,
+  "key": "6b1714195e63"
+ },
+ {
+  "level": "Medium",
+  "topic": "RxJS",
+  "text": "What does forkJoin do when given several HTTP request Observables?",
+  "options": [
+   "Cancels all but the fastest",
+   "Runs them in sequence",
+   "Emits each response as it arrives",
+   "Runs them in parallel and emits the last values once all complete"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "It needs every source to complete.",
+  "explanation": "forkJoin subscribes to all sources concurrently and emits one array of final values after all complete. Emitting as they arrive is closer to merge; the fastest wins with race.",
+  "code": null,
+  "id": 41,
+  "key": "91541269e205"
+ },
+ {
+  "level": "Medium",
+  "topic": "HttpClient",
+  "text": "Two components each subscribe to the same this.http.get(url) Observable stored in a variable. How many HTTP requests are made?",
+  "options": [
+   "Zero until the component renders",
+   "One per second",
+   "One, because the Observable is shared automatically",
+   "Two, because the Observable is cold"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Think about cold Observables and shareReplay.",
+  "explanation": "Each subscription to an HttpClient Observable triggers its own request. Use shareReplay or a signal/store to share one response.",
+  "code": null,
+  "id": 42,
+  "key": "e0ae06dedea4"
+ },
+ {
+  "level": "Medium",
+  "topic": "RxJS",
+  "text": "How does BehaviorSubject differ from Subject?",
+  "options": [
+   "It is unicast",
+   "It replays all past values",
+   "It requires an initial value and emits the current value to new subscribers",
+   "It cannot be completed"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Think of state holders.",
+  "explanation": "BehaviorSubject holds a current value, requires an initial one, and immediately emits it to new subscribers. ReplaySubject can replay many values; Subject emits only future ones.",
+  "code": null,
+  "id": 43,
+  "key": "e6bf527e8e3c"
+ },
+ {
+  "level": "Medium",
+  "topic": "Memory management",
+  "text": "You want an Observable subscription to auto-unsubscribe when the component is destroyed, inside a field initializer. Which approach fits?",
+  "options": [
+   "Use first() always",
+   "Pipe through takeUntilDestroyed()",
+   "Call unsubscribe in ngOnInit",
+   "Use takeUntil(this.ngOnDestroy)"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It comes from @angular/core/rxjs-interop and uses the injection context.",
+  "explanation": "takeUntilDestroyed() completes the stream when the owning context is destroyed. The others do not tie to destruction.",
+  "code": "private destroyRef = inject(DestroyRef);\nngOnInit() {\n  this.ticks$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe();\n}",
+  "id": 44,
+  "key": "3959a3082701"
+ },
+ {
+  "level": "Medium",
+  "topic": "Error handling",
+  "text": "What must the selector function of catchError return?",
+  "options": [
+   "An Observable",
+   "A Promise only",
+   "void",
+   "A plain value"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "It replaces the failed stream.",
+  "explanation": "catchError returns an ObservableInput, e.g. of([]) or EMPTY, or rethrows via throwError. A plain value is not valid.",
+  "code": null,
+  "id": 45,
+  "key": "6066162fab20"
+ },
+ {
+  "level": "Medium",
+  "topic": "Memory management",
+  "text": "Which subscriptions typically need manual cleanup in a component? (Select all that apply.)",
+  "options": [
+   "http.get(url).subscribe(...)",
+   "An Observable consumed with the async pipe",
+   "fromEvent(document, 'click').subscribe(...)",
+   "interval(1000).subscribe(...)"
+  ],
+  "correct": [
+   2,
+   3
+  ],
+  "hint": "Look for streams that never complete.",
+  "explanation": "interval and DOM event streams never complete. HttpClient requests complete after a response and the async pipe unsubscribes itself.",
+  "code": null,
+  "id": 46,
+  "key": "b95d7c2f4614"
+ },
+ {
+  "level": "Medium",
+  "topic": "DI",
+  "text": "A service is listed in a component's providers array. What is the effect?",
+  "options": [
+   "It is shared with all lazy modules",
+   "Each component instance gets its own service instance",
+   "It is ignored",
+   "It is a singleton across the app"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Component-level providers belong to the element injector.",
+  "explanation": "Providing at component level creates a new instance per component instance, also visible to its children. Root-level providers are shared.",
+  "code": null,
+  "id": 47,
+  "key": "69493507d801"
+ },
+ {
+  "level": "Medium",
+  "topic": "DI",
+  "text": "Why use an InjectionToken?",
+  "options": [
+   "To speed up bootstrapping",
+   "To replace @Injectable",
+   "To make services lazy",
+   "To inject non-class values such as config objects or primitives"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Interfaces vanish at runtime.",
+  "explanation": "Types and interfaces have no runtime identity, so a token identifies the dependency. It does not replace @Injectable for classes.",
+  "code": "export const API_URL = new InjectionToken<string>('API_URL');\nproviders: [{ provide: API_URL, useValue: '/api' }]",
+  "id": 48,
+  "key": "bee70f8dc60d"
+ },
+ {
+  "level": "Medium",
+  "topic": "DI",
+  "text": "Which provider form supplies a ready-made constant object for a token?",
+  "options": [
+   "useValue",
+   "useFactory with deps only",
+   "useExisting",
+   "useClass"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "It uses the object as is.",
+  "explanation": "useValue provides the literal value. useClass instantiates a class, useExisting aliases another token, and useFactory runs a function.",
+  "code": null,
+  "id": 49,
+  "key": "5191f276a215"
+ },
+ {
+  "level": "Medium",
+  "topic": "DI",
+  "text": "What does inject(Logger, { optional: true }) return if no provider exists?",
+  "options": [
+   "A new Logger",
+   "Throws NullInjectorError",
+   "undefined",
+   "null"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "It is the modern equivalent of @Optional().",
+  "explanation": "With optional: true, a missing provider yields null instead of an error.",
+  "code": null,
+  "id": 50,
+  "key": "13440050a7a6"
+ },
+ {
+  "level": "Medium",
+  "topic": "DI",
+  "text": "Where does Angular's injector first look for a dependency requested by a component?",
+  "options": [
+   "Only the NgModule",
+   "The component's own element injector, then up the element tree, then environment injectors",
+   "Root environment injector",
+   "The browser's global scope"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Resolution walks from the closest to the broadest.",
+  "explanation": "Angular checks the element injector hierarchy (component and directive providers, viewProviders) and then falls back to environment injectors such as root. It is not global.",
+  "code": null,
+  "id": 51,
+  "key": "6b581e78922f"
+ },
+ {
+  "level": "Medium",
+  "topic": "DI",
+  "text": "Where is calling inject() valid? (Select all that apply.)",
+  "options": [
+   "The constructor",
+   "Inside a setTimeout callback",
+   "Inside ngOnInit",
+   "A field initializer in a component"
+  ],
+  "correct": [
+   0,
+   3
+  ],
+  "hint": "It needs an injection context.",
+  "explanation": "inject() works during construction (constructor and field initializers) and in factory functions, not in later lifecycle methods or async callbacks.",
+  "code": null,
+  "id": 52,
+  "key": "c5cda554952f"
+ },
+ {
+  "level": "Medium",
+  "topic": "HttpClient",
+  "text": "Why must an interceptor call req.clone({...}) to add a header?",
+  "options": [
+   "clone is faster",
+   "HttpRequest objects are immutable",
+   "Headers cannot be set otherwise in Angular",
+   "It triggers a new subscription"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Requests cannot be changed in place.",
+  "explanation": "HttpRequest is immutable, so you create a modified copy with clone and pass it to next(). The reason is immutability, not performance.",
+  "code": "export const authInterceptor: HttpInterceptorFn = (req, next) => {\n  const r = req.clone({ setHeaders: { Authorization: 'Bearer x' } });\n  return next(r);\n};",
+  "id": 53,
+  "key": "d5d7962919e4"
+ },
+ {
+  "level": "Medium",
+  "topic": "HttpClient",
+  "text": "How do you register a functional interceptor?",
+  "options": [
+   "provideHttpClient(withInterceptors([authInterceptor]))",
+   "providers: [{ provide: INTERCEPTOR, useValue: authInterceptor }]",
+   "HttpClient.use(authInterceptor)",
+   "imports: [InterceptorModule]"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Use a feature function with provideHttpClient.",
+  "explanation": "withInterceptors takes an array of functional interceptors. The other forms are not valid APIs.",
+  "code": null,
+  "id": 54,
+  "key": "a8701c4e29a5"
+ },
+ {
+  "level": "Medium",
+  "topic": "Routing",
+  "text": "Which values may a CanActivateFn return? (Select all that apply.)",
+  "options": [
+   "An Observable of boolean or UrlTree",
+   "A string route name",
+   "UrlTree",
+   "boolean"
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "A redirect is represented by an object, not a string.",
+  "explanation": "Guards can return boolean, UrlTree (to redirect), or Observable/Promise of those. Strings are not accepted.",
+  "code": "export const authGuard: CanActivateFn = () => {\n  return inject(AuthService).loggedIn() || inject(Router).parseUrl('/login');\n};",
+  "id": 55,
+  "key": "3f06aaef7800"
+ },
+ {
+  "level": "Medium",
+  "topic": "Routing",
+  "text": "Which route properties enable lazy loading? (Select all that apply.)",
+  "options": [
+   "lazy: true",
+   "loadChildren",
+   "loadComponent",
+   "import"
+  ],
+  "correct": [
+   1,
+   2
+  ],
+  "hint": "Both take a dynamic import function.",
+  "explanation": "loadComponent lazy loads a standalone component and loadChildren a routes array or module. lazy and import are not route properties.",
+  "code": "{ path: 'admin', loadChildren: () => import('./admin/routes').then(m => m.ADMIN_ROUTES) }",
+  "id": 56,
+  "key": "adba2a291422"
+ },
+ {
+  "level": "Medium",
+  "topic": "Routing",
+  "text": "A route /user/:id navigates from /user/1 to /user/2, reusing the same component instance. How do you reliably see the new id? (Select all that apply.)",
+  "options": [
+   "Read route.snapshot.paramMap in ngOnInit only",
+   "Use withComponentInputBinding and an input named id",
+   "Subscribe to route.paramMap",
+   "Rely on ngOnInit running again"
+  ],
+  "correct": [
+   1,
+   2
+  ],
+  "hint": "The instance is reused.",
+  "explanation": "Observable params and bound inputs update. The snapshot read once in ngOnInit is stale and ngOnInit does not run again for a reused instance.",
+  "code": null,
+  "id": 57,
+  "key": "1b7c59385b1d"
+ },
+ {
+  "level": "Medium",
+  "topic": "Routing",
+  "text": "What problem does withComponentInputBinding() solve?",
+  "options": [
+   "It enables SSR",
+   "It binds route params, query params and data to component inputs",
+   "It binds two components together",
+   "It makes guards synchronous"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It is a router feature passed to provideRouter.",
+  "explanation": "With it, route parameters and data are set directly on matching inputs, removing the need to inject ActivatedRoute.",
+  "code": null,
+  "id": 58,
+  "key": "c3c49d6a8d23"
+ },
+ {
+  "level": "Medium",
+  "topic": "Routing",
+  "text": "What is a route resolver used for?",
+  "options": [
+   "Lazy loading modules",
+   "Rendering 404 pages",
+   "Blocking unauthenticated users",
+   "Prefetching data before the route activates"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Data is ready when the component is created.",
+  "explanation": "Resolvers fetch data before activation, exposing it via route data. Guards handle access, and loadChildren handles lazy loading.",
+  "code": null,
+  "id": 59,
+  "key": "2759d6e07965"
+ },
+ {
+  "level": "Medium",
+  "topic": "Routing",
+  "text": "Why is pathMatch: 'full' needed on { path: '', redirectTo: 'home', pathMatch: 'full' }?",
+  "options": [
+   "Without it, the empty path prefix matches every URL and causes redirect loops",
+   "It enables lazy loading",
+   "It makes the route case-sensitive",
+   "It improves SEO"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "The default match is prefix.",
+  "explanation": "An empty path is a prefix of every URL, so with the default 'prefix' strategy everything would redirect. 'full' matches only an empty URL.",
+  "code": null,
+  "id": 60,
+  "key": "5cc27ccaaede"
+ },
+ {
+  "level": "Medium",
+  "topic": "Forms",
+  "text": "Which form control state flags exist in Angular forms? (Select all that apply.)",
+  "options": [
+   "dirty",
+   "pristine",
+   "touched",
+   "visited"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "One name is not part of AbstractControl.",
+  "explanation": "touched, dirty and pristine are properties on controls. visited is not.",
+  "code": null,
+  "id": 61,
+  "key": "c03e4d9be5b5"
+ },
+ {
+  "level": "Medium",
+  "topic": "Forms",
+  "text": "How do you react to value changes of a reactive FormControl?",
+  "options": [
+   "Listen for the ngChange event",
+   "Subscribe to control.valueChanges",
+   "Poll control.value in ngDoCheck only",
+   "Use @Output on the control"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It is an Observable.",
+  "explanation": "valueChanges emits each time the value changes. ngChange and @Output on controls do not exist.",
+  "code": null,
+  "id": 62,
+  "key": "930cf2a8e5a7"
+ },
+ {
+  "level": "Medium",
+  "topic": "Forms",
+  "text": "What should a synchronous custom validator function return when the value is valid?",
+  "options": [
+   "undefined",
+   "true",
+   "null",
+   "An empty string"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Errors are represented as an object.",
+  "explanation": "A ValidatorFn returns null for valid and a ValidationErrors object like { forbidden: true } for invalid.",
+  "code": "const noSpaces: ValidatorFn = c =>\n  /\\s/.test(c.value) ? { spaces: true } : null;",
+  "id": 63,
+  "key": "9eda93ce4176"
+ },
+ {
+  "level": "Medium",
+  "topic": "Forms",
+  "text": "What is the difference between setValue and patchValue on a FormGroup?",
+  "options": [
+   "patchValue allows a partial object while setValue requires all controls",
+   "setValue allows partial objects",
+   "patchValue only works for FormArray",
+   "They are identical"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "One is strict about the shape.",
+  "explanation": "setValue throws if any control is missing, while patchValue updates only the supplied properties.",
+  "code": null,
+  "id": 64,
+  "key": "ef08ba8f0067"
+ },
+ {
+  "level": "Medium",
+  "topic": "Forms",
+  "text": "Which statements about reactive forms are true? (Select all that apply.)",
+  "options": [
+   "They are generally easier to unit test than template-driven forms",
+   "The form model is defined in the component class",
+   "Values can be read synchronously",
+   "They require ngModel on every input"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "They use formControl directives, not ngModel.",
+  "explanation": "Reactive forms make the model explicit, synchronous and testable. They use formControlName/formControl, not ngModel.",
+  "code": null,
+  "id": 65,
+  "key": "ce7f407a3a26"
+ },
+ {
+  "level": "Medium",
+  "topic": "Forms",
+  "text": "What is the purpose of implementing ControlValueAccessor?",
+  "options": [
+   "To validate asynchronously",
+   "To lazy load a form",
+   "To let a custom component work with Angular forms directives like formControl or ngModel",
+   "To intercept HTTP calls"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "It bridges the view and the forms model.",
+  "explanation": "ControlValueAccessor defines writeValue and change/touch callbacks so custom components integrate with form controls. Validation uses Validators.",
+  "code": null,
+  "id": 66,
+  "key": "05876db3b185"
+ },
+ {
+  "level": "Medium",
+  "topic": "Control flow",
+  "text": "Which contextual variables are available inside @for? (Select all that apply.)",
+  "options": [
+   "$key",
+   "$first",
+   "$item",
+   "$index"
+  ],
+  "correct": [
+   1,
+   3
+  ],
+  "hint": "Think of loop positions.",
+  "explanation": "@for provides $index, $first, $last, $even, $odd and $count. $key and $item do not exist.",
+  "code": "@for (u of users; track u.id; let i = $index) {\n  <li>{{ i }} {{ u.name }}</li>\n} @empty {\n  <li>No users</li>\n}",
+  "id": 67,
+  "key": "5603118887b6"
+ },
+ {
+  "level": "Medium",
+  "topic": "Control flow",
+  "text": "In a standalone component, what is a practical difference between @if and *ngIf?",
+  "options": [
+   "@if needs no import of NgIf or CommonModule",
+   "@if works only in NgModules",
+   "@if is slower",
+   "*ngIf supports @else but @if does not"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Built-in control flow is part of the template syntax.",
+  "explanation": "The new blocks are built into the compiler and require no imports, whereas *ngIf requires NgIf. @if fully supports @else.",
+  "code": null,
+  "id": 68,
+  "key": "5a86854a6b0c"
+ },
+ {
+  "level": "Medium",
+  "topic": "Control flow",
+  "text": "Why is track important in @for?",
+  "options": [
+   "It lets Angular reuse DOM nodes for unchanged items when the list changes",
+   "It filters null items",
+   "It subscribes to the array",
+   "It sorts the list"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Think about re-rendering cost.",
+  "explanation": "A stable identity like track item.id lets Angular move and reuse nodes instead of recreating them. It does not sort or filter.",
+  "code": null,
+  "id": 69,
+  "key": "e8dc66e5fd6f"
+ },
+ {
+  "level": "Medium",
+  "topic": "Deferrable views",
+  "text": "Which are valid @defer triggers? (Select all that apply.)",
+  "options": [
+   "on idle",
+   "on hover",
+   "on scroll",
+   "on viewport"
+  ],
+  "correct": [
+   0,
+   1,
+   3
+  ],
+  "hint": "One is not a defer trigger.",
+  "explanation": "on idle, on viewport, on hover, on interaction, on immediate and on timer are supported, as is when condition. There is no on scroll trigger.",
+  "code": null,
+  "id": 70,
+  "key": "54a5dc6414a3"
+ },
+ {
+  "level": "Medium",
+  "topic": "Deferrable views",
+  "text": "Which @defer sub-block displays content while the deferred dependencies are being fetched?",
+  "options": [
+   "@fallback",
+   "@error",
+   "@placeholder",
+   "@loading"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "It can have minimum and after parameters.",
+  "explanation": "@loading shows during loading, @placeholder before the trigger, and @error on failure. @fallback is not a defer block.",
+  "code": null,
+  "id": 71,
+  "key": "6220d274a332"
+ },
+ {
+  "level": "Medium",
+  "topic": "Deferrable views",
+  "text": "A component inside @defer still loads eagerly. What is a likely cause?",
+  "options": [
+   "The route is not lazy",
+   "The component lacks @Input",
+   "@defer only works with NgModules",
+   "It is also referenced outside the @defer block, such as in the imports usage elsewhere in the template"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Deferral works only if nothing else references it directly.",
+  "explanation": "Deferred dependencies must be standalone and not used eagerly elsewhere in the same file, otherwise they are in the main bundle.",
+  "code": null,
+  "id": 72,
+  "key": "87eadb735b7c"
+ },
+ {
+  "level": "Medium",
+  "topic": "Standalone",
+  "text": "What does bootstrapApplication(AppComponent, { providers: [...] }) replace?",
+  "options": [
+   "RouterModule.forRoot",
+   "platformBrowserDynamic().bootstrapModule(AppModule)",
+   "TestBed",
+   "ng serve"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It bootstraps without a root NgModule.",
+  "explanation": "bootstrapApplication starts a standalone root component directly and takes app-wide providers, replacing bootstrapModule with an AppModule.",
+  "code": null,
+  "id": 73,
+  "key": "fd9af3aeb243"
+ },
+ {
+  "level": "Medium",
+  "topic": "Standalone",
+  "text": "What can a standalone component list in its imports array? (Select all that apply.)",
+  "options": [
+   "Route definitions",
+   "Other standalone components and pipes",
+   "Injectable services",
+   "NgModules"
+  ],
+  "correct": [
+   1,
+   3
+  ],
+  "hint": "Think of template dependencies.",
+  "explanation": "imports accepts standalone components, directives, pipes and NgModules. Services use providers and routes are given to the router.",
+  "code": null,
+  "id": 74,
+  "key": "ef648cf62fa5"
+ },
+ {
+  "level": "Medium",
+  "topic": "Standalone",
+  "text": "Which are valid provider functions in a standalone application? (Select all that apply.)",
+  "options": [
+   "provideModule()",
+   "provideHttpClient()",
+   "provideRouter(routes)",
+   "provideComponent()"
+  ],
+  "correct": [
+   1,
+   2
+  ],
+  "hint": "Two of them are real APIs.",
+  "explanation": "provideRouter and provideHttpClient configure the router and HttpClient. provideModule and provideComponent do not exist.",
+  "code": null,
+  "id": 75,
+  "key": "ff8923a6dea4"
+ },
+ {
+  "level": "Medium",
+  "topic": "NgModules",
+  "text": "What is the purpose of the forRoot/forChild convention in modules such as RouterModule?",
+  "options": [
+   "To define two components",
+   "To replace declarations",
+   "To make modules lazy",
+   "To provide singleton services once in the root while child modules only add configuration or routes"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "It avoids duplicated providers.",
+  "explanation": "forRoot returns a ModuleWithProviders with app-wide services, while forChild registers only extra routes without re-providing services.",
+  "code": null,
+  "id": 76,
+  "key": "2ee54d744aa5"
+ },
+ {
+  "level": "Medium",
+  "topic": "NgModules",
+  "text": "You declare the same component in two NgModules. What happens?",
+  "options": [
+   "It becomes a singleton",
+   "Angular merges them",
+   "The second is ignored silently",
+   "Compilation error: a component can be declared in only one module"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Ownership must be unique.",
+  "explanation": "Each non-standalone component belongs to exactly one NgModule. To reuse it, export it from that module or make it standalone.",
+  "code": null,
+  "id": 77,
+  "key": "e39f19d0372f"
+ },
+ {
+  "level": "Medium",
+  "topic": "NgModules",
+  "text": "A SharedModule declares AppButtonComponent. A FeatureModule imports SharedModule but cannot use <app-button>. What is missing?",
+  "options": [
+   "AppButtonComponent needs providedIn root",
+   "FeatureModule must provide it",
+   "SharedModule must export AppButtonComponent",
+   "bootstrap must include it"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Importing alone does not make declarations visible.",
+  "explanation": "Only exported declarations are usable by importing modules. providers and bootstrap are unrelated to template visibility.",
+  "code": null,
+  "id": 78,
+  "key": "519f7ba91d5e"
+ },
+ {
+  "level": "Medium",
+  "topic": "Pipes",
+  "text": "When does a pure pipe re-run its transform?",
+  "options": [
+   "Only when its input value or parameters change by reference or primitive value",
+   "On every change detection cycle",
+   "Only on route change",
+   "Only once"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Pure means same input gives same output.",
+  "explanation": "Pure pipes are re-executed only when their input changes (primitive value or new reference), so mutating an array in place will not retrigger them.",
+  "code": null,
+  "id": 79,
+  "key": "138f34fa64a5"
+ },
+ {
+  "level": "Medium",
+  "topic": "Pipes",
+  "text": "What is the main drawback of setting pure: false on a custom pipe?",
+  "options": [
+   "It cannot be used with the async pipe",
+   "It is not allowed with standalone pipes",
+   "It runs on every change detection cycle, which may hurt performance",
+   "It cannot take arguments"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Think of how often it is called.",
+  "explanation": "Impure pipes run every cycle, so expensive transforms can slow the app. They can take arguments and be standalone.",
+  "code": null,
+  "id": 80,
+  "key": "25c092221c6f"
+ },
+ {
+  "level": "Medium",
+  "topic": "Pipes",
+  "text": "A template uses (user$ | async)?.name and (user$ | async)?.email. What is the problem?",
+  "options": [
+   "Each async pipe creates its own subscription, possibly duplicating requests",
+   "The optional chaining operator is invalid",
+   "It leaks memory in all cases",
+   "async cannot be used twice"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "How many subscriptions are made?",
+  "explanation": "Each use subscribes separately, which can fire multiple HTTP calls for cold Observables. Use @if (user$ | async; as user) once instead.",
+  "code": "@if (user$ | async; as user) {\n  <p>{{ user.name }} {{ user.email }}</p>\n}",
+  "id": 81,
+  "key": "68bd6850ff93"
+ },
+ {
+  "level": "Medium",
+  "topic": "Directives",
+  "text": "Which decorators are used in an attribute directive to listen for host events and bind host properties? (Select all that apply.)",
+  "options": [
+   "@HostListener",
+   "@ViewChild",
+   "@Output",
+   "@HostBinding"
+  ],
+  "correct": [
+   0,
+   3
+  ],
+  "hint": "They interact with the host element.",
+  "explanation": "@HostListener subscribes to host events and @HostBinding sets host properties or attributes. @ViewChild queries the template and @Output emits events.",
+  "code": null,
+  "id": 82,
+  "key": "d620dde424e9"
+ },
+ {
+  "level": "Medium",
+  "topic": "Directives",
+  "text": "What does <ng-content></ng-content> do inside a component template?",
+  "options": [
+   "Projects content supplied between the component's tags",
+   "Lazy loads the content",
+   "Renders content in a different route",
+   "Creates a new component"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "It is used for content projection.",
+  "explanation": "ng-content marks where parent-supplied child content is rendered. It does not create components or load anything lazily.",
+  "code": null,
+  "id": 83,
+  "key": "ca046580b36c"
+ },
+ {
+  "level": "Medium",
+  "topic": "Lifecycle",
+  "text": "A @ViewChild({ static: false }) query (default) is first reliably available in which hook?",
+  "options": [
+   "constructor",
+   "ngOnInit",
+   "ngOnChanges",
+   "ngAfterViewInit"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "View children are created after the view is initialized.",
+  "explanation": "Dynamic view queries are resolved by ngAfterViewInit. At constructor time and ngOnInit they may be undefined (unless static: true).",
+  "code": null,
+  "id": 84,
+  "key": "a08c7fdc1474"
+ },
+ {
+  "level": "Medium",
+  "topic": "Lifecycle",
+  "text": "A parent changes a property of an object bound to a child's @Input without replacing the reference. Will the child's ngOnChanges fire?",
+  "options": [
+   "No, ngOnChanges fires only when the input binding value or reference changes",
+   "Yes, always",
+   "Only in production mode",
+   "Only if OnPush is used"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Angular compares the bound value, not nested fields.",
+  "explanation": "ngOnChanges compares binding values using identity, so in-place mutation is not detected. Use a new reference or ngDoCheck.",
+  "code": null,
+  "id": 85,
+  "key": "4cbc580cbc8c"
+ },
+ {
+  "level": "Medium",
+  "topic": "Testing",
+  "text": "Which methods of HttpTestingController are commonly used in tests? (Select all that apply.)",
+  "options": [
+   "expectOne",
+   "flush on the returned TestRequest",
+   "verify",
+   "mockResponse"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "One name is invented.",
+  "explanation": "expectOne finds a pending request, flush supplies a response, and verify asserts none are left. mockResponse does not exist.",
+  "code": null,
+  "id": 86,
+  "key": "6c0f6bd3019b"
+ },
+ {
+  "level": "Medium",
+  "topic": "Testing",
+  "text": "Why call fixture.detectChanges() in a component test?",
+  "options": [
+   "To compile the module",
+   "To run change detection so bindings render and ngOnInit runs for the first time",
+   "To restart the test runner",
+   "To clear the DOM"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Tests do not auto-run change detection by default.",
+  "explanation": "The first detectChanges triggers ngOnInit and updates the view. Without it the template shows initial, unrendered state.",
+  "code": null,
+  "id": 87,
+  "key": "9aa0429bb086"
+ },
+ {
+  "level": "Medium",
+  "topic": "Testing",
+  "text": "How do you replace a real service with a fake in a TestBed?",
+  "options": [
+   "declarations: [fakeService]",
+   "providers: [{ provide: DataService, useValue: fakeService }]",
+   "Call new DataService() in the component",
+   "imports: [fakeService]"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Override the DI provider.",
+  "explanation": "Providing the same token with useValue (or useClass) swaps the implementation. imports and declarations are for modules and view classes.",
+  "code": null,
+  "id": 88,
+  "key": "8d8bf1a9a6da"
+ },
+ {
+  "level": "Medium",
+  "topic": "Signals",
+  "text": "How do you declare a required signal input in a component?",
+  "options": [
+   "name = input.required<string>();",
+   "name = signal.required<string>();",
+   "@Input({ signal: true }) name!: string;",
+   "name = required(input<string>());"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "It is a static helper on input.",
+  "explanation": "input.required<T>() declares a required signal input read as name(). The other forms are not valid APIs.",
+  "code": null,
+  "id": 89,
+  "key": "3ead4278ff6e"
+ },
+ {
+  "level": "Medium",
+  "topic": "Signals",
+  "text": "What does toSignal() from @angular/core/rxjs-interop do?",
+  "options": [
+   "Converts a signal into a Promise",
+   "Converts an Observable into a signal that holds its latest value",
+   "Creates a Subject",
+   "Subscribes without cleanup"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It bridges RxJS and signals.",
+  "explanation": "toSignal subscribes to the Observable and exposes the latest value as a read-only signal, unsubscribing automatically when its context is destroyed.",
+  "code": "users = toSignal(this.http.get<User[]>('/api/users'), { initialValue: [] });",
+  "id": 90,
+  "key": "62b04e51a91e"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS operators",
+  "text": "Given the code, when does the subscriber receive values?",
+  "options": [
+   "'A' at about 100 ms and 'B' at about 150 ms",
+   "'A' and 'B' both at about 150 ms",
+   "Only 'B', about 150 ms after subscribing",
+   "Only 'A', at about 100 ms"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Think about what switchMap does to the in-flight inner observable when a new source value arrives.",
+  "explanation": "At t=50ms 'B' arrives while the inner timer for 'A' (due at 100ms) is still pending, so switchMap unsubscribes from it and 'A' is never emitted. The new inner timer for 'B' fires at 50+100=150ms. mergeMap or concatMap would have produced both values.",
+  "code": "const source$ = merge(of('A'), of('B').pipe(delay(50)));\nsource$\n  .pipe(switchMap(v => timer(100).pipe(map(() => v))))\n  .subscribe(console.log);",
+  "id": 91,
+  "key": "8bedd453663a"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS operators",
+  "text": "What is logged by this code?",
+  "options": [
+   "1, 2, 3",
+   "3, 2, 1",
+   "Only 3",
+   "Only 1"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "mergeMap does not wait for earlier inner observables; the fastest inner emits first.",
+  "explanation": "mergeMap subscribes to all inner observables concurrently, and emits as each inner emits. The timers are 300ms, 200ms and 100ms for 1, 2 and 3, so the output is 3, 2, 1. concatMap would queue them and log 1, 2, 3.",
+  "code": "of(1, 2, 3)\n  .pipe(mergeMap(n => timer((4 - n) * 100).pipe(map(() => n))))\n  .subscribe(console.log);",
+  "id": 92,
+  "key": "f09c79c9780a"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS operators",
+  "text": "Which statements about concatMap are true? (Select all that apply.)",
+  "options": [
+   "It unsubscribes from the active inner observable when a new source value arrives.",
+   "It queues source values and subscribes to each inner observable only after the previous one completes.",
+   "It drops source values that arrive while an inner observable is still active.",
+   "Output order follows source order even if a later inner observable would finish faster.",
+   "It behaves like mergeMap with a concurrency limit of 1."
+  ],
+  "correct": [
+   1,
+   3,
+   4
+  ],
+  "hint": "Compare it with switchMap (cancels) and exhaustMap (drops).",
+  "explanation": "concatMap buffers outer values and runs inner observables strictly one at a time, so ordering is preserved and it equals mergeMap(fn, 1). Cancelling the active inner is switchMap's behavior, and dropping values while busy is exhaustMap's.",
+  "code": null,
+  "id": 93,
+  "key": "0cc1f6a982f7"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS operators",
+  "text": "A Save button's click$ stream must ignore further clicks while a save request is still in flight, without cancelling that request. Which operator fits best?",
+  "options": [
+   "switchMap",
+   "concatMap",
+   "exhaustMap",
+   "mergeMap"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "You want new outer values discarded, not queued or cancelling.",
+  "explanation": "exhaustMap ignores source values while its current inner observable is active, which prevents double submits. switchMap would cancel the first request, concatMap would queue and send duplicates afterwards, and mergeMap would send them all concurrently.",
+  "code": null,
+  "id": 94,
+  "key": "b5d5bdebe2c3"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS operators",
+  "text": "Which statements about source$.pipe(withLatestFrom(other$)) are true? (Select all that apply.)",
+  "options": [
+   "It emits only when source$ emits, paired with the latest value of other$.",
+   "It completes as soon as other$ completes.",
+   "It emits whenever either source$ or other$ emits, like combineLatest.",
+   "Source emissions that occur before other$ has emitted for the first time are dropped.",
+   "It subscribes to other$ only after source$ emits its first value."
+  ],
+  "correct": [
+   0,
+   3
+  ],
+  "hint": "Only one of the two streams drives emissions.",
+  "explanation": "withLatestFrom is driven by the source: it subscribes to other$ at subscription time and emits only on source emissions once other$ has a value. Earlier source values are silently lost. Completion of other$ does not complete the result, and it is not combineLatest.",
+  "code": null,
+  "id": 95,
+  "key": "586f44f3e1da"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS operators",
+  "text": "Which describes forkJoin([a$, b$])?",
+  "options": [
+   "It emits every time either source emits, using the latest values.",
+   "It emits pairs of values by index, waiting for both at each index.",
+   "It emits the first value of each source as soon as both have emitted.",
+   "It emits one array of each source's last value after all sources complete; if any completes without emitting, it completes without emitting."
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Think of Promise.all semantics: nothing happens until completion.",
+  "explanation": "forkJoin waits for every source to complete and then emits the last value from each exactly once. The first option is combineLatest, the second is zip, and the third is not an RxJS operator behavior. A source that never completes keeps forkJoin from emitting.",
+  "code": null,
+  "id": 96,
+  "key": "5a6ba0653bc3"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS operators",
+  "text": "Which statements about debounceTime(300), throttleTime(300) and auditTime(300) are true? (Select all that apply.)",
+  "options": [
+   "debounceTime emits the most recent value only after 300 ms pass with no new source values.",
+   "debounceTime emits the first value immediately and then silences the stream for 300 ms.",
+   "auditTime emits the first value of each window immediately when it arrives.",
+   "throttleTime by default emits the first value of a window and ignores the others in that window."
+  ],
+  "correct": [
+   0,
+   3
+  ],
+  "hint": "Leading versus trailing edge behavior distinguishes them.",
+  "explanation": "debounce is trailing and resets on each value; throttleTime defaults to leading edge. auditTime is trailing: it emits the latest value when the window ends, not the first immediately. The third option describes a leading throttle, not debounce.",
+  "code": null,
+  "id": 97,
+  "key": "dcc06a293202"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS operators",
+  "text": "What is the problem with this typeahead pipeline?",
+  "options": [
+   "After the first HTTP error the outer stream is terminated; catchError should be placed inside the switchMap's inner pipe.",
+   "catchError never runs because HttpClient errors are not delivered as observable errors.",
+   "switchMap swallows errors, so catchError is unreachable.",
+   "of([]) emits asynchronously, which reorders results."
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Where does an error end the subscription: on the outer or inner chain?",
+  "explanation": "An error propagates to the outer pipeline, catchError then replaces it with of([]) which completes, so no further searches are processed. Putting catchError on the inner request keeps the outer search$ alive. HttpClient does emit errors via the error channel and switchMap does not swallow them.",
+  "code": "this.search$.pipe(\n  switchMap(q => this.http.get<Item[]>(`/api?q=${q}`)),\n  catchError(() => of([]))\n).subscribe(items => this.items = items);",
+  "id": 98,
+  "key": "b8e46bf01106"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS multicasting",
+  "text": "In RxJS 7, what does source$.pipe(shareReplay(1)) do when all subscribers unsubscribe before the source completes?",
+  "options": [
+   "The source subscription is torn down immediately.",
+   "It resets and re-subscribes to the source when a new subscriber arrives.",
+   "It throws an unsubscription error on the next subscribe.",
+   "The source stays subscribed (refCount is false by default) and the latest value is replayed to future subscribers."
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "The refCount behavior is opt-in.",
+  "explanation": "shareReplay(1) with default config keeps the underlying subscription alive after subscribers leave, which can leak long-lived sources. Use shareReplay({ bufferSize: 1, refCount: true }) to tear down when subscribers reach zero. It does not throw or reset by default.",
+  "code": null,
+  "id": 99,
+  "key": "8402883c2765"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS multicasting",
+  "text": "What is logged?",
+  "options": [
+   "A 1, A 2, A 3, B 3",
+   "A 2, A 3, B 2, B 3",
+   "A 2, A 3, B 3",
+   "A 1, A 2, B 2, A 3, B 3"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "A plain Subject does not store past values.",
+  "explanation": "A Subject is hot and has no replay: A misses 1 because it subscribed after next(1), and B misses 1 and 2. A receives 2 and 3, B receives only 3. A ReplaySubject or BehaviorSubject would behave differently.",
+  "code": "const s = new Subject<number>();\ns.next(1);\ns.subscribe(v => console.log('A', v));\ns.next(2);\ns.subscribe(v => console.log('B', v));\ns.next(3);",
+  "id": 100,
+  "key": "11b1af229667"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS multicasting",
+  "text": "Where should takeUntil(destroy$) be placed to avoid leaking inner subscriptions in a pipe that uses switchMap?",
+  "options": [
+   "Immediately after the source, before switchMap.",
+   "Anywhere; operator order never matters for takeUntil.",
+   "Only inside the inner observable.",
+   "As the last operator, after switchMap/mergeMap."
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "A takeUntil placed early completes the outer, but the inner may still be running.",
+  "explanation": "If takeUntil precedes switchMap, completing the outer does not unsubscribe a still-active inner observable, which can keep emitting. Placing it last unsubscribes from the whole upstream chain including inners. Order does matter.",
+  "code": null,
+  "id": 101,
+  "key": "955ebdfaef1b"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS multicasting",
+  "text": "A template uses `data$ | async` twice for `data$ = this.http.get<Item[]>('/api/items')`. Which statements are true? (Select all that apply.)",
+  "options": [
+   "Adding shareReplay({ bufferSize: 1, refCount: true }) to data$ makes both pipes share one request.",
+   "Setting the component to OnPush deduplicates the request.",
+   "Two HTTP requests are sent because the observable is cold and each async pipe subscribes separately.",
+   "Using `@if (data$ | async; as data)` once and referencing `data` reduces it to one subscription."
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "Change detection strategy does not affect how many times an observable is subscribed.",
+  "explanation": "HttpClient observables are cold, so each subscription triggers a request. Multicasting with shareReplay or subscribing once with an alias fixes it. OnPush only affects when views are checked, not subscriptions.",
+  "code": null,
+  "id": 102,
+  "key": "31db7ff9f91a"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS multicasting",
+  "text": "Why does this distinctUntilChanged() not suppress duplicate emissions when the form values are identical?",
+  "options": [
+   "Each valueChanges emission is a new object, and the default comparison uses reference equality; supply a comparator.",
+   "distinctUntilChanged only works on primitive streams created with of().",
+   "valueChanges is a Subject so distinct operators are ignored.",
+   "distinctUntilChanged needs a debounceTime before it to work."
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Think about how === compares two objects with equal content.",
+  "explanation": "The default comparator is ===, so two different objects with the same content are considered distinct. Pass a comparator such as (a, b) => JSON.stringify(a) === JSON.stringify(b) or use a field-level comparison. The operator works on any type; it is just reference-based by default.",
+  "code": "this.form.valueChanges.pipe(\n  distinctUntilChanged()\n).subscribe(v => this.save(v));",
+  "id": 103,
+  "key": "d2c1c76d8d00"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS interop",
+  "text": "What does this log?",
+  "options": [
+   "0, 1, 2, 3",
+   "3",
+   "0 and then 3",
+   "1, 2, 3"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "toObservable relies on an effect, which is scheduled rather than synchronous.",
+  "explanation": "toObservable emits via an effect that runs during change detection, so the three synchronous sets are coalesced and the subscriber sees the latest value only. It does not emit the intermediate values or the stale initial one.",
+  "code": "count = signal(0);\nconstructor() {\n  toObservable(this.count).subscribe(console.log);\n  this.count.set(1);\n  this.count.set(2);\n  this.count.set(3);\n}",
+  "id": 104,
+  "key": "e3a8ce155825"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS interop",
+  "text": "What happens when takeUntilDestroyed() is called without arguments inside ngOnInit?",
+  "options": [
+   "It works because ngOnInit runs in the component's injection context.",
+   "It unsubscribes at the next change detection.",
+   "It throws because it is not in an injection context; pass a DestroyRef instead.",
+   "It silently does nothing and the subscription leaks."
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "inject(DestroyRef) is used internally.",
+  "explanation": "takeUntilDestroyed() calls inject(DestroyRef) when no argument is given, which fails outside an injection context such as ngOnInit. Capture destroyRef = inject(DestroyRef) in a field and pass it: takeUntilDestroyed(this.destroyRef). It does not silently leak; it throws.",
+  "code": "ngOnInit() {\n  this.data$.pipe(takeUntilDestroyed()).subscribe();\n}",
+  "id": 105,
+  "key": "b95aeb20c6ee"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS interop",
+  "text": "Which statements about toSignal() are true? (Select all that apply.)",
+  "options": [
+   "Without initialValue, the resulting signal's type includes undefined until the first emission.",
+   "It subscribes lazily on the first read of the signal.",
+   "It subscribes immediately and unsubscribes automatically when the calling injection context is destroyed.",
+   "It can be called anywhere, such as inside a click handler, with no injector.",
+   "requireSync: true is valid for sources that emit synchronously on subscribe, such as BehaviorSubject."
+  ],
+  "correct": [
+   0,
+   2,
+   4
+  ],
+  "hint": "Think about injection context and eager subscription.",
+  "explanation": "toSignal subscribes eagerly, ties cleanup to the injection context, and adds undefined to the type unless initialValue or requireSync is set. It must be called in an injection context (or given an injector), and it is not lazy.",
+  "code": null,
+  "id": 106,
+  "key": "890006a31850"
+ },
+ {
+  "level": "Hard",
+  "topic": "Signals",
+  "text": "Which statements about this computed are true? (Select all that apply.)",
+  "options": [
+   "While flag() is true, changing b() does not invalidate value.",
+   "After a.set(5), the callback re-executes immediately even if nobody reads value().",
+   "It is lazy: the callback does not run until value() is first read.",
+   "Reading value() twice with no dependency changes runs the callback once."
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "Computed signals are lazily evaluated, memoized, and track dependencies dynamically.",
+  "explanation": "computed runs only on demand, caches its result, and tracks just the signals read in the last execution; b is not read when flag is true. A change to a dependency only marks it dirty, and recomputation waits for the next read.",
+  "code": "flag = signal(true);\na = signal(1);\nb = signal(2);\nvalue = computed(() => {\n  console.log('run');\n  return this.flag() ? this.a() : this.b();\n});",
+  "id": 107,
+  "key": "761498e7da36"
+ },
+ {
+  "level": "Hard",
+  "topic": "Signals",
+  "text": "What happens with the effect after this code runs?",
+  "options": [
+   "The effect does not re-run because the same object reference is set, so signal equality (Object.is) sees no change.",
+   "The effect re-runs and logs 'B'.",
+   "The effect re-runs only on the next change detection tick.",
+   "set() throws because mutating signal values is not allowed."
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Signals compare values using Object.is by default.",
+  "explanation": "The object was mutated in place and set with the same reference, so the signal considers the value unchanged and notifies no consumers. Use update(u => ({...u, name: 'B'})) to create a new reference. Signals do not throw on mutation but they do not detect it.",
+  "code": "user = signal({ name: 'A' });\nconstructor() {\n  effect(() => console.log(this.user().name));\n}\nrename() {\n  const u = this.user();\n  u.name = 'B';\n  this.user.set(u);\n}",
+  "id": 108,
+  "key": "e403c3fcd527"
+ },
+ {
+  "level": "Hard",
+  "topic": "Signals",
+  "text": "Which signal change causes this effect to re-run?",
+  "options": [
+   "Only changes to query()",
+   "Changes to either query() or user()",
+   "Only changes to user()",
+   "Neither; effects never re-run"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "untracked() suppresses dependency tracking inside its callback.",
+  "explanation": "user() is read inside untracked(), so it is not recorded as a dependency; only query() is tracked. Effects do re-run when tracked dependencies change.",
+  "code": "effect(() => {\n  const q = this.query();\n  untracked(() => this.log.record(q, this.user()));\n});",
+  "id": 109,
+  "key": "9e0a4ff27f73"
+ },
+ {
+  "level": "Hard",
+  "topic": "Signals",
+  "text": "What happens when this component is created?",
+  "options": [
+   "It logs undefined.",
+   "It throws NG0950 because the required input has no value yet during construction.",
+   "It logs an empty string.",
+   "It logs the parent's bound value."
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Inputs are set after the instance is constructed.",
+  "explanation": "A required signal input throws if read before the parent binding has been set, and the constructor runs before inputs are assigned. Read it in a computed, effect or later lifecycle hook instead.",
+  "code": "name = input.required<string>();\nconstructor() {\n  console.log(this.name());\n}",
+  "id": 110,
+  "key": "4a098109caf7"
+ },
+ {
+  "level": "Hard",
+  "topic": "Signals",
+  "text": "Which statements about model() are true? (Select all that apply.)",
+  "options": [
+   "The child can call .set() on it and a parent bound with [(value)] receives the update.",
+   "It cannot be declared as required.",
+   "It declares an input and a matching output named <name>Change.",
+   "[(value)] on the parent side can bind to a writable signal.",
+   "It is read-only like input()."
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "It is a writable signal designed for two-way binding.",
+  "explanation": "model() combines an input with a change output and is writable by the child. Parent two-way binding works with writable signals or property expressions. It is not read-only, and model.required() exists.",
+  "code": null,
+  "id": 111,
+  "key": "180db399c531"
+ },
+ {
+  "level": "Hard",
+  "topic": "Signals",
+  "text": "What does selected() return at the end?",
+  "options": [
+   "'b'",
+   "'x'",
+   "'y'",
+   "undefined"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "linkedSignal resets whenever its source signal changes.",
+  "explanation": "linkedSignal is writable, but when its source (options) changes it recomputes, discarding the manual 'b'. The recomputation yields options()[0], which is 'x'.",
+  "code": "options = signal(['a', 'b']);\nselected = linkedSignal(() => this.options()[0]);\n\nthis.selected.set('b');\nthis.options.set(['x', 'y']);\nconsole.log(this.selected());",
+  "id": 112,
+  "key": "1cce01344499"
+ },
+ {
+  "level": "Hard",
+  "topic": "Signals",
+  "text": "An OnPush component reads count() in its template. A service calls count.set() inside a setTimeout. What happens?",
+  "options": [
+   "The view is stale until a parent input changes.",
+   "The view is stale until markForCheck() is called.",
+   "An ExpressionChangedAfterItHasBeenChecked error is thrown.",
+   "The view updates because signal reads in the template mark the view for refresh when the value changes."
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Signals integrate with the reactive consumer of the template.",
+  "explanation": "A template that reads a signal becomes a reactive consumer; when the signal changes, Angular marks the view for refresh even under OnPush. No manual markForCheck is needed, and no NG0100 error occurs since the change happens outside a CD pass.",
+  "code": null,
+  "id": 113,
+  "key": "2accf06cb615"
+ },
+ {
+  "level": "Hard",
+  "topic": "Signals",
+  "text": "What does reading the view query signal in the constructor log?",
+  "options": [
+   "The ElementRef of the canvas.",
+   "null",
+   "undefined, because the query result is not available during construction; use an effect or afterNextRender to read it.",
+   "It throws NG0950."
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "View queries resolve after the view is created.",
+  "explanation": "Signal-based queries return undefined until the view is created; the constructor runs before that. Read them in effect(), afterNextRender() or later hooks. They do not throw for an optional viewChild and do not return null.",
+  "code": "chart = viewChild<ElementRef>('chart');\nconstructor() {\n  console.log(this.chart());\n}",
+  "id": 114,
+  "key": "48332506dcf6"
+ },
+ {
+  "level": "Hard",
+  "topic": "Signals",
+  "text": "When is the cleanup function registered with onCleanup invoked?",
+  "options": [
+   "Only when the component is destroyed.",
+   "Before the effect re-runs and when the effect is destroyed.",
+   "After every change detection pass.",
+   "Only if the effect throws."
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Think of clearing an interval between runs.",
+  "explanation": "Cleanup runs before each subsequent execution of the effect and when it is destroyed, which suits timers and subscriptions that depend on the signal value. It is not tied to CD passes or errors.",
+  "code": "effect(onCleanup => {\n  const id = setInterval(() => this.tick(), this.ms());\n  onCleanup(() => clearInterval(id));\n});",
+  "id": 115,
+  "key": "752e66a816cb"
+ },
+ {
+  "level": "Hard",
+  "topic": "Signals",
+  "text": "How many times, and with what value, does this effect log?",
+  "options": [
+   "Three times: 0, 1, 2",
+   "Twice: 0, 2",
+   "Once: 'count 2'",
+   "Never, since effects only run after user events"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Component effects run during change detection, not synchronously on set().",
+  "explanation": "A component effect is scheduled to run during change detection, so by its first execution count is already 2, and intermediate values are never observed. Effects are asynchronous and batched, unlike RxJS subscriptions.",
+  "code": "count = signal(0);\nconstructor() {\n  effect(() => console.log('count', this.count()));\n  this.count.set(1);\n  this.count.set(2);\n}",
+  "id": 116,
+  "key": "47f66b0c91a3"
+ },
+ {
+  "level": "Hard",
+  "topic": "Change detection",
+  "text": "Which of these cause an OnPush component to be checked? (Select all that apply.)",
+  "options": [
+   "A setTimeout inside the component changes a plain field.",
+   "The parent binds a new object reference to one of its @Input()s.",
+   "A DOM event handler declared in its own template fires.",
+   "An observable bound with the async pipe in its template emits.",
+   "The parent mutates a property of the same object passed to the @Input()."
+  ],
+  "correct": [
+   1,
+   2,
+   3
+  ],
+  "hint": "OnPush needs a reference change, an event from within, an async pipe/signal notification, or an explicit mark.",
+  "explanation": "OnPush views are checked on input reference changes, template event handlers, async pipe emissions (which call markForCheck) and signals. Mutating an input object in place or changing a plain field from a timer does not mark the view dirty.",
+  "code": null,
+  "id": 117,
+  "key": "e14847a0933f"
+ },
+ {
+  "level": "Hard",
+  "topic": "Change detection",
+  "text": "Why does the child list not update after add() is called?",
+  "options": [
+   "push() mutates the array in place, so the OnPush child's input reference is unchanged; use a new array.",
+   "OnPush components cannot render arrays.",
+   "The @for block requires trackBy to render new items.",
+   "Parent change detection is disabled once a child is OnPush."
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "OnPush compares input references.",
+  "explanation": "The child only re-checks when the bound reference changes; push() keeps the same array. Assigning this.names = [...this.names, 'x'] works. OnPush does not block rendering arrays or the parent's own CD.",
+  "code": "// child\n@Component({\n  selector: 'app-list',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  template: `@for (i of items; track i) { <li>{{ i }}</li> }`\n})\nclass ListComponent { @Input() items: string[] = []; }\n\n// parent\nadd() { this.names.push('x'); }",
+  "id": 118,
+  "key": "8a89792d4291"
+ },
+ {
+  "level": "Hard",
+  "topic": "Change detection",
+  "text": "What happens in development mode when this component is first rendered?",
+  "options": [
+   "It throws ExpressionChangedAfterItHasBeenChecked (NG0100) because a binding changed after it was checked.",
+   "No error; the view shows 'Loaded' immediately.",
+   "The error only occurs in production builds.",
+   "It causes an infinite change detection loop."
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Dev mode runs a second verification pass.",
+  "explanation": "ngAfterViewInit runs after the view's bindings were evaluated, so the dev-mode check pass sees title differing from the previously rendered value and throws NG0100. It does not occur only in production and does not loop.",
+  "code": "@Component({ selector: 'app-x', template: `{{ title }}` })\nclass X implements AfterViewInit {\n  title = 'Initial';\n  ngAfterViewInit() { this.title = 'Loaded'; }\n}",
+  "id": 119,
+  "key": "6eacc0e0003c"
+ },
+ {
+  "level": "Hard",
+  "topic": "Change detection",
+  "text": "A field bound in the template is set from a @ViewChild value in ngAfterViewInit, causing NG0100. Which fixes work? (Select all that apply.)",
+  "options": [
+   "Move the assignment to ngAfterViewChecked.",
+   "Call markForCheck() after assigning.",
+   "Defer the assignment with Promise.resolve().then(...) so a later CD pass renders it.",
+   "Inject ChangeDetectorRef and call detectChanges() right after assigning."
+  ],
+  "correct": [
+   2,
+   3
+  ],
+  "hint": "Either re-render synchronously or move the change into a later turn.",
+  "explanation": "detectChanges() re-evaluates the view immediately, and a microtask schedules a subsequent CD pass, so the verification pass does not see a stale value. markForCheck only schedules future checks and the dev-mode check still fails, while ngAfterViewChecked is subject to the same problem.",
+  "code": null,
+  "id": 120,
+  "key": "4cda5c0e170a"
+ },
+ {
+  "level": "Hard",
+  "topic": "Change detection",
+  "text": "Which statements about markForCheck() and detectChanges() are true? (Select all that apply.)",
+  "options": [
+   "detectChanges() runs change detection synchronously on the view and its children.",
+   "markForCheck() runs change detection synchronously on the component.",
+   "detectChanges() marks ancestors up to the root as dirty.",
+   "markForCheck() marks the view and its ancestors as dirty so they are checked in the next CD cycle; it does not run CD itself."
+  ],
+  "correct": [
+   0,
+   3
+  ],
+  "hint": "One schedules, the other executes.",
+  "explanation": "markForCheck is a flag-setting operation that relies on a later tick, which is why it is used with OnPush. detectChanges performs an immediate check of that subtree and does not touch ancestors' dirty state.",
+  "code": null,
+  "id": 121,
+  "key": "f1b4a462a362"
+ },
+ {
+  "level": "Hard",
+  "topic": "Change detection",
+  "text": "Why would you register a mousemove listener inside ngZone.runOutsideAngular()?",
+  "options": [
+   "It makes the handler run faster than native listeners.",
+   "So the handler is not patched and never runs.",
+   "It avoids triggering an application-wide change detection per event; re-enter the zone or notify Angular when the UI actually needs updating.",
+   "It lets the handler update templates without any change detection."
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Zone.js triggers ApplicationRef.tick after handlers it tracks.",
+  "explanation": "Events registered within the Angular zone trigger CD after each invocation; outside it, they don't. You must call ngZone.run, markForCheck, or set a signal when something visible needs to change. It does not make the handler itself faster and the handler still runs.",
+  "code": null,
+  "id": 122,
+  "key": "86472eca0e46"
+ },
+ {
+  "level": "Hard",
+  "topic": "Zone.js",
+  "text": "In a zone.js-based app, which of these cause Angular to run change detection after they complete? (Select all that apply.)",
+  "options": [
+   "An XHR or fetch response handled in the Angular zone",
+   "A field changed by code running in runOutsideAngular",
+   "A setTimeout callback running in the Angular zone",
+   "Reading a signal in a plain TypeScript function",
+   "A Promise.then callback running in the Angular zone"
+  ],
+  "correct": [
+   0,
+   2,
+   4
+  ],
+  "hint": "Zone.js patches async APIs and notifies NgZone when its microtask queue empties.",
+  "explanation": "NgZone emits onMicrotaskEmpty after patched async tasks run inside the zone, which drives ApplicationRef.tick. Code outside the zone does not notify Angular, and merely reading a signal triggers nothing.",
+  "code": null,
+  "id": 123,
+  "key": "232a342be221"
+ },
+ {
+  "level": "Hard",
+  "topic": "Zoneless",
+  "text": "In a zoneless app (provideZonelessChangeDetection), which of these schedule change detection? (Select all that apply.)",
+  "options": [
+   "A signal read in a template changes.",
+   "A Promise resolution mutates a plain field.",
+   "markForCheck() is called.",
+   "A setTimeout callback mutates a plain field.",
+   "A template event listener fires."
+  ],
+  "correct": [
+   0,
+   2,
+   4
+  ],
+  "hint": "Without zone.js, Angular needs explicit notifications.",
+  "explanation": "Zoneless scheduling reacts to signals, markForCheck, async pipe, and template listener events. Mutating plain fields in timers or promises is not detected, so those would require signals or markForCheck.",
+  "code": null,
+  "id": 124,
+  "key": "0c40897318bb"
+ },
+ {
+  "level": "Hard",
+  "topic": "Change detection",
+  "text": "The parent runs change detection but passes no new inputs to an OnPush child. What is true for the child?",
+  "options": [
+   "Neither its hooks nor its template are touched.",
+   "Its template is re-checked but ngDoCheck is skipped.",
+   "ngDoCheck is still called, but its template is not re-checked unless marked dirty.",
+   "Its template is checked only in production mode."
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "ngDoCheck is invoked from the parent's view.",
+  "explanation": "ngDoCheck runs as part of the parent's check of the child directive, regardless of OnPush; the child's own view is skipped unless dirty. That is why ngDoCheck can be used to call markForCheck manually.",
+  "code": null,
+  "id": 125,
+  "key": "505e87349973"
+ },
+ {
+  "level": "Hard",
+  "topic": "Change detection",
+  "text": "How often is getTotal() evaluated in this default (non-OnPush) component template?",
+  "options": [
+   "Only once when the view is created.",
+   "Only when its dependencies change.",
+   "Only on events from the template.",
+   "On every change detection cycle that checks this view, regardless of whether inputs changed."
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Angular does not memoize plain method calls in templates.",
+  "explanation": "Template expressions with method calls are re-evaluated on every check of that view. Use a computed signal, a pure pipe or precomputed fields to avoid repeated work; Angular does not track what the method depends on.",
+  "code": "<p>{{ getTotal() }}</p>",
+  "id": 126,
+  "key": "d85e11a1e67e"
+ },
+ {
+  "level": "Hard",
+  "topic": "Pipes",
+  "text": "What happens in the template after toggleFirst() runs?",
+  "options": [
+   "The list updates because pipes always re-run.",
+   "Pure pipes are re-run only when the input reference changes, so the mutation is not reflected.",
+   "Angular throws an error for mutating bound arrays.",
+   "The pipe re-runs only if it is marked impure through OnPush."
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Pure pipes compare their arguments by reference.",
+  "explanation": "A pure pipe is re-executed only when its input value (by reference for objects) or arguments change; mutating an object inside the array doesn't qualify. Replace the array immutably or use an impure pipe (with performance cost).",
+  "code": "@Pipe({ name: 'active' })\nclass ActivePipe {\n  transform(users: User[]) { return users.filter(u => u.active); }\n}\n// template: @for (u of users | active; track u.id) { ... }\ntoggleFirst() { this.users[0].active = false; }",
+  "id": 127,
+  "key": "fabda2e7ede5"
+ },
+ {
+  "level": "Hard",
+  "topic": "DI",
+  "text": "CounterService is providedIn: 'root', and a component also declares providers: [CounterService]. Which instance does that component (and its children) receive?",
+  "options": [
+   "The root singleton.",
+   "A new instance created for that component's element injector, shared with its children but not with other component instances.",
+   "A new instance shared by all instances of the component.",
+   "An error for duplicate providers."
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Element injectors resolve before the environment injector.",
+  "explanation": "Component-level providers register on the element injector, so each component instance gets its own service, visible to its view children and content. The root provider is shadowed rather than conflicting.",
+  "code": null,
+  "id": 128,
+  "key": "d5f591681c33"
+ },
+ {
+  "level": "Hard",
+  "topic": "DI",
+  "text": "In what order does Angular resolve a dependency requested by a component?",
+  "options": [
+   "Root environment injector first, then element injectors.",
+   "Platform injector, then module injector, then component.",
+   "The element injector hierarchy (self and ancestors) first, then the environment injector chain, then the platform.",
+   "Only the nearest component's providers are considered."
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Think of two trees: element and environment.",
+  "explanation": "Resolution walks up the element injector tree and then continues to the environment injector hierarchy (route/lazy, root) and finally the platform, ending at NullInjector. Starting from root would defeat component-level overrides.",
+  "code": null,
+  "id": 129,
+  "key": "220908b35f71"
+ },
+ {
+  "level": "Hard",
+  "topic": "DI",
+  "text": "Which statements about injection flags and options are true? (Select all that apply.)",
+  "options": [
+   "self restricts lookup to the current node's own injector.",
+   "With optional, a missing dependency yields null instead of throwing NullInjectorError.",
+   "skipSelf starts resolution at the parent injector instead of the current one.",
+   "host searches all the way up to the root injector."
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "host stops at the host element of the current component.",
+  "explanation": "skipSelf, optional and self behave as described and combine, as in inject(Parent, { optional: true, skipSelf: true }). host limits the search to the host element boundary, it does not extend to the root.",
+  "code": "constructor(@Optional() @SkipSelf() parent: ParentService | null) {}\n// or\nparent = inject(ParentService, { optional: true, skipSelf: true });",
+  "id": 130,
+  "key": "11ccb84da2db"
+ },
+ {
+  "level": "Hard",
+  "topic": "DI",
+  "text": "Which statements about multi providers are true? (Select all that apply.)",
+  "options": [
+   "A later non-multi provider silently overrides earlier multi providers.",
+   "Injecting a multi token returns an array of all provided values.",
+   "Mixing multi and non-multi providers for the same token is an error.",
+   "Values are collected in the order they were registered."
+  ],
+  "correct": [
+   1,
+   2,
+   3
+  ],
+  "hint": "Angular refuses to mix the two kinds.",
+  "explanation": "multi: true collects values into an array in provision order. Mixing with non-multi providers throws an error rather than overriding silently.",
+  "code": null,
+  "id": 131,
+  "key": "d34d9477bd57"
+ },
+ {
+  "level": "Hard",
+  "topic": "DI",
+  "text": "What is the difference in this setup between inject(Logger) and inject(LoggerService)?",
+  "options": [
+   "They are the same instance.",
+   "inject(Logger) throws since Logger is abstract.",
+   "inject(LoggerService) is undefined.",
+   "They are two separate instances because useClass creates a new instance; use useExisting to alias."
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "useClass versus useExisting.",
+  "explanation": "useClass instantiates its own object for the Logger token, separate from the LoggerService provider. useExisting aliases the token to the existing provider so a single instance is shared.",
+  "code": "providers: [\n  LoggerService,\n  { provide: Logger, useClass: LoggerService }\n]",
+  "id": 132,
+  "key": "43e86195a11a"
+ },
+ {
+  "level": "Hard",
+  "topic": "DI",
+  "text": "Where is inject() allowed? (Select all that apply.)",
+  "options": [
+   "Inside a setTimeout callback created in the constructor",
+   "In a constructor body",
+   "Synchronously inside a functional CanActivateFn",
+   "Inside ngOnInit",
+   "In a field initializer of a component or service"
+  ],
+  "correct": [
+   1,
+   2,
+   4
+  ],
+  "hint": "It requires an active injection context.",
+  "explanation": "Injection contexts exist during construction, field initialization, factory functions and framework-invoked functional guards. Lifecycle hooks and later async callbacks are not injection contexts unless wrapped with runInInjectionContext.",
+  "code": null,
+  "id": 133,
+  "key": "a2fde210702f"
+ },
+ {
+  "level": "Hard",
+  "topic": "DI",
+  "text": "A service is listed in providers of a lazy-loaded NgModule (classic loadChildren). What is the effect?",
+  "options": [
+   "It becomes a root singleton.",
+   "The lazy module gets its own child environment injector with its own instance of the service, separate from any root provider.",
+   "It is available only to the lazy module's components, never services.",
+   "Angular throws a duplicate provider error."
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Lazy modules create child injectors.",
+  "explanation": "Providers in a lazy-loaded NgModule are registered on a child environment injector, so code in that subtree sees its own instance, shadowing any root-level provider. This is a common source of 'two instances' bugs.",
+  "code": null,
+  "id": 134,
+  "key": "83cb0d619311"
+ },
+ {
+  "level": "Hard",
+  "topic": "DI",
+  "text": "How do viewProviders differ from providers in a component?",
+  "options": [
+   "viewProviders are not visible to content projected into the component via ng-content.",
+   "viewProviders are visible only to the component class itself.",
+   "viewProviders are tree-shaken.",
+   "viewProviders are visible to the parent component."
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Think about view versus content children.",
+  "explanation": "viewProviders are visible to the component's view children only; projected content queries the injector tree of its declaring context and cannot see them. providers are visible to both.",
+  "code": null,
+  "id": 135,
+  "key": "3df75a3472b2"
+ },
+ {
+  "level": "Hard",
+  "topic": "Routing",
+  "text": "What happens when a user who is not logged in navigates to a route protected by this guard?",
+  "options": [
+   "The navigation is cancelled and the router redirects to /login.",
+   "The navigation is blocked and the user stays on the current page silently.",
+   "An error is thrown because guards cannot return UrlTree.",
+   "The route activates and the login page shows as an overlay."
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Guards can return booleans, UrlTrees or observables/promises of them.",
+  "explanation": "Returning a UrlTree cancels the current navigation and starts a new one to the tree's URL, which is cleaner than calling router.navigate inside the guard. Returning false would block silently.",
+  "code": "export const authGuard: CanActivateFn = () => {\n  const auth = inject(AuthService);\n  const router = inject(Router);\n  return auth.isLoggedIn() ? true : router.createUrlTree(['/login']);\n};",
+  "id": 136,
+  "key": "3df90cd4ab4b"
+ },
+ {
+  "level": "Hard",
+  "topic": "Routing",
+  "text": "Which statements about route resolvers are true? (Select all that apply.)",
+  "options": [
+   "If a resolver's observable completes without emitting, the navigation is cancelled.",
+   "Navigation waits for resolvers to produce a value before activating the route.",
+   "Resolvers run after the target component's constructor.",
+   "Resolved data can be read from ActivatedRoute.data or bound to inputs with withComponentInputBinding()."
+  ],
+  "correct": [
+   0,
+   1,
+   3
+  ],
+  "hint": "Resolvers run before the route component exists.",
+  "explanation": "The router resolves data before activation and exposes it via data. An empty observable results in cancelled navigation. Since resolution precedes activation, the component is not constructed first.",
+  "code": null,
+  "id": 137,
+  "key": "cb2c23cbfd15"
+ },
+ {
+  "level": "Hard",
+  "topic": "Routing",
+  "text": "How does canMatch differ from canActivate?",
+  "options": [
+   "canMatch runs after the component is created.",
+   "canMatch can only return booleans.",
+   "canMatch is evaluated during route matching; if it returns false the route is skipped, other matching routes are considered, and a lazy bundle is not loaded.",
+   "They are identical aside from naming."
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "One affects which route config matches.",
+  "explanation": "canMatch participates in matching, so a false result lets the router try the next route with the same path and avoids downloading lazy code. canActivate runs after a route has matched and blocks the navigation instead.",
+  "code": null,
+  "id": 138,
+  "key": "548c35168257"
+ },
+ {
+  "level": "Hard",
+  "topic": "Routing",
+  "text": "Navigating from /user/1 to /user/2 on the same route config with the same component. What happens?",
+  "options": [
+   "The component is reused; ngOnInit does not run again, so read params through paramMap observable or input binding.",
+   "The component is destroyed and recreated.",
+   "ngOnInit runs again but the constructor does not.",
+   "Navigation is ignored."
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "The default reuse strategy reuses the component when only params differ.",
+  "explanation": "The default RouteReuseStrategy reuses the component instance if the route config is the same, updating ActivatedRoute observables. Snapshot reads in ngOnInit then go stale. Subscribe to paramMap or use component input binding.",
+  "code": null,
+  "id": 139,
+  "key": "6965e35e7690"
+ },
+ {
+  "level": "Hard",
+  "topic": "Routing",
+  "text": "Which statements about lazy loading with standalone routes are true? (Select all that apply.)",
+  "options": [
+   "loadChildren can point to a file exporting a Routes array.",
+   "A static import of the same component elsewhere in eager code can pull it into the main bundle, defeating the lazy split.",
+   "loadComponent: () => import('./a').then(m => m.A) lazily loads a standalone component.",
+   "Lazy loading requires NgModules."
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "Bundlers split on dynamic imports only.",
+  "explanation": "Dynamic import() is the split point for both loadComponent and loadChildren. If the class is also statically imported in eagerly loaded code, it ends up in the main chunk. NgModules are not required.",
+  "code": null,
+  "id": 140,
+  "key": "5ab9a5a6158e"
+ },
+ {
+  "level": "Hard",
+  "topic": "Routing",
+  "text": "A route is declared with providers: [AdminService] and children. Where does AdminService live?",
+  "options": [
+   "On the root injector, shared app-wide.",
+   "In a route environment injector shared by that route and its children, separate from root.",
+   "On the injector of each routed component individually.",
+   "Providers are not allowed on routes."
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Routes can create their own environment injector.",
+  "explanation": "Route-level providers create an environment injector for that route and its descendants, so the service is created lazily when the route is activated and is shared within the subtree.",
+  "code": null,
+  "id": 141,
+  "key": "57a0a150fec4"
+ },
+ {
+  "level": "Hard",
+  "topic": "Reactive forms",
+  "text": "Given this group, which statements are true? (Select all that apply.)",
+  "options": [
+   "form.valid ignores b's validators.",
+   "form.value includes b.",
+   "form.value omits b.",
+   "form.getRawValue() includes b."
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "Disabled controls are excluded from value and validation aggregation.",
+  "explanation": "Disabled controls are excluded from the parent's value and from validity calculations, but getRawValue() returns all controls. Thus form.value omits b.",
+  "code": "form = this.fb.group({\n  a: ['x', Validators.required],\n  b: [{ value: 'y', disabled: true }, Validators.required]\n});",
+  "id": 142,
+  "key": "b536346dd6a4"
+ },
+ {
+  "level": "Hard",
+  "topic": "Reactive forms",
+  "text": "Which statements about setValue and patchValue on a FormGroup are true? (Select all that apply.)",
+  "options": [
+   "patchValue accepts partial objects and ignores unknown keys.",
+   "patchValue throws when a key is missing.",
+   "setValue requires an object matching the group's structure and throws on missing controls.",
+   "setValue silently ignores unknown keys."
+  ],
+  "correct": [
+   0,
+   2
+  ],
+  "hint": "One is strict, one is lenient.",
+  "explanation": "setValue is strict about structure and throws for missing or unknown controls, while patchValue is lenient and ignores keys without matching controls.",
+  "code": null,
+  "id": 143,
+  "key": "7b2e1625d36a"
+ },
+ {
+  "level": "Hard",
+  "topic": "Reactive forms",
+  "text": "What happens when a control has both a sync validator and an async validator, and the sync validator fails?",
+  "options": [
+   "Both run in parallel.",
+   "The async validator is invoked first.",
+   "Only the async validator result is reported.",
+   "The async validator is not invoked; status is INVALID from the sync errors."
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Async validators run only if sync ones pass.",
+  "explanation": "Angular runs async validators only when sync validators produce no errors; status then becomes PENDING while it runs. This avoids unnecessary calls such as server requests for obviously invalid input.",
+  "code": null,
+  "id": 144,
+  "key": "24598c34800f"
+ },
+ {
+  "level": "Hard",
+  "topic": "Reactive forms",
+  "text": "What does { updateOn: 'blur' } do on a FormControl?",
+  "options": [
+   "It only delays validation messages.",
+   "It makes the control disabled until blur.",
+   "It runs async validators on blur only.",
+   "The control's value, validity and valueChanges update on blur instead of on each input event."
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "It changes when the view value is propagated to the model.",
+  "explanation": "updateOn controls when the control's value updates and validation runs; with 'blur' these occur when the element loses focus. It is not limited to messages or async validators.",
+  "code": "name = new FormControl('', { updateOn: 'blur' });",
+  "id": 145,
+  "key": "142387fdf05f"
+ },
+ {
+  "level": "Hard",
+  "topic": "Reactive forms",
+  "text": "What does form.reset() do to this control, and what is its type?",
+  "options": [
+   "Resets to 'a' and the type is string.",
+   "Resets to '' and the type is string.",
+   "Throws because no reset value was supplied.",
+   "Sets it to null and the type is string | null."
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "By default reset goes to null unless nonNullable.",
+  "explanation": "A typed FormControl('a') resets to null and is typed string | null. new FormControl('a', { nonNullable: true }) resets to its initial value and is typed string.",
+  "code": "const c = new FormControl('a');\nc.reset();",
+  "id": 146,
+  "key": "9fc3fd886b2f"
+ },
+ {
+  "level": "Hard",
+  "topic": "Reactive forms",
+  "text": "A cross-field validator is attached to the FormGroup. Where can the mismatch error be read?",
+  "options": [
+   "On the group via form.errors / form.hasError('mismatch'), not on the child controls.",
+   "On form.get('confirm')?.errors.",
+   "On every control in the group.",
+   "Nowhere; group validators cannot produce errors."
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Validators attach errors to the control they are assigned to.",
+  "explanation": "The validator runs against the group so errors are on the group. To show them on a child you must set errors there manually or check the group's error in the template.",
+  "code": "form = new FormGroup(\n  { pw: new FormControl(''), confirm: new FormControl('') },\n  { validators: matchValidator }\n);",
+  "id": 147,
+  "key": "4812b7f1c23a"
+ },
+ {
+  "level": "Hard",
+  "topic": "Reactive forms",
+  "text": "Which are true when building a custom ControlValueAccessor? (Select all that apply.)",
+  "options": [
+   "setDisabledState is optional.",
+   "You implement writeValue, registerOnChange and registerOnTouched.",
+   "Calling the registered onChange is unnecessary since Angular watches inner DOM events.",
+   "You provide NG_VALUE_ACCESSOR with multi: true, usually via useExisting and forwardRef.",
+   "The class must extend FormControl."
+  ],
+  "correct": [
+   0,
+   1,
+   3
+  ],
+  "hint": "The accessor bridges Angular's forms API and your element.",
+  "explanation": "The three core methods and the NG_VALUE_ACCESSOR provider are required, while setDisabledState is optional. You must call onChange yourself to push values to the form model, and the class does not extend FormControl.",
+  "code": null,
+  "id": 148,
+  "key": "5e7208c270de"
+ },
+ {
+  "level": "Hard",
+  "topic": "HttpClient/interceptors",
+  "text": "With provideHttpClient(withInterceptors([a, b, c])), what is the order?",
+  "options": [
+   "Requests pass c, b, a; responses pass a, b, c.",
+   "Both requests and responses pass a, b, c.",
+   "Requests pass a, b, c; responses pass c, b, a.",
+   "Order is arbitrary."
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "It's like nested middleware.",
+  "explanation": "Interceptors form a chain: a wraps b wraps c. Requests go through them in array order and responses come back through in reverse order.",
+  "code": null,
+  "id": 149,
+  "key": "a6974bc15e0f"
+ },
+ {
+  "level": "Hard",
+  "topic": "HttpClient/interceptors",
+  "text": "Why does this interceptor fail to add the header?",
+  "options": [
+   "next(req) cannot be called synchronously.",
+   "Headers cannot be set in interceptors.",
+   "HttpHeaders and HttpRequest are immutable; set() returns a new instance, so use req.clone({ setHeaders: ... }).",
+   "Interceptors must return a Promise."
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Check the return value of set().",
+  "explanation": "HttpRequest and HttpHeaders are immutable, and set() returns a new HttpHeaders that is discarded here. The original req is passed on unchanged. Clone the request with the new header.",
+  "code": "export const auth: HttpInterceptorFn = (req, next) => {\n  req.headers.set('Authorization', 'Bearer x');\n  return next(req);\n};",
+  "id": 150,
+  "key": "552882a01961"
+ },
+ {
+  "level": "Hard",
+  "topic": "HttpClient/interceptors",
+  "text": "A class-based interceptor is registered via HTTP_INTERCEPTORS but the app uses provideHttpClient() with no features. What happens?",
+  "options": [
+   "It is ignored unless withInterceptorsFromDi() is added.",
+   "It runs first, before functional interceptors.",
+   "Angular throws at startup.",
+   "It runs but only for POST requests."
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "DI-based interceptors are opt-in with the functional API.",
+  "explanation": "provideHttpClient doesn't pick up legacy DI interceptors by default; you must include withInterceptorsFromDi(). It's not an error, but the interceptor never runs.",
+  "code": null,
+  "id": 151,
+  "key": "04ea5fb7a21f"
+ },
+ {
+  "level": "Hard",
+  "topic": "HttpClient/interceptors",
+  "text": "Which statements about HttpClient observables are true? (Select all that apply.)",
+  "options": [
+   "Subscribing twice to the same cold observable sends two requests.",
+   "Unsubscribing before the response arrives cancels the underlying request.",
+   "They emit once and complete for a normal response.",
+   "You must unsubscribe after completion to prevent a memory leak."
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "They are cold single-shot observables.",
+  "explanation": "HttpClient returns cold observables that complete after the response; unsubscribing early aborts the request, and each subscription triggers its own call. Unsubscribing after completion is unnecessary.",
+  "code": null,
+  "id": 152,
+  "key": "31a650e7a2dc"
+ },
+ {
+  "level": "Hard",
+  "topic": "Deferrable views",
+  "text": "Which statements about @defer are true? (Select all that apply.)",
+  "options": [
+   "Dependencies of @placeholder are loaded lazily with the deferred content.",
+   "Components, directives and pipes used inside the block must be standalone to be deferred.",
+   "If a deferred dependency is also used eagerly outside the block in the same component, it is not lazily loaded.",
+   "@loading content is shown before the trigger fires.",
+   "The default trigger is on idle."
+  ],
+  "correct": [
+   1,
+   2,
+   4
+  ],
+  "hint": "Placeholder content must be available immediately.",
+  "explanation": "Only standalone dependencies referenced solely inside the block are split out, and default trigger is idle. @placeholder dependencies are eager since they render first, and @loading shows only once loading started.",
+  "code": null,
+  "id": 153,
+  "key": "e2d7eb8320f6"
+ },
+ {
+  "level": "Hard",
+  "topic": "Content projection",
+  "text": "app-card renders <ng-content /> inside @if (open). With open === false, what about the projected <heavy-cmp />?",
+  "options": [
+   "It is not created until open becomes true.",
+   "It is created by the parent regardless but not attached to the DOM while the ng-content isn't rendered.",
+   "Angular throws an error.",
+   "It is created lazily like @defer."
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Projected content belongs to the parent's template.",
+  "explanation": "Content projection is evaluated in the declaring parent's context, so projected components are instantiated even if the slot is not rendered. Use @defer or ng-template with a structural directive to defer creation.",
+  "code": "<app-card>\n  <heavy-cmp />\n</app-card>\n\n<!-- app-card template -->\n@if (open) { <ng-content /> }",
+  "id": 154,
+  "key": "85d9df8e99ca"
+ },
+ {
+  "level": "Hard",
+  "topic": "Lifecycle",
+  "text": "Which statement about first availability of queries is correct?",
+  "options": [
+   "Both @ViewChild and @ContentChild are available in ngOnInit.",
+   "Non-static @ContentChild is available in ngAfterContentInit and @ViewChild in ngAfterViewInit (static queries earlier).",
+   "@ContentChild is available only in ngAfterViewInit.",
+   "Both are available only after ngOnDestroy."
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Content is initialized before the view.",
+  "explanation": "Content queries resolve before view queries: ngAfterContentInit runs before ngAfterViewInit. Static view queries can be available in ngOnInit, but dynamic ones need ngAfterViewInit.",
+  "code": null,
+  "id": 155,
+  "key": "7648adfa9107"
+ },
+ {
+  "level": "Hard",
+  "topic": "Lifecycle",
+  "text": "Which statements about ngOnChanges are true? (Select all that apply.)",
+  "options": [
+   "It is not called when the parent mutates a property of the same object reference passed in.",
+   "It is called whenever any field of the component changes.",
+   "It is not called for changes the component makes to its own @Input property from inside.",
+   "It is called before ngOnInit when the component has bound @Input()s."
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "It reacts to binding changes from the parent only.",
+  "explanation": "ngOnChanges receives SimpleChanges for bindings updated by the parent, based on reference checks. Internal assignments and in-place mutations do not trigger it, and it is not a general field watcher.",
+  "code": null,
+  "id": 156,
+  "key": "fd1fc7f40b08"
+ },
+ {
+  "level": "Hard",
+  "topic": "Standalone",
+  "text": "A standalone component uses <app-child /> in its template but does not list ChildComponent in its imports. What happens?",
+  "options": [
+   "It works because all standalone components are globally registered.",
+   "It works at runtime but warns in the console.",
+   "It compiles because Angular auto-imports from the file.",
+   "The compiler reports an unknown element error (NG8001); the component must be imported."
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Standalone components have explicit template scope.",
+  "explanation": "A standalone component's template scope consists of its own imports; unknown elements cause a compile error under AOT. No global registration or auto-import exists.",
+  "code": null,
+  "id": 157,
+  "key": "524721435b81"
+ },
+ {
+  "level": "Hard",
+  "topic": "Testing",
+  "text": "In a test for an OnPush component, setting componentInstance.name = 'X' followed by fixture.detectChanges() works the first time but not afterwards. What is the proper fix?",
+  "options": [
+   "Use fixture.componentRef.setInput('name', 'X') then detectChanges().",
+   "Call fixture.autoDetectChanges(false).",
+   "Remove OnPush in the test with overrideComponent only.",
+   "Call tick() inside the test."
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "OnPush needs input changes via bindings.",
+  "explanation": "OnPush views are checked on the first detectChanges but afterwards only when marked dirty; setInput goes through the input binding path and marks it dirty. Setting a property directly bypasses that. Overriding strategy changes behavior under test.",
+  "code": "fixture.componentInstance.name = 'X';\nfixture.detectChanges();",
+  "id": 158,
+  "key": "840a8b7f5025"
+ },
+ {
+  "level": "Hard",
+  "topic": "Testing",
+  "text": "A fakeAsync test calls component.search('a') where search uses debounceTime(300) and ends without further calls. What happens?",
+  "options": [
+   "It passes; timers are discarded.",
+   "It fails with an error about 1 timer(s) still in the queue; use tick(300) or flush().",
+   "It hangs forever.",
+   "It passes but the subscription is not executed."
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "fakeAsync verifies that no timers remain.",
+  "explanation": "fakeAsync throws if pending timers exist at test end. Advance virtual time with tick(300) or run all with flush(). It does not hang, since time is virtual.",
+  "code": "it('searches', fakeAsync(() => {\n  component.search('a');\n}));",
+  "id": 159,
+  "key": "c04813922558"
+ },
+ {
+  "level": "Hard",
+  "topic": "RxJS state",
+  "text": "What does the subscriber of this pipeline receive when the user clicks the button three times?",
+  "options": [
+   "1, 2, 3 as the clicks happen",
+   "3 once, after the third click",
+   "Nothing, because reduce emits only when the source completes and fromEvent never completes",
+   "0, 1, 2, 3"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Compare reduce with scan.",
+  "explanation": "reduce accumulates silently and emits the final value only on source completion, and a DOM event stream never completes, so nothing is emitted. scan emits each intermediate accumulation, which is what is wanted for running counts.",
+  "code": "fromEvent(button, 'click')\n  .pipe(reduce(count => count + 1, 0))\n  .subscribe(console.log);",
+  "id": 160,
+  "key": "acedb0d11c85"
+ },
+ {
+  "level": "Expert",
+  "topic": "Zone.js",
+  "text": "A component registers a high-frequency mousemove listener inside ngOnInit. Which approach avoids an application-wide change detection pass per event while still allowing selective updates?",
+  "options": [
+   "Mark the component OnPush so Zone.js stops patching addEventListener",
+   "Use setTimeout inside the handler to defer the tick",
+   "Call ChangeDetectorRef.detach() in the constructor, which also unpatches the listener",
+   "Wrap the registration in NgZone.runOutsideAngular and re-enter with ngZone.run only when state must update"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Think about which zone the listener is registered in.",
+  "explanation": "Listeners registered in the Angular zone trigger ApplicationRef.tick after each event. Registering in runOutsideAngular avoids that, and ngZone.run re-enters when needed. OnPush does not change zone patching, and detach only affects one view, not the global tick.",
+  "code": "ngOnInit() {\n  this.zone.runOutsideAngular(() => {\n    window.addEventListener('mousemove', this.onMove);\n  });\n}",
+  "id": 161,
+  "key": "86cfa80011e6"
+ },
+ {
+  "level": "Expert",
+  "topic": "Zoneless",
+  "text": "In a zoneless application (provideZonelessChangeDetection), which of the following schedule a change detection run? (Select all that apply.)",
+  "options": [
+   "An async pipe receiving a new emission",
+   "Calling ChangeDetectorRef.markForCheck()",
+   "Setting a signal that is read in a component template",
+   "A Promise.then callback that mutates a plain field",
+   "Updating a plain class field inside a setTimeout callback"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "Zoneless relies on explicit notifications, not on patched async APIs.",
+  "explanation": "Signals read in templates, markForCheck, async pipe emissions and template event listeners notify the scheduler. Plain field mutations in timers or promises produce no notification without Zone.js, so the view stays stale.",
+  "code": null,
+  "id": 162,
+  "key": "5a815c287e6d"
+ },
+ {
+  "level": "Expert",
+  "topic": "OnPush",
+  "text": "Which of the following mark an OnPush component view as dirty? (Select all that apply.)",
+  "options": [
+   "A DOM event handler bound in the component's own template runs",
+   "An async pipe in its template receives a new value",
+   "An @Input receives a new object reference",
+   "A property of an input object is mutated in place by the parent",
+   "A plain field is changed by a setTimeout callback in the component"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "OnPush reacts to references and explicit events, not mutation.",
+  "explanation": "New input references, template-bound events, and async pipe emissions (via markForCheck) dirty the view. In-place mutation keeps the same reference, and a timer changing a field does not mark the view dirty.",
+  "code": null,
+  "id": 163,
+  "key": "c15c4d0441fb"
+ },
+ {
+  "level": "Expert",
+  "topic": "Signals",
+  "text": "What happens when signal.set() is called with a value equal (Object.is) to the current value using the default equality?",
+  "options": [
+   "Computed signals recompute but templates are not refreshed",
+   "The signal version increments and consumers are marked dirty",
+   "Dependents are not notified and no recomputation occurs",
+   "Effects re-run once but computed signals are skipped"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Default equality short-circuits notifications.",
+  "explanation": "The signal compares with Object.is and, if equal, does nothing, so no consumers are dirtied. Effects and computeds are consumers and are not notified either.",
+  "code": null,
+  "id": 164,
+  "key": "5735a9f2a6d8"
+ },
+ {
+  "level": "Expert",
+  "topic": "Signals",
+  "text": "How does a computed() signal behave with respect to evaluation?",
+  "options": [
+   "It recomputes eagerly on every dependency change",
+   "It recomputes on every change detection pass",
+   "It recomputes on every read regardless of dependency changes",
+   "It is lazy and memoized: it recomputes only when read after a dependency changed"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Think pull-based, not push-based.",
+  "explanation": "Computeds are lazily evaluated and cached until a dependency marks them stale. They are not eager, and they do not recompute on each read when dependencies are unchanged.",
+  "code": null,
+  "id": 165,
+  "key": "de9bc53b6211"
+ },
+ {
+  "level": "Expert",
+  "topic": "Signals",
+  "text": "Which statements about effect() in Angular are true? (Select all that apply.)",
+  "options": [
+   "Setting a signal always runs dependent effects immediately before set() returns",
+   "Effects must always be destroyed manually with destroy() or they leak, even in components",
+   "The onCleanup callback runs before the next execution and on destroy",
+   "Signals read inside untracked() do not become dependencies of the effect",
+   "Effects are scheduled and flushed asynchronously, not synchronously when a signal is set"
+  ],
+  "correct": [
+   2,
+   3,
+   4
+  ],
+  "hint": "Effects are reactive side effects with managed lifetimes.",
+  "explanation": "Effects are batched and run during change detection or the scheduler flush, with cleanups between runs, and untracked reads add no dependency. They do not run synchronously inside set(). Effects created in an injection context are destroyed automatically with their owner, so manual destroy is not required.",
+  "code": "effect((onCleanup) => {\n  const id = setInterval(() => log(this.count()), 1000);\n  onCleanup(() => clearInterval(id));\n});",
+  "id": 166,
+  "key": "5397e4fc6511"
+ },
+ {
+  "level": "Expert",
+  "topic": "Dependency Injection",
+  "text": "A component declares a service in viewProviders. Which consumer can NOT inject it?",
+  "options": [
+   "The component itself",
+   "A component projected through <ng-content> into this component's template",
+   "A directive on an element inside this component's template",
+   "A child component declared in this component's template"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "viewProviders are visible only to the view, not content.",
+  "explanation": "viewProviders are visible to the component and nodes in its own view but hidden from projected content, which belongs to the parent's declaration. Providers in 'providers' are visible to content children too.",
+  "code": null,
+  "id": 167,
+  "key": "1761c995b0a7"
+ },
+ {
+  "level": "Expert",
+  "topic": "Dependency Injection",
+  "text": "A component provides FormStateService in its providers and a child component needs the parent component's instance, while the child itself also provides FormStateService. How does the child obtain the parent's instance?",
+  "options": [
+   "inject(FormStateService, { host: true, self: true })",
+   "inject(FormStateService, { optional: true })",
+   "inject(FormStateService, { skipSelf: true })",
+   "inject(FormStateService, { self: true })"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Skip the node's own injector.",
+  "explanation": "skipSelf starts resolution at the parent element injector. self restricts to the node itself and would return the child's own instance, and optional only changes failure behavior.",
+  "code": null,
+  "id": 168,
+  "key": "9a01d852a864"
+ },
+ {
+  "level": "Expert",
+  "topic": "Dependency Injection",
+  "text": "Which statements about providedIn: 'root' services are true? (Select all that apply.)",
+  "options": [
+   "A lazy-loaded route that injects one gets a new instance per route by default",
+   "They are tree-shakable if never injected",
+   "They are registered by listing them in AppModule providers",
+   "A lazy route's providers array can override them for that subtree",
+   "They are singletons in the root environment injector unless overridden"
+  ],
+  "correct": [
+   1,
+   3,
+   4
+  ],
+  "hint": "Think about where the root injector sits relative to route injectors.",
+  "explanation": "providedIn root registers a tree-shakable factory in the root injector, so one instance is shared, including lazy routes, unless a route's providers override it. No per-route instance is created unless the route provides its own.",
+  "code": null,
+  "id": 169,
+  "key": "fa65284f193d"
+ },
+ {
+  "level": "Expert",
+  "topic": "Routing",
+  "text": "Services listed in a Route's providers array are scoped how?",
+  "options": [
+   "To an environment injector created for that route and its child routes",
+   "To the root injector globally",
+   "To the component rendered by the route only",
+   "To the router-outlet element injector"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Routes can create their own environment injectors.",
+  "explanation": "Route providers create a route-level EnvironmentInjector shared by the route and its children. They are not global, and they are not element-level providers of the component.",
+  "code": null,
+  "id": 170,
+  "key": "e9d47595e999"
+ },
+ {
+  "level": "Expert",
+  "topic": "Forms",
+  "text": "Which are required or correct when implementing a custom ControlValueAccessor? (Select all that apply.)",
+  "options": [
+   "writeValue is called by the forms API to push model values into the view",
+   "registerOnChange stores a function to call when the user changes the value",
+   "Provide NG_VALUE_ACCESSOR with useExisting (forwardRef) and multi: true",
+   "writeValue should call onChange so the model stays in sync",
+   "Call the registered onTouched callback when the control is blurred"
+  ],
+  "correct": [
+   0,
+   1,
+   2,
+   4
+  ],
+  "hint": "Direction of data flow matters for each method.",
+  "explanation": "The token provider, writeValue (model to view), onTouched, and onChange (view to model) are all part of the contract. Calling onChange inside writeValue would echo the change back and incorrectly mark the control dirty.",
+  "code": "@Component({\n  selector: 'app-rating',\n  providers: [{\n    provide: NG_VALUE_ACCESSOR,\n    useExisting: forwardRef(() => RatingComponent),\n    multi: true\n  }]\n})\nexport class RatingComponent implements ControlValueAccessor { }",
+  "id": 171,
+  "key": "7970fcd25167"
+ },
+ {
+  "level": "Expert",
+  "topic": "Forms",
+  "text": "When is the optional ControlValueAccessor.setDisabledState called?",
+  "options": [
+   "Whenever writeValue is called",
+   "When the control becomes invalid",
+   "When the bound control's disabled status changes, for example via control.disable()",
+   "Only once when the form is first created"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "It mirrors the control's enabled/disabled state.",
+  "explanation": "Forms calls setDisabledState to reflect enable/disable calls on the control. It is unrelated to validity or to value writes.",
+  "code": null,
+  "id": 172,
+  "key": "d838e5728e54"
+ },
+ {
+  "level": "Expert",
+  "topic": "Dynamic Components",
+  "text": "After ViewContainerRef.createComponent for an OnPush component, how should a parent supply an input so ngOnChanges and the view update correctly?",
+  "options": [
+   "componentRef.instance.name = value",
+   "Object.assign(componentRef.instance, { name: value })",
+   "componentRef.changeDetectorRef.detach()",
+   "componentRef.setInput('name', value)"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "There is an API that behaves like a template binding.",
+  "explanation": "setInput marks the view dirty and triggers input handling like a binding. Assigning to the instance bypasses ngOnChanges and does not mark an OnPush view for check.",
+  "code": "const ref = vcr.createComponent(CardComponent);\nref.setInput('name', 'Ada');",
+  "id": 173,
+  "key": "48cf028f6ece"
+ },
+ {
+  "level": "Expert",
+  "topic": "Dynamic Components",
+  "text": "A component is created with createComponent(Comp, { environmentInjector, hostElement }) outside any view container. What is needed for it to be change-detected?",
+  "options": [
+   "appRef.attachView(ref.hostView), and destroy it when done",
+   "Nothing; it is automatically attached to the ApplicationRef",
+   "Call NgZone.run once at creation",
+   "Add it to the declarations of the root module"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Who owns the view's change detection?",
+  "explanation": "A component created standalone is not part of any tree until its host view is attached to ApplicationRef; it must also be destroyed manually. It is not auto-attached, and zone runs or declarations do not attach it.",
+  "code": "const ref = createComponent(Toast, { environmentInjector: this.envInjector, hostElement: el });\nthis.appRef.attachView(ref.hostView);",
+  "id": 174,
+  "key": "69d6e9b3bece"
+ },
+ {
+  "level": "Expert",
+  "topic": "SSR and Hydration",
+  "text": "Which statements about Angular hydration are true? (Select all that apply.)",
+  "options": [
+   "ngSkipHydration opts a component out of hydration",
+   "It requires ngSkipHydration on every component",
+   "Manual DOM manipulation of Angular-owned nodes can cause hydration mismatches",
+   "It reuses server-rendered DOM instead of recreating it",
+   "Hydration discards the server HTML and re-renders everything"
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "Hydration relies on server and client DOM matching.",
+  "explanation": "Hydration reuses existing DOM and requires structure to match, so direct manipulation can break it; ngSkipHydration opts out. It does not discard the server output, and ngSkipHydration is only an opt-out, not a requirement.",
+  "code": null,
+  "id": 175,
+  "key": "1a6c700fac85"
+ },
+ {
+  "level": "Expert",
+  "topic": "SSR and Hydration",
+  "text": "How does withHttpTransferCache help an SSR app?",
+  "options": [
+   "It disables HTTP requests on the server",
+   "It converts HttpClient to the fetch API",
+   "Server HttpClient responses are serialized into the page and reused by the client, avoiding duplicate requests",
+   "It caches all responses in localStorage permanently"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Think about duplicate fetches after hydration.",
+  "explanation": "Responses made on the server are stored in TransferState and replayed on the client for matching requests. It is not persistent browser storage and does not stop server requests.",
+  "code": null,
+  "id": 176,
+  "key": "6aadbeee2a48"
+ },
+ {
+  "level": "Expert",
+  "topic": "SSR and Hydration",
+  "text": "Which practices keep code safe for server-side rendering? (Select all that apply.)",
+  "options": [
+   "Inject DOCUMENT instead of using the global document",
+   "Assume ngOnInit only runs in the browser",
+   "Avoid unbounded timers that keep the server render from stabilizing",
+   "Guard browser-only APIs with isPlatformBrowser or run them in afterNextRender",
+   "Access window or document directly in constructors"
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "The server has no window and waits for stability.",
+  "explanation": "Platform guards, afterNextRender (browser only), and DOCUMENT injection keep code portable, and pending macrotasks delay stability. Constructors and ngOnInit run on the server too, so global browser access breaks there.",
+  "code": null,
+  "id": 177,
+  "key": "8941de55f52e"
+ },
+ {
+  "level": "Expert",
+  "topic": "Lazy Loading",
+  "text": "How is a custom preloading strategy implemented to preload only routes flagged in data?",
+  "options": [
+   "Implement PreloadingStrategy.preload(route, load) returning load() or of(null) based on route.data",
+   "Override Router.navigate to prefetch chunks",
+   "Add providedIn: 'root' to the lazy route's component",
+   "Use canMatch to return true for flagged routes"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "The strategy decides whether to call the loader.",
+  "explanation": "preload receives the route and a loader function; returning load() fetches the chunk and of(null) skips it. canMatch gates matching, not background preloading.",
+  "code": "export class FlagPreload implements PreloadingStrategy {\n  preload(route: Route, load: () => Observable<any>) {\n    return route.data?.['preload'] ? load() : of(null);\n  }\n}",
+  "id": 178,
+  "key": "e5d7fbb97bdc"
+ },
+ {
+  "level": "Expert",
+  "topic": "Lazy Loading",
+  "text": "Which statements about @defer blocks are true? (Select all that apply.)",
+  "options": [
+   "A standalone component also referenced eagerly elsewhere is still split out into the lazy chunk",
+   "on viewport triggers loading when the placeholder enters the viewport",
+   "Dependencies used only within the block can be split into a separate lazy chunk",
+   "@defer works with NgModule-declared (non-standalone) components in all cases",
+   "The @placeholder content is shown before the trigger fires"
+  ],
+  "correct": [
+   1,
+   2,
+   4
+  ],
+  "hint": "Deferral depends on how the dependency is referenced.",
+  "explanation": "Standalone dependencies referenced only inside the block are lazily loaded, but eager use elsewhere keeps them in the main bundle. Placeholders and the viewport trigger work as described. Non-standalone dependencies are not deferrable by default.",
+  "code": null,
+  "id": 179,
+  "key": "ba03d9b02470"
+ },
+ {
+  "level": "Expert",
+  "topic": "Bundle Performance",
+  "text": "What does setting \"sideEffects\": false in a library's package.json allow bundlers to do?",
+  "options": [
+   "Skip type checking during the build",
+   "Make the library load lazily at runtime",
+   "Drop unused modules/exports during tree shaking",
+   "Disable zone patching in the library"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "It's a promise about import statements having no effects.",
+  "explanation": "The flag tells the bundler that unused imports can be removed safely, improving tree shaking. It has nothing to do with zones, typing, or runtime lazy loading.",
+  "code": "{\n  \"name\": \"my-lib\",\n  \"sideEffects\": false\n}",
+  "id": 180,
+  "key": "bf8cf2526824"
+ },
+ {
+  "level": "Expert",
+  "topic": "RxJS",
+  "text": "What is the difference between shareReplay(1) and shareReplay({ bufferSize: 1, refCount: true })?",
+  "options": [
+   "refCount makes the replayed value expire after one second",
+   "Without refCount, values are never replayed",
+   "refCount makes the observable hot, otherwise it is cold",
+   "Without refCount the source subscription stays open after all subscribers leave; with it the source is unsubscribed at zero subscribers"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Think about when the upstream subscription is released.",
+  "explanation": "Plain shareReplay keeps the upstream subscription alive, which can leak with long-lived sources. With refCount true it unsubscribes at zero subscribers, though replay buffers behave normally in both.",
+  "code": null,
+  "id": 181,
+  "key": "3eafab14d403"
+ },
+ {
+  "level": "Expert",
+  "topic": "RxJS",
+  "text": "Which of these help prevent subscription leaks in components? (Select all that apply.)",
+  "options": [
+   "takeUntilDestroyed() inside an injection context, or with a passed DestroyRef elsewhere",
+   "Using the async pipe in the template",
+   "Subscribing to HttpClient calls always leaks unless unsubscribed",
+   "Calling takeUntilDestroyed() with no argument inside ngOnInit",
+   "Storing Subscriptions and unsubscribing in ngOnDestroy"
+  ],
+  "correct": [
+   0,
+   1,
+   4
+  ],
+  "hint": "Some operators require an injection context.",
+  "explanation": "takeUntilDestroyed with DestroyRef, async pipe, and manual unsubscription all release subscriptions. Without an argument outside an injection context it throws, and HttpClient observables complete after the response.",
+  "code": null,
+  "id": 182,
+  "key": "279c4f8d9a3a"
+ },
+ {
+  "level": "Expert",
+  "topic": "RxJS",
+  "text": "By default, what does the share() operator do when the subscriber count falls to zero and a new subscriber arrives later?",
+  "options": [
+   "It keeps the source subscribed forever",
+   "It resets and resubscribes to the source, because resetOnRefCountZero is true by default",
+   "It replays the last value without resubscribing",
+   "It throws an error"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "share resets by default.",
+  "explanation": "share() uses a Subject connector and resets on refCount zero, error, and complete, so late subscribers trigger a new source subscription. Replay behavior needs shareReplay or explicit config.",
+  "code": "const shared$ = source$.pipe(share());",
+  "id": 183,
+  "key": "553a92aed1e7"
+ },
+ {
+  "level": "Expert",
+  "topic": "Testing",
+  "text": "Which approaches are appropriate when testing components in a modern Angular app? (Select all that apply.)",
+  "options": [
+   "Use HttpTestingController and call verify() in afterEach",
+   "Use component harnesses to decouple tests from DOM structure",
+   "Use fixture.componentRef.setInput to set signal inputs",
+   "Assign directly to a signal input property on the instance",
+   "Use real timers and sleep() to wait for async work"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "Signal inputs are read-only from the consumer.",
+  "explanation": "setInput works with signal inputs, HttpTestingController.verify checks outstanding requests, and harnesses abstract DOM. Real sleeps make tests slow and flaky; use fakeAsync or whenStable instead. Signal inputs cannot be assigned directly.",
+  "code": "fixture.componentRef.setInput('title', 'Hi');\nfixture.detectChanges();\nhttp.expectOne('/api').flush([]);",
+  "id": 184,
+  "key": "44ee66f4a243"
+ },
+ {
+  "level": "Expert",
+  "topic": "State Management",
+  "text": "Which are sound NgRx-style state design principles? (Select all that apply.)",
+  "options": [
+   "Duplicate derived data in the store for convenience",
+   "Mutate state objects in place for performance",
+   "Reducers must be pure functions",
+   "Normalize entity collections and derive view data through selectors",
+   "Keep side effects like HTTP calls in effects, not reducers"
+  ],
+  "correct": [
+   2,
+   3,
+   4
+  ],
+  "hint": "Keep state minimal and predictable.",
+  "explanation": "Pure reducers, normalized state with derived selectors, and side effects in effects keep state predictable. Duplicated derived data goes stale and in-place mutation breaks change detection.",
+  "code": null,
+  "id": 185,
+  "key": "db08571303ac"
+ },
+ {
+  "level": "Expert",
+  "topic": "State Management",
+  "text": "When does a memoized createSelector recompute its projector?",
+  "options": [
+   "When any input selector returns a result that is not reference-equal to the previous one",
+   "On every store emission",
+   "On every change detection cycle",
+   "Only when the whole state reference changes"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Memoization is by input results.",
+  "explanation": "A createSelector reruns the projector only if its input selectors' results changed by reference. A new state object alone is not enough if the slices it reads are unchanged.",
+  "code": null,
+  "id": 186,
+  "key": "7255f7c98405"
+ },
+ {
+  "level": "Expert",
+  "topic": "Micro-frontends",
+  "text": "In a Module Federation setup, which configuration choices reduce duplicate Angular runtimes? (Select all that apply.)",
+  "options": [
+   "Declare @angular/core as shared with singleton: true",
+   "Give each remote its own bundled copy of Angular",
+   "Use strictVersion to fail loudly on incompatible versions",
+   "Share the same Router and Injector instance automatically without configuration",
+   "Align the Angular versions across host and remotes"
+  ],
+  "correct": [
+   0,
+   2,
+   4
+  ],
+  "hint": "One Angular runtime is the goal.",
+  "explanation": "Singleton sharing, strict versions, and aligned versions avoid duplicate runtimes. Bundling separate copies defeats this, and shared packages do not auto-share injectors.",
+  "code": null,
+  "id": 187,
+  "key": "915e8fb92cfb"
+ },
+ {
+  "level": "Expert",
+  "topic": "Templates",
+  "text": "In @for, what does `track item.id` achieve compared with `track $index` when a list is reordered?",
+  "options": [
+   "It sorts the list by id",
+   "It makes the iteration lazy",
+   "DOM nodes and component instances are moved with their items instead of being rebound to different data",
+   "It disables DOM updates entirely"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Identity decides what is reused.",
+  "explanation": "Tracking by a stable id lets the diff move existing views, preserving state. Tracking by index reuses views by position and rebinds them to different items.",
+  "code": "@for (item of items(); track item.id) {\n  <app-row [item]=\"item\" />\n} @empty {\n  <p>None</p>\n}",
+  "id": 188,
+  "key": "20fc4e0a71ac"
+ },
+ {
+  "level": "Expert",
+  "topic": "Templates",
+  "text": "Which statements about the @for block are true? (Select all that apply.)",
+  "options": [
+   "Contextual variables such as $index, $first, $last and $count are available",
+   "It only accepts arrays, never other iterables",
+   "An @empty block renders when the collection is empty",
+   "track is optional and defaults to object identity",
+   "The track expression is required"
+  ],
+  "correct": [
+   0,
+   2,
+   4
+  ],
+  "hint": "The compiler enforces a track expression.",
+  "explanation": "track is mandatory, context variables and @empty exist, and it works with any iterable, not only arrays. There is no optional default tracking.",
+  "code": null,
+  "id": 189,
+  "key": "cccf951da17d"
+ },
+ {
+  "level": "Expert",
+  "topic": "Routing",
+  "text": "A route is lazy-loaded with loadChildren. Which guard prevents the lazy chunk from being downloaded for unauthorized users?",
+  "options": [
+   "canMatch",
+   "canActivate",
+   "canDeactivate",
+   "resolve"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Which guard runs while matching, before loading?",
+  "explanation": "canMatch runs during route matching, so a false result skips the route and its lazy loading. canActivate runs after the route has matched and the chunk loaded; resolve and canDeactivate come later.",
+  "code": "{\n  path: 'admin',\n  canMatch: [() => inject(Auth).isAdmin()],\n  loadChildren: () => import('./admin/routes')\n}",
+  "id": 190,
+  "key": "d4aff281151a"
+ },
+ {
+  "level": "Expert",
+  "topic": "Routing",
+  "text": "Which statements about functional route guards are true? (Select all that apply.)",
+  "options": [
+   "Returning false cancels navigation without redirecting",
+   "They can call inject() to obtain services",
+   "Returning a UrlTree redirects navigation",
+   "They are skipped for lazy-loaded routes",
+   "They must be classes implementing CanActivate"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "Functions run in an injection context.",
+  "explanation": "Guard functions run in an injection context, may be async, and results are boolean or UrlTree (sync or async). Class-based guards are not required.",
+  "code": null,
+  "id": 191,
+  "key": "c49cb23cdc4a"
+ },
+ {
+  "level": "Expert",
+  "topic": "Routing",
+  "text": "When are route resolvers executed relative to guards?",
+  "options": [
+   "After the component is rendered",
+   "In parallel with canDeactivate",
+   "After guards pass, before the route is activated",
+   "Before canMatch"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Resolvers need navigation to be allowed first.",
+  "explanation": "Resolvers run once guards have allowed navigation and complete before activation. They do not run before matching or after rendering.",
+  "code": null,
+  "id": 192,
+  "key": "2fcc418b4dd2"
+ },
+ {
+  "level": "Expert",
+  "topic": "Standalone Migration",
+  "text": "Which are correct when migrating an NgModule app to standalone? (Select all that apply.)",
+  "options": [
+   "All NgModules must be deleted before any component can be standalone",
+   "NgModule providers can be brought in with importProvidersFrom",
+   "Standalone components cannot import any NgModule",
+   "The migration schematic can convert declarations stepwise",
+   "Standalone components can import NgModules and other standalone items"
+  ],
+  "correct": [
+   1,
+   3,
+   4
+  ],
+  "hint": "Standalone is interoperable with modules.",
+  "explanation": "Standalone components may import NgModules, importProvidersFrom bridges module providers, and the schematic runs in steps. The cannot-import and must-delete claims are false.",
+  "code": "bootstrapApplication(AppComponent, {\n  providers: [importProvidersFrom(LegacyModule)]\n});",
+  "id": 193,
+  "key": "829fb7b3d12e"
+ },
+ {
+  "level": "Expert",
+  "topic": "Change Detection",
+  "text": "The ExpressionChangedAfterItHasBeenCheckedError occurs because:",
+  "options": [
+   "In dev mode, a second verification pass finds a binding value that changed during the first pass",
+   "Change detection ran twice in production",
+   "The component was OnPush",
+   "A subscription was left open"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "It's a dev-mode check.",
+  "explanation": "Angular re-checks bindings in dev mode and throws if a value changed after being checked, typically due to child-to-parent state changes. It is not produced in production builds.",
+  "code": null,
+  "id": 194,
+  "key": "3c552f07f243"
+ },
+ {
+  "level": "Expert",
+  "topic": "Change Detection",
+  "text": "What does ChangeDetectorRef.markForCheck() do?",
+  "options": [
+   "Marks only this view and not its ancestors",
+   "Marks the view and its ancestors for checking at the next tick without running change detection itself",
+   "Runs change detection immediately on this view",
+   "Detaches the view from the tree"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It schedules, not runs.",
+  "explanation": "markForCheck marks the path to the root dirty so the next tick checks it. detectChanges is the call that runs it immediately.",
+  "code": null,
+  "id": 195,
+  "key": "8f35f271f1c4"
+ },
+ {
+  "level": "Expert",
+  "topic": "Signals",
+  "text": "Which are true of signal-based inputs and model()? (Select all that apply.)",
+  "options": [
+   "Signal inputs can be updated with .set() inside the child",
+   "Signal inputs are read-only in the component",
+   "input.required() must be provided by the parent or compilation fails",
+   "model() enables two-way binding with [(value)]",
+   "Signal inputs cannot be read inside computed()"
+  ],
+  "correct": [
+   1,
+   2,
+   3
+  ],
+  "hint": "The consumer cannot write inputs.",
+  "explanation": "Inputs are read-only, model is writable and bindable two-way, and required inputs are compile-checked. Inputs are normal signals and work in computed(). .set() exists on model, not input.",
+  "code": null,
+  "id": 196,
+  "key": "4f556ae6db98"
+ },
+ {
+  "level": "Expert",
+  "topic": "Signals",
+  "text": "Which statements about converting Observables with toSignal() in a large application are true? (Select all that apply.)",
+  "options": [
+   "It must be called in ngOnInit",
+   "If the observable errors, reading the signal throws that error",
+   "It never unsubscribes automatically",
+   "Without initialValue, the signal's type includes undefined until the first emission",
+   "It subscribes immediately and unsubscribes when the owning context is destroyed"
+  ],
+  "correct": [
+   1,
+   3,
+   4
+  ],
+  "hint": "It needs an injection context.",
+  "explanation": "toSignal subscribes eagerly with automatic cleanup, includes undefined without an initial value, and rethrows errors on read. It needs an injection context, not ngOnInit.",
+  "code": null,
+  "id": 197,
+  "key": "511fa792b30c"
+ },
+ {
+  "level": "Expert",
+  "topic": "Zone.js",
+  "text": "Why does making every component OnPush not stop Zone.js from triggering ApplicationRef.tick on each async event?",
+  "options": [
+   "Zone.js notifies on task completion regardless; OnPush only skips unchanged views during the pass",
+   "OnPush components are never skipped",
+   "Zone.js ignores OnPush components",
+   "OnPush disables Zone.js patches"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Scheduling and traversal are separate.",
+  "explanation": "Zone triggers a tick whenever microtasks drain, and OnPush only prunes which views are checked. The tick still happens.",
+  "code": null,
+  "id": 198,
+  "key": "2499c836cd30"
+ },
+ {
+  "level": "Expert",
+  "topic": "Dependency Injection",
+  "text": "What is the difference between { provide: A, useClass: B } and { provide: A, useExisting: B }?",
+  "options": [
+   "useClass requires providedIn root",
+   "useClass creates a separate B instance for A; useExisting aliases A to the existing B instance",
+   "They are identical",
+   "useExisting creates a new instance each time"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "One aliases, the other instantiates.",
+  "explanation": "useExisting points the token at the same provider's instance so A and B share state, while useClass instantiates its own.",
+  "code": "providers: [\n  { provide: Logger, useClass: ConsoleLogger },\n  { provide: Alias, useExisting: ConsoleLogger }\n]",
+  "id": 199,
+  "key": "2910b91f054d"
+ },
+ {
+  "level": "Expert",
+  "topic": "HTTP",
+  "text": "Which are true about functional HTTP interceptors registered with provideHttpClient(withInterceptors([...]))? (Select all that apply.)",
+  "options": [
+   "Request handling runs in array order and responses flow back in reverse",
+   "They cannot modify the outgoing request",
+   "They must return an Observable of HttpEvent",
+   "They run in a different order than registered for requests",
+   "They can use inject() to access services"
+  ],
+  "correct": [
+   0,
+   2,
+   4
+  ],
+  "hint": "Interceptors form a chain.",
+  "explanation": "Functional interceptors have an injection context, form a chain in order, and return an event stream. Requests are immutable but can be cloned and modified. Claiming that request order differs from registration is false.",
+  "code": "export const authInterceptor: HttpInterceptorFn = (req, next) =>\n  next(req.clone({ setHeaders: { Authorization: inject(Auth).token() } }));",
+  "id": 200,
+  "key": "98c414800add"
+ }
+]

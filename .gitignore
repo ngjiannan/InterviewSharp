@@ -1,0 +1,9 @@
+.env
+**/appsettings.Development.json
+bin/
+obj/
+out/
+__pycache__/
+InterviewSharp.Pwa/wwwroot/data/
+InterviewSharp.Pwa/wwwroot/service-worker-assets.js
+.vs/

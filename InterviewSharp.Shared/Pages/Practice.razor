@@ -1,0 +1,209 @@
+@page "/"
+@inject QuestionService Questions
+@inject ISqlService Runner
+@inject IJSRuntime JS
+
+<PageTitle>SQL Practice - InterviewSharp</PageTitle>
+
+<div class="row">
+    <div class="col-lg-3 mb-3">
+        <div class="btn-group w-100 mb-2" role="group">
+            @foreach (var l in Levels)
+            {
+                <button class="btn btn-sm @(level == l ? "btn-primary" : "btn-outline-primary")" @onclick="() => level = l">@l</button>
+            }
+        </div>
+        <div class="small text-muted mb-1">Solved: <strong>@solved.Count / @Questions.Questions.Count</strong></div>
+        <div class="small text-muted mb-2">
+            @foreach (var l in Levels.Skip(1))
+            {
+                <span class="me-2">@l @LevelSolved(l)</span>
+            }
+        </div>
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="unsolvedOnly" @bind="unsolvedOnly" />
+            <label class="form-check-label small" for="unsolvedOnly">Unsolved only</label>
+        </div>
+        <div class="list-group question-list">
+            @foreach (var item in Filtered)
+            {
+                <button class="list-group-item list-group-item-action d-flex justify-content-between @(current?.Id == item.Id ? "active" : "")"
+                        @onclick="() => Select(item)">
+                    <span>@item.Id. @item.Topic</span>
+                    <span>@(solved.Contains(item.Key) ? "✓" : "") <span class="badge @LevelBadge(item.Level)">@item.Level</span></span>
+                </button>
+            }
+        </div>
+    </div>
+
+    <div class="col-lg-9">
+        @if (current is null)
+        {
+            <div class="alert alert-info">Pick a question on the left to begin. Tables are described on the <a href="schema">Schema</a> page.</div>
+            @if (!Runner.IsConfigured)
+            {
+                <div class="alert alert-secondary">Study mode: no SQL server is connected, so Run / Check are disabled. Read the question, try it on paper, use hints, compare with the model answer, and use <strong>Mark solved</strong> to track progress.</div>
+            }
+        }
+        else
+        {
+            <h4>Q@(current.Id) <span class="badge @LevelBadge(current.Level)">@current.Level</span> <small class="text-muted">@current.Topic</small></h4>
+            <p class="lead mb-2">@current.Text</p>
+            <div class="mb-3 small">
+                @if (current.Tables.Count > 0)
+                {
+                    <div><strong>Tables:</strong> @foreach (var t in current.Tables) { <span class="badge bg-secondary me-1">@t</span> }</div>
+                }
+                @if (current.Returns.Count > 0)
+                {
+                    <div><strong>Return columns (in this order):</strong> <code>@string.Join(", ", current.Returns)</code>
+                        <span class="text-muted">- aliases need not match; column count, order and values do.</span></div>
+                }
+                @if (!string.IsNullOrEmpty(current.Ordering))
+                {
+                    <div><strong>Order by:</strong> <code>@current.Ordering</code> <span class="text-muted">(row order is not graded unless the question limits rows)</span></div>
+                }
+            </div>
+
+            <textarea class="form-control sql-editor mb-2" rows="9" spellcheck="false"
+                      placeholder="Write your SELECT / WITH query here..."
+                      @bind="Sql" @bind:event="oninput"></textarea>
+
+            <div class="mb-3 d-flex flex-wrap gap-2">
+                <button class="btn btn-success" @onclick="Run" disabled="@(busy || !Runner.IsConfigured)">▶ Run</button>
+                <button class="btn btn-primary" @onclick="Check" disabled="@(busy || !Runner.IsConfigured)">✔ Check my answer</button>
+                <button class="btn btn-warning" @onclick="ShowHint" disabled="@(hintsShown >= current.Hints.Count)">💡 Hint (@hintsShown/@current.Hints.Count)</button>
+                <button class="btn btn-outline-secondary" @onclick="() => showAnswer = !showAnswer">@(showAnswer ? "Hide" : "Show") answer</button>
+                <button class="btn btn-outline-success" @onclick="ToggleSolved">@(solved.Contains(current.Key) ? "✓ Solved (undo)" : "Mark solved")</button>
+                <button class="btn btn-outline-danger" @onclick="ClearEditor">Clear</button>
+            </div>
+
+            @if (feedback is not null)
+            {
+                <div class="alert @(feedbackOk ? "alert-success" : "alert-warning")">@feedback</div>
+            }
+
+            @if (hintsShown > 0)
+            {
+                <div class="alert alert-warning">
+                    <strong>Hints</strong>
+                    <ol class="mb-0">
+                        @for (var i = 0; i < hintsShown; i++) { <li>@current.Hints[i]</li> }
+                    </ol>
+                </div>
+            }
+
+            @if (showAnswer)
+            {
+                <div class="card mb-3">
+                    <div class="card-header">Model answer</div>
+                    <div class="card-body">
+                        <pre class="mb-2">@current.Answer</pre>
+                        <p class="mb-2"><strong>Explanation:</strong> @current.Explanation</p>
+                        <button class="btn btn-sm btn-outline-primary" @onclick="LoadAnswer">Copy answer into editor</button>
+                    </div>
+                </div>
+            }
+
+            <ResultTable Result="result" />
+        }
+    </div>
+</div>
+
+@code {
+    private static readonly string[] Levels = { "All", "Easy", "Medium", "Hard", "Expert" };
+    private string level = "All";
+    private Question? current;
+    private readonly Dictionary<int, string> drafts = new();
+    private HashSet<string> solved = new();
+    private bool unsolvedOnly;
+
+    private const string StorageKey = "sqlpractice.solved";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+        try
+        {
+            var json = await JS.InvokeAsync<string?>("localStorage.getItem", StorageKey);
+            if (!string.IsNullOrEmpty(json))
+                solved = System.Text.Json.JsonSerializer.Deserialize<HashSet<string>>(json) ?? new();
+        }
+        catch { }
+        StateHasChanged();
+    }
+
+    private async Task SaveSolved()
+    {
+        try { await JS.InvokeVoidAsync("localStorage.setItem", StorageKey, System.Text.Json.JsonSerializer.Serialize(solved)); }
+        catch { }
+    }
+
+    private string LevelSolved(string l)
+    {
+        var all = Questions.Questions.Where(x => x.Level == l).ToList();
+        return $"{all.Count(x => solved.Contains(x.Key))}/{all.Count}";
+    }
+    private int hintsShown;
+    private bool showAnswer, busy, feedbackOk;
+    private string? feedback;
+    private QueryResult? result;
+
+    private IEnumerable<Question> Filtered => Questions.Questions.Where(x => (level == "All" || x.Level == level) && (!unsolvedOnly || !solved.Contains(x.Key)));
+
+    private string Sql
+    {
+        get => current is not null && drafts.TryGetValue(current.Id, out var s) ? s : "";
+        set { if (current is not null) drafts[current.Id] = value; }
+    }
+
+    private static string LevelBadge(string l) => l switch
+    {
+        "Easy" => "bg-success",
+        "Medium" => "bg-info text-dark",
+        "Hard" => "bg-warning text-dark",
+        _ => "bg-danger"
+    };
+
+    private void Select(Question q)
+    {
+        current = q;
+        hintsShown = 0;
+        showAnswer = false;
+        feedback = null;
+        result = null;
+    }
+
+    private void ShowHint() { if (current is not null && hintsShown < current.Hints.Count) hintsShown++; }
+    private void ClearEditor() { Sql = ""; result = null; feedback = null; }
+    private void LoadAnswer() { if (current is not null) Sql = current.Answer; }
+
+    private async Task ToggleSolved()
+    {
+        if (current is null) return;
+        if (!solved.Remove(current.Key)) solved.Add(current.Key);
+        await SaveSolved();
+    }
+
+    private async Task Run()
+    {
+        busy = true; feedback = null;
+        result = await Runner.RunAsync(Sql);
+        busy = false;
+    }
+
+    private async Task Check()
+    {
+        if (current is null) return;
+        busy = true;
+        result = await Runner.RunAsync(Sql);
+        var outcome = await Runner.CheckAsync(Sql, current.Key);
+        feedback = (outcome.Correct ? "✅ " : "❌ ") + outcome.Message;
+        feedbackOk = outcome.Correct;
+        if (outcome.Correct)
+        {
+            if (solved.Add(current.Key)) await SaveSolved();
+        }
+        busy = false;
+    }
+}

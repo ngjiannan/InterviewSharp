@@ -1,0 +1,21 @@
+@inherits LayoutComponentBase
+
+<nav class="navbar navbar-dark bg-dark px-3">
+    <a class="navbar-brand" href="">InterviewSharp</a>
+    <div class="navbar-nav flex-row gap-3">
+        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">SQL</NavLink>
+        <NavLink class="nav-link" href="angular">Angular</NavLink>
+        <NavLink class="nav-link" href="dotnet">.NET / C#</NavLink>
+        <NavLink class="nav-link" href="schema">Schema &amp; Database</NavLink>
+    </div>
+</nav>
+
+<main class="container-fluid py-3">
+    @Body
+</main>
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>

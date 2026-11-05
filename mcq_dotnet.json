@@ -1,0 +1,3885 @@
+[
+ {
+  "level": "Easy",
+  "topic": "C# basics",
+  "text": "Which keyword declares a value that is fixed at compile time and cannot be changed afterward?",
+  "options": [
+   "readonly",
+   "const",
+   "static",
+   "sealed"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Think of the keyword used for compile-time constants such as const int Max = 10;.",
+  "explanation": "const values are substituted at compile time and must be initialized with a constant expression. readonly fields can be assigned at declaration or in a constructor, so they are runtime constants. static and sealed do not make a value immutable.",
+  "code": null,
+  "id": 1,
+  "key": "f5462de28d48"
+ },
+ {
+  "level": "Easy",
+  "topic": "C# basics",
+  "text": "What is the default value of an uninitialized bool field in a class?",
+  "options": [
+   "false",
+   "true",
+   "null",
+   "It is a compile error to leave it uninitialized"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Fields are zero-initialized by the runtime.",
+  "explanation": "Class fields are automatically set to their default value, which is false for bool. bool is a value type so it cannot be null, and fields (unlike locals) do not need definite assignment.",
+  "code": null,
+  "id": 2,
+  "key": "6f8da91a8869"
+ },
+ {
+  "level": "Easy",
+  "topic": "Strings",
+  "text": "Which statement about System.String is true?",
+  "options": [
+   "It is a mutable value type",
+   "It is a mutable reference type",
+   "It is an immutable reference type",
+   "It is an immutable value type"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Methods such as Replace or ToUpper return something new.",
+  "explanation": "string is a reference type whose instances cannot be modified after creation; operations return new strings. It is not a value type, and it is not mutable (that is StringBuilder's role).",
+  "code": null,
+  "id": 3,
+  "key": "6e6d71ef3062"
+ },
+ {
+  "level": "Easy",
+  "topic": "Collections",
+  "text": "Which of the following collection types can grow and shrink dynamically?",
+  "options": [
+   "int[]",
+   "string",
+   "Span<int>",
+   "List<int>"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Arrays have a fixed length once created.",
+  "explanation": "List<T> manages a resizable internal array and offers Add/Remove. Arrays and Span<T> have a fixed length, and string is an immutable sequence of chars.",
+  "code": null,
+  "id": 4,
+  "key": "bdc4b53ceb16"
+ },
+ {
+  "level": "Easy",
+  "topic": "Collections",
+  "text": "What is the main purpose of Dictionary<TKey,TValue>.TryGetValue?",
+  "options": [
+   "To look up a key without throwing an exception when it is missing",
+   "To add a key only if it is absent",
+   "To remove a key and return its value",
+   "To copy all keys into a list"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "It returns a bool.",
+  "explanation": "TryGetValue returns false and a default value when the key is missing, avoiding the KeyNotFoundException that the indexer would throw. Adding is done by Add/TryAdd and removal by Remove.",
+  "code": null,
+  "id": 5,
+  "key": "2edfd64c4c47"
+ },
+ {
+  "level": "Easy",
+  "topic": "OOP",
+  "text": "Which of the following can a C# class do? (Select all that apply.)",
+  "options": [
+   "Inherit directly from two base classes",
+   "Inherit from one base class",
+   "Inherit from a struct",
+   "Implement multiple interfaces"
+  ],
+  "correct": [
+   1,
+   3
+  ],
+  "hint": "C# allows single class inheritance but multiple interface implementation.",
+  "explanation": "A class has exactly one base class (System.Object by default) and may implement any number of interfaces. Multiple class inheritance is not supported, and structs cannot be base types.",
+  "code": null,
+  "id": 6,
+  "key": "5fb01eb3c99b"
+ },
+ {
+  "level": "Easy",
+  "topic": "Async/await",
+  "text": "What does the await keyword do inside an async method?",
+  "options": [
+   "Blocks the current thread until the task completes",
+   "Starts a new thread for the awaited call",
+   "Asynchronously suspends the method until the awaited task completes, without blocking the thread",
+   "Converts the method to run synchronously"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "The thread is freed to do other work in the meantime.",
+  "explanation": "await registers the rest of the method as a continuation and returns control to the caller if the task is not complete. It does not block and does not itself create a thread.",
+  "code": null,
+  "id": 7,
+  "key": "e4137e1f02b6"
+ },
+ {
+  "level": "Easy",
+  "topic": "Async/await",
+  "text": "Which return type should an async method normally use when it produces no value?",
+  "options": [
+   "void",
+   "Task",
+   "bool",
+   "object"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "The caller must be able to await it and observe exceptions.",
+  "explanation": "Task lets callers await the method and observe exceptions. async void is reserved for event handlers because errors cannot be caught by the caller. bool and object imply a result that is not produced.",
+  "code": null,
+  "id": 8,
+  "key": "9cedf6312985"
+ },
+ {
+  "level": "Easy",
+  "topic": "LINQ",
+  "text": "Which namespace must be imported to use LINQ extension methods such as Where and Select on collections?",
+  "options": [
+   "System.Linq",
+   "System.Collections.Generic",
+   "System.Data",
+   "System.Text"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "The namespace is named after the feature.",
+  "explanation": "Enumerable extension methods like Where and Select live in System.Linq. System.Collections.Generic holds the collection types, but not these query operators.",
+  "code": null,
+  "id": 9,
+  "key": "2a5ea5ab55b1"
+ },
+ {
+  "level": "Easy",
+  "topic": "Records",
+  "text": "What do C# record types provide by default?",
+  "options": [
+   "Reference equality only",
+   "Mandatory immutability of all fields",
+   "Value-based equality and a generated ToString",
+   "Automatic database mapping"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Two records with the same data compare as equal.",
+  "explanation": "Records generate Equals/GetHashCode based on member values and a ToString that prints them. They are not forced to be immutable (positional properties are init-only, but you can add mutable ones) and have nothing to do with databases.",
+  "code": null,
+  "id": 10,
+  "key": "96365726eb01"
+ },
+ {
+  "level": "Easy",
+  "topic": "Nullable reference types",
+  "text": "With nullable reference types enabled, what does the declaration string? name mean?",
+  "options": [
+   "name is a value type",
+   "name may hold null",
+   "name can never be assigned",
+   "name is lazily evaluated"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "The question mark is an annotation about null.",
+  "explanation": "string? tells the compiler that null is an expected value, so it warns on unchecked dereference. Without the ? the compiler treats the variable as non-null. It does not change the runtime type.",
+  "code": null,
+  "id": 11,
+  "key": "bb8ba6d29d99"
+ },
+ {
+  "level": "Easy",
+  "topic": "DI",
+  "text": "In ASP.NET Core dependency injection, which lifetime creates a new instance every time the service is requested?",
+  "options": [
+   "Singleton",
+   "Scoped",
+   "Static",
+   "Transient"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "The name suggests a short-lived instance.",
+  "explanation": "Transient services are created each time they are resolved. Singleton gives one instance per container and Scoped one per scope (usually per HTTP request). Static is not a DI lifetime.",
+  "code": null,
+  "id": 12,
+  "key": "9da273ca226c"
+ },
+ {
+  "level": "Easy",
+  "topic": "ASP.NET Core",
+  "text": "Which file is the default place for application configuration settings in an ASP.NET Core project?",
+  "options": [
+   "appsettings.json",
+   "web.xml",
+   "Startup.config",
+   "launch.cfg"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "It is a JSON file loaded by the default host builder.",
+  "explanation": "The default host loads appsettings.json plus appsettings.{Environment}.json. The other names are not used by default.",
+  "code": null,
+  "id": 13,
+  "key": "6e13d3a5d6d2"
+ },
+ {
+  "level": "Easy",
+  "topic": "Minimal APIs",
+  "text": "What does app.MapGet(\"/hello\", () => \"Hi\") do in a minimal API?",
+  "options": [
+   "Registers a handler for HTTP POST requests to /hello",
+   "Registers a middleware that runs for every request",
+   "Registers a handler for HTTP GET requests to /hello",
+   "Reads a value from configuration"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Match the verb in the method name.",
+  "explanation": "MapGet creates an endpoint that responds to GET requests on the given route pattern. Handlers for POST use MapPost, and middleware is registered with Use/Run.",
+  "code": null,
+  "id": 14,
+  "key": "dad931bacc39"
+ },
+ {
+  "level": "Easy",
+  "topic": "EF Core",
+  "text": "In EF Core, what does a DbContext represent?",
+  "options": [
+   "A single table row",
+   "A session with the database used to query and save entities",
+   "A SQL Server login",
+   "A database migration"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It combines the unit of work and repository ideas.",
+  "explanation": "DbContext is the main class for interacting with the database: it tracks entities, runs queries and saves changes. A table row is an entity instance and a migration is a schema change script.",
+  "code": null,
+  "id": 15,
+  "key": "f1472d655971"
+ },
+ {
+  "level": "Easy",
+  "topic": "EF Core",
+  "text": "In EF Core, what does a DbSet<TEntity> property on a DbContext represent?",
+  "options": [
+   "A connection string",
+   "A transaction",
+   "A queryable collection of entities of type TEntity, usually mapped to a table",
+   "A migration history"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "You write context.Customers.Where(...) using it.",
+  "explanation": "DbSet<T> exposes the set of entities for querying and adding/removing. It is not a connection or transaction, although it is used within them.",
+  "code": null,
+  "id": 16,
+  "key": "18fd979bfcda"
+ },
+ {
+  "level": "Easy",
+  "topic": "Exceptions",
+  "text": "When does the code in a finally block run?",
+  "options": [
+   "Only when an exception is thrown",
+   "Only when no exception is thrown",
+   "Only if there is a catch block",
+   "Whether or not an exception occurs"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "It is used for cleanup.",
+  "explanation": "finally runs after the try (and any catch) completes, regardless of whether an exception was thrown. It does not require a catch block; try/finally is valid on its own.",
+  "code": null,
+  "id": 17,
+  "key": "c3ca35050fb1"
+ },
+ {
+  "level": "Easy",
+  "topic": "Delegates/events",
+  "text": "What does the delegate type Func<int, string> represent?",
+  "options": [
+   "A method that takes an int and returns a string",
+   "A method that takes a string and returns an int",
+   "A method that takes an int and returns nothing",
+   "A property of type int"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "In Func, the last type argument is the return type.",
+  "explanation": "Func<TArg, TResult> has the result type last, so this is int -> string. A method returning nothing would be Action<int>.",
+  "code": null,
+  "id": 18,
+  "key": "e0b874c6780c"
+ },
+ {
+  "level": "Easy",
+  "topic": "Generics",
+  "text": "What does the constraint where T : class mean on a generic type parameter?",
+  "options": [
+   "T must be a struct",
+   "T must be a reference type",
+   "T must be a class declared in the same assembly",
+   "T must be abstract"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It limits the kind of types allowed, not their location.",
+  "explanation": "where T : class restricts T to reference types (classes, interfaces, delegates, arrays). Value types use where T : struct. It says nothing about assembly or being abstract.",
+  "code": null,
+  "id": 19,
+  "key": "f31f01e1a8e8"
+ },
+ {
+  "level": "Easy",
+  "topic": "OOP",
+  "text": "Which keyword does a derived class use to replace the implementation of a virtual method of its base class?",
+  "options": [
+   "new",
+   "sealed",
+   "override",
+   "abstract"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "The base method must be marked virtual, abstract or override.",
+  "explanation": "override provides a new implementation for a virtual member and participates in polymorphic dispatch. new merely hides the member, and sealed/abstract serve other purposes.",
+  "code": null,
+  "id": 20,
+  "key": "588dfcae431c"
+ },
+ {
+  "level": "Easy",
+  "topic": "OOP",
+  "text": "What does marking a class as sealed do?",
+  "options": [
+   "Prevents other classes from inheriting from it",
+   "Prevents creating instances of it",
+   "Makes all its members static",
+   "Makes it thread-safe"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Think of closing the inheritance chain.",
+  "explanation": "A sealed class cannot be used as a base class. It can still be instantiated (that is what abstract prevents) and its members are unaffected.",
+  "code": null,
+  "id": 21,
+  "key": "3b326e6db67a"
+ },
+ {
+  "level": "Easy",
+  "topic": "C# basics",
+  "text": "What is true about a local variable declared with var?",
+  "options": [
+   "Its type is determined at run time",
+   "It can hold any type and change type later",
+   "It must be a reference type",
+   "Its type is inferred by the compiler at compile time"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "C# remains statically typed.",
+  "explanation": "var asks the compiler to infer the static type from the initializer, so the variable has a fixed type afterward. It is not dynamic and works for value types too.",
+  "code": null,
+  "id": 22,
+  "key": "3d8036ea1db5"
+ },
+ {
+  "level": "Easy",
+  "topic": "Strings",
+  "text": "What is the output of this string interpolation example?",
+  "options": [
+   "x = {x}",
+   "x = x",
+   "$x = 5",
+   "x = 5"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "The $ prefix evaluates expressions inside braces.",
+  "explanation": "String interpolation replaces {x} with the value of the variable, so the output is x = 5. Without the $ prefix the braces would be printed literally.",
+  "code": "int x = 5;\nConsole.WriteLine($\"x = {x}\");",
+  "id": 23,
+  "key": "c4094e1916fb"
+ },
+ {
+  "level": "Easy",
+  "topic": "C# basics",
+  "text": "What is printed by this integer arithmetic?",
+  "options": [
+   "2.5 2",
+   "3 2",
+   "2 1",
+   "2 2"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Both operands are int.",
+  "explanation": "Integer division truncates, so 10 / 4 is 2, and 10 % 4 is the remainder 2. Concatenation with a string yields \"2 2\". 2.5 would need a double operand.",
+  "code": "Console.WriteLine(10 / 4 + \" \" + 10 % 4);",
+  "id": 24,
+  "key": "0a47c635ec0f"
+ },
+ {
+  "level": "Easy",
+  "topic": "C# basics",
+  "text": "What is printed when the ?? operator is applied to a null string?",
+  "options": [
+   "(an empty line)",
+   "null",
+   "none",
+   "It throws NullReferenceException"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "The ?? operator supplies a fallback for null.",
+  "explanation": "The null-coalescing operator returns the right operand when the left one is null, so \"none\" is printed. Console.WriteLine(null string) would print an empty line, but that is not what happens here.",
+  "code": "string s = null;\nConsole.WriteLine(s ?? \"none\");",
+  "id": 25,
+  "key": "fe123a010bb7"
+ },
+ {
+  "level": "Easy",
+  "topic": "LINQ",
+  "text": "What does this Where/Select pipeline print?",
+  "options": [
+   "4,16",
+   "2,4",
+   "1,4,9,16",
+   "2,4,16"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Where filters first, then Select transforms.",
+  "explanation": "Where keeps the even numbers 2 and 4, and Select squares them to 4 and 16. The result is joined as 4,16. 2,4 would be the filter alone.",
+  "code": "var r = new[] { 1, 2, 3, 4 }.Where(n => n % 2 == 0).Select(n => n * n);\nConsole.WriteLine(string.Join(\",\", r));",
+  "id": 26,
+  "key": "585ae3820fca"
+ },
+ {
+  "level": "Easy",
+  "topic": "C# basics",
+  "text": "Which of the following are value types in C#? (Select all that apply.)",
+  "options": [
+   "int",
+   "List<int>",
+   "DateTime",
+   "string"
+  ],
+  "correct": [
+   0,
+   2
+  ],
+  "hint": "Value types include primitives and structs.",
+  "explanation": "int and DateTime are structs and therefore value types. string and List<int> are classes (reference types), even though string has value-like equality.",
+  "code": null,
+  "id": 27,
+  "key": "02d994089103"
+ },
+ {
+  "level": "Easy",
+  "topic": "OOP",
+  "text": "Which of the following are valid C# access modifiers? (Select all that apply.)",
+  "options": [
+   "public",
+   "internal",
+   "package",
+   "protected",
+   "friend"
+  ],
+  "correct": [
+   0,
+   1,
+   3
+  ],
+  "hint": "friend and package belong to other languages.",
+  "explanation": "public, internal and protected are all C# access modifiers (along with private, protected internal and private protected). friend is C++/VB and package is Java.",
+  "code": null,
+  "id": 28,
+  "key": "5e17e18526f8"
+ },
+ {
+  "level": "Easy",
+  "topic": "DI",
+  "text": "Which of the following are service lifetimes supported by the built-in ASP.NET Core DI container? (Select all that apply.)",
+  "options": [
+   "Singleton",
+   "Transient",
+   "Scoped",
+   "Static"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "There are exactly three lifetimes.",
+  "explanation": "The built-in container supports Singleton, Scoped and Transient. Static is a C# modifier but not a DI lifetime.",
+  "code": null,
+  "id": 29,
+  "key": "99f80ff4e12e"
+ },
+ {
+  "level": "Easy",
+  "topic": "Minimal APIs",
+  "text": "Which of these are real endpoint-mapping methods for minimal APIs? (Select all that apply.)",
+  "options": [
+   "MapGet",
+   "MapFetch",
+   "MapPost",
+   "MapDelete"
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "They mirror HTTP verbs.",
+  "explanation": "MapGet, MapPost, MapPut, MapDelete and MapPatch exist for the corresponding HTTP verbs. MapFetch is not a method; fetch is a JavaScript API.",
+  "code": null,
+  "id": 30,
+  "key": "ae51f5a27b97"
+ },
+ {
+  "level": "Medium",
+  "topic": "Async/await",
+  "text": "Why is async void generally discouraged outside of event handlers?",
+  "options": [
+   "It runs on a dedicated thread",
+   "Callers cannot await it, and exceptions thrown inside cannot be caught by the caller",
+   "It cannot contain await expressions",
+   "It always executes synchronously"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Consider how a caller can observe completion or failure.",
+  "explanation": "An async void method gives the caller no Task, so completion cannot be awaited and unhandled exceptions are raised on the synchronization context, often crashing the process. It can contain await and does not use a special thread.",
+  "code": null,
+  "id": 31,
+  "key": "b4d60b4de723"
+ },
+ {
+  "level": "Medium",
+  "topic": "Async/await",
+  "text": "Two tasks passed to await Task.WhenAll(t1, t2) both fault with different exceptions. What does the await expression throw?",
+  "options": [
+   "An AggregateException containing both",
+   "Only the first exception; the others are available on the WhenAll task's Exception property",
+   "Nothing, because WhenAll swallows exceptions",
+   "A TaskCanceledException"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "await unwraps AggregateException.",
+  "explanation": "await rethrows only the first inner exception for convenience. The task returned by WhenAll still exposes all exceptions through its Exception (AggregateException) property. Exceptions are not swallowed.",
+  "code": null,
+  "id": 32,
+  "key": "70e7a6bffa28"
+ },
+ {
+  "level": "Medium",
+  "topic": "Async/await",
+  "text": "Which problems can result from blocking on an asynchronous operation with task.Result or task.Wait()? (Select all that apply.)",
+  "options": [
+   "Deadlocks in environments that have a synchronization context",
+   "Thread-pool threads are tied up, which can cause starvation under load",
+   "Exceptions are wrapped in an AggregateException",
+   "The awaited task is executed twice"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "Think about threads, exceptions and contexts.",
+  "explanation": "Blocking holds a thread while waiting, so many concurrent requests can starve the pool. Result/Wait wrap failures in AggregateException, and where a SynchronizationContext exists (UI apps, classic ASP.NET) the continuation may need the blocked thread, causing a deadlock. The task is never run twice.",
+  "code": null,
+  "id": 33,
+  "key": "1aef7aba974d"
+ },
+ {
+  "level": "Medium",
+  "topic": "Async/await",
+  "text": "What does this program print?",
+  "options": [
+   "A B C",
+   "B C A",
+   "B A C",
+   "A C B"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "An async method runs synchronously until its first incomplete await.",
+  "explanation": "DoAsync starts running immediately on the calling thread and prints B, then reaches the await on Task.Delay and returns an incomplete task. The caller prints A, then awaits and C is printed after the delay.",
+  "code": "static async Task Main()\n{\n    var t = DoAsync();\n    Console.WriteLine(\"A\");\n    await t;\n}\n\nstatic async Task DoAsync()\n{\n    Console.WriteLine(\"B\");\n    await Task.Delay(100);\n    Console.WriteLine(\"C\");\n}",
+  "id": 34,
+  "key": "fe0eebf12fc2"
+ },
+ {
+  "level": "Medium",
+  "topic": "Async/await",
+  "text": "Which statements about cancellation with CancellationToken are true? (Select all that apply.)",
+  "options": [
+   "Task.Delay(1000, token) completes as canceled if the token is canceled during the delay",
+   "Cancellation is cooperative: the code must observe the token",
+   "Calling Cancel() immediately aborts the running thread",
+   "token.ThrowIfCancellationRequested() throws OperationCanceledException when cancellation was requested"
+  ],
+  "correct": [
+   0,
+   1,
+   3
+  ],
+  "hint": "Cancel() only sets a flag and runs callbacks.",
+  "explanation": "Cancellation never forcibly aborts a thread; code must check the token or pass it to APIs that do. ThrowIfCancellationRequested throws OperationCanceledException, and Task.Delay with a token ends in the canceled state (awaiting it throws TaskCanceledException, a subclass).",
+  "code": null,
+  "id": 35,
+  "key": "c636fe71ba14"
+ },
+ {
+  "level": "Medium",
+  "topic": "Async/await",
+  "text": "Each call to FetchAsync takes about one second and the three calls are independent. About how long does this loop take?",
+  "options": [
+   "About 1 second, because await runs them in parallel",
+   "About 3 seconds, because each call is awaited before the next starts",
+   "About 0 seconds, because nothing is awaited",
+   "It deadlocks"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Look at where the await is placed.",
+  "explanation": "Awaiting inside the loop starts the next call only after the previous one finishes, so the calls run sequentially (~3 s). To run them concurrently you would start all tasks first and then await Task.WhenAll.",
+  "code": "var ids = new[] { 1, 2, 3 };\nforeach (var id in ids)\n{\n    await FetchAsync(id);\n}",
+  "id": 36,
+  "key": "f1d38f078082"
+ },
+ {
+  "level": "Medium",
+  "topic": "LINQ",
+  "text": "What does this deferred-execution query print?",
+  "options": [
+   "2",
+   "4",
+   "It throws InvalidOperationException",
+   "3"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "The query is not executed when it is defined.",
+  "explanation": "Where is deferred, so the query runs when Count() is called, after 4 was added. The elements greater than 1 are 2, 3 and 4, giving 3. Modifying the list does not throw here because it is not being enumerated at that time.",
+  "code": "var list = new List<int> { 1, 2, 3 };\nvar q = list.Where(x => x > 1);\nlist.Add(4);\nConsole.WriteLine(q.Count());",
+  "id": 37,
+  "key": "57c695c88d4d"
+ },
+ {
+  "level": "Medium",
+  "topic": "LINQ",
+  "text": "For the sequence { 1, 2 }, which calls throw InvalidOperationException? (Select all that apply.)",
+  "options": [
+   "seq.Single()",
+   "seq.SingleOrDefault()",
+   "seq.First()",
+   "seq.FirstOrDefault()"
+  ],
+  "correct": [
+   0,
+   1
+  ],
+  "hint": "Single variants require at most one match.",
+  "explanation": "Single and SingleOrDefault throw when more than one element exists (SingleOrDefault only tolerates zero). First and FirstOrDefault simply return the first element.",
+  "code": null,
+  "id": 38,
+  "key": "a4b01a4d42ee"
+ },
+ {
+  "level": "Medium",
+  "topic": "LINQ",
+  "text": "What does this SelectMany query print?",
+  "options": [
+   "a b|c",
+   "ab|c",
+   "a|b|c",
+   "System.String[]"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "SelectMany flattens the inner sequences.",
+  "explanation": "Each string is split into an array, and SelectMany flattens the arrays into a single sequence a, b, c. Select would yield two arrays instead.",
+  "code": "var r = new[] { \"a b\", \"c\" }.SelectMany(s => s.Split(' '));\nConsole.WriteLine(string.Join(\"|\", r));",
+  "id": 39,
+  "key": "549690f483c0"
+ },
+ {
+  "level": "Medium",
+  "topic": "LINQ",
+  "text": "What does this code print (one item per line)?",
+  "options": [
+   "a:2 then b:1",
+   "a:1 then b:1",
+   "a:3",
+   "a:2, a:2 then b:1"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "GroupBy groups by the key selector result.",
+  "explanation": "GroupBy groups by first character: apple and avocado share 'a' (count 2) and banana is alone under 'b'. Groups appear in order of first occurrence.",
+  "code": "var g = new[] { \"apple\", \"avocado\", \"banana\" }.GroupBy(s => s[0]);\nforeach (var x in g)\n    Console.WriteLine($\"{x.Key}:{x.Count()}\");",
+  "id": 40,
+  "key": "faf02226d4ca"
+ },
+ {
+  "level": "Medium",
+  "topic": "LINQ",
+  "text": "What does this OrderBy query print?",
+  "options": [
+   "bb,cc,a,d",
+   "d,a,cc,bb",
+   "a,bb,cc,d",
+   "a,d,bb,cc"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "OrderBy is a stable sort.",
+  "explanation": "Items are ordered by length ascending; OrderBy is stable, so equal-length items keep their original relative order (a before d, bb before cc).",
+  "code": "var r = new[] { \"bb\", \"a\", \"cc\", \"d\" }.OrderBy(s => s.Length);\nConsole.WriteLine(string.Join(\",\", r));",
+  "id": 41,
+  "key": "80267915aeef"
+ },
+ {
+  "level": "Medium",
+  "topic": "Collections",
+  "text": "What does this dictionary indexer code print?",
+  "options": [
+   "2 1",
+   "2 2",
+   "1 2",
+   "It throws ArgumentException"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "The indexer setter overwrites existing keys.",
+  "explanation": "Assigning through the indexer adds or replaces, so the dictionary holds one entry with value 2. Only Add would throw ArgumentException for a duplicate key.",
+  "code": "var d = new Dictionary<string, int>();\nd[\"a\"] = 1;\nd[\"a\"] = 2;\nConsole.WriteLine(d.Count + \" \" + d[\"a\"]);",
+  "id": 42,
+  "key": "452e8cd4c65d"
+ },
+ {
+  "level": "Medium",
+  "topic": "Collections",
+  "text": "What happens if you call list.Remove(x) inside a foreach over the same List<T>?",
+  "options": [
+   "The item is removed and enumeration continues safely",
+   "The next MoveNext throws InvalidOperationException because the collection was modified",
+   "The loop silently stops",
+   "A compile-time error occurs"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "List<T> tracks a version number.",
+  "explanation": "List<T>'s enumerator detects structural modification and throws InvalidOperationException on the next iteration. Iterate over a copy or use RemoveAll to avoid this.",
+  "code": null,
+  "id": 43,
+  "key": "740a44bc7b7c"
+ },
+ {
+  "level": "Medium",
+  "topic": "Collections",
+  "text": "Which of these types are safe for concurrent reads and writes from multiple threads without external locking? (Select all that apply.)",
+  "options": [
+   "List<T>",
+   "ConcurrentDictionary<TKey,TValue>",
+   "ConcurrentQueue<T>",
+   "Dictionary<TKey,TValue>"
+  ],
+  "correct": [
+   1,
+   2
+  ],
+  "hint": "Look for the Concurrent prefix.",
+  "explanation": "The collections in System.Collections.Concurrent are designed for thread-safe use. List<T> and Dictionary<TKey,TValue> are not safe for concurrent writes.",
+  "code": null,
+  "id": 44,
+  "key": "b66b6d4b57a5"
+ },
+ {
+  "level": "Medium",
+  "topic": "OOP",
+  "text": "What does this virtual/override call print?",
+  "options": [
+   "A",
+   "AB",
+   "It does not compile",
+   "B"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Virtual dispatch uses the runtime type.",
+  "explanation": "N is virtual and overridden, so the call through an A reference runs B's implementation, based on the object's runtime type.",
+  "code": "class A { public virtual string N() => \"A\"; }\nclass B : A { public override string N() => \"B\"; }\n\nA a = new B();\nConsole.WriteLine(a.N());",
+  "id": 45,
+  "key": "a429f3f46e59"
+ },
+ {
+  "level": "Medium",
+  "topic": "OOP",
+  "text": "What does this method-hiding example print?",
+  "options": [
+   "A",
+   "B",
+   "AB",
+   "It does not compile"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "The new modifier hides rather than overrides.",
+  "explanation": "The method is not virtual, and new only hides the base member for callers using B. Because the variable's static type is A, A.N() is bound at compile time and returns \"A\".",
+  "code": "class A { public string N() => \"A\"; }\nclass B : A { public new string N() => \"B\"; }\n\nA a = new B();\nConsole.WriteLine(a.N());",
+  "id": 46,
+  "key": "f0f033e88b2c"
+ },
+ {
+  "level": "Medium",
+  "topic": "OOP",
+  "text": "Which statements are true? (Select all that apply.)",
+  "options": [
+   "An abstract class can declare instance fields and constructors",
+   "A class can implement several interfaces",
+   "An abstract class can be instantiated directly with new",
+   "An interface can declare instance fields"
+  ],
+  "correct": [
+   0,
+   1
+  ],
+  "hint": "Abstract means it needs a derived class.",
+  "explanation": "Abstract classes can hold state and constructors (called by derived classes) and a class can implement many interfaces. Abstract classes cannot be instantiated directly, and interfaces cannot declare instance fields.",
+  "code": null,
+  "id": 47,
+  "key": "35ba7c084b19"
+ },
+ {
+  "level": "Medium",
+  "topic": "OOP",
+  "text": "What does this struct copy example print?",
+  "options": [
+   "1",
+   "2",
+   "0",
+   "It does not compile"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Structs are copied on assignment.",
+  "explanation": "struct is a value type, so var b = a copies the data and changing b.X does not affect a. With a class both variables would reference the same object and the output would be 2.",
+  "code": "struct P { public int X; }\n\nvar a = new P { X = 1 };\nvar b = a;\nb.X = 2;\nConsole.WriteLine(a.X);",
+  "id": 48,
+  "key": "55d8ff5d994b"
+ },
+ {
+  "level": "Medium",
+  "topic": "Generics",
+  "text": "What does the new() constraint on a type parameter allow?",
+  "options": [
+   "Calling any constructor with arguments",
+   "Creating an instance with new T(), because T must have a public parameterless constructor",
+   "Restricting T to value types",
+   "Allowing T to be null"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Only the parameterless form is expressible.",
+  "explanation": "where T : new() guarantees a public parameterless constructor so the generic code can write new T(). Constructors with arguments cannot be constrained this way.",
+  "code": null,
+  "id": 49,
+  "key": "223d78e0beac"
+ },
+ {
+  "level": "Medium",
+  "topic": "Generics",
+  "text": "What does this generic Max call print?",
+  "options": [
+   "apple",
+   "It does not compile",
+   "It throws ArgumentException",
+   "banana"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "string implements IComparable<string>.",
+  "explanation": "string satisfies IComparable<string>, T is inferred as string, and \"apple\".CompareTo(\"banana\") is negative so b is returned.",
+  "code": "static T Max<T>(T a, T b) where T : IComparable<T>\n    => a.CompareTo(b) >= 0 ? a : b;\n\nConsole.WriteLine(Max(\"apple\", \"banana\"));",
+  "id": 50,
+  "key": "0dc984ae9258"
+ },
+ {
+  "level": "Medium",
+  "topic": "Generics",
+  "text": "Which of these are valid generic constraints in C#? (Select all that apply.)",
+  "options": [
+   "where T : unmanaged",
+   "where T : class",
+   "where T : sealed",
+   "where T : struct"
+  ],
+  "correct": [
+   0,
+   1,
+   3
+  ],
+  "hint": "Constraints describe capabilities, not modifiers.",
+  "explanation": "struct, class and unmanaged are valid constraints. sealed is a class modifier, not a constraint.",
+  "code": null,
+  "id": 51,
+  "key": "16e0c92ec23b"
+ },
+ {
+  "level": "Medium",
+  "topic": "Records",
+  "text": "What does this record equality code print?",
+  "options": [
+   "True True",
+   "False False",
+   "True False",
+   "False True"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Record equality compares members, not references.",
+  "explanation": "Records generate value-based == and Equals, so a == b is True, but they are still distinct objects so ReferenceEquals returns False.",
+  "code": "record P(string Name, int Age);\n\nvar a = new P(\"A\", 1);\nvar b = new P(\"A\", 1);\nConsole.WriteLine((a == b) + \" \" + ReferenceEquals(a, b));",
+  "id": 52,
+  "key": "93ad8f24d209"
+ },
+ {
+  "level": "Medium",
+  "topic": "Records",
+  "text": "What does this with-expression code print?",
+  "options": [
+   "1 1",
+   "2 2",
+   "1 2",
+   "2 1"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "A with-expression creates a copy.",
+  "explanation": "with creates a new record that is a copy of the original with the listed properties changed, leaving the original untouched, so a.Age is 1 and b.Age is 2.",
+  "code": "record P(string Name, int Age);\n\nvar a = new P(\"A\", 1);\nvar b = a with { Age = 2 };\nConsole.WriteLine(a.Age + \" \" + b.Age);",
+  "id": 53,
+  "key": "d7cc623f7dfc"
+ },
+ {
+  "level": "Medium",
+  "topic": "Records",
+  "text": "For the declaration record P(string Name);, which statements are true? (Select all that apply.)",
+  "options": [
+   "ToString prints the member values",
+   "Name is an init-only property, so it cannot be assigned after construction",
+   "Equals compares the Name values",
+   "P is a value type"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "A plain record is a class.",
+  "explanation": "A positional record class gets value equality, a printing ToString and init-only properties. A record without struct is a reference type; record struct would be the value type.",
+  "code": null,
+  "id": 54,
+  "key": "2bc69e041c96"
+ },
+ {
+  "level": "Medium",
+  "topic": "Nullable reference types",
+  "text": "What is the effect of enabling nullable reference types in a project?",
+  "options": [
+   "Reference types can no longer hold null at run time",
+   "The compiler produces nullability warnings; no runtime checks are added",
+   "All strings become Nullable<string>",
+   "Null dereferences throw a different exception"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It is a static analysis feature.",
+  "explanation": "Nullable reference types are annotations used by compiler flow analysis to warn about possible null dereferences. They do not change runtime behavior and string? is not Nullable<string>.",
+  "code": null,
+  "id": 55,
+  "key": "df094484ed09"
+ },
+ {
+  "level": "Medium",
+  "topic": "Nullable reference types",
+  "text": "What does the null-forgiving operator (!) do in expressions like user!.Name?",
+  "options": [
+   "Throws if user is null",
+   "Suppresses the compiler's nullable warning without any runtime null check",
+   "Converts null to an empty object",
+   "Makes user non-nullable at run time"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It only silences the compiler.",
+  "explanation": "The ! operator tells the compiler to treat the expression as non-null; it emits no check, so a null value still causes NullReferenceException at the dereference.",
+  "code": null,
+  "id": 56,
+  "key": "81986c22efee"
+ },
+ {
+  "level": "Medium",
+  "topic": "Nullable reference types",
+  "text": "What does this null-conditional code print?",
+  "options": [
+   "0",
+   "null",
+   "-1",
+   "It throws NullReferenceException"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "?. short-circuits to null.",
+  "explanation": "s?.Length evaluates to a null int?, and ?? supplies -1. No exception occurs because of the null-conditional operator.",
+  "code": "#nullable enable\nstring? s = null;\nConsole.WriteLine(s?.Length ?? -1);",
+  "id": 57,
+  "key": "b3e593a18571"
+ },
+ {
+  "level": "Medium",
+  "topic": "Pattern matching",
+  "text": "What does this switch expression print?",
+  "options": [
+   "intbignull",
+   "intintnull",
+   "bigbignull",
+   "othersbigother"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Switch expression arms are evaluated top to bottom.",
+  "explanation": "5 is an int but fails the guard, so it matches the int arm; 50 matches the guarded arm and gives big; null matches the null arm.",
+  "code": "static string F(object o) => o switch\n{\n    int n when n > 10 => \"big\",\n    int => \"int\",\n    string s => s,\n    null => \"null\",\n    _ => \"other\"\n};\n\nConsole.WriteLine(F(5) + F(50) + F(null));",
+  "id": 58,
+  "key": "404533c36069"
+ },
+ {
+  "level": "Medium",
+  "topic": "Pattern matching",
+  "text": "What does this property pattern code print?",
+  "options": [
+   "True",
+   "False",
+   "It does not compile",
+   "It throws InvalidCastException"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "A property pattern tests type and members together.",
+  "explanation": "o is P { Age: >= 18 } checks that o is a P and that its Age satisfies the relational pattern. The age is 20, so the result is True.",
+  "code": "record P(string Name, int Age);\n\nobject o = new P(\"A\", 20);\nConsole.WriteLine(o is P { Age: >= 18 });",
+  "id": 59,
+  "key": "d214d0fb4cf6"
+ },
+ {
+  "level": "Medium",
+  "topic": "Pattern matching",
+  "text": "What happens when a switch expression receives a value that none of its arms match and there is no discard arm?",
+  "options": [
+   "It returns default",
+   "It throws a SwitchExpressionException at run time",
+   "It falls through to the next arm",
+   "It silently returns null"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Switch expressions must produce a value.",
+  "explanation": "The compiler may warn the switch is not exhaustive, and if no arm matches at run time a SwitchExpressionException is thrown. There is no fall-through or default result.",
+  "code": null,
+  "id": 60,
+  "key": "949634925ec7"
+ },
+ {
+  "level": "Medium",
+  "topic": "ASP.NET Core",
+  "text": "Why does the order of middleware registration in Program.cs matter?",
+  "options": [
+   "Middleware executes in the order registered for requests, and in reverse order for responses",
+   "Middleware always executes alphabetically",
+   "Only the last registered middleware runs",
+   "Order matters only in Production"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "It forms a pipeline.",
+  "explanation": "Each middleware decides whether to call the next one, and code after await next() runs on the way back. For example UseAuthentication must precede UseAuthorization.",
+  "code": null,
+  "id": 61,
+  "key": "d15116edac5a"
+ },
+ {
+  "level": "Medium",
+  "topic": "ASP.NET Core",
+  "text": "What is the order of the console output for one request to this pipeline?",
+  "options": [
+   "1 in, handler, 1 out",
+   "handler, 1 in, 1 out",
+   "1 in, 1 out, handler",
+   "1 in, handler"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Code after next() runs after later middleware returns.",
+  "explanation": "The Use middleware prints 1 in, calls next (reaching the terminal Run handler which prints handler), then resumes and prints 1 out.",
+  "code": "app.Use(async (ctx, next) =>\n{\n    Console.WriteLine(\"1 in\");\n    await next();\n    Console.WriteLine(\"1 out\");\n});\n\napp.Run(async ctx =>\n{\n    Console.WriteLine(\"handler\");\n    await ctx.Response.WriteAsync(\"hi\");\n});",
+  "id": 62,
+  "key": "4a824e3c605b"
+ },
+ {
+  "level": "Medium",
+  "topic": "ASP.NET Core",
+  "text": "Which of the following are valid ways to implement middleware? (Select all that apply.)",
+  "options": [
+   "A class with a RequestDelegate constructor parameter and an Invoke/InvokeAsync(HttpContext) method",
+   "A class decorated with a [Middleware] attribute",
+   "Inline with app.Use(async (ctx, next) => ...)",
+   "A class implementing IMiddleware"
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "No special attribute exists for middleware.",
+  "explanation": "Inline delegates, conventional middleware classes and IMiddleware implementations are all supported. There is no [Middleware] attribute.",
+  "code": null,
+  "id": 63,
+  "key": "d1ede854272f"
+ },
+ {
+  "level": "Medium",
+  "topic": "ASP.NET Core",
+  "text": "In conventional (convention-based) middleware, where should you inject a scoped service such as a DbContext?",
+  "options": [
+   "In the constructor",
+   "As a parameter of the InvokeAsync method",
+   "In a static field",
+   "It cannot be injected"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "The middleware instance is created once at startup.",
+  "explanation": "Conventional middleware is constructed once, so constructor dependencies behave as singletons. Scoped services should be taken as InvokeAsync parameters, which are resolved per request.",
+  "code": null,
+  "id": 64,
+  "key": "500279e8eadb"
+ },
+ {
+  "level": "Medium",
+  "topic": "ASP.NET Core",
+  "text": "Where in the pipeline should exception-handling middleware such as UseExceptionHandler normally be placed?",
+  "options": [
+   "As early as possible so it wraps later middleware",
+   "After UseEndpoints",
+   "Last, after all other middleware",
+   "It must be inside every controller"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "It can only catch exceptions from middleware after it.",
+  "explanation": "Middleware wraps the ones registered after it, so the exception handler should be registered first to catch their exceptions.",
+  "code": null,
+  "id": 65,
+  "key": "06b914032ee1"
+ },
+ {
+  "level": "Medium",
+  "topic": "ASP.NET Core",
+  "text": "Which statement about app.Run(...) is correct?",
+  "options": [
+   "It starts the web host",
+   "It adds terminal middleware that does not call the next delegate",
+   "It runs a handler only for POST requests",
+   "It runs after the response is sent"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Compare with app.Use.",
+  "explanation": "app.Run registers a terminal middleware, with no next parameter. app.Run() with no arguments starts the host, which is a different overload.",
+  "code": null,
+  "id": 66,
+  "key": "233fa1f12859"
+ },
+ {
+  "level": "Medium",
+  "topic": "ASP.NET Core",
+  "text": "Which are benefits of using IHttpClientFactory instead of creating a new HttpClient for every request? (Select all that apply.)",
+  "options": [
+   "Handlers are recycled periodically so DNS changes are picked up",
+   "Handlers are pooled, which avoids socket exhaustion",
+   "It is required to call HTTPS endpoints",
+   "HTTP calls become synchronous"
+  ],
+  "correct": [
+   0,
+   1
+  ],
+  "hint": "Think about the HttpMessageHandler lifetime.",
+  "explanation": "Creating many HttpClient instances can exhaust sockets, while a single static one can hold stale DNS. The factory manages pooled handlers with periodic recycling. It does not change sync behavior and HTTPS works without it.",
+  "code": null,
+  "id": 67,
+  "key": "baa89595680a"
+ },
+ {
+  "level": "Medium",
+  "topic": "Configuration",
+  "text": "By default in ASP.NET Core, which configuration source has the highest precedence when the same key is defined in several places?",
+  "options": [
+   "appsettings.json",
+   "appsettings.Development.json",
+   "Environment variables",
+   "Command-line arguments"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Later sources override earlier ones.",
+  "explanation": "The default order is appsettings.json, appsettings.{Environment}.json, user secrets (in Development), environment variables, then command-line arguments, and later providers win.",
+  "code": null,
+  "id": 68,
+  "key": "06c4f5048c67"
+ },
+ {
+  "level": "Medium",
+  "topic": "Configuration",
+  "text": "A singleton service must see updated settings after appsettings.json changes without restarting the app. Which options type is appropriate?",
+  "options": [
+   "IOptions<T>",
+   "IOptionsSnapshot<T>",
+   "IOptionsMonitor<T>",
+   "A static field"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Snapshot is scoped, so it cannot be injected into a singleton.",
+  "explanation": "IOptionsMonitor<T> is a singleton that gives current values and change notifications. IOptions<T> is computed once, and IOptionsSnapshot<T> is scoped, so it cannot be injected into singletons.",
+  "code": null,
+  "id": 69,
+  "key": "1a0287c6ea8d"
+ },
+ {
+  "level": "Medium",
+  "topic": "Configuration",
+  "text": "How is the configuration key Logging:LogLevel:Default set through an environment variable?",
+  "options": [
+   "Logging:LogLevel:Default always works on every OS",
+   "Logging__LogLevel__Default",
+   "Logging.LogLevel.Default",
+   "LOGGING-LOGLEVEL-DEFAULT"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Colons are not portable in environment variable names.",
+  "explanation": "A double underscore is translated into the configuration key separator by the environment variables provider. The colon form works only on some platforms.",
+  "code": null,
+  "id": 70,
+  "key": "a32df55ec2ca"
+ },
+ {
+  "level": "Medium",
+  "topic": "Logging",
+  "text": "Why is logger.LogInformation(\"User {UserId} logged in\", id) preferred over logger.LogInformation($\"User {id} logged in\")?",
+  "options": [
+   "Interpolation does not compile",
+   "The message template keeps UserId as a structured property and avoids formatting work when the level is disabled",
+   "Interpolation is slower only on Linux",
+   "The template version writes to a file"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Think of structured logging sinks.",
+  "explanation": "Named placeholders let providers capture values as structured data and format lazily. An interpolated string is built eagerly and loses the structure. Both compile.",
+  "code": null,
+  "id": 71,
+  "key": "66d0565ca200"
+ },
+ {
+  "level": "Medium",
+  "topic": "Logging",
+  "text": "The minimum log level is Warning. Which of these calls produce output? (Select all that apply.)",
+  "options": [
+   "LogDebug",
+   "LogWarning",
+   "LogError",
+   "LogInformation"
+  ],
+  "correct": [
+   1,
+   2
+  ],
+  "hint": "Levels order: Trace, Debug, Information, Warning, Error, Critical.",
+  "explanation": "Only messages at or above the minimum level are written, so Warning and Error are output. Information and Debug are lower.",
+  "code": null,
+  "id": 72,
+  "key": "3802930b9104"
+ },
+ {
+  "level": "Medium",
+  "topic": "Logging",
+  "text": "What is the correct way to log an exception with its stack trace using ILogger?",
+  "options": [
+   "logger.LogError(ex.Message)",
+   "logger.LogError(ex, \"Failed to process order {OrderId}\", id)",
+   "logger.LogError(\"Failed: \" + ex.ToString().Length)",
+   "Console.WriteLine(ex)"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Pass the exception as the first argument.",
+  "explanation": "The overload taking Exception first lets providers record the full exception and details. Logging only Message loses the stack trace and Console.WriteLine bypasses the logging system.",
+  "code": null,
+  "id": 73,
+  "key": "e7482debb504"
+ },
+ {
+  "level": "Medium",
+  "topic": "Minimal APIs",
+  "text": "In app.MapGet(\"/users/{id}\", (int id) => ...), where does id come from?",
+  "options": [
+   "The route value",
+   "The request body",
+   "A header",
+   "A DI service"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "The name matches a route template parameter.",
+  "explanation": "A simple parameter whose name matches a route template segment is bound from the route. Complex types on POST are bound from the body and services from DI.",
+  "code": null,
+  "id": 74,
+  "key": "468bcc47c4f3"
+ },
+ {
+  "level": "Medium",
+  "topic": "Minimal APIs",
+  "text": "In app.MapPost(\"/items\", (Item item) => ...), where Item is a class, how is item bound?",
+  "options": [
+   "From the JSON request body",
+   "From the query string",
+   "From a route value",
+   "From a cookie"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Complex types are read from the body by default.",
+  "explanation": "For POST/PUT/PATCH handlers, a complex type parameter that is not a registered service is bound from the JSON body. Use [FromQuery] etc. to override.",
+  "code": null,
+  "id": 75,
+  "key": "4ef14d6a07ec"
+ },
+ {
+  "level": "Medium",
+  "topic": "DI",
+  "text": "A singleton service takes a scoped service in its constructor. What happens when scope validation is enabled (default in Development)?",
+  "options": [
+   "It works and the scoped service is created per request",
+   "The container throws InvalidOperationException when resolving",
+   "The singleton becomes scoped",
+   "The scoped service becomes transient"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "The singleton would capture a short-lived dependency.",
+  "explanation": "Injecting a scoped service into a singleton is a captive dependency, as the scoped instance would live as long as the singleton. Scope validation detects it and throws.",
+  "code": null,
+  "id": 76,
+  "key": "7c5a79fd046e"
+ },
+ {
+  "level": "Medium",
+  "topic": "DI",
+  "text": "What does this scoped-lifetime code print?",
+  "options": [
+   "True True",
+   "False True",
+   "False False",
+   "True False"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Scoped means one instance per scope.",
+  "explanation": "Within the same scope the same instance is returned (a == b), but a different scope gets its own instance, so a == c is False.",
+  "code": "var services = new ServiceCollection();\nservices.AddScoped<Foo>();\nvar sp = services.BuildServiceProvider();\n\nusing var s1 = sp.CreateScope();\nusing var s2 = sp.CreateScope();\nvar a = s1.ServiceProvider.GetRequiredService<Foo>();\nvar b = s1.ServiceProvider.GetRequiredService<Foo>();\nvar c = s2.ServiceProvider.GetRequiredService<Foo>();\nConsole.WriteLine((a == b) + \" \" + (a == c));\n\nclass Foo { }",
+  "id": 77,
+  "key": "90b1e8fade3f"
+ },
+ {
+  "level": "Medium",
+  "topic": "DI",
+  "text": "IFoo is registered twice: AddTransient<IFoo, A>() then AddTransient<IFoo, B>(). What do GetRequiredService<IFoo>() and GetServices<IFoo>() return?",
+  "options": [
+   "Error for both calls because of ambiguity",
+   "B for the single resolution; both A and B for the collection",
+   "A for the single resolution; only B for the collection",
+   "Both return a list of A and B"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Later registrations override earlier ones for single resolution.",
+  "explanation": "The last registration wins for a single resolve, while resolving IEnumerable<IFoo> returns all registrations in order. There is no ambiguity error.",
+  "code": null,
+  "id": 78,
+  "key": "af88667b0269"
+ },
+ {
+  "level": "Medium",
+  "topic": "DI",
+  "text": "Which statements about service disposal in the built-in container are true? (Select all that apply.)",
+  "options": [
+   "Instances passed to AddSingleton(instance) are not disposed by the container",
+   "IDisposable services created by the container are disposed when their scope or the provider is disposed",
+   "Singleton services are disposed at the end of each request",
+   "The container never disposes anything"
+  ],
+  "correct": [
+   0,
+   1
+  ],
+  "hint": "Ownership matters: who created the object?",
+  "explanation": "The container disposes what it creates, at the end of its owning scope or provider. Instances you supply yourself are left to you. Singletons live until the root provider is disposed.",
+  "code": null,
+  "id": 79,
+  "key": "b209075ac544"
+ },
+ {
+  "level": "Medium",
+  "topic": "EF Core",
+  "text": "Which techniques reduce overhead for a read-only query whose results will not be modified? (Select all that apply.)",
+  "options": [
+   "Projecting only the needed columns with Select()",
+   "Calling SaveChanges() after the query",
+   "AsNoTracking()",
+   "Calling Include() for every navigation property"
+  ],
+  "correct": [
+   0,
+   2
+  ],
+  "hint": "Avoid tracking and avoid loading unneeded data.",
+  "explanation": "AsNoTracking skips change tracking and identity resolution, and a projection fetches only the columns you need (projected non-entity results are not tracked at all). Loading every navigation does more work, and SaveChanges is irrelevant to reading.",
+  "code": null,
+  "id": 80,
+  "key": "36651f7ec9d6"
+ },
+ {
+  "level": "Medium",
+  "topic": "EF Core",
+  "text": "What is the N+1 query problem in EF Core?",
+  "options": [
+   "One query to load the parent entities, plus one additional query per parent to load related data",
+   "Running N queries in one transaction",
+   "Using more than one DbContext",
+   "Having N tables with one foreign key"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Related data is loaded lazily in a loop.",
+  "explanation": "Iterating over parents and touching a navigation (e.g. with lazy loading) issues extra queries per item. Using Include or a projection loads everything in a few queries.",
+  "code": null,
+  "id": 81,
+  "key": "0602c7f5a07c"
+ },
+ {
+  "level": "Medium",
+  "topic": "EF Core",
+  "text": "After loading a User entity and changing only its Name property, SaveChangesAsync is called. What SQL does EF Core generate?",
+  "options": [
+   "An INSERT of the whole entity",
+   "An UPDATE that sets only the modified column(s)",
+   "A DELETE followed by an INSERT",
+   "No SQL because it only works with AsNoTracking"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "The change tracker knows what changed.",
+  "explanation": "Tracked entities have their property changes detected, and EF Core emits an UPDATE with only the modified columns. Tracking is what makes this possible; AsNoTracking would prevent it.",
+  "code": "var u = await db.Users.FirstAsync(x => x.Id == 1);\nu.Name = \"New\";\nawait db.SaveChangesAsync();",
+  "id": 82,
+  "key": "466b449bf561"
+ },
+ {
+  "level": "Medium",
+  "topic": "EF Core",
+  "text": "Which of these calls cause the query to be executed against the database immediately? (Select all that apply.)",
+  "options": [
+   "Where(x => x.Active)",
+   "Select(x => x.Name)",
+   "CountAsync()",
+   "ToListAsync()"
+  ],
+  "correct": [
+   2,
+   3
+  ],
+  "hint": "Operators that return IQueryable are lazy.",
+  "explanation": "ToListAsync and CountAsync materialize a result and run the query. Where and Select only compose a deferred IQueryable.",
+  "code": null,
+  "id": 83,
+  "key": "f4e15fc0f52c"
+ },
+ {
+  "level": "Medium",
+  "topic": "EF Core",
+  "text": "What is the default lifetime of a DbContext registered with AddDbContext, and why does it matter?",
+  "options": [
+   "Scoped; a DbContext is not thread-safe and should not be shared across concurrent requests",
+   "Singleton; it caches data forever",
+   "Transient; a new one per call",
+   "Static; shared across the process"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Think of one unit of work per request.",
+  "explanation": "AddDbContext registers it as scoped, so each request gets its own instance. DbContext is not thread-safe, so a singleton would break under concurrency.",
+  "code": null,
+  "id": 84,
+  "key": "676912efa278"
+ },
+ {
+  "level": "Medium",
+  "topic": "EF Core",
+  "text": "A row has a rowversion/[Timestamp] concurrency token and another user updated it after you loaded it. What does SaveChanges do?",
+  "options": [
+   "Silently overwrites the other user's change",
+   "Throws DbUpdateConcurrencyException",
+   "Merges the changes automatically",
+   "Rolls back the other user's update"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "EF adds the token to the WHERE clause.",
+  "explanation": "The UPDATE includes the original token in its WHERE clause, affects zero rows, and EF throws DbUpdateConcurrencyException. It does not merge or overwrite the other change.",
+  "code": null,
+  "id": 85,
+  "key": "b59973812a38"
+ },
+ {
+  "level": "Medium",
+  "topic": "Exceptions",
+  "text": "What does this try/catch/finally code print?",
+  "options": [
+   "TCE",
+   "TFCE",
+   "TCFE",
+   "TCF"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "finally runs before control continues after the try statement.",
+  "explanation": "T is written, the exception is caught (C), finally runs (F) and then execution continues after the try statement (E).",
+  "code": "try\n{\n    Console.Write(\"T\");\n    throw new Exception();\n}\ncatch\n{\n    Console.Write(\"C\");\n}\nfinally\n{\n    Console.Write(\"F\");\n}\nConsole.Write(\"E\");",
+  "id": 86,
+  "key": "164ddb4b8e62"
+ },
+ {
+  "level": "Medium",
+  "topic": "Delegates/events",
+  "text": "What does this event code print?",
+  "options": [
+   "hi",
+   "HI",
+   "Nothing, because events need a null check",
+   "hiHI"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Both handlers are subscribed.",
+  "explanation": "Invoke calls all subscribed handlers in subscription order, so hi followed by HI is printed. The null-conditional Invoke handles the case of no subscribers.",
+  "code": "class Pub\n{\n    public event Action<string>? Raised;\n    public void Fire() => Raised?.Invoke(\"hi\");\n}\n\nvar p = new Pub();\np.Raised += s => Console.Write(s);\np.Raised += s => Console.Write(s.ToUpper());\np.Fire();",
+  "id": 87,
+  "key": "90c962249007"
+ },
+ {
+  "level": "Medium",
+  "topic": "Delegates/events",
+  "text": "What does this closure-in-a-for-loop code print?",
+  "options": [
+   "012",
+   "123",
+   "333",
+   "It throws"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "How many i variables does a for loop create?",
+  "explanation": "A for loop declares a single i shared by all closures, which has the value 3 once the loop ends, so 333 is printed. A foreach iteration variable is per-iteration.",
+  "code": "var acts = new List<Action>();\nfor (int i = 0; i < 3; i++)\n    acts.Add(() => Console.Write(i));\nforeach (var a in acts) a();",
+  "id": 88,
+  "key": "d781f1e0224d"
+ },
+ {
+  "level": "Medium",
+  "topic": "Strings",
+  "text": "What does this Substring and indexer code print?",
+  "options": [
+   "bc",
+   "b",
+   "c",
+   "It does not compile"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "string + char produces a string.",
+  "explanation": "Substring(1, 1) is \"b\", and \"abc\"[2] is the char 'c'. Concatenating string and char gives \"bc\".",
+  "code": "Console.WriteLine(\"abc\".Substring(1, 1) + \"abc\"[2]);",
+  "id": 89,
+  "key": "b35c5314499a"
+ },
+ {
+  "level": "Medium",
+  "topic": "Memory",
+  "text": "Which restriction applies to Span<T>?",
+  "options": [
+   "It can only hold reference types",
+   "It is a ref struct, so it cannot be a class field or be used across await in an async method",
+   "It always allocates on the heap",
+   "It can only be used with arrays"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It must live on the stack.",
+  "explanation": "Span<T> is a ref struct restricted to the stack, so it cannot be stored in a class field, boxed or kept across an await. It can wrap arrays, stack memory and native memory and works with any T.",
+  "code": null,
+  "id": 90,
+  "key": "fa6303433392"
+ },
+ {
+  "level": "Hard",
+  "topic": "Delegates/closures",
+  "text": "A lambda increments a captured local and is invoked twice. What is the local's value afterwards?",
+  "options": [
+   "2",
+   "It does not compile because lambdas cannot modify captured locals",
+   "0",
+   "1"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "The lambda captures the variable itself.",
+  "explanation": "A closure captures the variable, not a copy of its value, so each call increments the same local. Lambdas are allowed to modify captured locals, so it does compile.",
+  "code": "int x = 0;\nFunc<int> next = () => ++x;\nnext();\nnext();\nConsole.WriteLine(x);",
+  "id": 91,
+  "key": "a2826f12b142"
+ },
+ {
+  "level": "Hard",
+  "topic": "Delegates/closures",
+  "text": "Lambdas are added to a list inside a for loop and invoked afterwards. What is the output?",
+  "options": [
+   "0 1 2",
+   "3 3 3",
+   "2 2 2",
+   "It does not compile because i is modified after capture"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Think about how many variables the for loop declares.",
+  "explanation": "A for loop declares a single loop variable shared by all iterations, and the lambdas capture that variable, not its value. By the time they run, i is 3. The 0 1 2 result would need a per-iteration copy such as 'int c = i;'.",
+  "code": "var actions = new List<Action>();\nfor (int i = 0; i < 3; i++) actions.Add(() => Console.Write(i + \" \"));\nforeach (var a in actions) a();",
+  "id": 92,
+  "key": "511f17380716"
+ },
+ {
+  "level": "Hard",
+  "topic": "Delegates/closures",
+  "text": "Lambdas are added to a list inside a foreach loop and invoked afterwards. What is the output?",
+  "options": [
+   "0 0 0",
+   "It does not compile because the foreach variable is read-only inside lambdas",
+   "0 1 2",
+   "2 2 2"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Compare how foreach declares its iteration variable with how for does.",
+  "explanation": "Since C# 5 the foreach iteration variable is scoped inside the loop body, so each iteration gets a fresh variable that the lambda captures. Each action therefore remembers its own value. Capturing a for-loop counter behaves differently.",
+  "code": "var actions = new List<Action>();\nforeach (var i in new[] { 0, 1, 2 }) actions.Add(() => Console.Write(i + \" \"));\nforeach (var a in actions) a();",
+  "id": 93,
+  "key": "3a5eb1806e3f"
+ },
+ {
+  "level": "Hard",
+  "topic": "LINQ deferred execution",
+  "text": "An element is added to the list after the Where query is defined. What is printed?",
+  "options": [
+   "4",
+   "It throws InvalidOperationException because the list was modified",
+   "2",
+   "3"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "When does Where actually look at the source list?",
+  "explanation": "Where is lazy, so the query is evaluated when Count() enumerates it, after 4 has been added. The elements greater than 1 at that moment are 2, 3 and 4, giving 3. No exception occurs because the list is not modified during enumeration.",
+  "code": "var list = new List<int> { 1, 2, 3 };\nvar q = list.Where(x => x > 1);\nlist.Add(4);\nConsole.WriteLine(q.Count());",
+  "id": 94,
+  "key": "550a3b0d1b83"
+ },
+ {
+  "level": "Hard",
+  "topic": "LINQ deferred execution",
+  "text": "How many times is the Select lambda executed, and what is printed?",
+  "options": [
+   "6",
+   "3",
+   "0",
+   "9"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Each ToList enumerates the query from scratch.",
+  "explanation": "Select is deferred and not cached, so each ToList call re-runs the lambda for all three elements, giving 6. 3 would be correct only if results were memoized, and nothing is memoized in LINQ to Objects.",
+  "code": "int calls = 0;\nvar q = new[] { 1, 2, 3 }.Select(x => { calls++; return x * 2; });\nvar a = q.ToList();\nvar b = q.ToList();\nConsole.WriteLine(calls);",
+  "id": 95,
+  "key": "4ba17ca7c755"
+ },
+ {
+  "level": "Hard",
+  "topic": "LINQ deferred execution",
+  "text": "Which of these LINQ operators execute (enumerate the source) immediately when called, rather than deferring until the result is enumerated? (Select all that apply.)",
+  "options": [
+   "ToList()",
+   "Where(...)",
+   "OrderBy(...)",
+   "Select(...)",
+   "Count()"
+  ],
+  "correct": [
+   0,
+   4
+  ],
+  "hint": "Think about which ones return a materialized value rather than a query.",
+  "explanation": "ToList and Count produce a concrete result so they enumerate immediately. Where, Select and OrderBy return lazy sequences that do no work until enumerated.",
+  "code": null,
+  "id": 96,
+  "key": "17b9599a46bf"
+ },
+ {
+  "level": "Hard",
+  "topic": "EF Core",
+  "text": "A repository method is declared as below. How is the filter applied for a SQL provider?",
+  "options": [
+   "It is translated to a SQL WHERE clause because the source is a DbSet",
+   "The whole Orders table is loaded and the filter runs in memory",
+   "EF Core throws because Where cannot accept a lambda on IEnumerable",
+   "Only the first matching row is loaded"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Look at the static type of the variable q.",
+  "explanation": "Typing the variable as IEnumerable<Order> makes Where bind to Enumerable.Where, which takes a Func rather than an expression tree. The rest of the query becomes LINQ to Objects, so every row is fetched and filtered in memory. Keeping IQueryable would translate the predicate to SQL.",
+  "code": "IEnumerable<Order> q = db.Orders;\nvar big = q.Where(o => o.Total > 100).ToList();",
+  "id": 97,
+  "key": "1385428eeb66"
+ },
+ {
+  "level": "Hard",
+  "topic": "EF Core",
+  "text": "What happens to the database when this code runs (default tracking behavior)?",
+  "options": [
+   "A new row is inserted with the new price",
+   "The Price is updated because the entity was loaded from the context",
+   "Nothing is written: the entity is not tracked so SaveChanges sees no changes",
+   "SaveChangesAsync throws InvalidOperationException because the entity is untracked"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "What does AsNoTracking skip?",
+  "explanation": "AsNoTracking returns entities that are not attached to the change tracker, so modifying them is invisible to SaveChanges. No exception is thrown and nothing is inserted. You would need Update/Attach to persist the change.",
+  "code": "var p = await db.Products.AsNoTracking().FirstAsync();\np.Price = 10m;\nawait db.SaveChangesAsync();",
+  "id": 98,
+  "key": "c26124e3fa09"
+ },
+ {
+  "level": "Hard",
+  "topic": "EF Core",
+  "text": "With lazy-loading proxies enabled and Customer declared as a virtual navigation property, how many SQL queries does this code run for 50 orders?",
+  "options": [
+   "50",
+   "1",
+   "2",
+   "51"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "One query for the list plus one per navigation access.",
+  "explanation": "ToList issues one query for the orders, and the first access to each o.Customer triggers a separate lazy-load query, giving 1 + N = 51 (fewer if customers repeat, since the context caches already loaded ones, but the worst case is 51). This is the classic N+1 problem, fixed with Include or a projection.",
+  "code": "foreach (var o in db.Orders.ToList())\n    Console.WriteLine(o.Customer.Name);",
+  "id": 99,
+  "key": "f4efa6803a6c"
+ },
+ {
+  "level": "Hard",
+  "topic": "EF Core",
+  "text": "A query includes two sibling collection navigations (Include(a => a.Orders).Include(a => a.Addresses)) and returns far more rows than expected, causing slow performance. Which approaches mitigate this cartesian explosion? (Select all that apply.)",
+  "options": [
+   "Load each collection with a separate query",
+   "Use AsSplitQuery()",
+   "Use AsNoTracking()",
+   "Call ToList() before Include"
+  ],
+  "correct": [
+   0,
+   1
+  ],
+  "hint": "The problem is the single JOINed result set.",
+  "explanation": "Multiplying child collections in one JOIN duplicates parent data; AsSplitQuery or manually separate queries avoid it. AsNoTracking affects tracking only, and calling ToList first would make Include unavailable on the in-memory list.",
+  "code": null,
+  "id": 100,
+  "key": "c52aba6b4360"
+ },
+ {
+  "level": "Hard",
+  "topic": "EF Core",
+  "text": "Which of these calls return entity instances that are tracked by the DbContext under default settings? (Select all that apply.)",
+  "options": [
+   "db.Products.Select(p => new { p.Id, p.Name }).ToList()",
+   "db.Products.AsNoTracking().ToList()",
+   "db.Products.Find(1)",
+   "db.Products.ToList()"
+  ],
+  "correct": [
+   2,
+   3
+  ],
+  "hint": "Anonymous types are not entities.",
+  "explanation": "ToList on a DbSet and Find both return tracked entities. AsNoTracking opts out, and a projection into an anonymous type yields no entity instances to track.",
+  "code": null,
+  "id": 101,
+  "key": "8d0cb49d59cb"
+ },
+ {
+  "level": "Hard",
+  "topic": "EF Core",
+  "text": "What is the value of p.Price printed at the end?",
+  "options": [
+   "The old price: ExecuteUpdate bypasses the change tracker so p is stale",
+   "99, because EF Core refreshes tracked entities after ExecuteUpdate",
+   "It throws because p is tracked",
+   "0"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Does set-based SQL know about objects already in memory?",
+  "explanation": "ExecuteUpdateAsync issues a direct UPDATE statement and does not touch tracked entities, so p keeps the value read earlier. The database has 99, but the in-memory object is stale until reloaded.",
+  "code": "var p = await db.Products.FirstAsync(x => x.Id == 1);\nawait db.Products.Where(x => x.Id == 1)\n    .ExecuteUpdateAsync(s => s.SetProperty(x => x.Price, 99m));\nConsole.WriteLine(p.Price);",
+  "id": 102,
+  "key": "ad04062ea11c"
+ },
+ {
+  "level": "Hard",
+  "topic": "EF Core",
+  "text": "An entity has a [Timestamp] byte[] RowVersion property. Two users load the same row and both save changes. What happens to the second SaveChanges?",
+  "options": [
+   "The second save silently overwrites the first",
+   "It throws DbUpdateConcurrencyException because the UPDATE matched 0 rows",
+   "It throws only when both users edit the same column",
+   "EF Core automatically merges both changes"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "The RowVersion is part of the UPDATE's WHERE clause.",
+  "explanation": "EF Core adds the original RowVersion to the WHERE clause, so after the first save changes the version, the second UPDATE affects zero rows and EF raises DbUpdateConcurrencyException. It does not compare columns individually or merge changes.",
+  "code": null,
+  "id": 103,
+  "key": "645fba853fc6"
+ },
+ {
+  "level": "Hard",
+  "topic": "EF Core",
+  "text": "What is the result of running this code with a single DbContext instance?",
+  "options": [
+   "A DbUpdateException is raised",
+   "Both counts run in parallel and complete normally",
+   "InvalidOperationException because a second operation was started on the context before the first completed",
+   "The second query is automatically queued by the context"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Is DbContext thread-safe?",
+  "explanation": "DbContext does not support multiple concurrent operations; EF Core detects this and throws InvalidOperationException. It does not queue requests. Use separate contexts (for example from IDbContextFactory) for parallel queries.",
+  "code": "var t1 = db.Orders.CountAsync();\nvar t2 = db.Customers.CountAsync();\nawait Task.WhenAll(t1, t2);",
+  "id": 104,
+  "key": "e9f51bad7b3e"
+ },
+ {
+  "level": "Hard",
+  "topic": "Async/await",
+  "text": "This method is called from a WinForms button click handler (UI thread with a SynchronizationContext). What happens?",
+  "options": [
+   "It throws InvalidOperationException for cross-thread access",
+   "It returns null",
+   "It returns \"x\" after about 100 ms",
+   "It deadlocks"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Who is blocked, and where does the continuation want to run?",
+  "explanation": "The UI thread blocks on .Result while the continuation after await Task.Delay needs to resume on that same UI thread, so neither can proceed. Using await up the call chain or ConfigureAwait(false) inside the helper avoids it.",
+  "code": "string Get() => GetAsync().Result;\n\nasync Task<string> GetAsync()\n{\n    await Task.Delay(100);\n    return \"x\";\n}",
+  "id": 105,
+  "key": "2d8c8eb3e60e"
+ },
+ {
+  "level": "Hard",
+  "topic": "Async/await",
+  "text": "Which statements about async void methods are correct? (Select all that apply.)",
+  "options": [
+   "An exception thrown from one cannot be caught by a try/catch around the call",
+   "Callers can await them to observe completion",
+   "An unhandled exception in one can crash the process (for example in a console app)",
+   "They are the recommended way to start general fire-and-forget work"
+  ],
+  "correct": [
+   0,
+   2
+  ],
+  "hint": "There is no Task to carry the failure.",
+  "explanation": "async void has no Task, so exceptions are raised on the captured context or thread pool, bypassing the caller's catch and potentially terminating the process. It is meant for event handlers only, and it cannot be awaited.",
+  "code": null,
+  "id": 106,
+  "key": "800fb2189186"
+ },
+ {
+  "level": "Hard",
+  "topic": "Async/await",
+  "text": "Which statements about Task.WhenAll are correct when several of the tasks fault? (Select all that apply.)",
+  "options": [
+   "It cancels the remaining tasks as soon as one faults",
+   "It completes as soon as the first task faults",
+   "All exceptions are available in whenAllTask.Exception.InnerExceptions",
+   "await on the WhenAll task rethrows only the first exception"
+  ],
+  "correct": [
+   2,
+   3
+  ],
+  "hint": "WhenAll waits for everyone.",
+  "explanation": "WhenAll completes only after all tasks finish, aggregating failures; await unwraps and rethrows just the first, and the full set lives in the AggregateException. It never cancels the other tasks.",
+  "code": null,
+  "id": 107,
+  "key": "4f46e11cdd81"
+ },
+ {
+  "level": "Hard",
+  "topic": "Async/await",
+  "text": "What is wrong with this method?",
+  "options": [
+   "The reader is disposed before the returned task completes, so the read can fail with ObjectDisposedException",
+   "It does not compile because async is missing",
+   "ReadToEndAsync cannot be used with using var",
+   "Nothing: ReadToEndAsync completes before the method returns"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "When does the using scope end relative to the task?",
+  "explanation": "Without async/await the method returns the Task immediately, the using scope ends and disposes the reader while the read is still in flight. Making the method async and awaiting inside the using fixes it.",
+  "code": "Task<string> ReadAll(string path)\n{\n    using var reader = new StreamReader(path);\n    return reader.ReadToEndAsync();\n}",
+  "id": 108,
+  "key": "cac55b2977e0"
+ },
+ {
+  "level": "Hard",
+  "topic": "Async/await",
+  "text": "Which statements about ConfigureAwait(false) are correct? (Select all that apply.)",
+  "options": [
+   "It forces the awaited operation to run on a thread-pool thread",
+   "In ASP.NET Core, omitting it in application code does not cause the classic sync-context deadlock",
+   "Code after the await may run without the captured SynchronizationContext",
+   "It suppresses exceptions from the awaited task"
+  ],
+  "correct": [
+   1,
+   2
+  ],
+  "hint": "It controls only where the continuation resumes.",
+  "explanation": "ASP.NET Core has no SynchronizationContext, so blocking there does not deadlock in the classic way, and ConfigureAwait(false) simply says the continuation need not resume on the captured context. It does not change where the awaited operation itself runs and does not touch exceptions.",
+  "code": null,
+  "id": 109,
+  "key": "cf2646d2564b"
+ },
+ {
+  "level": "Hard",
+  "topic": "Async/await",
+  "text": "Which statements about ValueTask<T> are correct? (Select all that apply.)",
+  "options": [
+   "Awaiting a ValueTask once directly is a valid usage",
+   "Calling GetAwaiter().GetResult() on an incomplete ValueTask is a supported way to block",
+   "Awaiting the same ValueTask instance twice is not supported",
+   "Calling AsTask() once gives a Task that can be awaited multiple times"
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "A ValueTask may wrap a reusable pooled source.",
+  "explanation": "A ValueTask must be consumed once; converting with AsTask gives a normal reusable Task. Blocking on an incomplete ValueTask via GetResult is unsupported.",
+  "code": null,
+  "id": 110,
+  "key": "29c29eb649d0"
+ },
+ {
+  "level": "Hard",
+  "topic": "Async/await",
+  "text": "What does this code print?",
+  "options": [
+   "It throws InvalidOperationException from the call F()",
+   "after caught",
+   "caught",
+   "after, then an unhandled exception"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Where does an async method store an exception thrown before its first await?",
+  "explanation": "In an async method, exceptions are captured in the returned Task, even when thrown before any await, so F() returns a faulted task. 'after' is printed first and await t then throws, which is caught.",
+  "code": "async Task F() { throw new InvalidOperationException(\"x\"); }\n\nTask t = F();\nConsole.Write(\"after \");\ntry { await t; }\ncatch (InvalidOperationException) { Console.Write(\"caught\"); }",
+  "id": 111,
+  "key": "e5ccefe555d4"
+ },
+ {
+  "level": "Hard",
+  "topic": "Async/await",
+  "text": "What is the main problem with this code?",
+  "options": [
+   "It deadlocks on the thread pool",
+   "Parallel.ForEach cannot take a lambda",
+   "The async lambda becomes async void, so Parallel.ForEach returns before the work finishes and exceptions are lost",
+   "The items are processed sequentially"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Which delegate type does Parallel.ForEach expect?",
+  "explanation": "Parallel.ForEach takes an Action<T>, so the async lambda is compiled as async void and is not awaited. The loop returns when the lambdas hit their first await. Parallel.ForEachAsync or Task.WhenAll should be used.",
+  "code": "Parallel.ForEach(items, async item => await ProcessAsync(item));\nConsole.WriteLine(\"done\");",
+  "id": 112,
+  "key": "1f58fe294a22"
+ },
+ {
+  "level": "Hard",
+  "topic": "DI lifetimes",
+  "text": "A singleton service takes a scoped service in its constructor. Which statements are correct? (Select all that apply.)",
+  "options": [
+   "With validation off, the scoped instance effectively lives as long as the singleton",
+   "With scope validation on (default in Development) resolving it throws InvalidOperationException",
+   "Registering the dependency as transient makes it per-request inside the singleton",
+   "The scoped instance is recreated on every request even though the singleton exists"
+  ],
+  "correct": [
+   0,
+   1
+  ],
+  "hint": "The singleton is built only once.",
+  "explanation": "The singleton's constructor runs once, so it captures one scoped instance for its whole lifetime (a captive dependency); validation detects this. A transient injected into a singleton is also resolved once and kept.",
+  "code": null,
+  "id": 113,
+  "key": "2622f9b015f6"
+ },
+ {
+  "level": "Hard",
+  "topic": "DI lifetimes",
+  "text": "Which statements about disposal in the built-in DI container are correct? (Select all that apply.)",
+  "options": [
+   "Services created in a request scope are disposed when that scope is disposed",
+   "Instances passed in via AddSingleton(instance) are not disposed by the container",
+   "A transient IDisposable resolved from the root provider is held until the root provider is disposed",
+   "The container disposes transient instances immediately after each use"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "The container disposes only what it created and tracks it.",
+  "explanation": "The container tracks disposable instances it creates and disposes them with their owning scope or root, which makes root-resolved transients a leak risk. It does not own instances you supply. It never disposes transients right after use.",
+  "code": null,
+  "id": 114,
+  "key": "dca611a3440f"
+ },
+ {
+  "level": "Hard",
+  "topic": "DI lifetimes",
+  "text": "Given these registrations, which statements are correct? (Select all that apply.)",
+  "options": [
+   "GetRequiredService<IFoo>() returns an A",
+   "GetServices<IFoo>() enumerates A then B",
+   "GetRequiredService<IFoo>() returns a B",
+   "GetRequiredService<IFoo>() throws an ambiguity exception"
+  ],
+  "correct": [
+   1,
+   2
+  ],
+  "hint": "The last registration wins for single resolution.",
+  "explanation": "For a single service the last registration wins, while IEnumerable<IFoo> contains all registrations in registration order. The container never throws for multiple registrations of the same service type.",
+  "code": "services.AddTransient<IFoo, A>();\nservices.AddTransient<IFoo, B>();",
+  "id": 115,
+  "key": "1eeb8e8a7cef"
+ },
+ {
+  "level": "Hard",
+  "topic": "DI lifetimes",
+  "text": "A BackgroundService needs to use a scoped DbContext each time it processes a message. What is the correct approach?",
+  "options": [
+   "Resolve the DbContext from the root IServiceProvider and keep it",
+   "Inject the DbContext in the constructor of the BackgroundService",
+   "Register the BackgroundService as scoped",
+   "Inject IServiceScopeFactory and create a scope per unit of work"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Hosted services are singletons.",
+  "explanation": "Hosted services live for the app lifetime, so injecting a scoped service captures it forever. Creating a scope per unit of work gives a fresh DbContext that is disposed afterward. Resolving scoped services from the root provider is invalid or leaky.",
+  "code": null,
+  "id": 116,
+  "key": "bd6e415d8c94"
+ },
+ {
+  "level": "Hard",
+  "topic": "DI lifetimes",
+  "text": "What is returned by this code?",
+  "options": [
+   "An instance of A",
+   "An instance of B",
+   "An InvalidOperationException because IFoo is registered twice",
+   "null"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "TryAdd checks for an existing registration.",
+  "explanation": "TryAddSingleton registers only when no registration for the service type already exists, so the earlier AddSingleton wins. B is never registered.",
+  "code": "services.AddSingleton<IFoo, A>();\nservices.TryAddSingleton<IFoo, B>();\nvar foo = services.BuildServiceProvider().GetRequiredService<IFoo>();",
+  "id": 117,
+  "key": "7946a412c4b2"
+ },
+ {
+  "level": "Hard",
+  "topic": "ASP.NET Core pipeline",
+  "text": "Which statements about middleware ordering are correct? (Select all that apply.)",
+  "options": [
+   "Static files middleware must always come after endpoint mapping",
+   "UseAuthentication must be registered before UseAuthorization",
+   "UseAuthorization must be registered before UseAuthentication",
+   "UseExceptionHandler should be registered early so it can catch exceptions from later middleware"
+  ],
+  "correct": [
+   1,
+   3
+  ],
+  "hint": "Authorization needs an identity to evaluate.",
+  "explanation": "Authorization relies on the user established by authentication, so authentication goes first. An exception handler only sees exceptions from middleware that runs after it. Static files typically come early and short-circuit.",
+  "code": null,
+  "id": 118,
+  "key": "62124ed8ed48"
+ },
+ {
+  "level": "Hard",
+  "topic": "ASP.NET Core pipeline",
+  "text": "What is the response body of a request?",
+  "options": [
+   "BAC",
+   "ABC",
+   "ACB",
+   "AB"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Code after next() runs after later middleware complete.",
+  "explanation": "The first middleware writes A, awaits next which runs the terminal middleware writing B, and then writes C once control returns. The pipeline unwinds in reverse order, so the sequence is ABC.",
+  "code": "app.Use(async (ctx, next) =>\n{\n    await ctx.Response.WriteAsync(\"A\");\n    await next();\n    await ctx.Response.WriteAsync(\"C\");\n});\napp.Run(async ctx => await ctx.Response.WriteAsync(\"B\"));",
+  "id": 119,
+  "key": "59528cf95cf8"
+ },
+ {
+  "level": "Hard",
+  "topic": "ASP.NET Core pipeline",
+  "text": "app.UseExceptionHandler(\"/error\") is called after a terminal app.Run(ctx => throw new Exception()). What happens when a request is made?",
+  "options": [
+   "The request returns 404",
+   "The exception handler catches it because it is registered",
+   "The exception propagates to the server because the handler is never reached in the pipeline",
+   "The handler runs only in the Development environment"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "A terminal middleware never calls next.",
+  "explanation": "Middleware is a chain in registration order and an exception handler only catches exceptions thrown by components after it. Since app.Run is terminal and comes first, the later handler is never part of the executed path.",
+  "code": null,
+  "id": 120,
+  "key": "1d5419d86d66"
+ },
+ {
+  "level": "Hard",
+  "topic": "ASP.NET Core pipeline",
+  "text": "Which statements about this middleware are correct? (Select all that apply.)",
+  "options": [
+   "Setting the header throws InvalidOperationException because the response has already started",
+   "Headers are buffered until the middleware returns so the header is sent",
+   "The header is silently ignored without any exception",
+   "ctx.Response.HasStarted is true after the WriteAsync completes"
+  ],
+  "correct": [
+   0,
+   3
+  ],
+  "hint": "Headers must be sent before the body.",
+  "explanation": "Once the body begins to flush, headers are sent and become read-only, so modifying them throws and HasStarted is true. Kestrel does not buffer headers until the middleware ends.",
+  "code": "app.Use(async (ctx, next) =>\n{\n    await ctx.Response.WriteAsync(\"hi\");\n    ctx.Response.Headers[\"X-Test\"] = \"1\";\n});",
+  "id": 121,
+  "key": "bdab0b6f465b"
+ },
+ {
+  "level": "Hard",
+  "topic": "ASP.NET Core pipeline",
+  "text": "In a controller annotated with [ApiController], which statements about parameter binding and validation are correct? (Select all that apply.)",
+  "options": [
+   "Complex type parameters are inferred as [FromForm]",
+   "Automatic HTTP 400 for invalid ModelState happens after the action body runs",
+   "A simple-type parameter that is not in the route template is inferred as [FromQuery]",
+   "A complex type parameter is inferred as [FromBody]"
+  ],
+  "correct": [
+   2,
+   3
+  ],
+  "hint": "Binding source inference rules.",
+  "explanation": "ApiController infers FromBody for complex types and Route or Query for simple ones. Its validation filter short-circuits with 400 before the action executes. FromForm is inferred only for IFormFile types.",
+  "code": null,
+  "id": 122,
+  "key": "8a7c3ece661f"
+ },
+ {
+  "level": "Hard",
+  "topic": "ASP.NET Core pipeline",
+  "text": "With <Nullable>enable</Nullable> in a project using [ApiController], what happens when a POST body {} is bound to this DTO?",
+  "options": [
+   "A 500 NullReferenceException is thrown",
+   "Name is set to an empty string",
+   "Name is null and the action runs normally",
+   "A 400 response is returned automatically because non-nullable reference type properties are treated as [Required]"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Nullable annotations influence validation metadata.",
+  "explanation": "MVC treats non-nullable reference type properties as implicitly required, so the missing Name makes ModelState invalid and ApiController returns 400. This is by default and can be disabled.",
+  "code": "public class CreateUserDto\n{\n    public string Name { get; set; }\n}",
+  "id": 123,
+  "key": "52017e3281dd"
+ },
+ {
+  "level": "Hard",
+  "topic": "ASP.NET Core pipeline",
+  "text": "A singleton service must observe configuration values that change at runtime (reloadOnChange). Which type should it inject?",
+  "options": [
+   "IOptionsMonitor<T>",
+   "T directly via AddSingleton(T)",
+   "IOptions<T>",
+   "IOptionsSnapshot<T>"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "One option type is registered as singleton and supports change notifications.",
+  "explanation": "IOptionsMonitor<T> is a singleton that always returns current values and offers OnChange. IOptions<T> is computed once, and IOptionsSnapshot<T> is scoped, so it cannot be injected into a singleton.",
+  "code": null,
+  "id": 124,
+  "key": "7c449f30bb7b"
+ },
+ {
+  "level": "Hard",
+  "topic": "HttpClient",
+  "text": "Why is creating a new HttpClient per request inside a using block discouraged in a long-running service?",
+  "options": [
+   "HttpClient is not thread-safe",
+   "It can exhaust sockets because disposed connections linger in TIME_WAIT, and the pool is not reused",
+   "HttpClient cannot be disposed",
+   "Each HttpClient allocates a new thread"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Think about connections, not threads.",
+  "explanation": "Each HttpClient with its own handler opens its own connections, which remain in TIME_WAIT after disposal and can exhaust sockets. HttpClient is safe for concurrent use, and IHttpClientFactory or a long-lived instance reuses the connection pool.",
+  "code": null,
+  "id": 125,
+  "key": "ce9a14302279"
+ },
+ {
+  "level": "Hard",
+  "topic": "Generics variance",
+  "text": "Which of these declarations compile? (Select all that apply.)",
+  "options": [
+   "List<object> b = new List<string>();",
+   "IEnumerable<object> a = new List<string>();",
+   "IList<object> d = new List<string>();",
+   "Action<string> c = new Action<object>(o => { });"
+  ],
+  "correct": [
+   1,
+   3
+  ],
+  "hint": "Only some interfaces/delegates have in or out type parameters.",
+  "explanation": "IEnumerable<out T> is covariant and Action<in T> is contravariant. List<T> is a class, and IList<T> is invariant because it both reads and writes T.",
+  "code": null,
+  "id": 126,
+  "key": "8fc180ecf3b7"
+ },
+ {
+  "level": "Hard",
+  "topic": "Generics variance",
+  "text": "What happens at runtime?",
+  "options": [
+   "It does not compile",
+   "It runs and stores 42 in arr[1]",
+   "ArrayTypeMismatchException on the last line",
+   "InvalidCastException on the first line"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Array covariance is checked at runtime.",
+  "explanation": "string[] converts to object[] due to array covariance, but the runtime still verifies each store against the real element type. Storing an int throws ArrayTypeMismatchException.",
+  "code": "object[] arr = new string[2];\narr[0] = \"a\";\narr[1] = 42;",
+  "id": 127,
+  "key": "7adf31fb714e"
+ },
+ {
+  "level": "Hard",
+  "topic": "Generics variance",
+  "text": "Why does 'IEnumerable<object> e = new List<int>();' fail to compile?",
+  "options": [
+   "List<int> does not implement IEnumerable",
+   "object cannot be used as a type argument",
+   "IEnumerable<T> is invariant",
+   "Variance only applies to reference-type arguments; int needs a boxing conversion, not a reference conversion"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Variance requires an identity or reference conversion.",
+  "explanation": "Generic variance is allowed only when the type arguments are related by identity or reference conversion; int to object is a boxing conversion. IEnumerable<T> is covariant and List<int> does implement it.",
+  "code": null,
+  "id": 128,
+  "key": "d300806ec0bb"
+ },
+ {
+  "level": "Hard",
+  "topic": "Generics variance",
+  "text": "Static counters on a generic class are incremented through different type arguments. What is printed?",
+  "options": [
+   "2 1",
+   "3 3",
+   "1 1",
+   "3 0"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Each closed generic type gets its own statics.",
+  "explanation": "Static fields are per constructed type, so C<int> and C<string> have separate Count fields. C<int>.Count is incremented twice and C<string>.Count once.",
+  "code": "class C<T> { public static int Count; }\n\nC<int>.Count++;\nC<string>.Count++;\nC<int>.Count++;\nConsole.WriteLine($\"{C<int>.Count} {C<string>.Count}\");",
+  "id": 129,
+  "key": "eeba56e69d28"
+ },
+ {
+  "level": "Hard",
+  "topic": "Value vs reference",
+  "text": "What happens when the code assigns to a member of a struct element obtained through a List indexer?",
+  "options": [
+   "It sets X to 5",
+   "Compile error CS1612: cannot modify the return value because it is not a variable",
+   "InvalidOperationException at runtime",
+   "It sets X on a copy and silently does nothing"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "What does the List indexer return for a struct element?",
+  "explanation": "The indexer returns a copy of the struct, so assigning to a member of that temporary is rejected by the compiler. Replace the element with a modified copy, or use CollectionsMarshal.AsSpan with ref access.",
+  "code": "struct Point { public int X; }\n\nvar list = new List<Point> { new Point() };\nlist[0].X = 5;",
+  "id": 130,
+  "key": "ecbc29042d85"
+ },
+ {
+  "level": "Hard",
+  "topic": "Value vs reference",
+  "text": "A mutating method is called on a readonly field holding a struct. What is printed?",
+  "options": [
+   "It does not compile",
+   "It throws",
+   "0",
+   "1"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Calling a method on a readonly field of struct type.",
+  "explanation": "Because the field is readonly, the call Inc() operates on a defensive copy of the struct, so the original N remains 0. Making Counter a readonly struct or the field non-readonly changes this.",
+  "code": "struct Counter { public int N; public void Inc() => N++; }\nclass Holder { public readonly Counter C = new Counter(); }\n\nvar h = new Holder();\nh.C.Inc();\nConsole.WriteLine(h.C.N);",
+  "id": 131,
+  "key": "6da73f89dbc6"
+ },
+ {
+  "level": "Hard",
+  "topic": "Value vs reference",
+  "text": "An int is boxed and the original variable is changed afterwards. What is printed after unboxing?",
+  "options": [
+   "10",
+   "It does not compile",
+   "It throws InvalidCastException",
+   "5"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Boxing copies the value.",
+  "explanation": "Boxing copies the int to the heap, so later changes to i do not affect the box. Unboxing yields the copied 5.",
+  "code": "int i = 5;\nobject o = i;\ni = 10;\nConsole.WriteLine((int)o);",
+  "id": 132,
+  "key": "633188953bf4"
+ },
+ {
+  "level": "Hard",
+  "topic": "Value vs reference",
+  "text": "What does this code do?",
+  "options": [
+   "Throws InvalidCastException because unboxing requires the exact original type",
+   "Prints 5 because int converts implicitly to long",
+   "Does not compile",
+   "Prints 5"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Unboxing must match the boxed type.",
+  "explanation": "Unboxing is only allowed to the exact boxed type (or its nullable), so unboxing an int box as long throws. You need (long)(int)o instead.",
+  "code": "object o = 5;\nlong l = (long)o;\nConsole.WriteLine(l);",
+  "id": 133,
+  "key": "ca8ef90278af"
+ },
+ {
+  "level": "Hard",
+  "topic": "Value vs reference",
+  "text": "Which of these cause a boxing allocation? (Select all that apply.)",
+  "options": [
+   "int i = 3; string s = i.ToString();",
+   "string.Format(\"{0}\", 5)",
+   "list.Add(1) where list is List<int>",
+   "object o = 3;"
+  ],
+  "correct": [
+   1,
+   3
+  ],
+  "hint": "Where is a value type converted to object?",
+  "explanation": "The int is boxed to be passed in the object[] params array and assigned to object. List<int>.Add is generic over int, and int.ToString is called directly on the value without boxing.",
+  "code": null,
+  "id": 134,
+  "key": "8af9119c3c6c"
+ },
+ {
+  "level": "Hard",
+  "topic": "Value vs reference",
+  "text": "Two object-typed references hold equal string contents. What do == and Equals report?",
+  "options": [
+   "True True",
+   "False True",
+   "True False",
+   "False False"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "== on two object-typed expressions is reference equality.",
+  "explanation": "With both operands typed as object, == compares references, and the two strings are different instances. Equals is virtual and string overrides it for value comparison.",
+  "code": "object a = \"hi\";\nobject b = new string(new[] { 'h', 'i' });\nConsole.WriteLine($\"{a == b} {a.Equals(b)}\");",
+  "id": 135,
+  "key": "5d0cc94909fd"
+ },
+ {
+  "level": "Hard",
+  "topic": "Value vs reference",
+  "text": "Comparing string references: a literal, a constant concatenation and a runtime concatenation. What is printed?",
+  "options": [
+   "False False",
+   "True True",
+   "True False",
+   "False True"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Compile-time constants are interned; runtime concatenations are not.",
+  "explanation": "'hel' + 'lo' is folded to the literal 'hello' by the compiler, so it's the same interned reference. The runtime concatenation creates a new string instance, so ReferenceEquals is false.",
+  "code": "string s1 = \"hello\";\nstring s2 = \"hel\" + \"lo\";\nstring part = \"hel\";\nstring s3 = part + \"lo\";\nConsole.WriteLine(ReferenceEquals(s1, s2));\nConsole.WriteLine(ReferenceEquals(s1, s3));",
+  "id": 136,
+  "key": "236bd57fa98b"
+ },
+ {
+  "level": "Hard",
+  "topic": "Records/struct",
+  "text": "Two positional records hold different List<int> instances with the same contents. What does == print?",
+  "options": [
+   "It does not compile",
+   "It throws",
+   "True",
+   "False"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "How does a record compare its members?",
+  "explanation": "The synthesized record equality compares each property with EqualityComparer<T>.Default, and List<int> uses reference equality. The two lists are different instances, so the records are not equal.",
+  "code": "record R(List<int> L);\n\nvar x = new R(new List<int> { 1 });\nvar y = new R(new List<int> { 1 });\nConsole.WriteLine(x == y);",
+  "id": 137,
+  "key": "e25f0c7c2550"
+ },
+ {
+  "level": "Hard",
+  "topic": "Records/struct",
+  "text": "Which statements about records are correct? (Select all that apply.)",
+  "options": [
+   "A with-expression on a record class creates a shallow copy",
+   "== on a record class compares members by value using the synthesized equality",
+   "Positional properties of a record struct are init-only like a record class",
+   "Records are always value types"
+  ],
+  "correct": [
+   0,
+   1
+  ],
+  "hint": "Compare record class and record struct defaults.",
+  "explanation": "A with-expression copies the object and reference-type members are shared, and the synthesized operator == compares members. Records may be classes or structs, and positional record struct properties are mutable by default.",
+  "code": null,
+  "id": 138,
+  "key": "20534f538bf8"
+ },
+ {
+  "level": "Hard",
+  "topic": "Span/ref",
+  "text": "What happens when a Span<int> local is used after an await in an async method?",
+  "options": [
+   "It does not compile: a ref struct (Span<int>) cannot be used across an await",
+   "It throws at runtime",
+   "It compiles but s becomes empty after the await",
+   "It compiles and runs"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Async state machines are heap-allocated classes/structs.",
+  "explanation": "A ref struct must live on the stack, but locals that span an await are hoisted into the state machine. The compiler rejects using the Span after the await. Using it before the await only, or Memory<T>, is fine.",
+  "code": "async Task F()\n{\n    Span<int> s = new int[4];\n    await Task.Delay(1);\n    s[0] = 1;\n}",
+  "id": 139,
+  "key": "b8fc5a6c06a7"
+ },
+ {
+  "level": "Hard",
+  "topic": "Span/ref",
+  "text": "A span slice and a range-sliced array are each modified. What is printed?",
+  "options": [
+   "1 3",
+   "99 3",
+   "99 77",
+   "2 3"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "One slice shares memory and the other copies.",
+  "explanation": "AsSpan creates a view into the same array so s[0] = 99 changes a[1]. The range a[1..3] on an array copies the elements, so changing b does not affect a.",
+  "code": "int[] a = { 1, 2, 3, 4 };\nSpan<int> s = a.AsSpan(1, 2);\ns[0] = 99;\nint[] b = a[1..3];\nb[1] = 77;\nConsole.WriteLine($\"{a[1]} {a[2]}\");",
+  "id": 140,
+  "key": "1970be3321e0"
+ },
+ {
+  "level": "Hard",
+  "topic": "Span/ref",
+  "text": "A ref local is taken to an array element and the array variable is then reassigned. What is printed?",
+  "options": [
+   "7 7",
+   "10 10",
+   "7 10",
+   "10 7"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "A ref local aliases a specific storage location.",
+  "explanation": "The ref local points at the first element of the original array, and reassigning arr does not retarget it. Writing through r modifies the old array while arr[0] reads from the new one.",
+  "code": "int[] arr = { 1, 2, 3 };\nref int r = ref arr[0];\narr = new[] { 7, 8, 9 };\nr = 10;\nConsole.WriteLine($\"{arr[0]} {r}\");",
+  "id": 141,
+  "key": "a0b44508376a"
+ },
+ {
+  "level": "Hard",
+  "topic": "Threading",
+  "text": "Which are poor choices as a lock target? (Select all that apply.)",
+  "options": [
+   "lock (this)",
+   "lock (_gate) where _gate is a private readonly object",
+   "lock (typeof(Foo))",
+   "lock (\"gate\")"
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "Outside code can reach these objects too.",
+  "explanation": "Publicly reachable objects such as this, Type objects and interned string literals can be locked by unrelated code, creating deadlocks. A private dedicated object cannot.",
+  "code": null,
+  "id": 142,
+  "key": "b9f8754193db"
+ },
+ {
+  "level": "Hard",
+  "topic": "Threading",
+  "text": "Which approaches make this counter update thread-safe? (Select all that apply.)",
+  "options": [
+   "lock (_gate) { counter++; }",
+   "Interlocked.Increment(ref counter)",
+   "Declaring the field volatile and using counter++",
+   "Making the field static"
+  ],
+  "correct": [
+   0,
+   1
+  ],
+  "hint": "Read-modify-write needs to be atomic.",
+  "explanation": "Interlocked and lock make the read-modify-write atomic. volatile gives visibility and ordering guarantees only, and static says nothing about atomicity.",
+  "code": null,
+  "id": 143,
+  "key": "9c70c4af09c9"
+ },
+ {
+  "level": "Hard",
+  "topic": "Threading",
+  "text": "Which statements about ConcurrentDictionary.GetOrAdd(key, valueFactory) are correct? (Select all that apply.)",
+  "options": [
+   "The valueFactory can be invoked more than once for the same key under contention",
+   "Only one value is stored, and all callers get the stored one",
+   "The valueFactory is executed while holding the dictionary's lock",
+   "The valueFactory is guaranteed to run exactly once per key"
+  ],
+  "correct": [
+   0,
+   1
+  ],
+  "hint": "The factory is invoked outside of the internal locks.",
+  "explanation": "Competing threads may each run the factory, but only one result wins and is returned to everyone. The factory runs outside the lock, so it needs to be side-effect free. Wrap values in Lazy<T> for single execution.",
+  "code": null,
+  "id": 144,
+  "key": "bad187d83567"
+ },
+ {
+  "level": "Hard",
+  "topic": "Threading",
+  "text": "Which statements are correct? (Select all that apply.)",
+  "options": [
+   "lock (Monitor) is reentrant for the same thread",
+   "SemaphoreSlim.WaitAsync can be used to guard async critical sections",
+   "Using await inside a lock statement body is a compile-time error",
+   "SemaphoreSlim(1,1) is reentrant for the same thread"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "Locks are tied to thread ownership.",
+  "explanation": "A lock body can't contain await because the continuation might resume on another thread, so use SemaphoreSlim.WaitAsync. Monitor-based lock is reentrant but SemaphoreSlim is not, so recursive waits would deadlock.",
+  "code": null,
+  "id": 145,
+  "key": "7777510a4e18"
+ },
+ {
+  "level": "Hard",
+  "topic": "Threading",
+  "text": "An AsyncLocal value is changed inside Task.Run. What does the caller read afterwards?",
+  "options": [
+   "2",
+   "0",
+   "It throws",
+   "1"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "AsyncLocal values flow downwards via ExecutionContext copies.",
+  "explanation": "Task.Run captures a copy of the ExecutionContext, so changes made inside the child do not flow back to the caller. The parent still sees 1.",
+  "code": "static readonly AsyncLocal<int> V = new();\n\nstatic async Task Main()\n{\n    V.Value = 1;\n    await Task.Run(() => { V.Value = 2; });\n    Console.WriteLine(V.Value);\n}",
+  "id": 146,
+  "key": "ca6b73a0997f"
+ },
+ {
+  "level": "Hard",
+  "topic": "Memory/GC",
+  "text": "What is the main effect of giving a class a finalizer on its garbage collection?",
+  "options": [
+   "Instances survive at least one extra GC because they must be queued for finalization first",
+   "The finalizer runs immediately when the last reference is dropped",
+   "Instances are allocated on the LOH",
+   "Instances are collected faster"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "The GC cannot reclaim the memory until the finalizer has run.",
+  "explanation": "Finalizable objects are registered, and when found unreachable they are promoted to the f-reachable queue to run their finalizer, delaying reclamation. GC.SuppressFinalize in Dispose removes this cost. Finalizers do not run immediately.",
+  "code": null,
+  "id": 147,
+  "key": "a78d37f3ccd2"
+ },
+ {
+  "level": "Hard",
+  "topic": "Memory/GC",
+  "text": "A short-lived view model subscribes to a static event with 'Publisher.Changed += OnChanged;' and never unsubscribes. What is the effect?",
+  "options": [
+   "Nothing; the GC ignores event subscriptions",
+   "The view model stays reachable via the static event's delegate list, causing a memory leak",
+   "The subscription is automatically removed when the view model goes out of scope",
+   "The event raises ObjectDisposedException"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Who holds a reference to whom?",
+  "explanation": "The delegate stored in the static event references the view model instance, keeping it reachable from a GC root. Unsubscribe or use weak events.",
+  "code": null,
+  "id": 148,
+  "key": "e70f918dea83"
+ },
+ {
+  "level": "Hard",
+  "topic": "Memory/GC",
+  "text": "Which statements about the Large Object Heap (LOH) are correct? (Select all that apply.)",
+  "options": [
+   "Objects of 85,000 bytes or more are allocated on the LOH",
+   "The LOH is compacted on every collection by default",
+   "The LOH is collected only as part of a generation 2 collection",
+   "LOH objects start in generation 0 and are promoted"
+  ],
+  "correct": [
+   0,
+   2
+  ],
+  "hint": "Large objects are treated as part of gen 2.",
+  "explanation": "Large objects go to the LOH, which is logically part of gen 2 so it is collected only with a full GC. It is not compacted by default and objects are not allocated in gen 0.",
+  "code": null,
+  "id": 149,
+  "key": "fa3e0de86c26"
+ },
+ {
+  "level": "Hard",
+  "topic": "Memory/GC",
+  "text": "Two using declarations appear in a method body. In what order is output produced?",
+  "options": [
+   "b a body",
+   "body a b",
+   "body b a",
+   "a b body"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Using declarations dispose at the end of the enclosing scope in reverse order.",
+  "explanation": "A using declaration disposes at the end of the enclosing scope, so the body runs first. Disposal is in reverse order of declaration, b before a.",
+  "code": "class D : IDisposable\n{\n    readonly string n;\n    public D(string n) => this.n = n;\n    public void Dispose() => Console.Write(n + \" \");\n}\n\nvoid M()\n{\n    using var a = new D(\"a\");\n    using var b = new D(\"b\");\n    Console.Write(\"body \");\n}",
+  "id": 150,
+  "key": "ba2d87577ca0"
+ },
+ {
+  "level": "Hard",
+  "topic": "Memory/GC",
+  "text": "Which statements about finalizers are correct? (Select all that apply.)",
+  "options": [
+   "The order in which finalizers run across objects is not guaranteed",
+   "They are not guaranteed to run when the process exits in .NET Core",
+   "They run on the thread that dropped the last reference",
+   "They run immediately when the object becomes unreachable"
+  ],
+  "correct": [
+   0,
+   1
+  ],
+  "hint": "A dedicated thread runs finalizers.",
+  "explanation": "Finalizers run on a dedicated finalizer thread at an unspecified time, with no ordering guarantee, and .NET Core does not run them at shutdown. They are not immediate.",
+  "code": null,
+  "id": 151,
+  "key": "97cb712073b1"
+ },
+ {
+  "level": "Hard",
+  "topic": "Pattern matching",
+  "text": "A switch expression with guarded type, property and null patterns is called with four values. What is printed?",
+  "options": [
+   "big,int,empty,other",
+   "int,int,empty,null",
+   "big,int,empty, followed by an exception",
+   "big,int,empty,null"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Arms are evaluated top to bottom.",
+  "explanation": "11 matches the guarded int arm, 7 falls to the plain int arm, the empty string matches the property pattern, and null matches the null pattern since a type pattern never matches null.",
+  "code": "string Describe(object o) => o switch\n{\n    int i when i > 10 => \"big\",\n    int => \"int\",\n    string { Length: 0 } => \"empty\",\n    null => \"null\",\n    _ => \"other\"\n};\n\nConsole.WriteLine(string.Join(\",\", Describe(11), Describe(7), Describe(\"\"), Describe(null)));",
+  "id": 152,
+  "key": "cce91d6366ca"
+ },
+ {
+  "level": "Hard",
+  "topic": "Pattern matching",
+  "text": "What is the behavior of N(Color.Blue)?",
+  "options": [
+   "Throws SwitchExpressionException at runtime, with a compiler warning for non-exhaustiveness",
+   "Compile error",
+   "Returns null",
+   "Returns an empty string"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Switch expressions must produce a value.",
+  "explanation": "Missing enum cases produce warning CS8509, and when no arm matches at runtime a SwitchExpressionException is thrown. It is not a compile error and no default value is produced.",
+  "code": "enum Color { Red, Green, Blue }\n\nstatic string N(Color c) => c switch\n{\n    Color.Red => \"r\",\n    Color.Green => \"g\"\n};\n\nConsole.WriteLine(N(Color.Blue));",
+  "id": 153,
+  "key": "7460e0bcd2e5"
+ },
+ {
+  "level": "Hard",
+  "topic": "Pattern matching",
+  "text": "For int[] a = { 1, 2, 3 }, which expressions evaluate to true? (Select all that apply.)",
+  "options": [
+   "a is [1, 2, 3, ..]",
+   "a is [1, .., 3]",
+   "a is [_, _]",
+   "a is [.., 2]"
+  ],
+  "correct": [
+   0,
+   1
+  ],
+  "hint": "A slice pattern can match zero elements.",
+  "explanation": "[1, .., 3] matches first and last, and [1, 2, 3, ..] matches with an empty slice. [_, _] requires exactly two elements and [.., 2] requires the last element to be 2.",
+  "code": null,
+  "id": 154,
+  "key": "48e5219a1fd2"
+ },
+ {
+  "level": "Hard",
+  "topic": "Pattern matching",
+  "text": "A class overloads == to always return true. What do 'p == null' and 'p is null' print?",
+  "options": [
+   "True True",
+   "True False",
+   "False True",
+   "False False"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Constant patterns do not call user-defined operators.",
+  "explanation": "p == null calls the overloaded operator, which always returns true here. 'is null' performs a direct null check and bypasses operator overloading, so it is false.",
+  "code": "class P\n{\n    public static bool operator ==(P a, P b) => true;\n    public static bool operator !=(P a, P b) => false;\n    public override bool Equals(object o) => true;\n    public override int GetHashCode() => 0;\n}\n\nvar p = new P();\nConsole.WriteLine($\"{p == null} {p is null}\");",
+  "id": 155,
+  "key": "a21dbcc21a32"
+ },
+ {
+  "level": "Hard",
+  "topic": "LINQ deferred execution",
+  "text": "A captured local used in a Where predicate is changed before the query is enumerated. What is printed?",
+  "options": [
+   "[ ]",
+   "[ 3, 4 ]",
+   "[ 4 ]",
+   "[ 2, 3, 4 ]"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "The lambda reads the captured variable when enumerated.",
+  "explanation": "The lambda captures the variable threshold, and the query only runs at ToList, after threshold is 3. Only 4 is greater than 3.",
+  "code": "int threshold = 2;\nvar nums = new[] { 1, 2, 3, 4 };\nvar q = nums.Where(x => x > threshold);\nthreshold = 3;\nConsole.WriteLine(\"[ \" + string.Join(\", \", q.ToList()) + \" ]\");",
+  "id": 156,
+  "key": "92e0505c2f90"
+ },
+ {
+  "level": "Hard",
+  "topic": "LINQ deferred execution",
+  "text": "Words are sorted by length with OrderBy. What order is printed?",
+  "options": [
+   "bb cc a d",
+   "d a bb cc",
+   "a d cc bb",
+   "a d bb cc"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "LINQ OrderBy is a stable sort.",
+  "explanation": "OrderBy is stable, so elements with equal keys keep their original relative order: a before d, and bb before cc. An unstable sort like Array.Sort could reorder ties.",
+  "code": "var words = new[] { \"bb\", \"a\", \"cc\", \"d\" };\nConsole.WriteLine(string.Join(\" \", words.OrderBy(w => w.Length)));",
+  "id": 157,
+  "key": "cdbab8c1be98"
+ },
+ {
+  "level": "Hard",
+  "topic": "Exceptions",
+  "text": "Which statements are correct about rethrowing exceptions? (Select all that apply.)",
+  "options": [
+   "'throw ex;' preserves the original stack trace",
+   "'throw ex;' resets the stack trace to the point of the rethrow",
+   "'throw;' preserves the original stack trace",
+   "ExceptionDispatchInfo.Capture(ex).Throw() preserves the original stack trace"
+  ],
+  "correct": [
+   1,
+   2,
+   3
+  ],
+  "hint": "Only the bare form keeps the origin.",
+  "explanation": "A bare throw rethrows without altering the trace, and ExceptionDispatchInfo does the same from outside a catch. 'throw ex;' restarts the stack trace at that statement.",
+  "code": null,
+  "id": 158,
+  "key": "4c46ab246bca"
+ },
+ {
+  "level": "Hard",
+  "topic": "Exceptions",
+  "text": "An exception filter, an inner finally and a catch all participate in one throw. What is the output order?",
+  "options": [
+   "filter finally catch",
+   "catch filter finally",
+   "filter catch finally",
+   "finally filter catch"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Exception filters run during the first pass, before unwinding.",
+  "explanation": "The runtime evaluates filters in a first pass before any finally block runs, then unwinds, running the inner finally, and finally enters the catch. So the output is 'filter finally catch'.",
+  "code": "static bool Log(Exception e) { Console.Write(\"filter \"); return true; }\n\ntry\n{\n    try { throw new Exception(\"x\"); }\n    finally { Console.Write(\"finally \"); }\n}\ncatch (Exception e) when (Log(e))\n{\n    Console.Write(\"catch \");\n}",
+  "id": 159,
+  "key": "6a3f452a3f49"
+ },
+ {
+  "level": "Hard",
+  "topic": "Exceptions",
+  "text": "A static field initializer throws, and the field is read twice in separate try blocks. What is printed?",
+  "options": [
+   "Exception then Exception",
+   "TypeInitializationException then TypeInitializationException",
+   "Exception then TypeInitializationException",
+   "TypeInitializationException then Exception"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "A failed type initializer leaves the type unusable.",
+  "explanation": "A static initializer failure is wrapped in TypeInitializationException, and the type remains permanently in a failed state, so later accesses throw it again.",
+  "code": "class Cfg\n{\n    public static readonly int V = Init();\n    static int Init() => throw new Exception(\"boom\");\n}\n\ntry { _ = Cfg.V; } catch (Exception e) { Console.WriteLine(e.GetType().Name); }\ntry { _ = Cfg.V; } catch (Exception e) { Console.WriteLine(e.GetType().Name); }",
+  "id": 160,
+  "key": "10e16bc93c7c"
+ },
+ {
+  "level": "Expert",
+  "topic": "GC / LOH",
+  "text": "Which statement about the Large Object Heap (LOH) in the .NET GC is correct?",
+  "options": [
+   "Objects of 85,000 bytes or more are allocated on the LOH, which is collected only with gen 0 collections",
+   "The LOH is always compacted on every gen 1 collection",
+   "Objects of roughly 85,000 bytes or more are allocated on the LOH, which is logically collected together with gen 2",
+   "Only arrays can ever be allocated on the LOH; strings never are"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Think about the size threshold and which generation the LOH is tied to.",
+  "explanation": "Large objects (about 85,000 bytes and up) go to the LOH, which is collected as part of gen 2 collections and is not compacted by default. Gen 0 and gen 1 collections do not touch it. Strings can also land on the LOH when large enough.",
+  "code": null,
+  "id": 161,
+  "key": "63e223d00f61"
+ },
+ {
+  "level": "Expert",
+  "topic": "GC / Server vs Workstation",
+  "text": "Which statements about server GC versus workstation GC are correct? (Select all that apply.)",
+  "options": [
+   "Server GC never compacts the heap",
+   "Server GC generally favors throughput at the cost of higher memory use",
+   "Server GC creates a separate heap and dedicated GC thread per logical core",
+   "Workstation GC cannot perform background (concurrent) gen 2 collections"
+  ],
+  "correct": [
+   1,
+   2
+  ],
+  "hint": "Server GC trades memory for parallel throughput.",
+  "explanation": "Server GC uses per-core heaps and GC threads and is tuned for throughput, so it uses more memory. Workstation GC does support background GC, and both flavors can compact.",
+  "code": null,
+  "id": 162,
+  "key": "d4be293a0ef7"
+ },
+ {
+  "level": "Expert",
+  "topic": "Span<T> / ref structs",
+  "text": "Which statements about Span<T> are correct? (Select all that apply.)",
+  "options": [
+   "It cannot be captured by a lambda or stored in a closure",
+   "It cannot be a field of a class or be boxed because it is a ref struct",
+   "It cannot wrap an existing managed array, only stack memory",
+   "Slicing it with Slice() copies the elements into a new buffer",
+   "It can wrap memory obtained from stackalloc in safe code"
+  ],
+  "correct": [
+   0,
+   1,
+   4
+  ],
+  "hint": "Span<T> must live on the stack.",
+  "explanation": "As a ref struct, Span<T> is restricted to the stack: no boxing, no class fields, no closure capture. It can wrap arrays and stackalloc memory, and Slice returns a view over the same memory without copying.",
+  "code": "Span<int> buf = stackalloc int[4];\nint[] arr = { 1, 2, 3, 4 };\nSpan<int> view = arr.AsSpan(1, 2); // view over arr, no copy\nview[0] = 99;                      // arr[1] is now 99",
+  "id": 163,
+  "key": "59005fddf80a"
+ },
+ {
+  "level": "Expert",
+  "topic": "ValueTask",
+  "text": "Which statements about consuming a ValueTask<T> are correct? (Select all that apply.)",
+  "options": [
+   "A ValueTask<T> always avoids heap allocation",
+   "Task.WhenAll accepts ValueTask<T> instances directly without conversion",
+   "Call AsTask() if you need to await it more than once or store it for later use",
+   "It must not be awaited multiple times"
+  ],
+  "correct": [
+   2,
+   3
+  ],
+  "hint": "A ValueTask may wrap a pooled, reusable source.",
+  "explanation": "A ValueTask can wrap an IValueTaskSource that is reused, so it is single-consumption; AsTask gives a safely shareable Task. It only avoids allocation when it completes synchronously or is backed by a pooled source, and WhenAll requires Tasks.",
+  "code": null,
+  "id": 164,
+  "key": "da6ab1e85a91"
+ },
+ {
+  "level": "Expert",
+  "topic": "Async state machines",
+  "text": "In the snippet, what happens when F() is called without awaiting it?",
+  "options": [
+   "The call returns a faulted Task and the exception is observed when the Task is awaited or inspected",
+   "The exception is thrown synchronously from the call to F()",
+   "The exception is swallowed permanently and can never be observed",
+   "The process crashes immediately because the exception is unhandled"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "The async state machine catches exceptions and stores them in the returned Task.",
+  "explanation": "The compiler-generated state machine wraps the body in try/catch and sets the exception on the AsyncTaskMethodBuilder's Task. The caller therefore gets a faulted Task, and the exception only surfaces on await, Wait or Result. It is not thrown synchronously.",
+  "code": "static async Task F()\n{\n    throw new InvalidOperationException(\"boom\");\n}\n\nstatic void Main()\n{\n    Task t = F();            // line A\n    Console.WriteLine(t.IsFaulted);\n}",
+  "id": 165,
+  "key": "d2a343b25f12"
+ },
+ {
+  "level": "Expert",
+  "topic": "SynchronizationContext",
+  "text": "In an ASP.NET Core application, which statement about ConfigureAwait(false) and blocking calls is most accurate?",
+  "options": [
+   "Omitting ConfigureAwait(false) will classically deadlock on .Result, exactly like in ASP.NET Framework",
+   "ConfigureAwait(false) makes the awaited operation run on a new dedicated thread",
+   "ConfigureAwait(false) prevents the state machine from being generated",
+   "ASP.NET Core has no SynchronizationContext, so the classic context deadlock does not occur, but sync-over-async can still cause thread pool starvation"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Think about what ASP.NET Core removed compared to ASP.NET Framework.",
+  "explanation": "ASP.NET Core does not install a request SynchronizationContext, so the classic deadlock is gone. Blocking on async code still ties up thread pool threads and can starve the pool. ConfigureAwait(false) only controls context capture for continuations.",
+  "code": null,
+  "id": 166,
+  "key": "2bd60c997a32"
+ },
+ {
+  "level": "Expert",
+  "topic": "ExecutionContext / AsyncLocal",
+  "text": "What does the following code print?",
+  "options": [
+   "2",
+   "1",
+   "0",
+   "It throws because AsyncLocal cannot be set inside an async method"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Changes made to an ambient value inside an async callee are not visible to the caller after it returns.",
+  "explanation": "ExecutionContext flows down into async calls, but modifications made inside the callee's async method apply to its own copy and are undone when control returns to the caller. The caller still sees 1. AsyncLocal can be set anywhere.",
+  "code": "static readonly AsyncLocal<int> V = new();\n\nstatic async Task Child()\n{\n    V.Value = 2;\n    await Task.Yield();\n}\n\nstatic async Task Main()\n{\n    V.Value = 1;\n    await Child();\n    Console.WriteLine(V.Value);\n}",
+  "id": 167,
+  "key": "9952b30b40be"
+ },
+ {
+  "level": "Expert",
+  "topic": "Channels",
+  "text": "Given a bounded channel created with FullMode = BoundedChannelFullMode.Wait that is currently full, which statements are correct? (Select all that apply.)",
+  "options": [
+   "The ValueTask returned by writer.WriteAsync(item) completes once space becomes available",
+   "With BoundedChannelFullMode.DropWrite, WriteAsync completes successfully but the item is discarded",
+   "writer.TryWrite(item) returns false",
+   "writer.WriteAsync(item) throws ChannelClosedException immediately"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "Distinguish Wait mode from the drop modes.",
+  "explanation": "In Wait mode TryWrite fails and WriteAsync asynchronously waits for room. DropWrite silently discards the item being written. A ChannelClosedException is only thrown if the writer was completed.",
+  "code": null,
+  "id": 168,
+  "key": "d8da682f48fb"
+ },
+ {
+  "level": "Expert",
+  "topic": "Channels",
+  "text": "When does ChannelReader<T>.Completion complete normally?",
+  "options": [
+   "As soon as the writer calls Complete(), even if items are still buffered",
+   "When the channel's buffer first becomes empty",
+   "After the writer has called Complete() and all buffered items have been read",
+   "Only when the reader's CancellationToken is cancelled"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Completion represents the end of data, not just the end of writing.",
+  "explanation": "Completion finishes only after the writer is marked complete and the buffer has been drained, which is what lets ReadAllAsync terminate cleanly. Completing the writer alone is not enough while items remain.",
+  "code": null,
+  "id": 169,
+  "key": "6ee749a0ffc7"
+ },
+ {
+  "level": "Expert",
+  "topic": "lock / Monitor",
+  "text": "Why does C# forbid await inside a lock statement, and what is the usual alternative?",
+  "options": [
+   "Monitor is owned by a thread, and the continuation may resume on a different thread; use SemaphoreSlim(1,1) with WaitAsync instead",
+   "await is forbidden because the lock keyword compiles to a spin lock; use Thread.Sleep instead",
+   "The compiler cannot generate a state machine inside try/finally; use a nested method",
+   "It is allowed but only in static methods; use a static lock object"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Monitor ownership is tied to a managed thread id.",
+  "explanation": "Monitor.Exit must be called by the owning thread, but after an await the code may resume on another thread, so the compiler reports an error. SemaphoreSlim is not thread-affine and supports WaitAsync. Async methods can contain try/finally.",
+  "code": "private readonly SemaphoreSlim _gate = new(1, 1);\n\npublic async Task UpdateAsync()\n{\n    await _gate.WaitAsync();\n    try { await DoWorkAsync(); }\n    finally { _gate.Release(); }\n}",
+  "id": 170,
+  "key": "a57a227a56fb"
+ },
+ {
+  "level": "Expert",
+  "topic": "SemaphoreSlim / cancellation",
+  "text": "In this method, what is the bug and the correct fix?",
+  "options": [
+   "No bug: Release is always correct in finally",
+   "WaitAsync must be called with ConfigureAwait(false) to avoid releasing twice",
+   "SemaphoreSlim cannot be used with CancellationToken, so remove the token",
+   "If WaitAsync(ct) throws OperationCanceledException, finally still calls Release and inflates the count; move WaitAsync before the try block"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Release should only happen if the wait succeeded.",
+  "explanation": "When WaitAsync is inside the try and is cancelled, the semaphore was never acquired, yet finally releases it, permanently increasing the available count and breaking mutual exclusion. Acquire before entering try so finally runs only after a successful acquire.",
+  "code": "async Task RunAsync(SemaphoreSlim sem, CancellationToken ct)\n{\n    try\n    {\n        await sem.WaitAsync(ct);\n        await DoWorkAsync(ct);\n    }\n    finally\n    {\n        sem.Release();\n    }\n}",
+  "id": 171,
+  "key": "1ff4192aea09"
+ },
+ {
+  "level": "Expert",
+  "topic": "Interlocked",
+  "text": "Which statements about lock-free updates with Interlocked are correct? (Select all that apply.)",
+  "options": [
+   "Interlocked.Increment performs an atomic read-modify-write",
+   "Interlocked.Read is required to read an int safely on 64-bit platforms",
+   "Interlocked.CompareExchange in a retry loop can implement arbitrary atomic read-modify-write updates",
+   "Writing count = count + 1 on a volatile int is atomic"
+  ],
+  "correct": [
+   0,
+   2
+  ],
+  "hint": "volatile gives ordering, not atomic read-modify-write.",
+  "explanation": "Interlocked.Increment is atomic, and a CompareExchange loop can build other atomic updates. A volatile read followed by a write is two separate operations, so increments can be lost. Interlocked.Read is only relevant for 64-bit values on 32-bit platforms.",
+  "code": "static int _max;\n\nstatic void UpdateMax(int value)\n{\n    int cur;\n    while (value > (cur = Volatile.Read(ref _max)))\n    {\n        if (Interlocked.CompareExchange(ref _max, value, cur) == cur) break;\n    }\n}",
+  "id": 172,
+  "key": "27788436941b"
+ },
+ {
+  "level": "Expert",
+  "topic": "Memory model / volatile",
+  "text": "What does marking a field volatile guarantee in the .NET memory model?",
+  "options": [
+   "It makes compound operations like i++ atomic",
+   "Reads have acquire semantics and writes have release semantics, but compound operations are not atomic",
+   "It forces the field to be allocated on the stack",
+   "It gives a full fence around every access, equivalent to a lock"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "Think acquire/release, not atomicity.",
+  "explanation": "Volatile reads are acquire and volatile writes are release, limiting reordering around them. It does not make read-modify-write atomic and is not a full fence or a lock.",
+  "code": null,
+  "id": 173,
+  "key": "b18dbf122bde"
+ },
+ {
+  "level": "Expert",
+  "topic": "Expression trees",
+  "text": "Which statements about expression trees are correct? (Select all that apply.)",
+  "options": [
+   "An Expression<Func<T,bool>> can be inspected by a provider such as EF Core and translated to SQL",
+   "C# lets you convert a lambda with a statement body to Expression<Func<T>> without restriction",
+   "Expression trees are immutable, so changes are made by rewriting with an ExpressionVisitor",
+   "Calling Compile() repeatedly is cheap, so caching the delegate is unnecessary"
+  ],
+  "correct": [
+   0,
+   2
+  ],
+  "hint": "Think data-as-code, and what the compiler allows in expression lambdas.",
+  "explanation": "Expression trees describe code as data and are immutable, so ExpressionVisitor builds modified copies. Compile() emits IL and is expensive, so delegates should be cached. The compiler rejects statement lambdas for expression trees.",
+  "code": null,
+  "id": 174,
+  "key": "ec934ad19ce0"
+ },
+ {
+  "level": "Expert",
+  "topic": "Expression trees",
+  "text": "For the lambda below, how is the captured local id represented in the expression tree?",
+  "options": [
+   "As a ConstantExpression holding the int 5 evaluated at compile time",
+   "As a ParameterExpression named id",
+   "As a MemberExpression reading a field of a compiler-generated closure object held in a ConstantExpression",
+   "As a MethodCallExpression to Convert.ToInt32"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Captured variables live in a closure class.",
+  "explanation": "The compiler hoists captured locals into a closure class instance, and the tree contains a field access on a constant of that closure type. That is why providers like EF Core can parameterize it and re-evaluate on each execution. It is not folded to a constant of 5.",
+  "code": "record Order(int Id);\n\nint id = 5;\nExpression<Func<Order, bool>> e = o => o.Id == id;\nvar right = ((BinaryExpression)e.Body).Right;\nConsole.WriteLine(right.NodeType);",
+  "id": 175,
+  "key": "981714a944eb"
+ },
+ {
+  "level": "Expert",
+  "topic": "Source generators",
+  "text": "Which statements about Roslyn source generators are correct? (Select all that apply.)",
+  "options": [
+   "They can rewrite the bodies of existing methods in user files",
+   "They can call into the compiled output of the project they are generating code for",
+   "They can add new source files to a compilation but cannot modify existing user code",
+   "IIncrementalGenerator is preferred over ISourceGenerator because it caches pipeline stages"
+  ],
+  "correct": [
+   2,
+   3
+  ],
+  "hint": "Generators are additive and run inside the compiler.",
+  "explanation": "Generators only add code, and incremental generators cache stage results to keep the IDE responsive. They run before the target assembly exists, so they cannot call its compiled output or rewrite existing code.",
+  "code": null,
+  "id": 176,
+  "key": "f135acc03ef4"
+ },
+ {
+  "level": "Expert",
+  "topic": "Source generators",
+  "text": "In an IIncrementalGenerator pipeline, what is the key practice for good caching and IDE performance?",
+  "options": [
+   "Transform syntax early into small value-equatable models (such as records) and avoid carrying ISymbol or Compilation objects downstream",
+   "Store the full Compilation in each pipeline step so results are always fresh",
+   "Use static mutable dictionaries to cache models across runs",
+   "Perform all work in the final RegisterSourceOutput step using SyntaxNode trees"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Incremental stages are skipped only when their inputs compare equal.",
+  "explanation": "The pipeline reuses cached outputs when a stage's input is equal to the previous one, so models need value equality, and symbols or compilations change on nearly every edit and defeat caching. Static mutable caches are unsafe and unnecessary.",
+  "code": null,
+  "id": 177,
+  "key": "f4e3c060182a"
+ },
+ {
+  "level": "Expert",
+  "topic": "EF Core change tracker",
+  "text": "Which statements about EF Core tracking are correct? (Select all that apply.)",
+  "options": [
+   "A no-tracking query returns the same instance for repeated rows with the same key",
+   "A context can track two different instances with the same primary key at the same time",
+   "For tracked entities, DetectChanges compares current property values against a snapshot",
+   "AsNoTrackingWithIdentityResolution returns a single instance per key within the query results"
+  ],
+  "correct": [
+   2,
+   3
+  ],
+  "hint": "Identity resolution is what the tracker normally provides.",
+  "explanation": "The default tracker uses snapshots and enforces one instance per key. Plain no-tracking queries may materialize separate instances for repeated rows, which AsNoTrackingWithIdentityResolution fixes within a query. Tracking two instances with the same key throws.",
+  "code": null,
+  "id": 178,
+  "key": "10ee3a6230d9"
+ },
+ {
+  "level": "Expert",
+  "topic": "EF Core concurrency",
+  "text": "How does EF Core optimistic concurrency with a configured concurrency token work? (Select all that apply.)",
+  "options": [
+   "The UPDATE or DELETE includes the original token value in its WHERE clause",
+   "A DbUpdateConcurrencyException is thrown when the affected row count is not the expected one",
+   "It takes a pessimistic lock on the row when the entity is loaded",
+   "The token value used is re-read from the database at SaveChanges time"
+  ],
+  "correct": [
+   0,
+   1
+  ],
+  "hint": "The original values come from when the entity was loaded.",
+  "explanation": "EF adds the original token value to the WHERE clause and treats an unexpected affected-row count as a conflict. No row lock is taken, and the original value comes from load time, which is the point of the check.",
+  "code": "public class Product\n{\n    public int Id { get; set; }\n    public string Name { get; set; } = \"\";\n    [Timestamp] public byte[] RowVersion { get; set; } = null!;\n}",
+  "id": 179,
+  "key": "4dae6d64cd2b"
+ },
+ {
+  "level": "Expert",
+  "topic": "EF Core split queries",
+  "text": "Which statements about AsSplitQuery in EF Core are correct? (Select all that apply.)",
+  "options": [
+   "It requires AsNoTracking to work",
+   "It uses multiple round trips, and data can change between them unless a suitable transaction isolation is used",
+   "It guarantees a consistent snapshot across all the generated SQL queries",
+   "It avoids cartesian explosion when including multiple collection navigations"
+  ],
+  "correct": [
+   1,
+   3
+  ],
+  "hint": "Multiple queries means multiple points in time.",
+  "explanation": "Split queries issue separate SQL statements per collection to avoid duplicated parent rows. Without a snapshot or serializable transaction, results may be inconsistent between the statements. It works with tracking queries.",
+  "code": "var blogs = await db.Blogs\n    .Include(b => b.Posts)\n    .Include(b => b.Tags)\n    .AsSplitQuery()\n    .ToListAsync();",
+  "id": 180,
+  "key": "9d1458580c39"
+ },
+ {
+  "level": "Expert",
+  "topic": "EF Core compiled queries",
+  "text": "What is the main benefit of EF.CompileAsyncQuery?",
+  "options": [
+   "It caches the result rows in memory between calls",
+   "It turns the query into a stored procedure on the database",
+   "It disables parameterization to reuse database plans",
+   "The query is translated once and reused through a delegate, skipping per-call query cache lookup and preprocessing"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "It optimizes the client-side pipeline, not the database.",
+  "explanation": "A compiled query keeps the translated query in a delegate, removing repeated expression processing and cache-key computation. It does not cache data, create stored procedures, or change parameterization.",
+  "code": "static readonly Func<AppDb, int, Task<Customer?>> ById =\n    EF.CompileAsyncQuery((AppDb db, int id) =>\n        db.Customers.FirstOrDefault(c => c.Id == id));\n\nvar c = await ById(db, 42);",
+  "id": 181,
+  "key": "5d325c6d3afc"
+ },
+ {
+  "level": "Expert",
+  "topic": "EF Core bulk operations",
+  "text": "What is true about ExecuteUpdateAsync in EF Core?",
+  "options": [
+   "It loads the entities into the change tracker, modifies them, then calls SaveChanges",
+   "It runs a set-based UPDATE directly in the database, and already tracked entities are not refreshed",
+   "It only works inside a SaveChanges transaction",
+   "It raises DbUpdateConcurrencyException automatically for rowversion columns"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "It bypasses the change tracker entirely.",
+  "explanation": "ExecuteUpdate translates to a single UPDATE statement without materializing entities, so tracked instances can become stale. It does not use the tracker or concurrency token checks.",
+  "code": null,
+  "id": 182,
+  "key": "abc1652f3439"
+ },
+ {
+  "level": "Expert",
+  "topic": "ASP.NET Core middleware",
+  "text": "Which statements about the ASP.NET Core middleware pipeline are correct? (Select all that apply.)",
+  "options": [
+   "app.Run adds a terminal middleware that has no next delegate",
+   "Response processing runs through middleware in the same order as request processing",
+   "A middleware that does not call next short-circuits the pipeline",
+   "Exception handling middleware registered first can catch exceptions thrown by middleware registered after it"
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "Think of the pipeline as nested calls.",
+  "explanation": "Middleware are nested delegates: skipping next short-circuits, and an outer try/catch sees exceptions from inner components. Run is terminal. The response travels back through the middleware in reverse order.",
+  "code": null,
+  "id": 183,
+  "key": "e3e0458aa9d2"
+ },
+ {
+  "level": "Expert",
+  "topic": "ASP.NET Core middleware",
+  "text": "An exception is thrown after the response body has already started streaming. What can an exception-handling middleware do?",
+  "options": [
+   "Change the status code to 500 as usual",
+   "Clear the already-sent headers with Response.Clear()",
+   "Nothing useful to the status code; once HasStarted is true headers are sent, so it can only abort the connection or log",
+   "Restart the request pipeline from the beginning"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Headers go out before the body.",
+  "explanation": "After the first body bytes are flushed, status and headers are already on the wire and cannot be modified. Handlers should check Response.HasStarted and typically log and abort. Clear fails or is ignored once the response has started.",
+  "code": null,
+  "id": 184,
+  "key": "d8e201a6f836"
+ },
+ {
+  "level": "Expert",
+  "topic": "Rate limiting",
+  "text": "What is a known characteristic of the fixed window rate limiter compared to a sliding window?",
+  "options": [
+   "Up to about twice the permit limit can pass in a short period that straddles a window boundary",
+   "It never allows more than the limit in any time span",
+   "It cannot be partitioned per user",
+   "It queues requests by default with unlimited queue length"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Think of requests at the end of one window and the start of the next.",
+  "explanation": "A fixed window resets counts at boundaries, so bursts at the end of one window and the start of the next can approach twice the limit. Sliding windows smooth this. Fixed window limiters can be partitioned and do not queue unboundedly by default.",
+  "code": null,
+  "id": 185,
+  "key": "9d479e83bf94"
+ },
+ {
+  "level": "Expert",
+  "topic": "Output caching",
+  "text": "Which statements about ASP.NET Core output caching are correct? (Select all that apply.)",
+  "options": [
+   "By default only 200 responses to GET or HEAD requests are cached",
+   "By default it does not honor a client's Cache-Control: no-cache request header the way response caching does",
+   "Cache entries can be evicted by tag using IOutputCacheStore.EvictByTagAsync",
+   "Responses are stored in the client browser cache"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "Output caching is server-side and policy-driven.",
+  "explanation": "Output caching stores responses on the server, supports tag-based eviction, and is controlled by server policies rather than client headers. The default policy caches only 200 GET/HEAD responses. Browser storage is a different feature.",
+  "code": null,
+  "id": 186,
+  "key": "eb946a667ce3"
+ },
+ {
+  "level": "Expert",
+  "topic": "Health checks",
+  "text": "What is the recommended design for liveness versus readiness health checks in an orchestrated environment?",
+  "options": [
+   "Liveness should check all downstream dependencies so unhealthy pods restart",
+   "Both probes should run the same checks to avoid confusion",
+   "Readiness should return 200 always so traffic is never interrupted",
+   "Liveness should be cheap and reflect only whether the process itself is healthy, while readiness checks dependencies and ability to serve traffic"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "A restart should not be triggered by an external outage.",
+  "explanation": "A liveness probe that depends on a database can restart every instance during a database outage, making things worse. Readiness gates traffic and may check dependencies. Typically these are mapped as separate health check endpoints using tags.",
+  "code": null,
+  "id": 187,
+  "key": "5e7d8c72998a"
+ },
+ {
+  "level": "Expert",
+  "topic": "Minimal API filters",
+  "text": "In the snippet, how does an endpoint filter reject invalid input without invoking the handler?",
+  "options": [
+   "Throw OperationCanceledException",
+   "Return an IResult without calling next(context)",
+   "Set context.HttpContext.Response.HasStarted to true",
+   "Call next(context) twice"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "A filter wraps the handler like middleware.",
+  "explanation": "An IEndpointFilter chooses whether to call next. Returning a result directly short-circuits the handler and later filters. Throwing cancellation would not produce a proper validation response.",
+  "code": "app.MapGet(\"/items/{id:int}\", (int id) => Results.Ok(id))\n   .AddEndpointFilter(async (ctx, next) =>\n   {\n       var id = ctx.GetArgument<int>(0);\n       if (id <= 0) return Results.BadRequest(\"id must be positive\");\n       return await next(ctx);\n   });",
+  "id": 188,
+  "key": "9c2a7f49b0a1"
+ },
+ {
+  "level": "Expert",
+  "topic": "DI scoping",
+  "text": "Which statements about dependency injection lifetimes in Microsoft.Extensions.DependencyInjection are correct? (Select all that apply.)",
+  "options": [
+   "ServiceProviderOptions.ValidateScopes can detect resolving scoped services from the root provider",
+   "A singleton that takes a scoped service in its constructor creates a captive dependency",
+   "A singleton can create scopes on demand with IServiceScopeFactory to use scoped services safely",
+   "Transient IDisposable services are never disposed by the container"
+  ],
+  "correct": [
+   0,
+   1,
+   2
+  ],
+  "hint": "The container tracks disposables it creates.",
+  "explanation": "Capturing a scoped service in a singleton keeps it alive for the app lifetime. ValidateScopes and scope factories address that. The container does track and dispose transient disposables it creates, at the end of their scope.",
+  "code": null,
+  "id": 189,
+  "key": "f6603990fc35"
+ },
+ {
+  "level": "Expert",
+  "topic": "Keyed services",
+  "text": "Given the registration below, what happens when you call provider.GetRequiredService<ICache>() with no key?",
+  "options": [
+   "It returns the RedisCache because it is the only ICache registered",
+   "It returns the first keyed registration alphabetically",
+   "It returns null",
+   "It throws InvalidOperationException because keyed registrations are not resolved by a non-keyed request"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "Keyed and non-keyed registrations are looked up separately.",
+  "explanation": "A keyed registration only matches requests that supply a matching key, such as [FromKeyedServices(\"redis\")] or GetRequiredKeyedService. A non-keyed request finds no registration and GetRequiredService throws.",
+  "code": "builder.Services.AddKeyedSingleton<ICache, RedisCache>(\"redis\");\n\npublic class Svc([FromKeyedServices(\"redis\")] ICache cache) { }",
+  "id": 190,
+  "key": "4f79beb94880"
+ },
+ {
+  "level": "Expert",
+  "topic": "DI disposal",
+  "text": "Which services does the built-in DI container dispose when the provider or scope is disposed?",
+  "options": [
+   "Only instances it created itself via a type or factory registration; instances registered with AddSingleton(instance) are not disposed by it",
+   "All services including pre-created instances registered with AddSingleton(instance)",
+   "Only scoped services, never singletons",
+   "None; services must always be disposed manually"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Ownership matters.",
+  "explanation": "The container owns and disposes instances it creates, but caller-provided instances remain the caller's responsibility. Singletons created by the container are disposed when the root provider is disposed.",
+  "code": null,
+  "id": 191,
+  "key": "95720026f58b"
+ },
+ {
+  "level": "Expert",
+  "topic": "Outbox pattern",
+  "text": "Which statements about the transactional outbox pattern are correct? (Select all that apply.)",
+  "options": [
+   "Consumers should be idempotent because a relay can publish a message and crash before marking it sent",
+   "Publishing to the broker inside the transaction before committing makes it equivalent",
+   "A background relay reads unsent outbox rows and publishes them",
+   "The outbox row is inserted in the same database transaction as the business change",
+   "It gives exactly-once delivery to the broker without consumer cooperation"
+  ],
+  "correct": [
+   0,
+   2,
+   3
+  ],
+  "hint": "The pattern gives at-least-once delivery.",
+  "explanation": "The outbox atomically records intent with the state change, and a relay publishes later, which yields at-least-once delivery with possible duplicates. Publishing before commit can send messages for rolled-back changes, so it is not equivalent.",
+  "code": null,
+  "id": 192,
+  "key": "fdd1168c80a1"
+ },
+ {
+  "level": "Expert",
+  "topic": "Idempotency",
+  "text": "What is the most robust way to implement idempotency keys for a payment API?",
+  "options": [
+   "Check a cache for the key, then process, with no locking",
+   "Rely on clients never retrying",
+   "Use the request timestamp as the key",
+   "Insert the key under a unique constraint in the same transaction as the side effects, and return the stored response on replay"
+  ],
+  "correct": [
+   3
+  ],
+  "hint": "A check-then-act race needs an atomic guard.",
+  "explanation": "A unique constraint makes the claim atomic, and committing it together with the side effects avoids processing twice or losing the record. A non-atomic check allows concurrent duplicates. Timestamps do not identify retries.",
+  "code": null,
+  "id": 193,
+  "key": "58ff312fbfd5"
+ },
+ {
+  "level": "Expert",
+  "topic": "Resilience",
+  "text": "Which statements about retry and circuit-breaker strategies are correct? (Select all that apply.)",
+  "options": [
+   "Exponential backoff with jitter reduces synchronized retry storms",
+   "Infinite immediate retries are safe because they maximize success",
+   "An open circuit breaker fails calls fast, giving the dependency time to recover",
+   "Retrying a non-idempotent POST is safe without idempotency keys"
+  ],
+  "correct": [
+   0,
+   2
+  ],
+  "hint": "Retries amplify load on a failing dependency.",
+  "explanation": "Jitter spreads retries and breakers shed load. Unbounded immediate retries can overload a struggling service, and retrying non-idempotent operations risks duplicate effects.",
+  "code": null,
+  "id": 194,
+  "key": "a4ef4e533b12"
+ },
+ {
+  "level": "Expert",
+  "topic": "Resilience / timeouts",
+  "text": "How does a Polly (v8) timeout strategy behave if the guarded delegate ignores its CancellationToken?",
+  "options": [
+   "It aborts the thread running the delegate",
+   "It is cooperative: it signals cancellation through the token, so code that ignores the token keeps running",
+   "It throws ThreadAbortException into the delegate",
+   "It is guaranteed to terminate the underlying HTTP connection"
+  ],
+  "correct": [
+   1
+  ],
+  "hint": "No thread is killed in modern .NET.",
+  "explanation": "Timeouts rely on cancellation tokens, and nothing can forcibly stop code that does not observe them. Thread abort is not supported in .NET Core and later, and connection termination is not automatic.",
+  "code": null,
+  "id": 195,
+  "key": "c5263fdfe2a9"
+ },
+ {
+  "level": "Expert",
+  "topic": "Native AOT",
+  "text": "Which approach makes JSON serialization compatible with Native AOT and trimming?",
+  "options": [
+   "Use the default reflection-based serializer, which works unchanged",
+   "Disable the trimmer warnings",
+   "Use a source-generated JsonSerializerContext with JsonSerializable attributes",
+   "Use Type.GetType with strings to load converters"
+  ],
+  "correct": [
+   2
+  ],
+  "hint": "Avoid runtime reflection over your types.",
+  "explanation": "The source generator emits serialization metadata at compile time, so the trimmer and AOT compiler can see what is needed. Reflection-based serialization may fail when members are trimmed, and suppressing warnings only hides the problem.",
+  "code": "[JsonSerializable(typeof(WeatherForecast))]\ninternal partial class AppJsonContext : JsonSerializerContext { }\n\nstring json = JsonSerializer.Serialize(\n    forecast, AppJsonContext.Default.WeatherForecast);",
+  "id": 196,
+  "key": "11c0d803b0a9"
+ },
+ {
+  "level": "Expert",
+  "topic": "Trimming",
+  "text": "Which statements about trimming and reflection are correct? (Select all that apply.)",
+  "options": [
+   "The trimmer cannot statically see types accessed only by string name through reflection and may remove them",
+   "PublishTrimmed removes only whole unused assemblies and never members",
+   "Type.GetType(\"Namespace.Type\") is always safe with trimming",
+   "[DynamicallyAccessedMembers] annotations tell the trimmer which members must be preserved"
+  ],
+  "correct": [
+   0,
+   3
+  ],
+  "hint": "Static analysis cannot follow arbitrary strings.",
+  "explanation": "The linker works on static reachability, so annotations or explicit roots are needed for reflection targets. Trimming removes unused types and members as well, so string-based lookup can break.",
+  "code": null,
+  "id": 197,
+  "key": "c37c294ccdf4"
+ },
+ {
+  "level": "Expert",
+  "topic": "BenchmarkDotNet",
+  "text": "Which practices avoid common BenchmarkDotNet pitfalls? (Select all that apply.)",
+  "options": [
+   "Running in Release without a debugger attached",
+   "Running benchmarks from a Debug build is fine for relative comparisons",
+   "Returning the computed result from the benchmark method so the JIT cannot eliminate the work as dead code",
+   "Building the input data inside the benchmark method because setup cost is excluded automatically"
+  ],
+  "correct": [
+   0,
+   2
+  ],
+  "hint": "Optimization and dead-code elimination affect measurements.",
+  "explanation": "Release builds are required for meaningful JIT optimization, and returning or consuming results prevents dead-code elimination. Setup inside the benchmark body is measured, so it should be in [GlobalSetup] or [IterationSetup].",
+  "code": "[Benchmark]\npublic int Sum() => _data.Sum();   // result returned, not discarded\n\n[GlobalSetup]\npublic void Setup() => _data = Enumerable.Range(0, 1000).ToArray();",
+  "id": 198,
+  "key": "b69250363770"
+ },
+ {
+  "level": "Expert",
+  "topic": "Cancellation",
+  "text": "On which thread do callbacks registered via CancellationToken.Register run when CancellationTokenSource.Cancel() is called?",
+  "options": [
+   "Synchronously on the thread that calls Cancel(), by default",
+   "Always on a new thread pool thread",
+   "On the thread that created the token",
+   "On the thread that registered the callback"
+  ],
+  "correct": [
+   0
+  ],
+  "hint": "Cancel() does not queue the callbacks.",
+  "explanation": "Registered callbacks run inline on the thread that calls Cancel, so slow callbacks block the canceller. Use CancelAsync or move heavy work off the callback. They are not marshaled to the creating or registering thread.",
+  "code": null,
+  "id": 199,
+  "key": "babff655aee4"
+ },
+ {
+  "level": "Expert",
+  "topic": "Concurrent collections",
+  "text": "Which statements about ConcurrentDictionary.GetOrAdd(key, valueFactory) are correct? (Select all that apply.)",
+  "options": [
+   "The factory may be invoked more than once concurrently for the same key, but only one value is stored",
+   "The factory always runs under the dictionary's global lock",
+   "Wrapping values in Lazy<T> ensures the expensive initialization runs only once",
+   "Racing callers can end up with different instances for the same key"
+  ],
+  "correct": [
+   0,
+   2
+  ],
+  "hint": "The factory runs outside the internal locks.",
+  "explanation": "The factory runs outside the locks, so duplicate invocations can occur, but all callers receive the single stored value. Lazy<T> defers and de-duplicates expensive creation.",
+  "code": "var cache = new ConcurrentDictionary<string, Lazy<Task<Data>>>();\nvar data = await cache.GetOrAdd(key,\n    k => new Lazy<Task<Data>>(() => LoadAsync(k))).Value;",
+  "id": 200,
+  "key": "faa75d0f115b"
+ }
+]
