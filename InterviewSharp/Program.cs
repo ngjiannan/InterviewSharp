@@ -25,6 +25,11 @@ builder.Services.AddCors(o => o.AddDefaultPolicy(p => p.WithOrigins(origins).Wit
 builder.Services.AddRateLimiter(o =>
 {
     o.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    // Global cap so spoofed or rotating client IPs cannot overload the free database.
+    o.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(ctx =>
+        ctx.Request.Path.StartsWithSegments("/api")
+            ? RateLimitPartition.GetConcurrencyLimiter("global", _ => new ConcurrencyLimiterOptions { PermitLimit = 4, QueueLimit = 8 })
+            : RateLimitPartition.GetNoLimiter("none"));
     o.AddPolicy("sql", ctx => RateLimitPartition.GetFixedWindowLimiter(
         ctx.Connection.RemoteIpAddress?.ToString() ?? "anon",
         _ => new FixedWindowRateLimiterOptions { PermitLimit = builder.Configuration.GetValue("Api:RequestsPerMinute", 30), Window = TimeSpan.FromMinutes(1) }));
@@ -33,6 +38,8 @@ builder.Services.AddRateLimiter(o =>
 builder.Services.Configure<ForwardedHeadersOptions>(o =>
 {
     o.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    // App Service terminates TLS in a front end that appends the real client IP; trust only the last hop.
+    o.ForwardLimit = 1;
     o.KnownIPNetworks.Clear();
     o.KnownProxies.Clear();
 });

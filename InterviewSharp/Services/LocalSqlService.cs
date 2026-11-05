@@ -11,7 +11,7 @@ public class LocalSqlService : ISqlService
     {
         _runner = runner;
         _questions = questions;
-        _allowReset = config.GetValue("Hosted:AllowReset", true);
+        _allowReset = config.GetValue("Hosted:AllowReset", false);
     }
 
     public bool IsConfigured => true;

@@ -17,33 +17,14 @@ public partial class SqlRunner
         _contentRoot = env.ContentRootPath;
     }
 
-    [GeneratedRegex(@"\b(insert|update|delete|drop|alter|create|truncate|merge|exec|execute|grant|revoke|shutdown|backup|restore|into|use|openrowset|opendatasource|openquery|waitfor|dbcc)\b|\bxp_\w+|\bsp_\w+", RegexOptions.IgnoreCase)]
-    private static partial Regex ForbiddenRegex();
-
-    [GeneratedRegex(@"--[^\r\n]*|/\*.*?\*/", RegexOptions.Singleline)]
-    private static partial Regex CommentRegex();
-
-    // Light guard for a local single-user practice tool: read-only SELECT / WITH queries.
-    public static string? Validate(string sql)
-    {
-        var cleaned = CommentRegex().Replace(sql ?? "", " ").Trim().TrimEnd(';').Trim();
-        if (cleaned.Length == 0) return "Please enter a query.";
-        if (!Regex.IsMatch(cleaned, @"^(select|with)\b", RegexOptions.IgnoreCase))
-            return "Only SELECT or WITH (CTE) queries are allowed.";
-        var noStrings = Regex.Replace(cleaned, @"'(?:[^']|'')*'", "''");
-        if (noStrings.Contains(';')) return "Please run a single statement at a time.";
-        var m = ForbiddenRegex().Match(noStrings);
-        if (m.Success) return $"'{m.Value}' is not allowed in practice queries.";
-        return null;
-    }
-
     public async Task<QueryResult> RunAsync(string sql, bool skipValidation = false)
     {
         var result = new QueryResult();
         if (!skipValidation)
         {
-            var problem = Validate(sql);
+            var (problem, normalized) = SqlGuard.Check(sql);
             if (problem is not null) { result.Error = problem; return result; }
+            sql = normalized!;
         }
 
         var sw = System.Diagnostics.Stopwatch.StartNew();
@@ -64,9 +45,17 @@ public partial class SqlRunner
                 result.Rows.Add(row);
             }
         }
-        catch (Exception ex)
+        catch (SqlException ex) when (ex.Number is 102 or 105 or 156 or 207 or 208 or 245 or 8114 or 8115 or 8134 or 4104 or 209 or 8120 or 8121 or 325 or 319 or 321 or 1038)
         {
             result.Error = ex.Message;
+        }
+        catch (SqlException ex) when (ex.Number == -2)
+        {
+            result.Error = "The query took too long (10s limit).";
+        }
+        catch (Exception)
+        {
+            result.Error = "The query could not be run.";
         }
         result.ElapsedMs = sw.ElapsedMilliseconds;
         return result;
