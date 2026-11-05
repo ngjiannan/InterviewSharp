@@ -51,5 +51,14 @@ async function onFetch(event) {
         cachedResponse = await cache.match(request);
     }
 
+    if (cachedResponse && cachedResponse.redirected) {
+        // Navigations can't be answered with a redirected response (Pages redirects /index.html to /)
+        cachedResponse = new Response(await cachedResponse.blob(), {
+            status: cachedResponse.status,
+            statusText: cachedResponse.statusText,
+            headers: cachedResponse.headers
+        });
+    }
+
     return cachedResponse || fetch(event.request);
 }
