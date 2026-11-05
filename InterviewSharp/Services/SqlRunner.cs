@@ -98,7 +98,7 @@ public partial class SqlRunner
     public async Task<SchemaInfo> GetSchemaInfoAsync()
     {
         var info = new SchemaInfo();
-        var r = await RunAsync("SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS ORDER BY TABLE_NAME, ORDINAL_POSITION", skipValidation: true);
+        var r = await RunAsync("SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'dbo' ORDER BY TABLE_NAME, ORDINAL_POSITION", skipValidation: true);
         info.Columns = r.Rows.Select(x => new SchemaColumn { Table = (string)x[0]!, Column = (string)x[1]!, Type = (string)x[2]! }).ToList();
         if (info.Columns.Count > 0)
         {

@@ -69,10 +69,20 @@ api.MapPost("/check", async (CheckRequest r, ISqlService sql) =>
 api.MapGet("/schema", async (ISqlService sql) => Results.Ok(await sql.GetSchemaAsync()));
 app.MapGet("/healthz", () => Results.Ok("ok"));
 
-app.MapStaticAssets();
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode()
-    .AddAdditionalAssemblies(typeof(InterviewSharp.Shared.Pages.Marker).Assembly);
+// Hosted API mode: no Blazor UI or SignalR endpoint, only /api and /healthz.
+if (!app.Configuration.GetValue("Hosted:ApiOnly", false))
+{
+    app.MapStaticAssets();
+    app.MapRazorComponents<App>()
+        .AddInteractiveServerRenderMode()
+        .AddAdditionalAssemblies(typeof(InterviewSharp.Shared.Pages.Marker).Assembly);
+}
+app.Use(async (ctx, next) =>
+{
+    ctx.Response.Headers["X-Content-Type-Options"] = "nosniff";
+    ctx.Response.Headers["Referrer-Policy"] = "no-referrer";
+    await next();
+});
 
 app.Run();
 
