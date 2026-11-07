@@ -21,11 +21,33 @@ public class RemoteSqlService : ISqlService
     private const string Unreachable =
         "Could not reach the SQL server. The free host sleeps when idle and can take 20-30 seconds to wake up - please try again.";
 
+    // The free host and serverless DB sleep when idle: retry transient failures instead of failing the first click.
+    private async Task<HttpResponseMessage> PostWithRetryAsync(string path, object body)
+    {
+        for (var attempt = 1; ; attempt++)
+        {
+            try
+            {
+                var resp = await _http.PostAsJsonAsync($"{_baseUrl}{path}", body);
+                if ((int)resp.StatusCode < 500 || attempt == 3) return resp;
+            }
+            catch (Exception) when (attempt < 3) { }
+            await Task.Delay(2000 * attempt);
+        }
+    }
+
+    // Fire-and-forget ping so the API and database are awake before the first Run.
+    public async Task WarmUpAsync()
+    {
+        if (!IsConfigured) return;
+        try { await _http.GetAsync($"{_baseUrl}/api/schema"); } catch { }
+    }
+
     public async Task<QueryResult> RunAsync(string sql)
     {
         try
         {
-            var resp = await _http.PostAsJsonAsync($"{_baseUrl}/api/run", new { sql });
+            var resp = await PostWithRetryAsync("/api/run", new { sql });
             if (resp.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
                 return new QueryResult { Error = "Too many requests - slow down and try again in a minute." };
             resp.EnsureSuccessStatusCode();
@@ -41,7 +63,7 @@ public class RemoteSqlService : ISqlService
     {
         try
         {
-            var resp = await _http.PostAsJsonAsync($"{_baseUrl}/api/check", new { sql, key = questionKey });
+            var resp = await PostWithRetryAsync("/api/check", new { sql, key = questionKey });
             if (resp.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
                 return new CheckOutcome(false, "Too many requests - slow down and try again in a minute.");
             resp.EnsureSuccessStatusCode();

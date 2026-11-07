@@ -12,8 +12,14 @@ public partial class SqlRunner
 
     public SqlRunner(IConfiguration config, IWebHostEnvironment env)
     {
-        _connectionString = config.GetConnectionString("PracticeDb")
-            ?? throw new InvalidOperationException("Missing ConnectionStrings:PracticeDb");
+        _connectionString = new SqlConnectionStringBuilder(config.GetConnectionString("PracticeDb")
+            ?? throw new InvalidOperationException("Missing ConnectionStrings:PracticeDb"))
+        {
+            // Azure serverless SQL can be paused; allow time for it to resume
+            ConnectTimeout = 60,
+            ConnectRetryCount = 3,
+            ConnectRetryInterval = 10
+        }.ConnectionString;
         _contentRoot = env.ContentRootPath;
     }
 

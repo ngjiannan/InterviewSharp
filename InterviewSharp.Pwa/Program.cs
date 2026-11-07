@@ -17,6 +17,8 @@ builder.Services.AddSingleton(new McqService(new Dictionary<string, IReadOnlyLis
     ["angular"] = await Load<McqQuestion>("mcq_angular.json"),
     ["dotnet"] = await Load<McqQuestion>("mcq_dotnet.json"),
 }));
-builder.Services.AddSingleton<ISqlService>(new RemoteSqlService(new HttpClient { Timeout = TimeSpan.FromSeconds(60) }, builder.Configuration["ApiBaseUrl"]));
+var remote = new RemoteSqlService(new HttpClient { Timeout = TimeSpan.FromSeconds(75) }, builder.Configuration["ApiBaseUrl"]);
+builder.Services.AddSingleton<ISqlService>(remote);
+_ = remote.WarmUpAsync();
 
 await builder.Build().RunAsync();
